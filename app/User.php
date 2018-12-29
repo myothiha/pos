@@ -27,4 +27,15 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public const ADMIN = 'admin';
+
+    public const YGN_SALE = 'ygn_sale';
+
+    public const MDY_SALE = 'mdy_sale';
+
+    public function hasRole($role)
+    {
+        return $this->role == $role;
+    }
 }
