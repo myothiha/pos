@@ -205,7 +205,7 @@
                                 <a href="index.html" class="dropdown-item">StockIn</a>
                             </li>
                             <li class="nav-item">
-                                <a href="sm_dashboard_02.html" class="dropdown-item">Sale</a>
+                                <a href="{{ action('SaleController@index') }}" class="dropdown-item">Sale</a>
                             </li>
                             <li class="nav-item">
                                 <a href="sm_dashboard_03.html" class="dropdown-item">Recevieable</a>

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -15,7 +14,14 @@ class CreateIssuesTable extends Migration
     {
         Schema::create('issues', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('employee_id');
+            $table->unsignedInteger('itemId');
+            $table->unsignedInteger('quantity');
+            $table->string('paint');
+            $table->string('tinder');
+            $table->string('liker');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

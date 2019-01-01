@@ -9,4 +9,10 @@ class Constants
 
     public const MALE = 'Male';
     public const FEMALE = 'Female';
+
+    const SALE = 'sale';
+    const TRANSFER = 'transfer';
+
+    const CASH_DOWN = 'cashdown';
+    const CREDIT = 'credit';
 }

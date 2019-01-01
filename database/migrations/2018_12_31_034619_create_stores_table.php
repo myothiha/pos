@@ -18,14 +18,13 @@ class CreateStoresTable extends Migration
             $table->unsignedInteger('item_id');
             $table->integer('quantity');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('location_id')
-                ->references('id')->on('locations')
-                ->onDelete('cascade');
+                ->references('id')->on('locations');
 
             $table->foreign('item_id')
-                ->references('id')->on('items')
-                ->onDelete('cascade');
+                ->references('id')->on('items');
         });
     }
 

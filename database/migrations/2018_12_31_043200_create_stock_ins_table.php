@@ -19,6 +19,13 @@ class CreateStockInsTable extends Migration
             $table->unsignedInteger('supplier_id');
             $table->text('remark');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('location_id')
+                ->references('id')->on('locations');
+
+            $table->foreign('supplier_id')
+                ->references('id')->on('suppliers');
         });
     }
 

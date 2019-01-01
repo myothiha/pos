@@ -23,18 +23,16 @@ class CreateItemsTable extends Migration
             $table->text('remark')->nullable();
             $table->unsignedTinyInteger('isActive')->default(Constants::TRUE);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('type_id')
-                ->references('id')->on('types')
-                ->onDelete('cascade');
+                ->references('id')->on('types');
 
             $table->foreign('category_id')
-                ->references('id')->on('categories')
-                ->onDelete('cascade');
+                ->references('id')->on('categories');
 
             $table->foreign('color_id')
-                ->references('id')->on('colors')
-                ->onDelete('cascade');
+                ->references('id')->on('colors');
         });
     }
 

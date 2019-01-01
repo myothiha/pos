@@ -18,6 +18,7 @@ class CreateTypesTable extends Migration
             $table->string('name');
             $table->unsignedTinyInteger('isActive')->default(Constants::TRUE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
