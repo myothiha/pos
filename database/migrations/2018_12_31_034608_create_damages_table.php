@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -15,7 +14,19 @@ class CreateDamagesTable extends Migration
     {
         Schema::create('damages', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamp('date');
+            $table->unsignedInteger('location_id');
+            $table->unsignedInteger('item_id');
+            $table->integer('quantity');
             $table->timestamps();
+
+            $table->foreign('location_id')
+                ->references('id')->on('locations')
+                ->onDelete('cascade');
+
+            $table->foreign('item_id')
+                ->references('id')->on('items')
+                ->onDelete('cascade');
         });
     }
 

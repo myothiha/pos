@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -16,12 +15,12 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->date('dob');
-            $table->string('gender');
-            $table->string('phone');
-            $table->string('address');
-            $table->date('join_date');
-            $table->boolean('is_active');
+            $table->timestamp('dob')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->timestamp('joinDate')->nullable();
+            $table->boolean('isActive')->default(Constants::TRUE);
             $table->timestamps();
         });
     }
