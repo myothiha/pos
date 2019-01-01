@@ -36,33 +36,33 @@
                             </li>
                             <li class="aux-languages dropdown">
                                 <a href="javascript:void(0)">
-                                    <img src="assets/img/flags/png/in.png" alt="perfectin.co">
+                                    <img src="/assets/img/flags/png/in.png" alt="perfectin.co">
                                 </a>
                                 <ul id="auxLanguages" class="sub-menu">
                                     <li>
                                         <a href="javascript:void(0)">
-                                            <img src="assets/img/flags/png/in.png"
+                                            <img src="/assets/img/flags/png/in.png"
                                                  alt="perfectin.co">
                                             <span class="language">India</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="javascript:void(0)">
-                                            <img src="assets/img/flags/png/us.png"
+                                            <img src="/assets/img/flags/png/us.png"
                                                  alt="perfectin.co">
                                             <span class="language">United States</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="javascript:void(0)">
-                                            <img src="assets/img/flags/png/en.png"
+                                            <img src="/assets/img/flags/png/en.png"
                                                  alt="perfectin.co">
                                             <span class="language">England</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="javascript:void(0)">
-                                            <img src="assets/img/flags/png/au.png"
+                                            <img src="/assets/img/flags/png/au.png"
                                                  alt="perfectin.co">
                                             <span class="language">Australia</span>
                                         </a>
@@ -98,12 +98,6 @@
                                         <i class="ion-log-out icon-lg text-primary"></i>Logoff
                                     </a>
                                 </div>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" class="btn-st-trigger"
-                                   data-effect="sm-effect-1">
-                                    <i class="fa fa-ellipsis-h"></i>
-                                </a>
                             </li>
                         </ul>
                     </nav>
@@ -230,16 +224,6 @@
                 </ul>
                 <!-- END NAVBAR LINKS -->
             </div>
-<!--             <div class="d-none d-lg-inline-block d-xl-inline-block">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item nav-item-icon hidden-md-down">
-                        <a href="" class="nav-link btn-st-trigger p-r-5"
-                           data-effect="sm-effect-1">
-                            <span><i class="fa fa-bars"></i></span>
-                        </a>
-                    </li>
-                </ul>
-            </div> -->
         </div>
     </nav>
     <!--END NAV BAR-->
