@@ -18,14 +18,13 @@ class CreateReceivableOpeningsTable extends Migration
             $table->unsignedInteger('customer_id');
             $table->integer('balance');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('location_id')
-                ->references('id')->on('locations')
-                ->onDelete('cascade');
+                ->references('id')->on('locations');
 
             $table->foreign('customer_id')
-                ->references('id')->on('customers')
-                ->onDelete('cascade');
+                ->references('id')->on('customers');
         });
     }
 

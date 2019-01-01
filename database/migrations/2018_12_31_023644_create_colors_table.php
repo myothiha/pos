@@ -18,6 +18,7 @@ class CreateColorsTable extends Migration
             $table->string('name');
             $table->unsignedInteger('isActive')->default(Constants::TRUE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

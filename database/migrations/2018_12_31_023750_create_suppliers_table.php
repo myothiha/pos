@@ -20,6 +20,7 @@ class CreateSuppliersTable extends Migration
             $table->text('address')->nullable();
             $table->unsignedTinyInteger('isActive')->default(Constants::TRUE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

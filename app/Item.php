@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -32,7 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Item extends Model
+class Item extends Model implements Buyable
 {
     protected $casts = [
         'isActive' => 'boolean',
@@ -66,5 +67,38 @@ class Item extends Model
     public function stores()
     {
         return $this->hasMany(Store::class);
+    }
+
+    /**
+     * Get the identifier of the Buyable item.
+     *
+     * @return int|string
+     */
+    public function getBuyableIdentifier($options = null)
+    {
+        // TODO: Implement getBuyableIdentifier() method.
+        return $this->id;
+    }
+
+    /**
+     * Get the description or title of the Buyable item.
+     *
+     * @return string
+     */
+    public function getBuyableDescription($options = null)
+    {
+        // TODO: Implement getBuyableDescription() method.
+        return $this->name;
+    }
+
+    /**
+     * Get the price of the Buyable item.
+     *
+     * @return float
+     */
+    public function getBuyablePrice($options = null)
+    {
+        // TODO: Implement getBuyablePrice() method.
+        return 0;
     }
 }
