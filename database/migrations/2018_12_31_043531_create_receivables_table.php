@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReceiveablesTable extends Migration
+class CreateReceivablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +12,7 @@ class CreateReceiveablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('receiveables', function (Blueprint $table) {
+        Schema::create('receivables', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +25,6 @@ class CreateReceiveablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receiveables');
+        Schema::dropIfExists('receivables');
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReceiveableOpeningsTable extends Migration
+class CreateReceivableOpeningsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,8 @@ class CreateReceiveableOpeningsTable extends Migration
      */
     public function up()
     {
-        Schema::create('receiveable_openings', function (Blueprint $table) {
+        Schema::create('receivable_openings', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('date');
             $table->unsignedInteger('location_id');
             $table->unsignedInteger('customer_id');
             $table->integer('balance');
@@ -37,6 +36,6 @@ class CreateReceiveableOpeningsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receiveable_openings');
+        Schema::dropIfExists('receivable_openings');
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Constants;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -19,7 +20,6 @@ class CreateEmployeesTable extends Migration
             $table->string('gender')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->timestamp('joinDate')->nullable();
             $table->boolean('isActive')->default(Constants::TRUE);
             $table->timestamps();
         });

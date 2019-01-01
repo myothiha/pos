@@ -14,7 +14,6 @@ class CreateStockOpeningsTable extends Migration
     {
         Schema::create('stock_openings', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('date');
             $table->unsignedInteger('location_id');
             $table->unsignedInteger('item_id');
             $table->integer('quantity');
@@ -27,7 +26,6 @@ class CreateStockOpeningsTable extends Migration
             $table->foreign('item_id')
                 ->references('id')->on('items')
                 ->onDelete('cascade');
-
         });
     }
 

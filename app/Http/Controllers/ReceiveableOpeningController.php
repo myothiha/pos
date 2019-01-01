@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ReceiveableOpening;
+use App\ReceivableOpening;
 use Illuminate\Http\Request;
 
 class ReceiveableOpeningController extends Controller
@@ -41,10 +41,10 @@ class ReceiveableOpeningController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ReceiveableOpening  $receiveableOpening
+     * @param  \App\ReceivableOpening  $receiveableOpening
      * @return \Illuminate\Http\Response
      */
-    public function show(ReceiveableOpening $receiveableOpening)
+    public function show(ReceivableOpening $receiveableOpening)
     {
         //
     }
@@ -52,10 +52,10 @@ class ReceiveableOpeningController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ReceiveableOpening  $receiveableOpening
+     * @param  \App\ReceivableOpening  $receiveableOpening
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReceiveableOpening $receiveableOpening)
+    public function edit(ReceivableOpening $receiveableOpening)
     {
         //
     }
@@ -64,10 +64,10 @@ class ReceiveableOpeningController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ReceiveableOpening  $receiveableOpening
+     * @param  \App\ReceivableOpening  $receiveableOpening
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReceiveableOpening $receiveableOpening)
+    public function update(Request $request, ReceivableOpening $receiveableOpening)
     {
         //
     }
@@ -75,10 +75,10 @@ class ReceiveableOpeningController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ReceiveableOpening  $receiveableOpening
+     * @param  \App\ReceivableOpening  $receiveableOpening
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReceiveableOpening $receiveableOpening)
+    public function destroy(ReceivableOpening $receiveableOpening)
     {
         //
     }

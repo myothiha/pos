@@ -14,7 +14,6 @@ class CreateDamagesTable extends Migration
     {
         Schema::create('damages', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('date');
             $table->unsignedInteger('location_id');
             $table->unsignedInteger('item_id');
             $table->integer('quantity');
