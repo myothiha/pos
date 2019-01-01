@@ -24,7 +24,7 @@ class CreateSalesTable extends Migration
             $table->integer('paid');
             $table->integer('balance');
             $table->text('remark');
-            $table->text('isPaid')->default(Constants::TRUE);
+            $table->string('isPaid')->default(Constants::TRUE);
             $table->timestamps();
             $table->softDeletes();
 
