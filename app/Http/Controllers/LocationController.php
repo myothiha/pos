@@ -43,7 +43,15 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $location = new $this->location();
+        $location->name = $request->name;
+        $location->save();
+
+        return redirect("admin/location");
     }
 
     /**
@@ -54,15 +62,7 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
-        $location = new $this->location();
-        $location->name = $request->name;
-        $location->save();
-
-        return redirect("admin/location");
+        //
     }
 
     /**

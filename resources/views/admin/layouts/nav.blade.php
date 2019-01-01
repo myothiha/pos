@@ -12,16 +12,6 @@
         </div>
     </div>
 </div>
-<!-- <nav id="ml-menu" class="menu sm-menu sm-effect-1">
-    <a class="action--close hide">close</a>
-    <div class="menu__wrap sm-menu-list">
-        <ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="All">
-            <li class="menu__item" role="menuitem">
-                <a class="menu__link" data-submenu="submenu-1" aria-owns="submenu-1" href="javascript:void(0)">
-                    <i class="icon ion-ios-home-outline"></i> Dashboard
-                </a>
-            </li>
-        </ul>
         <!-- SUBMENU 1 -->
         <ul data-menu="submenu-1" id="submenu-1" class="menu__level" tabindex="-1" role="menu"
             aria-label="Dashboard">
@@ -61,5 +51,5 @@
                 </a>
             </li>
         </ul>
-    </div> -->
+    </div>
 </nav>

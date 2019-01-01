@@ -23,13 +23,16 @@
                         <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
                             <div class="sm-box">
 
-                                <form class="form-default" >
+                                <form class="form-default" action="{{ action('CustomerController@update',$customer->id) }}"
+                                  method="post" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="PUT" />
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="username">Name</label>
                                                 <input id="username" placeholder="Enter Name"
-                                                       type="text" class="form-control" name="name">
+                                                       type="text" class="form-control" name="name" value="{{ $customer->name }}">
                                             </div>
                                         </div>
                                     </div>
@@ -39,7 +42,7 @@
                                             <div class="form-group has-feedback">
                                                 <label for="phone">Phone</label>
                                                 <input type="text" id="phone"
-                                                       placeholder="Phone" class="form-control" name="phone">
+                                                       placeholder="Phone" class="form-control" name="phone" value="{{ $customer->phone }}">
                                             </div>
                                         </div>
                                     </div>
@@ -48,7 +51,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label for="address">Address</label>
-                                                <textarea class="form-control" id="Address" rows="3" name="address"></textarea>
+                                                <textarea class="form-control" id="Address" rows="3" name="address">{{ $customer->address }}</textarea>
                                             </div>
                                         </div>
                                     </div>

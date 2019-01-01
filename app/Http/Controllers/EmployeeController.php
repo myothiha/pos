@@ -103,7 +103,7 @@ class EmployeeController extends Controller
         $employee->address = $request->address;
         $employee->save();
 
-        return redirect("admin/empl2oyee");
+        return redirect("admin/employee");
     }
 
     /**

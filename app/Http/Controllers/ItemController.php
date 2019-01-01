@@ -100,7 +100,7 @@ class ItemController extends Controller
         $categories = $this->category->all();
         $colors = $this->color->all();
 
-        return view("admin.item.create", [
+        return view("admin.item.edit", [
             'types' => $types,
             'categories' => $categories,
             'colors' => $colors,

@@ -23,13 +23,14 @@
                         <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
                             <div class="sm-box">
 
-                                <form class="form-default" >
+                                <form class="form-default" action="{{ action('ColorController@store') }}" method="post">
+                                    {{ csrf_field() }}
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="name">Name</label>
                                                 <input id="name" placeholder="Enter Name"
-                                                       type="text" class="form-control">
+                                                       type="text" class="form-control" name="name">
                                             </div>
                                         </div>
                                     </div>

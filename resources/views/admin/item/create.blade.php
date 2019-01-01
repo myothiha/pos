@@ -23,7 +23,7 @@
                         <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
                             <div class="sm-box">
 
-                                <form class="form-default" action="" method="post" enctype="multipart/form-data">
+                                <form class="form-default" action="{{ action('ItemController@store') }}" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="row">
                                         <div class="col-6">
@@ -36,11 +36,24 @@
                                     </div>
 
                                     <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="itemCode">Item Code</label>
+                                                <input id="itemCode" placeholder="Enter Item Code"
+                                                       type="text" class="form-control" name="itemCode">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
                                         <div class="col-lg-6">
                                             <div class="form-group has-feedback">
                                                 <label for="gender">Type ID</label>
-                                                <input type="text" id="type_id"
-                                                       placeholder="Type ID" class="form-control" name="type_id">
+                                                <select class="form-control" id="select" name="type_id">
+                                                    @foreach($types as $type)
+                                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -49,8 +62,11 @@
                                         <div class="col-lg-6">
                                             <div class="form-group has-feedback">
                                                 <label for="gender">Category ID</label>
-                                                <input type="text" id="category_id"
-                                                       placeholder="Category ID" class="form-control" name="category_id">
+                                                <select class="form-control" id="select" name="category_id">
+                                                    @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -59,8 +75,11 @@
                                         <div class="col-lg-6">
                                             <div class="form-group has-feedback">
                                                 <label for="gender">Color ID</label>
-                                                <input type="text" id="color_id"
-                                                       placeholder="Color ID" class="form-control" name="color_id">
+                                                <select class="form-control" id="select" name="color_id">
+                                                    @foreach($colors as $color)
+                                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

@@ -181,6 +181,9 @@
                                 <a href="{{ action('EmployeeController@index') }}" class="dropdown-item">Employee</a>
                             </li>
                             <li class="nav-item">
+                                <a href="{{ action('TypeController@index') }}" class="dropdown-item">Type</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ action('CategoryController@index') }}" class="dropdown-item">Category</a>
                             </li>
                             <li class="nav-item">

@@ -25,6 +25,7 @@
     <link href="{{ url('') }}/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ url('') }}/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ url('') }}/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="http://ivaynberg.github.io/select2/select2-2.1/select2.css" rel="stylesheet"/>
     
 </head>
 <body class="body-boxed">

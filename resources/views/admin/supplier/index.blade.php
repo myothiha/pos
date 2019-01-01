@@ -37,30 +37,27 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="odd gradeX">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td>4</td>
-                                    </tr>
-                                    <tr class="even gradeC">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 5.0</td>
-                                        <td>Win 95+</td>
-                                        <td>5</td>
-                                    </tr>
-                                    <tr class="odd gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 5.5</td>
-                                        <td>Win 95+</td>
-                                        <td>5.5</td>
-                                    </tr>
-                                    <tr class="even gradeA">
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 6</td>
-                                        <td>Win 98+</td>
-                                        <td>6</td>
-                                    </tr>
+                                    <?php $no = 1; ?>
+                                    @foreach($suppliers as $supplier)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $supplier->name }}</td>
+                                            <td>{{ $supplier->isActive }}</td>
+                                            <td width="20%">
+                                                <form
+                                                    action="{{ action('SupplierController@destroy', $supplier->id) }}"
+                                                    method="Post">
+                                                    <input type="hidden" name="_method" value="delete">
+                                                    {{ csrf_field() }}
+
+                                                    <a class="btn btn-outline-primary"
+                                                       href="{{ action('SupplierController@edit', $supplier->id) }}">Edit</a>
+
+                                                    <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
 
