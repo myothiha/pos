@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class TypeController extends Controller
 {
+    public function __construct()
+    {
+        $this->type = new Type();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,11 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.type.index');
+        $types = $this->type->all();
+
+        return view("admin.type.index", [
+            'types' => $types,
+        ]);
     }
 
     /**
@@ -35,7 +43,15 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $type = new $this->type();
+        $type->name = $request->name;
+        $type->save();
+
+        return redirect("admin/type");
     }
 
     /**
@@ -57,7 +73,9 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view("admin.type.edit", [
+            'type' => $type
+        ]);
     }
 
     /**
@@ -69,7 +87,14 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $type->name = $request->name;
+        $type->save();
+
+        return redirect("admin/type");
     }
 
     /**
@@ -80,6 +105,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->Delete();
+        return redirect("admin/type");
     }
 }

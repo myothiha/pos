@@ -23,13 +23,15 @@
                         <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
                             <div class="sm-box">
 
-                                <form class="form-default" >
+                                <form class="form-default" action="{{ action('TypeController@update', $type->id) }}" method="post">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="PUT" />
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="username">Name</label>
                                                 <input id="username" placeholder="Enter Name"
-                                                       type="text" class="form-control">
+                                                       type="text" class="form-control" value="{{ $type->name }}">
                                             </div>
                                         </div>
                                     </div>

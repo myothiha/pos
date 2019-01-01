@@ -23,20 +23,22 @@
                         <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
                             <div class="sm-box">
 
-                                <form class="form-default" >
+                                <form class="form-default">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="_method" value="PUT" />
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="username">Name</label>
-                                                <input id="username" placeholder="Enter Name"
-                                                       type="text" class="form-control">
+                                                <label for="name">Name</label>
+                                                <input id="name" placeholder="Enter Name"
+                                                       type="text" class="form-control" name="name" value="{{ $employee->name }}">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label class="control-label">Date of Birth</label>
                                                 <div class="input-group date input-group--style-1" id="datepicker-component" data-date-format="dd-mm-yyyy" data-date-start-date="Date.default">
-                                                    <input type="text" class="form-control" placeholder="Select Date" autocomplete="off">
+                                                    <input type="date" class="form-control" name="dob" placeholder="Select Date" value="{{ $employee->dob }}"><br>
                                                     <span class="input-group-addon">
                                                         <i class="ion-ios-calendar-outline"></i>
                                                     </span>
@@ -50,28 +52,14 @@
                                             <div class="form-group has-feedback">
                                                 <label for="gender">Gender</label>
                                                 <input type="text" id="gender"
-                                                       placeholder="Gender" class="form-control">
+                                                       placeholder="Gender" class="form-control" name="gender" value="{{ $employee->gender }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group has-feedback">
                                                 <label for="phone">Phone</label>
                                                 <input type="text" id="phone"
-                                                       placeholder="Phone" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Joined Birth</label>
-                                                <div class="input-group date input-group--style-1" id="datepicker-component" data-date-format="dd-mm-yyyy" data-date-start-date="Date.default">
-                                                    <input type="text" class="form-control" placeholder="Select Date" autocomplete="off">
-                                                    <span class="input-group-addon">
-                                                        <i class="ion-ios-calendar-outline"></i>
-                                                    </span>
-                                                </div>
+                                                       placeholder="Phone" class="form-control" name="phone" value="{{ $employee->phone }}">
                                             </div>
                                         </div>
                                     </div>
@@ -80,7 +68,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label for="address">Address</label>
-                                                <textarea class="form-control" id="Address" rows="3"></textarea>
+                                                <textarea class="form-control" id="Address" rows="3" name="address"> {{ $employee->address }}</textarea>
                                             </div>
                                         </div>
                                     </div>

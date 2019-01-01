@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+    public function __construct()
+    {
+        $this->customer = new Customer();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,11 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('admin.customer.index');
+        $customers = $this->customer->all();
+
+        return view("admin.customer.index", [
+            'customers' => $customers,
+        ]);
     }
 
     /**
@@ -35,7 +43,17 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $customer = new $this->customer();
+        $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        $customer->save();
+
+        return redirect("admin/customer");
     }
 
     /**
@@ -57,7 +75,9 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view("admin.customer.edit", [
+            'customer' => $customer
+        ]);
     }
 
     /**
@@ -69,7 +89,16 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        $customer->save();
+
+        return redirect("admin/customer");
     }
 
     /**
@@ -80,6 +109,7 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->Delete();
+        return redirect("admin/customer");
     }
 }

@@ -23,13 +23,13 @@
                         <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
                             <div class="sm-box">
 
-                                <form class="form-default" action="" method="post" enctype="multipart/form-data">
+                                <form class="form-default" action="{{ action('EmployeeController@store') }}" method="post">
                                     {{ csrf_field() }}
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="username">Name</label>
-                                                <input id="username" placeholder="Enter Name"
+                                                <label for="name">Name</label>
+                                                <input id="name" placeholder="Enter Name"
                                                        type="text" class="form-control" name="name">
                                             </div>
                                         </div>
@@ -37,7 +37,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">Date of Birth</label>
                                                 <div class="input-group date input-group--style-1" id="datepicker-component" data-date-format="dd-mm-yyyy" data-date-start-date="Date.default">
-                                                    <input type="text" class="form-control" placeholder="Select Date" autocomplete="off" name="dob">
+                                                    <input type="date" class="form-control" name="dob" placeholder="Select Date"><br>
                                                     <span class="input-group-addon">
                                                         <i class="ion-ios-calendar-outline"></i>
                                                     </span>
@@ -59,20 +59,6 @@
                                                 <label for="phone">Phone</label>
                                                 <input type="text" id="phone"
                                                        placeholder="Phone" class="form-control" name="phone">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="control-label">Joined Birth</label>
-                                                <div class="input-group date input-group--style-1" id="datepicker-component" data-date-format="dd-mm-yyyy" data-date-start-date="Date.default">
-                                                    <input type="text" class="form-control" placeholder="Select Date" autocomplete="off" name="join_date">
-                                                    <span class="input-group-addon">
-                                                        <i class="ion-ios-calendar-outline"></i>
-                                                    </span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -51,8 +51,6 @@
                     
                     @include('admin.layouts.header')
 
-                    @include('admin.layouts.page-title')
-
                     @yield('content')
 
                     @include('admin.layouts.footer')
@@ -86,7 +84,7 @@
 <script src="{{ url('') }}/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
 <script src="{{ url('') }}/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
 <script src="{{ url('') }}/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{ url('') }}/assets/js/sm_tables_dataTable_Responsive.min.js"></script>
+<script src="{{ url('') }}/assets/js/sm_tables_dataTable_Responsive.js"></script>
 <script src="{{ url('') }}/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="{{ url('') }}/assets/plugins/bootstrap-daterangepicker/moment.min.js"></script>
 

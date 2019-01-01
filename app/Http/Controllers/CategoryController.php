@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->category = new Category();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index');
+        $categories = $this->category->all();
+
+        return view("admin.category.index", [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -35,7 +43,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $category = new $this->category();
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect("admin/category");
     }
 
     /**
@@ -57,7 +73,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view("admin.category.edit", [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -69,7 +87,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect("admin/category");
     }
 
     /**
@@ -80,6 +105,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->Delete();
+        return redirect("admin/category");
     }
 }

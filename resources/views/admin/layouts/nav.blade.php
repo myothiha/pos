@@ -12,7 +12,7 @@
         </div>
     </div>
 </div>
-<nav id="ml-menu" class="menu sm-menu sm-effect-1">
+<!-- <nav id="ml-menu" class="menu sm-menu sm-effect-1">
     <a class="action--close hide">close</a>
     <div class="menu__wrap sm-menu-list">
         <ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="All">
@@ -27,29 +27,39 @@
             aria-label="Dashboard">
             <li class="menu__item" role="menuitem">
                 <a class="menu__link" href="index.html">
-                    <i class="icon ion-ios-pie-outline"></i> Dashboard 01
+                    <i class="icon ion-ios-pie-outline"></i> Employee
                 </a>
             </li>
             <li class="menu__item" role="menuitem">
-                <a class="menu__link" href="sm_dashboard_02.html">
-                    <i class="icon ion-ios-chatboxes-outline"></i> Dashboard 02
+                <a class="menu__link" href="index.html">
+                    <i class="icon ion-ios-pie-outline"></i> Type
                 </a>
             </li>
             <li class="menu__item" role="menuitem">
-                <a class="menu__link" href="sm_dashboard_03.html">
-                    <i class="icon ion-ios-chatbubble-outline"></i> Dashboard 03
+                <a class="menu__link" href="index.html">
+                    <i class="icon ion-ios-pie-outline"></i> Category
                 </a>
             </li>
             <li class="menu__item" role="menuitem">
-                <a class="menu__link" href="sm_dashboard_04.html">
-                    <i class="icon ion-ios-albums-outline"></i> Dashboard 04
+                <a class="menu__link" href="index.html">
+                    <i class="icon ion-ios-pie-outline"></i> Color
                 </a>
             </li>
             <li class="menu__item" role="menuitem">
-                <a class="menu__link" href="sm_dashboard_05.html">
-                    <i class="icon ion-ios-baseball-outline"></i> Dashboard 05
+                <a class="menu__link" href="index.html">
+                    <i class="icon ion-ios-pie-outline"></i> Item
+                </a>
+            </li>
+            <li class="menu__item" role="menuitem">
+                <a class="menu__link" href="index.html">
+                    <i class="icon ion-ios-pie-outline"></i> Customer
+                </a>
+            </li>
+            <li class="menu__item" role="menuitem">
+                <a class="menu__link" href="index.html">
+                    <i class="icon ion-ios-pie-outline"></i> Supplier
                 </a>
             </li>
         </ul>
-    </div>
+    </div> -->
 </nav>
