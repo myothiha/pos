@@ -26,27 +26,27 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $types = $this->type->all();
-        $items = $this->item->all();
-        $categories = $this->category->all();
-        $colors = $this->color->all();
-
-        return view("admin.sale.index", [
-            'types' => $types,
-            'categories' => $categories,
-            'colors' => $colors,
-            'items' => $items,
-        ]);
+        
     }
 
-    /**
+    /**s
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.sale.create');
+        $types = $this->type->all();
+        $items = $this->item->all();
+        $categories = $this->category->all();
+        $colors = $this->color->all();
+
+        return view("admin.sale.create", [
+            'types' => $types,
+            'categories' => $categories,
+            'colors' => $colors,
+            'items' => $items,
+        ]);
     }
 
     /**
