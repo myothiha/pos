@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    public function __construct()
+    {
+        $this->employee = new Employee();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,12 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('admin.employee.index');
+        $employees = $this->employee->all();
+
+        return view("admin.employee.index", [
+            'employees' => $employees,
+        ]);
+
     }
 
     /**
@@ -35,7 +44,19 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $employee = new $this->employee();
+        $employee->name = $request->name;
+        $employee->dob = $request->dob;
+        $employee->gender = $request->gender;
+        $employee->phone = $request->phone;
+        $employee->address = $request->address;
+        $employee->save();
+
+        return redirect("admin/employee");
     }
 
     /**
@@ -57,7 +78,9 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view("admin.employee.edit", [
+            'employee' => $employee
+        ]);
     }
 
     /**
@@ -69,7 +92,18 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $employee->name = $request->name;
+        $employee->dob = $request->dob;
+        $employee->gender = $request->gender;
+        $employee->phone = $request->phone;
+        $employee->address = $request->address;
+        $employee->save();
+
+        return redirect("admin/empl2oyee");
     }
 
     /**
@@ -80,6 +114,7 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+        $employee->delete();
+        return redirect("admin/employee");
     }
 }

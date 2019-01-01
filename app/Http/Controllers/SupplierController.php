@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class SupplierController extends Controller
 {
+    public function __construct()
+    {
+        $this->supplier = new Supplier();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,11 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('admin.supplier.index');
+        $suppliers = $this->supplier->all();
+
+        return view("admin.supplier.index", [
+            'suppliers' => $suppliers,
+        ]);
     }
 
     /**
@@ -35,7 +43,17 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $supplier = new $this->supplier();
+        $supplier->name = $request->name;
+        $supplier->phone = $request->phone;
+        $supplier->address = $request->address;
+        $supplier->save();
+
+        return redirect("admin/supplier");
     }
 
     /**
@@ -57,7 +75,9 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view("admin.supplier.edit", [
+            'supplier' => $supplier
+        ]);
     }
 
     /**
@@ -69,7 +89,16 @@ class SupplierController extends Controller
      */
     public function update(Request $request, Supplier $supplier)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $supplier->name = $request->name;
+        $supplier->phone = $request->phone;
+        $supplier->address = $request->address;
+        $supplier->save();
+
+        return redirect("admin/supplier");
     }
 
     /**
@@ -80,6 +109,7 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $supplier->Delete();
+        return redirect("admin/supplier");
     }
 }

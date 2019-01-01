@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ColorController extends Controller
 {
+    public function __construct()
+    {
+        $this->color = new Color();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,11 @@ class ColorController extends Controller
      */
     public function index()
     {
-        return view('admin.color.index');
+        $colors = $this->color->all();
+
+        return view("admin.color.index", [
+            'colors' => $colors,
+        ]);
     }
 
     /**
@@ -35,7 +43,15 @@ class ColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $color = new $this->color();
+        $color->name = $request->name;
+        $color->save();
+
+        return redirect("admin/color");
     }
 
     /**
@@ -57,7 +73,9 @@ class ColorController extends Controller
      */
     public function edit(Color $color)
     {
-        //
+        return view("admin.color.edit", [
+            'color' => $color
+        ]);
     }
 
     /**
@@ -69,7 +87,14 @@ class ColorController extends Controller
      */
     public function update(Request $request, Color $color)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $color->name = $request->name;
+        $color->save();
+
+        return redirect("admin/color");
     }
 
     /**
@@ -80,6 +105,7 @@ class ColorController extends Controller
      */
     public function destroy(Color $color)
     {
-        //
+        $color->delete();
+        return redirect("admin/color");
     }
 }

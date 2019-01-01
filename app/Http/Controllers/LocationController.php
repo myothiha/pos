@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
+    public function __construct()
+    {
+        $this->location = new Location();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,11 @@ class LocationController extends Controller
      */
     public function index()
     {
-        return view('admin.location.index');
+        $locations = $this->location->all();
+
+        return view("admin.location.index", [
+            'locations' => $locations,
+        ]);
     }
 
     /**
@@ -46,7 +54,15 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $location = new $this->location();
+        $location->name = $request->name;
+        $location->save();
+
+        return redirect("admin/location");
     }
 
     /**
@@ -57,7 +73,9 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        return view("admin.location.edit", [
+            'location' => $location
+        ]);
     }
 
     /**
@@ -69,7 +87,14 @@ class LocationController extends Controller
      */
     public function update(Request $request, Location $location)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $location->name = $request->name;
+        $location->save();
+
+        return redirect("admin/location");
     }
 
     /**
@@ -80,6 +105,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->Delete();
+        return redirect("admin/location");
     }
 }

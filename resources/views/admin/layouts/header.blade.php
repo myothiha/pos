@@ -171,48 +171,72 @@
                  id="navbar_main">
                 <!-- BEGIN NAVBAR LINKS -->
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown active">
+                    <li class="nav-item dropdown">
                         <a href="javascript:void(0)" class="nav-link dropdown-toggle"
                            data-toggle="dropdown">
-                            <i class="icon ion-ios-home-outline icon_nav"></i> Dashboard
+                            <i class="icon ion-ios-home-outline icon_nav"></i> Entry
                         </a>
                         <ul class="dropdown-menu sm_p_t_b">
                             <li class="nav-item">
-                                <a href="index.html" class="dropdown-item">Dashboard 01</a>
+                                <a href="{{ action('EmployeeController@index') }}" class="dropdown-item">Employee</a>
                             </li>
                             <li class="nav-item">
-                                <a href="sm_dashboard_02.html" class="dropdown-item">Dashboard
-                                    02</a>
+                                <a href="{{ action('CategoryController@index') }}" class="dropdown-item">Category</a>
                             </li>
                             <li class="nav-item">
-                                <a href="sm_dashboard_03.html" class="dropdown-item">Dashboard
-                                    03</a>
+                                <a href="{{ action('ColorController@index') }}" class="dropdown-item">Color</a>
                             </li>
                             <li class="nav-item">
-                                <a href="sm_dashboard_04.html" class="dropdown-item">Dashboard
-                                    04</a>
+                                <a href="{{ action('ItemController@index') }}" class="dropdown-item">Item</a>
                             </li>
                             <li class="nav-item">
-                                <a href="sm_dashboard_05.html" class="dropdown-item">Dashboard
-                                    05</a>
+                                <a href="{{ action('CustomerController@index') }}" class="dropdown-item">Customer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('SupplierController@index') }}" class="dropdown-item">Supplier</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="javascript:void(0)" class="nav-link dropdown-toggle"
+                           data-toggle="dropdown">
+                            <i class="icon ion-ios-book-outline icon_nav"></i> Transaction
+                        </a>
+
+                        <ul class="dropdown-menu sm_p_t_b">
+                            <li class="nav-item">
+                                <a href="index.html" class="dropdown-item">StockIn</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="sm_dashboard_02.html" class="dropdown-item">Sale</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="sm_dashboard_03.html" class="dropdown-item">Recevieable</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.html" class="dropdown-item">RecevieableOpening</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="sm_dashboard_02.html" class="dropdown-item">Damage</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="sm_dashboard_03.html" class="dropdown-item">Category</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
                 <!-- END NAVBAR LINKS -->
             </div>
-            <div class="d-none d-lg-inline-block d-xl-inline-block">
-                <!--BEGIN SIDEBAR BUTTON-->
+<!--             <div class="d-none d-lg-inline-block d-xl-inline-block">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item nav-item-icon hidden-md-down">
-                        <a href="javascript:void(0)" class="nav-link btn-st-trigger p-r-5"
+                        <a href="" class="nav-link btn-st-trigger p-r-5"
                            data-effect="sm-effect-1">
                             <span><i class="fa fa-bars"></i></span>
                         </a>
                     </li>
                 </ul>
-                <!--END SIDEBAR BUTTON-->
-            </div>
+            </div> -->
         </div>
     </nav>
     <!--END NAV BAR-->

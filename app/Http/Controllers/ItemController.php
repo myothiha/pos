@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\Type;
+use App\Category;
+use App\Color;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
+    public function __construct()
+    {
+        $this->item = new Item();
+        $this->type = new Type();
+        $this->category = new Category();
+        $this->color = new Color();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,11 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return view('admin.item.index');
+        $items = $this->item->all();
+
+        return view("admin.item.index", [
+            'items' => $items,
+        ]);
     }
 
     /**
@@ -24,7 +38,15 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('admin.item.create');
+        $types = $this->type->all();
+        $categories = $this->category->all();
+        $colors = $this->color->all();
+
+        return view("admin.item.create", [
+            'types' => $types,
+            'categories' => $categories,
+            'colors' => $colors,
+        ]);
     }
 
     /**
@@ -35,7 +57,24 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'itemCode' => 'required',
+            'type_id' => 'required',
+            'category_id' => 'required',
+            'color_id' => 'required',
+        ]);
+
+        $item = new $this->item();
+        $item->name = $request->name;
+        $item->itemCode = $request->itemCode;
+        $item->type_id = $request->type_id;
+        $item->category_id = $request->category_id;
+        $item->color_id = $request->color_id;
+        $item->remark = $request->remark;
+        $item->save();
+
+        return redirect("admin/item");
     }
 
     /**
@@ -57,7 +96,16 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        $types = $this->type->all();
+        $categories = $this->category->all();
+        $colors = $this->color->all();
+
+        return view("admin.item.create", [
+            'types' => $types,
+            'categories' => $categories,
+            'colors' => $colors,
+            'item' => $item,
+        ]);
     }
 
     /**
@@ -69,7 +117,23 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'itemCode' => 'required',
+            'type_id' => 'required',
+            'category_id' => 'required',
+            'color_id' => 'required',
+        ]);
+
+        $item->name = $request->name;
+        $item->itemCode = $request->itemCode;
+        $item->type_id = $request->type_id;
+        $item->category_id = $request->category_id;
+        $item->color_id = $request->color_id;
+        $item->remark = $request->remark;
+        $item->save();
+
+        return redirect("admin/item");
     }
 
     /**
@@ -80,6 +144,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->Delete();
+        return redirect("admin/item");
     }
 }
