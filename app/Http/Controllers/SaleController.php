@@ -3,10 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Sale;
+use App\Item;
+use App\Type;
+use App\Category;
+use App\Color;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
+    public function __construct()
+    {
+        $this->sale = new Sale();
+        $this->item = new Item();
+        $this->type = new Type();
+        $this->category = new Category();
+        $this->color = new Color();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +26,17 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view('admin.sale.index');
+        $types = $this->type->all();
+        $items = $this->item->all();
+        $categories = $this->category->all();
+        $colors = $this->color->all();
+
+        return view("admin.sale.index", [
+            'types' => $types,
+            'categories' => $categories,
+            'colors' => $colors,
+            'items' => $items,
+        ]);
     }
 
     /**
