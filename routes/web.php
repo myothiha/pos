@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function () {
+//    Cart::add('11', 'Product 3', 1, 1100000);
+    $result = Cart::subtotal(2);
+    dd($result);
     return view('welcome');
 });
 
@@ -35,7 +38,6 @@ Route::prefix('mdy')->middleware(['auth', 'role:mdy_sale'])->group(function () {
     });
 });
 
-
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', function () {
@@ -58,28 +60,27 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('item', 'ItemController');
 
-    Route::resource('stockopening', 'StockOpeningController');
+    Route::resource('stockOpening', 'StockOpeningController');
 
-    Route::resource('receiveableopening', 'ReceiveableOpeningController');
+    Route::resource('receivableOpening', 'ReceivableOpeningController');
 
     Route::resource('damage', 'DamageController');
 
     Route::resource('store', 'StoreController');
 
-    Route::resource('stockin', 'StockInController');
+    Route::resource('stockIn', 'StockInController');
 
-    Route::resource('stockindetail', 'StockInDetailController');
+    Route::resource('stockInDetail', 'StockInDetailController');
 
     Route::resource('sale', 'SaleController');
 
-    Route::resource('saledetail', 'SaleDetailController');
+    Route::resource('saleDetail', 'SaleDetailController');
 
-    Route::resource('receiveable', 'ReceiveableController');
+    Route::resource('receivable', 'ReceivableController');
 
     Route::resource('issue', 'IssueController');
 
     Route::resource('inspect', 'InspectController');
 
     Route::resource('Repair', 'RepairController');
-
 });

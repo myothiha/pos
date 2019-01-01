@@ -52,4 +52,19 @@ class Item extends Model
     {
         return $this->belongsTo(Color::class);
     }
+
+    public function stockOpenings()
+    {
+        return $this->hasMany(StockOpening::class);
+    }
+
+    public function damages()
+    {
+        return $this->hasMany(Damage::class);
+    }
+
+    public function stores()
+    {
+        return $this->hasMany(Store::class);
+    }
 }

@@ -26,5 +26,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ReceivableOpening extends Model
 {
-    //
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
 }

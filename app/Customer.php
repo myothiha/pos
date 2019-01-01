@@ -31,4 +31,9 @@ class Customer extends Model
     protected $casts = [
         'isActive' => 'boolean',
     ];
+
+    public function receivableOpenings()
+    {
+        return $this->hasMany(ReceivableOpening::class);
+    }
 }

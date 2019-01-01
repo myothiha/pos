@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\ReceivableOpening;
 use Illuminate\Http\Request;
 
-class ReceiveableOpeningController extends Controller
+class ReceivableOpeningController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ReceiveableOpeningController extends Controller
      */
     public function index()
     {
-        return view('admin.receiveableOpening.index');
+        return view('admin.receivable.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ReceiveableOpeningController extends Controller
      */
     public function create()
     {
-        return view('admin.receiveableOpening.create');
+        return view('admin.receivable.create');
     }
 
     /**
@@ -41,10 +41,10 @@ class ReceiveableOpeningController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ReceivableOpening  $receiveableOpening
-     * @return \Illuminate\Http\Response
+     * @param ReceivableOpening $receivableOpening
+     * @return void
      */
-    public function show(ReceivableOpening $receiveableOpening)
+    public function show(ReceivableOpening $receivableOpening)
     {
         //
     }
@@ -52,10 +52,10 @@ class ReceiveableOpeningController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ReceivableOpening  $receiveableOpening
-     * @return \Illuminate\Http\Response
+     * @param ReceivableOpening $receivableOpening
+     * @return void
      */
-    public function edit(ReceivableOpening $receiveableOpening)
+    public function edit(ReceivableOpening $receivableOpening)
     {
         //
     }
@@ -63,11 +63,11 @@ class ReceiveableOpeningController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ReceivableOpening  $receiveableOpening
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param ReceivableOpening $receivableOpening
+     * @return void
      */
-    public function update(Request $request, ReceivableOpening $receiveableOpening)
+    public function update(Request $request, ReceivableOpening $receivableOpening)
     {
         //
     }
@@ -75,10 +75,10 @@ class ReceiveableOpeningController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ReceivableOpening  $receiveableOpening
-     * @return \Illuminate\Http\Response
+     * @param ReceivableOpening $receivableOpening
+     * @return void
      */
-    public function destroy(ReceivableOpening $receiveableOpening)
+    public function destroy(ReceivableOpening $receivableOpening)
     {
         //
     }

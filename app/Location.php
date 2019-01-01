@@ -27,4 +27,24 @@ class Location extends Model
     protected $casts = [
         'isActive' => 'boolean',
     ];
+
+    public function stockOpenings()
+    {
+        return $this->hasMany(StockOpening::class);
+    }
+
+    public function receivableOpenings()
+    {
+        return $this->hasMany(ReceivableOpening::class);
+    }
+
+    public function damages()
+    {
+        return $this->hasMany(Damage::class);
+    }
+
+    public function stores()
+    {
+        return $this->hasMany(Store::class);
+    }
 }

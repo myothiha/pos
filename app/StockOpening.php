@@ -26,5 +26,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class StockOpening extends Model
 {
-    //
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
 }

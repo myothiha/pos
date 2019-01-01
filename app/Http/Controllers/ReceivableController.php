@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Receivable;
 use Illuminate\Http\Request;
 
-class ReceiveableController extends Controller
+class ReceivableController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ReceiveableController extends Controller
      */
     public function index()
     {
-        return view('admin.receiveable.index');
+        return view('admin.receivable.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ReceiveableController extends Controller
      */
     public function create()
     {
-        return view('admin.receiveable.create');
+        return view('admin.receivable.create');
     }
 
     /**
@@ -41,10 +41,10 @@ class ReceiveableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Receivable  $receiveable
-     * @return \Illuminate\Http\Response
+     * @param Receivable $receivable
+     * @return void
      */
-    public function show(Receivable $receiveable)
+    public function show(Receivable $receivable)
     {
         //
     }
@@ -52,10 +52,10 @@ class ReceiveableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Receivable  $receiveable
-     * @return \Illuminate\Http\Response
+     * @param Receivable $receivable
+     * @return void
      */
-    public function edit(Receivable $receiveable)
+    public function edit(Receivable $receivable)
     {
         //
     }
@@ -64,10 +64,10 @@ class ReceiveableController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Receivable  $receiveable
+     * @param  \App\Receivable  $receivable
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receivable $receiveable)
+    public function update(Request $request, Receivable $receivable)
     {
         //
     }
@@ -75,10 +75,10 @@ class ReceiveableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Receivable  $receiveable
+     * @param  \App\Receivable  $receivable
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Receivable $receiveable)
+    public function destroy(Receivable $receivable)
     {
         //
     }
