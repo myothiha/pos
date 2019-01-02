@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/login', 'AuthController@checkLogin');
 
-Route::get('/addItem', 'AddToCartController@addItem');
+/*Route::post('/addItem', function(Request $request) {
+    return $request->all();
+});*/
 
-Route::get('/removeItem/{Item}', 'AddToCartController@removeItem');
+Route::post('/searchItem', 'AddToCartController@searchItem');
