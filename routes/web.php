@@ -14,12 +14,19 @@
 
 Route::get('/', function () {
 //    Cart::add('11', 'Product 3', 1, 1100000);
-    $result = Cart::subtotal(2);
-    dd($result);
-    return view('welcome');
+    $result = Cart::content();
+    return $result->toJson();
+//    dd($result->toJson());
+//    return view('welcome');
 });
 
 Route::post('/login', 'AuthController@checkLogin');
+
+Route::post('/addItem', 'AddToCartController@addItem');
+
+Route::post('/removeItem', 'AddToCartController@removeItem');
+
+Route::post('/updateItem', 'AddToCartController@updateItem');
 
 Route::prefix('admin')->middleware(['auth', "role:admin"])->group(function () {
     Route::get('/', function () {
