@@ -3,10 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Issue;
+use App\Item;
+use App\Type;
+use App\Category;
+use App\Color;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
 {
+    public function __construct()
+    {
+        $this->item = new Item();
+        $this->type = new Type();
+        $this->category = new Category();
+        $this->color = new Color();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +35,17 @@ class IssueController extends Controller
      */
     public function create()
     {
-        return view('admin.issue.create');
+        $types = $this->type->all();
+        $items = $this->item->all();
+        $categories = $this->category->all();
+        $colors = $this->color->all();
+
+        return view("admin.issue.create", [
+            'types' => $types,
+            'categories' => $categories,
+            'colors' => $colors,
+            'items' => $items,
+        ]);
     }
 
     /**

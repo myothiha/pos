@@ -61,29 +61,11 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('item', 'ItemController');
 
-    Route::resource('stockOpening', 'StockOpeningController');
+    Route::get('/sale/create', 'SaleController@create');
 
-    Route::resource('receivableOpening', 'ReceivableOpeningController');
+    Route::get('/stockin/create', 'StockInController@create');
 
-    Route::resource('damage', 'DamageController');
-
-    Route::resource('store', 'StoreController');
-
-    Route::resource('stockIn', 'StockInController');
-
-    Route::resource('stockInDetail', 'StockInDetailController');
-
-    Route::resource('sale', 'SaleController');
-
-    Route::resource('saleDetail', 'SaleDetailController');
-
-    Route::resource('receivable', 'ReceivableController');
-
-    Route::resource('issue', 'IssueController');
-
-    Route::resource('inspect', 'InspectController');
-
-    Route::resource('Repair', 'RepairController');
+    Route::get('/issue/create', 'IssueController@create');
 
     Route::get('/stockinreport', 'ReportController@stockInReport');
 
