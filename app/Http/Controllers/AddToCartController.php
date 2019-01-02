@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AddToCartController extends Controller
 {
 
-    public function addItem(Request $request, Item $item)
+    public function addItem(Request $request)
     {
         $itemId = $request->itemId;
         $item = Item::find($itemId);
