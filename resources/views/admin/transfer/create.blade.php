@@ -72,7 +72,7 @@
                                                 <li class="nav-item" role="presentation">
                                                     <a href="#tabTwo-1"
                                                        role="tab" data-toggle="tab"
-                                                       class="nav-link active text-normal strong-600">Sale</a>
+                                                       class="nav-link active text-normal strong-600">Transfer</a>
                                                 </li>
                                             </ul>
 

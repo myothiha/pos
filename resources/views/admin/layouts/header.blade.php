@@ -155,10 +155,13 @@
 
                         <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
                             <li class="nav-item">
-                                <a href="index.html" class="dropdown-item">StockIn</a>
+                                <a href="{{ action('StockInController@create')}}" class="dropdown-item">StockIn</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ action('SaleController@create') }}" class="dropdown-item">Sale</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('TransferController@create') }}" class="dropdown-item">Transfer</a>
                             </li>
                             <li class="nav-item">
                                 <a href="sm_dashboard_03.html" class="dropdown-item">Recevieable</a>

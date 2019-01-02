@@ -70,6 +70,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/sale/create', 'SaleController@create');
 
+    Route::get('/transfer/create', 'TransferController@create');
+
     Route::get('/stockin/create', 'StockInController@create');
 
     Route::get('/issue/create', 'IssueController@create');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Sale;
+use App\Transfer;
 use App\Item;
 use App\Type;
 use App\Category;
@@ -11,13 +11,13 @@ use App\Customer;
 use App\Location;
 use Illuminate\Http\Request;
 
-class SaleController extends Controller
+class TransferController extends Controller
 {
     public function __construct()
     {
         $this->location = new Location();
         $this->customer = new Customer();
-        $this->sale = new Sale();
+        $this->transfer = new Transfer();
         $this->item = new Item();
         $this->type = new Type();
         $this->category = new Category();
@@ -30,10 +30,10 @@ class SaleController extends Controller
      */
     public function index()
     {
-        
+        //
     }
 
-    /**s
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -47,7 +47,7 @@ class SaleController extends Controller
         $categories = $this->category->all();
         $colors = $this->color->all();
 
-        return view("admin.sale.create", [
+        return view("admin.transfer.create", [
             'types' => $types,
             'categories' => $categories,
             'colors' => $colors,
@@ -71,10 +71,10 @@ class SaleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Sale  $sale
+     * @param  \App\Transfer  $transfer
      * @return \Illuminate\Http\Response
      */
-    public function show(Sale $sale)
+    public function show(Transfer $transfer)
     {
         //
     }
@@ -82,10 +82,10 @@ class SaleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Sale  $sale
+     * @param  \App\Transfer  $transfer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sale $sale)
+    public function edit(Transfer $transfer)
     {
         //
     }
@@ -94,10 +94,10 @@ class SaleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sale  $sale
+     * @param  \App\Transfer  $transfer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sale $sale)
+    public function update(Request $request, Transfer $transfer)
     {
         //
     }
@@ -105,10 +105,10 @@ class SaleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Sale  $sale
+     * @param  \App\Transfer  $transfer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sale $sale)
+    public function destroy(Transfer $transfer)
     {
         //
     }
