@@ -91,4 +91,25 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('inspect', 'InspectController');
 
     Route::resource('Repair', 'RepairController');
+
+    Route::get('/stockinreport', 'ReportController@stockInReport');
+
+    Route::get('/salereport', 'ReportController@saleReport');
+
+    Route::get('/salereportbyitem', 'ReportController@saleReportByItem');
+
+    Route::get('/transferreport', 'ReportController@transferReport');
+
+    Route::get('/receivablereport', 'ReportController@receivableReport');
+
+    Route::get('/customercreditreport', 'ReportController@customerCreditReport');
+
+    Route::get('/stockbalancereport', 'ReportController@stockBalanceReport');
+
+    Route::get('/stockinoutreport', 'ReportController@stockInOutReport');
+
+    Route::get('/processreportbyemployee', 'ReportController@processReportByEmployee');
+
+    Route::get('/processreportdaily', 'ReportController@processReportDaily');
+
 });

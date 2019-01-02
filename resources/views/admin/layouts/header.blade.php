@@ -8,13 +8,12 @@
                     <div class="aux-text d-none d-md-inline-block">
                         <ul class="inline-links inline-links--style-1">
                             <li class="d-none d-lg-inline-block">
-                                <a href="javascript:void(0)"><i class="fa fa-phone"></i> +91 915 954
-                                    7048</a>
+                                <a href="javascript:void(0)"><i class="fa fa-phone"></i> +097978643453</a>
                             </li>
                             <li>
                                 <a href="http://perfectin.co/" target="_blank"><i
                                         class="fa fa-globe"></i>
-                                    perfectin.co</a>
+                                    UpSalute Creative Solution</a>
                             </li>
                         </ul>
                     </div>
@@ -23,52 +22,6 @@
                 <div class="col-md-6">
                     <nav class="top-navbar-menu">
                         <ul class="top-menu">
-                            <li>
-                                <a href="javascript:void(0)">Sign in</a>
-                            </li>
-                            <li class="d-none d-lg-inline-block">
-                                <a href="javascript:void(0)">Create account</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)" id="btn-search">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </li>
-                            <li class="aux-languages dropdown">
-                                <a href="javascript:void(0)">
-                                    <img src="/assets/img/flags/png/in.png" alt="perfectin.co">
-                                </a>
-                                <ul id="auxLanguages" class="sub-menu">
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <img src="/assets/img/flags/png/in.png"
-                                                 alt="perfectin.co">
-                                            <span class="language">India</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <img src="/assets/img/flags/png/us.png"
-                                                 alt="perfectin.co">
-                                            <span class="language">United States</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <img src="/assets/img/flags/png/en.png"
-                                                 alt="perfectin.co">
-                                            <span class="language">England</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)">
-                                            <img src="/assets/img/flags/png/au.png"
-                                                 alt="perfectin.co">
-                                            <span class="language">Australia</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                             <li class="dropdown">
                                 <a class="dropdown-toggle has-badge" href="javascript:void(0)"
                                    data-toggle="dropdown"
@@ -170,7 +123,7 @@
                            data-toggle="dropdown">
                             <i class="icon ion-ios-home-outline icon_nav"></i> Entry
                         </a>
-                        <ul class="dropdown-menu sm_p_t_b">
+                        <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
                             <li class="nav-item">
                                 <a href="{{ action('EmployeeController@index') }}" class="dropdown-item">Employee</a>
                             </li>
@@ -200,7 +153,7 @@
                             <i class="icon ion-ios-book-outline icon_nav"></i> Transaction
                         </a>
 
-                        <ul class="dropdown-menu sm_p_t_b">
+                        <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
                             <li class="nav-item">
                                 <a href="index.html" class="dropdown-item">StockIn</a>
                             </li>
@@ -218,6 +171,45 @@
                             </li>
                             <li class="nav-item">
                                 <a href="sm_dashboard_03.html" class="dropdown-item">Category</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="javascript:void(0)" class="nav-link dropdown-toggle"
+                           data-toggle="dropdown">
+                            <i class="icon ion-ios-book-outline icon_nav"></i> Report
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@stockInReport') }}" class="dropdown-item">Stock In Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@saleReport') }}}" class="dropdown-item">Sale Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@saleReportByItem') }}" class="dropdown-item">Sale Report By Item</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@transferReport') }}" class="dropdown-item">Transfer Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@receivableReport') }}" class="dropdown-item">Receivable Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@customerCreditReport') }}" class="dropdown-item">Customer Credit Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@stockBalanceReport') }}" class="dropdown-item">Stock Balance Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@stockInOutReport') }}" class="dropdown-item">Stock In/Out Report</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@processReportByEmployee') }}" class="dropdown-item">Process Report By Employee</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ action('ReportController@processReportDaily') }}" class="dropdown-item">Process Report Daily</a>
                             </li>
                         </ul>
                     </li>

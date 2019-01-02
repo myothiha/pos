@@ -26,6 +26,8 @@
     <link href="{{ url('') }}/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ url('') }}/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
     <link href="http://ivaynberg.github.io/select2/select2-2.1/select2.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    
     
 </head>
 <body class="body-boxed">
@@ -88,6 +90,7 @@
 <script src="{{ url('') }}/assets/js/sm_tables_dataTable_Responsive.js"></script>
 <script src="{{ url('') }}/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="{{ url('') }}/assets/plugins/bootstrap-daterangepicker/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <!-- APP JS -->
 <script src="{{ url('') }}/assets/js/app.js"></script>
