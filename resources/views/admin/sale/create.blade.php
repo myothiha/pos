@@ -224,17 +224,16 @@
                                                                         <td class="product-name">{{ $item->name }}</td>
                                                                         <td class="product-name">{{ $item->options->color }}
                                                                         </td>
-                                                                        <td class="product-quanity d-none d-lg-table-cell">
-                                                                            <div class="form-group">
-                                                                                <input type="text" id="price{{ $item->id }}" class="form-control"
-                                                                                   onblur="updatePrice('{{ $item->rowId }}', '{{ $item->id }}')"
+                                                                        <td class="product-price d-none d-lg-table-cell">
+                                                                            <input type="text" id="price{{ $item->id }}"  class="form-control"
+                                                                                   onchange="updatePrice('{{ $item->rowId }}', '{{ $item->id }}')"
                                                                                    value="{{ $item->price }}" />
                                                                             </div>
                                                                         </td>
-                                                                        <td class="product-quanity d-none d-lg-table-cell">
-                                                                            <div class="form-group">
-                                                                                <input type="text" id="qty{{ $item->id }}" class="form-control"
-                                                                                   onblur="updateQty('{{ $item->rowId }}', '{{ $item->id }}')"
+
+                                                                        <td class="product-quantity d-none d-md-table-cell">
+                                                                            <input type="text" id="qty{{ $item->id }}" class="form-control"
+                                                                                   onchange="updateQty('{{ $item->rowId }}', '{{ $item->id }}')"
                                                                                    value="{{ $item->qty }}" />
                                                                             </div>
                                                                         </td>
