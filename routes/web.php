@@ -13,11 +13,8 @@
 */
 
 Route::get('/', function () {
-//    Cart::add('11', 'Product 3', 1, 1100000);
     $result = Cart::content();
     return $result->toJson();
-//    dd($result->toJson());
-//    return view('welcome');
 });
 
 Route::post('/login', 'AuthController@checkLogin');

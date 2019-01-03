@@ -40,12 +40,13 @@ class AddToCartController extends Controller
         $price = $request->price;
         $qty = $request->qty;
 
-        if ($price)
+        if ($qty)
         {
-            Cart::update($rowId, ['price' => $price]);
+            Cart::update($rowId, ['qty' => $qty]);
         }
         else {
-            Cart::update($rowId, ['qty' => $qty]);
+            Cart::update($rowId, ['price' => $price]);
+
         }
 
         return Cart::content()->toJson();

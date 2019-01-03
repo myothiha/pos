@@ -269,12 +269,12 @@
                                                                         </td>
                                                                         <td class="product-price d-none d-lg-table-cell">
                                                                             <input type="text" id="price{{ $item->id }}"  class="form-control"
-                                                                                   onblur="updatePrice('{{ $item->rowId }}', '{{ $item->id }}')"
+                                                                                   onchange="updatePrice('{{ $item->rowId }}', '{{ $item->id }}')"
                                                                                    value="{{ $item->price }}" />
                                                                         </td>
                                                                         <td class="product-quantity d-none d-md-table-cell">
                                                                             <input type="text" id="qty{{ $item->id }}" class="form-control"
-                                                                                   onblur="updateQty('{{ $item->rowId }}', '{{ $item->id }}')"
+                                                                                   onchange="updateQty('{{ $item->rowId }}', '{{ $item->id }}')"
                                                                                    value="{{ $item->qty }}" />
                                                                         </td>
                                                                         <td class="product-total">
