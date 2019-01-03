@@ -32,7 +32,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Active</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -42,7 +41,6 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $color->name }}</td>
-                                            <td>{{ $color->isActive }}</td>
                                             <td width="20%">
                                                 <form
                                                     action="{{ action('ColorController@destroy', $color->id) }}"
