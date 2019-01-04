@@ -79,8 +79,7 @@
                                             <div class="search-box" style="margin-top: 22px;">
                                                 <div class="container">
                                                     <div class="row">
-                                                        <form action="#" class="form-default" id="form"
-                                                              onsubmit="return false">
+                                                        <form action="#" class="form-default" id="form">
                                                             <div class="col-lg-2">
                                                                 <input id="itemCode" placeholder="Item Code"
                                                                        type="text" class="form-control" name="itemCode">
@@ -123,7 +122,8 @@
                                                         <div class="col-lg-12">
                                                             <div class="sm-wrapper">
                                                                 <div class="sm-box">
-                                                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100">
+                                                                    <table id="data-table"
+                                                                           class="table table-striped table-bordered nowrap w-in-100">
                                                                         <thead>
                                                                         <tr>
                                                                             <th>#</th>
@@ -148,21 +148,22 @@
 
                                             <hr>
 
-                                           <form class="form-default">
-                                                <h3>Stock In Form</h3>
+                                            <form class="form-default" action="{{ action('SaleController@store') }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <h3>Sale Form</h3>
                                                 <hr class="m-t-0">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                            <label for="voucher_no">Voucher No</label>
-                                                            <input id="voucher_no" placeholder="Enter Voucher"
-                                                                   type="text" class="form-control" name="voucher_no">
+                                                            <label for="voucherNo">Voucher No</label>
+                                                            <input id="voucherNo" placeholder="Enter Voucher"
+                                                                   type="text" class="form-control" name="voucherNo">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="form-group has-feedback">
-                                                            <label for="location_id">Sale Type</label>
-                                                            <select class="form-control" id="select" name="location_id">
+                                                            <label for="saleType">Sale Type</label>
+                                                            <select class="form-control" id="saleType" name="saleType">
                                                                 <option value="cash_down">Cash Down</option>
                                                                 <option value="credit">Credit</option>
                                                             </select>
@@ -173,10 +174,10 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="form-group has-feedback">
-                                                            <label for="supplier_id">Supplier</label>
-                                                            <select class="form-control" id="select" name="supplier_id">
+                                                            <label for="customers">Customer</label>
+                                                            <select class="form-control" id="customers" name="customer_id">
                                                                 @foreach($customers as $customer)
-                                                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -186,7 +187,7 @@
                                                             <label for="location_id">Location</label>
                                                             <select class="form-control" id="select" name="location_id">
                                                                 @foreach($locations as $location)
-                                                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                                    <option value="{{ $location->id }}">{{ $location->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -195,103 +196,106 @@
 
                                                 <!-- Tab panes -->
                                                 <div class="tab-content">
-
                                                     <div role="tabpanel" class="tab-pane active"
                                                          id="tabTwo-1">
-                                                            <table class="table table-cart">
-                                                                <thead>
-                                                                <tr>
-                                                                    <th class="product-name">Item</th>
-                                                                    <th class="product-size d-none d-lg-table-cell">
-                                                                        Color
-                                                                    </th>
-                                                                    {{--<th class="product-size d-none d-lg-table-cell">
-                                                                        Category
-                                                                    </th>--}}
-                                                                    <th class="product-price d-none d-lg-table-cell">
-                                                                        Price
-                                                                    </th>
-                                                                    <th class="product-quanity d-none d-md-table-cell">
-                                                                        Quantity
-                                                                    </th>
-                                                                    <th class="product-total">Total</th>
-                                                                    <th width="50px;"></th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody id="cardItems">
-                                                                @foreach( Cart::content() as $key => $item )
-                                                                    <tr class="cart-item">
-                                                                        <td class="product-name">{{ $item->name }}</td>
-                                                                        <td class="product-name">{{ $item->options->color }}
-                                                                        </td>
-                                                                        <td class="product-price d-none d-lg-table-cell">
-                                                                            <input type="text" id="price{{ $item->id }}"  class="form-control"
-                                                                                   onchange="updatePrice('{{ $item->rowId }}', '{{ $item->id }}')"
-                                                                                   value="{{ $item->price }}" />
-                                                                            </div>
-                                                                        </td>
+                                                        <table class="table table-cart">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="product-name">Item</th>
+                                                                <th class="product-size d-none d-lg-table-cell">
+                                                                    Color
+                                                                </th>
+                                                                {{--<th class="product-size d-none d-lg-table-cell">
+                                                                    Category
+                                                                </th>--}}
+                                                                <th class="product-price d-none d-md-table-cell">
+                                                                    Price
+                                                                </th>
+                                                                <th class="product-quanity d-none d-md-table-cell">
+                                                                    Quantity
+                                                                </th>
+                                                                <th class="product-total">Total</th>
+                                                                <th width="50px;"></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody id="cardItems">
+                                                            @foreach( Cart::content() as $key => $item )
+                                                                <tr class="cart-item">
+                                                                    <td class="product-name">{{ $item->name }}</td>
+                                                                    <td class="product-name">{{ $item->options->color }}
+                                                                    </td>
+                                                                    <td class="product-quanity d-none d-lg-table-cell">
+                                                                        <input type="text" id="price{{ $item->id }}"
+                                                                               class="form-control"
+                                                                               onchange="updatePrice('{{ $item->rowId }}', '{{ $item->id }}')"
+                                                                               value="{{ $item->price }}"/>
+                                                                    </td>
 
-                                                                        <td class="product-quantity d-none d-md-table-cell">
-                                                                            <input type="text" id="qty{{ $item->id }}" class="form-control"
-                                                                                   onchange="updateQty('{{ $item->rowId }}', '{{ $item->id }}')"
-                                                                                   value="{{ $item->qty }}" />
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="product-total">
-                                                                            <span>$ {{ $item->qty * $item->price }} USD</span>
-                                                                        </td>
-                                                                        <td class="product-remove">
-                                                                            <a href="javascript:void(0)" onclick="removeItem('{{ $item->rowId }}')"
-                                                                               class="pl-4">
-                                                                                <i class="ion-trash-a"></i>
-                                                                            </a>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                                </tbody>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="product-name" rowspan="3" colspan="3"><textarea name="remark" id="remark" class="form-control" cols="30" rows="3" placeholder="Remark" tabindex="4"></textarea></td>
-                                                                        <td class="product-list text-right">Paid</td>
-                                                                        <td class="product-quanity d-none d-lg-table-cell">
-                                                                            <div class="form-group">
-                                                                                <input type="text" id="qty{{ $item->id }}" class="form-control"
-                                                                                   onblur="updateQty('{{ $item->rowId }}', '{{ $item->id }}')"
-                                                                                   value="{{ $item->qty }}" />
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="product-list text-right">Paypal Fee (5.4%)</td>
-                                                                        <td class="product-total">
-                                                                            <span>$ {{ $item->qty * $item->price }} USD</span>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="product-list text-right">Discount</td>
-                                                                        <td class="product-total">
-                                                                            <span>$ {{ $item->qty * $item->price }} USD</span>
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td class="product-list text-right" colspan="4">Total Due</td>
-                                                                        <td class="product-total">
-                                                                            <span>$ {{ $item->qty * $item->price }} USD</span>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <div class="col-lg-12 text-right"
-                                                                 style="margin-top: 15px;">
-                                                                <button class="btn btn-primary"
-                                                                        type="submit">
-                                                                    Place Order
-                                                                </button>
-                                                            </div>
-                                                        </div>
+                                                                    <td class="product-quanity d-none d-lg-table-cell">
+                                                                        <input type="text" id="qty{{ $item->id }}"
+                                                                               class="form-control"
+                                                                               onchange="updateQty('{{ $item->rowId }}', '{{ $item->id }}')"
+                                                                               value="{{ $item->qty }}"/>
+                                                                    </td>
+                                                                    <td class="product-total">
+                                                                        <span>$ {{ $item->qty * $item->price }} USD</span>
+                                                                    </td>
+                                                                    <td class="product-remove">
+                                                                        <a href="javascript:void(0)"
+                                                                           onclick="removeItem('{{ $item->rowId }}')"
+                                                                           class="pl-4">
+                                                                            <i class="ion-trash-a"></i>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                            </tbody>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="product-name" rowspan="3" colspan="3">
+                                                                    <textarea name="remark" id="remark"
+                                                                              class="form-control"
+                                                                              cols="30" rows="3" placeholder="Remark"
+                                                                              tabindex="4"></textarea></td>
+                                                                <td class="product-list text-right"><label for="paid">Paid</label></td>
+                                                                <td class="product-quanity d-none d-lg-table-cell">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="paid" class="form-control" name="paid"/>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="product-list text-right">Discount (0%)</td>
+                                                                <td class="product-total">
+                                                                    <span>$ 0 USD</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="product-list text-right">Total
+                                                                    Due
+                                                                </td>
+                                                                <td class="product-total">
+                                                                    <span id="total_price">$ {{ Cart::total() }} USD</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="product-list text-right" colspan="4">
+                                                                    Total Due
+                                                                </td>
+                                                                <td class="product-total">
+                                                                    <span id="total_due">$ 100 USD</span>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
+                                                </div>
+                                                <div class="col-lg-12 text-right"
+                                                     style="margin-top: 15px;">
+                                                    <button class="btn btn-primary"
+                                                            type="submit">
+                                                        Place Order
+                                                    </button>
                                                 </div>
                                             </form>
                                         </div>
@@ -302,7 +306,6 @@
                     </div>
                 </div>
             </div>
-            <!--END PAGE CONTENT-->
         </div>
     </section>
     <!--END CONTENT-->
@@ -311,7 +314,7 @@
 @section('script')
     <script type="text/javascript">
         function _(el) {
-            return document.getElementById(el); 
+            return document.getElementById(el);
         }
 
         function searchItem() {
@@ -376,9 +379,7 @@
         }
 
 
-
-        function removeItem(rowId)
-        {
+        function removeItem(rowId) {
             event.preventDefault();
             var token = "{{ csrf_token() }}";
 
@@ -394,8 +395,7 @@
             ajax.send(formdata);
         }
 
-        function updatePrice(rowId, itemId)
-        {
+        function updatePrice(rowId, itemId) {
             var token = "{{ csrf_token() }}";
             var price = _("price" + itemId).value;
 
@@ -413,8 +413,7 @@
             ajax.send(formdata);
         }
 
-        function updateQty(rowId, itemId)
-        {
+        function updateQty(rowId, itemId) {
             var token = "{{ csrf_token() }}";
             var qty = _("qty" + itemId).value;
 
@@ -437,18 +436,18 @@
             // console.log(items);
 
             let markUp = '';
-            for ( var key in items)
-            {
+            for (var key in items) {
                 let item = items[key];
                 markUp += `
                      <tr class="cart-item">
                         <td class="product-name">${item.name}</td>
                         <td class="product-name">${item.options.color}</td>
-                        <td class="product-price d-none d-lg-table-cell">
-                            <input type="text" id="price${item.id}" onchange="updatePrice('${item.rowId}', ${item.id})" value="${item.price}" />
+                        <td class="product-quanity d-none d-lg-table-cell">
+                            <input type="text" id="price${item.id}" onchange="updatePrice('${item.rowId}', ${item.id})" value="${item.price}"
+                            class="form-control"/>
                         </td>
                         <td class="product-quanity d-none d-lg-table-cell">
-                            <input type="text" id="qty${item.id}" onchange="updateQty('${item.rowId}', ${item.id})" value="${item.qty}" />
+                            <input type="text" id="qty${item.id}" onchange="updateQty('${item.rowId}', ${item.id})" class="form-control" value="${item.qty}" />
                         </td>
                         <td class="product-total"><span>$ ${item.price * item.qty} USD</span></td>
                         <td class="product-remove">

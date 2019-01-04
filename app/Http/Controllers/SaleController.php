@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants;
 use App\Sale;
 use App\Item;
 use App\Store;
+use App\Supplier;
 use App\Type;
 use App\Category;
 use App\Color;
@@ -17,6 +19,16 @@ use Log;
 
 class SaleController extends Controller
 {
+
+    private $location;
+    private $customer;
+    private $sale;
+    private $item;
+    private $type;
+    private $category;
+    private $color;
+    private $supplier;
+
     public function __construct()
     {
         $this->location = new Location();
@@ -26,7 +38,9 @@ class SaleController extends Controller
         $this->type = new Type();
         $this->category = new Category();
         $this->color = new Color();
+        $this->supplier = new Supplier();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -69,17 +83,20 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $sale = new Sale();
         $sale->voucherNo = $request->voucherNo;
-        $sale->processType = $request->processType;
+        $sale->processType = Constants::SALE;
         $sale->saleType = $request->saleType;
         $sale->location_id = $request->location_id;
         $sale->customer_id = $request->customer_id;
         $sale->totalAmount = Cart::total('2');
-        $sale->paid = $request->paid;
-        $sale->balance = $request->balance;
+        $sale->paid = $request->paid ?? '1000';
+        $sale->balance = $request->balance ?? 100;
         $sale->remark = $request->remark;
-        $sale->isPaid = $request->isPaid;
+        $sale->isPaid = $request->isPaid ?? 'Paid';
+
+//        dd($sale->toArray());
 
 
         try {
@@ -87,22 +104,25 @@ class SaleController extends Controller
 
                 $sale->save();
 
-
                 foreach(Cart::content() as $item) {
-//                    echo 'You have ' . $row->qty . ' items of ' . $row->model->name . ' with description: "' . $row->model->description . '" in your cart.';
+
                     $total = $item->qty * $item->price;
+
                     $sale->items()->attach($item->id, ['quantity' => $item->qty, 'price' => $item->price, 'total' => $total]);
 
-                    $store = Store::where('location_id', $sale->location_id)->andWhere('item_id', $item->id);
+                    $store = Store::where([
+                        ['location_id', '=', $sale->location_id],
+                        ['item_id', '=', $item->id],
+                    ])->get()->first();
 
                     $store->quantity -= $item->qty;
+                    $store->save();
                 }
 
             });
         } catch (\Throwable $e) {
             Log::error('Sales Error : ' . $e->getMessage());
-
-
+            dd($e->getMessage());
         }
     }
 
