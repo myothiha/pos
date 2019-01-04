@@ -206,7 +206,7 @@
                                 <a href="{{ action('ReportController@stockInReport') }}" class="dropdown-item">Stock In Report</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('ReportController@saleReport') }}}" class="dropdown-item">Sale Report</a>
+                                <a href="{{ action('ReportController@saleReport') }}" class="dropdown-item">Sale Report</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ action('ReportController@saleReportByItem') }}" class="dropdown-item">Sale Report By Item</a>

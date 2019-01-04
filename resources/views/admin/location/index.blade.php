@@ -32,7 +32,6 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Active</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -42,7 +41,6 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $location->name }}</td>
-                                            <td>{{ $location->isActive }}</td>
                                             <td width="20%">
                                                 <form
                                                     action="{{ action('LocationController@destroy', $location->id) }}"
