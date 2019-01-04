@@ -25,6 +25,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Customer wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Customer whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ReceivableOpening[] $receivableOpenings
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Customer whereDeletedAt($value)
  */
 class Customer extends Model
 {

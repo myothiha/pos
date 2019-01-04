@@ -23,6 +23,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @property-read \App\Item $item
+ * @property-read \App\Location $location
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereDeletedAt($value)
  */
 class Store extends Model
 {

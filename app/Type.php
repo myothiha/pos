@@ -21,6 +21,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Type whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Type whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Type whereDeletedAt($value)
  */
 class Type extends Model
 {

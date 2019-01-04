@@ -23,6 +23,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereLocationId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @property-read \App\Customer $customer
+ * @property-read \App\Location $location
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereDeletedAt($value)
  */
 class ReceivableOpening extends Model
 {

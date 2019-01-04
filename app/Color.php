@@ -21,6 +21,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereDeletedAt($value)
  */
 class Color extends Model
 {

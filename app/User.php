@@ -32,6 +32,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereUpdatedAt($value)
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereDeletedAt($value)
  */
 class User extends Authenticatable
 {

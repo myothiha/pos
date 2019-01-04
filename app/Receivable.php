@@ -17,6 +17,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $customer_id
+ * @property int $location_id
+ * @property string $voucherNo
+ * @property int $amount
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereCustomerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereLocationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereVoucherNo($value)
  */
 class Receivable extends Model
 {

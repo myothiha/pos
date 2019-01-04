@@ -21,6 +21,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Location whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Location whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Damage[] $damages
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ReceivableOpening[] $receivableOpenings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\StockOpening[] $stockOpenings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Store[] $stores
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Location whereDeletedAt($value)
  */
 class Location extends Model
 {

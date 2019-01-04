@@ -21,7 +21,7 @@ class AddToCartController extends Controller
         $itemId = $request->itemId;
         $item = Item::find($itemId);
         $cartItem = Cart::add($item->id, $item->name, 1, 0 , ['color' => $item->color->name]);
-        $cartItem->associate('Item');
+        $cartItem->associate('App\Item');
         return Cart::content()->toJson();
     }
 
@@ -35,7 +35,6 @@ class AddToCartController extends Controller
 
     public function updateItem(Request $request, Item $item)
     {
-
         $rowId = $request->rowId;
         $price = $request->price;
         $qty = $request->qty;

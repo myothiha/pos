@@ -13,6 +13,9 @@
 */
 
 Route::get('/', function () {
+    foreach(Cart::content() as $row) {
+        echo 'You have ' . $row->qty . ' items of ' . $row->model->name . ' with description: "' . $row->model->description . '" in your cart.';
+    }
     $result = Cart::content();
     return $result->toJson();
 });
@@ -67,6 +70,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/sale/create', 'SaleController@create');
 
+    Route::post('/sale', 'SaleController@store');
+
     Route::get('/transfer/create', 'TransferController@create');
 
     Route::get('/stockin/create', 'StockInController@create');
@@ -92,5 +97,4 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/processreportbyemployee', 'ReportController@processReportByEmployee');
 
     Route::get('/processreportdaily', 'ReportController@processReportDaily');
-
 });

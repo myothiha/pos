@@ -17,6 +17,20 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $employee_id
+ * @property int $itemId
+ * @property int $quantity
+ * @property string $paint
+ * @property string $tinder
+ * @property string $liker
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereEmployeeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereItemId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereLiker($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue wherePaint($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereTinder($value)
  */
 class Issue extends Model
 {

@@ -61,7 +61,8 @@
                 <div class="sm-content-box">
                     <div class="row justify-content-center">
                         <div class="col-lg-12 mt--180">
-                            <form class="form-default">
+                            <form class="form-default" action="{{ action('SaleController@store') }}" method="post">
+                                {{ csrf_field() }}
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tabs tabs--style-2" role="tabpanel">
@@ -144,7 +145,7 @@
                                             </div>
                                             <hr>
 
-                                           <form class="form-default">
+                                            <form class="form-default">
                                                 <h3>Stock In Form</h3>
                                                 <hr class="m-t-0">
                                                 <div class="row">
@@ -152,7 +153,8 @@
                                                         <div class="form-group">
                                                             <label class="control-label">Date</label>
                                                             <div class="input-group date input-group--style-1">
-                                                                <input type="date" class="form-control" name="dob" placeholder="Select Date"><br>
+                                                                <input type="date" class="form-control" name="dob"
+                                                                       placeholder="Select Date"><br>
                                                                 <span class="input-group-addon">
                                                                     <i class="ion-ios-calendar-outline"></i>
                                                                 </span>
@@ -183,7 +185,7 @@
                                                             <label for="supplier_id">Supplier</label>
                                                             <select class="form-control" id="select" name="supplier_id">
                                                                 @foreach($customers as $customer)
-                                                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -196,7 +198,7 @@
                                                             <label for="location_id">Location</label>
                                                             <select class="form-control" id="select" name="location_id">
                                                                 @foreach($locations as $location)
-                                                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                                    <option value="{{ $location->id }}">{{ $location->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -267,21 +269,24 @@
                                                                         <td class="product-name">{{ $item->name }}</td>
                                                                         <td class="product-name">{{ $item->options->color }}
                                                                         </td>
-                                                                        <td class="product-price d-none d-lg-table-cell">
-                                                                            <input type="text" id="price{{ $item->id }}"  class="form-control"
+                                                                        <td class="product-quantity d-none d-md-table-cell">
+                                                                            <input type="text" id="price{{ $item->id }}"
+                                                                                   class="form-control"
                                                                                    onchange="updatePrice('{{ $item->rowId }}', '{{ $item->id }}')"
-                                                                                   value="{{ $item->price }}" />
+                                                                                   value="{{ $item->price }}"/>
                                                                         </td>
                                                                         <td class="product-quantity d-none d-md-table-cell">
-                                                                            <input type="text" id="qty{{ $item->id }}" class="form-control"
+                                                                            <input type="text" id="qty{{ $item->id }}"
+                                                                                   class="form-control"
                                                                                    onchange="updateQty('{{ $item->rowId }}', '{{ $item->id }}')"
-                                                                                   value="{{ $item->qty }}" />
+                                                                                   value="{{ $item->qty }}"/>
                                                                         </td>
                                                                         <td class="product-total">
                                                                             <span>$ {{ $item->qty * $item->price }} USD</span>
                                                                         </td>
                                                                         <td class="product-remove">
-                                                                            <a href="javascript:void(0)" onclick="removeItem('{{ $item->rowId }}')"
+                                                                            <a href="javascript:void(0)"
+                                                                               onclick="removeItem('{{ $item->rowId }}')"
                                                                                class="text-right pl-4">
                                                                                 <i class="ion-trash-a"></i>
                                                                             </a>
@@ -387,9 +392,7 @@
         }
 
 
-
-        function removeItem(rowId)
-        {
+        function removeItem(rowId) {
             event.preventDefault();
             var token = "{{ csrf_token() }}";
 
@@ -405,8 +408,7 @@
             ajax.send(formdata);
         }
 
-        function updatePrice(rowId, itemId)
-        {
+        function updatePrice(rowId, itemId) {
             var token = "{{ csrf_token() }}";
             var price = _("price" + itemId).value;
 
@@ -424,8 +426,7 @@
             ajax.send(formdata);
         }
 
-        function updateQty(rowId, itemId)
-        {
+        function updateQty(rowId, itemId) {
             var token = "{{ csrf_token() }}";
             var qty = _("qty" + itemId).value;
 
@@ -448,8 +449,7 @@
             // console.log(items);
 
             let markUp = '';
-            for ( var key in items)
-            {
+            for (var key in items) {
                 let item = items[key];
                 markUp += `
                      <tr class="cart-item">

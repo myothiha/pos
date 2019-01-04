@@ -17,6 +17,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $voucherNo
+ * @property int $location_id
+ * @property int $supplier_id
+ * @property string $remark
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereLocationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereRemark($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereSupplierId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereVoucherNo($value)
  */
 class StockIn extends Model
 {

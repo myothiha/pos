@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Employee wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Employee whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Employee whereDeletedAt($value)
  */
 class Employee extends Model
 {

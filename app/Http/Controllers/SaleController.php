@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Sale;
 use App\Item;
+use App\Store;
 use App\Type;
 use App\Category;
 use App\Color;
 use App\Customer;
 use App\Location;
+use Cart;
+use DB;
 use Illuminate\Http\Request;
+use Log;
 
 class SaleController extends Controller
 {
@@ -65,7 +69,41 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sale = new Sale();
+        $sale->voucherNo = $request->voucherNo;
+        $sale->processType = $request->processType;
+        $sale->saleType = $request->saleType;
+        $sale->location_id = $request->location_id;
+        $sale->customer_id = $request->customer_id;
+        $sale->totalAmount = Cart::total('2');
+        $sale->paid = $request->paid;
+        $sale->balance = $request->balance;
+        $sale->remark = $request->remark;
+        $sale->isPaid = $request->isPaid;
+
+
+        try {
+            DB::transaction(function () use ($sale) {
+
+                $sale->save();
+
+
+                foreach(Cart::content() as $item) {
+//                    echo 'You have ' . $row->qty . ' items of ' . $row->model->name . ' with description: "' . $row->model->description . '" in your cart.';
+                    $total = $item->qty * $item->price;
+                    $sale->items()->attach($item->id, ['quantity' => $item->qty, 'price' => $item->price, 'total' => $total]);
+
+                    $store = Store::where('location_id', $sale->location_id)->andWhere('item_id', $item->id);
+
+                    $store->quantity -= $item->qty;
+                }
+
+            });
+        } catch (\Throwable $e) {
+            Log::error('Sales Error : ' . $e->getMessage());
+
+
+        }
     }
 
     /**

@@ -17,8 +17,35 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $voucherNo
+ * @property string $processType
+ * @property string $saleType
+ * @property int $customer_id
+ * @property int $location_id
+ * @property int $totalAmount
+ * @property int $paid
+ * @property int $balance
+ * @property string $remark
+ * @property string $isPaid
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereBalance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereCustomerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereIsPaid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereLocationId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale wherePaid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereProcessType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereRemark($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereSaleType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereTotalAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereVoucherNo($value)
  */
 class Sale extends Model
 {
-    //
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+
 }

@@ -17,6 +17,16 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $issue_id
+ * @property int $employee_id
+ * @property int $acceptQty
+ * @property int $rejectQty
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereAcceptQty($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereEmployeeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereIssueId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereRejectQty($value)
  */
 class Inspect extends Model
 {

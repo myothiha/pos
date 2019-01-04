@@ -32,6 +32,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereTypeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @property-read \App\Category $category
+ * @property-read \App\Color $color
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Damage[] $damages
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\StockOpening[] $stockOpenings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Store[] $stores
+ * @property-read \App\Type $type
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereDeletedAt($value)
  */
 class Item extends Model implements Buyable
 {
@@ -67,6 +75,11 @@ class Item extends Model implements Buyable
     public function stores()
     {
         return $this->hasMany(Store::class);
+    }
+
+    public function sales()
+    {
+        return $this->belongsToMany(Sale::class);
     }
 
     /**
