@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\StockIn;
 use App\Item;
+use App\Store;
 use App\Type;
 use App\Category;
 use App\Color;
 use App\Supplier;
 use App\Location;
+use Cart;
+use App\Constants\Cart as CartConst;
+use DB;
 use Illuminate\Http\Request;
 
 class StockInController extends Controller
@@ -64,7 +68,32 @@ class StockInController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $stockIn = new StockIn();
+        $stockIn->supplier_id = $request->supplier_id;
+        $stockIn->location_id = $request->location_id;
+        $stockIn->voucherNo = $request->voucherNo;
+        $stockIn->remark = $request->remark;
+
+        try {
+            DB::transaction(function () use ($stockIn) {
+                $stockIn->save();
+
+                foreach (Cart::instance(CartConst::STOCK_IN)->content() as $item)
+                {
+                    $stockIn->items()->attach($item->id, ['quantity' => $item->qty]);
+
+                    $store = Store::where([
+                        ['location_id', '=', $stockIn->location_id],
+                        ['item_id', '=', $item->id],
+                    ])->get()->first();
+
+                    $store->quantity += $item->qty;
+                    $store->save();
+                }
+            });
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+        }
     }
 
     /**

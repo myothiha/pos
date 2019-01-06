@@ -30,5 +30,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class StockIn extends Model
 {
-    //
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'stock_in_details');
+    }
 }

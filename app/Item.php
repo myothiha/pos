@@ -82,6 +82,11 @@ class Item extends Model implements Buyable
         return $this->belongsToMany(Sale::class);
     }
 
+    public function stockIns()
+    {
+        return $this->belongsToMany(StockIn::class, 'stock_in_details');
+    }
+
     /**
      * Get the identifier of the Buyable item.
      *

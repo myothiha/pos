@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Constants;
+use App\Receivable;
 use App\Sale;
 use App\Item;
 use App\Store;
@@ -16,6 +17,7 @@ use Cart;
 use DB;
 use Illuminate\Http\Request;
 use Log;
+use App\Constants\Cart as CartConst;
 
 class SaleController extends Controller
 {
@@ -51,7 +53,7 @@ class SaleController extends Controller
         
     }
 
-    /**s
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -90,21 +92,20 @@ class SaleController extends Controller
         $sale->saleType = $request->saleType;
         $sale->location_id = $request->location_id;
         $sale->customer_id = $request->customer_id;
-        $sale->totalAmount = Cart::total('2');
-        $sale->paid = $request->paid ?? '1000';
-        $sale->balance = $request->balance ?? 100;
+        $sale->totalAmount = Cart::instance(CartConst::SALE)->total(0);
+        $sale->paid = $request->paid ?? $request->totalAmount;
+        $sale->balance = $request->balance ?? 0;
         $sale->remark = $request->remark;
-        $sale->isPaid = $request->isPaid ?? 'Paid';
+        $sale->isPaid = $request->isPaid ?? Constants::TRUE;
 
 //        dd($sale->toArray());
 
-
         try {
             DB::transaction(function () use ($sale) {
-
                 $sale->save();
 
-                foreach(Cart::content() as $item) {
+                // Record price, qty, total for each item
+                foreach(Cart::instance(CartConst::SALE)->content() as $item) {
 
                     $total = $item->qty * $item->price;
 
@@ -119,11 +120,14 @@ class SaleController extends Controller
                     $store->save();
                 }
 
+                Cart::instance(CartConst::SALE)->destroy();
             });
         } catch (\Throwable $e) {
             Log::error('Sales Error : ' . $e->getMessage());
             dd($e->getMessage());
         }
+
+        return redirect()->action('SaleController@create');
     }
 
     /**

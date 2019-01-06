@@ -17,9 +17,15 @@ class CreateReceivablesTable extends Migration
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('location_id');
             $table->string('voucherNo');
-            $table->unsignedInteger('amount');
+            $table->integer('amount');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('location_id')
+                ->references('id')->on('locations');
+
+            $table->foreign('customer_id')
+                ->references('id')->on('customers');
         });
     }
 

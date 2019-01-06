@@ -13,10 +13,10 @@
 */
 
 Route::get('/', function () {
-    foreach(Cart::content() as $row) {
+    /*foreach(Cart::content() as $row) {
         echo 'You have ' . $row->qty . ' items of ' . $row->model->name . ' with description: "' . $row->model->description . '" in your cart.';
-    }
-    $result = Cart::content();
+    }*/
+    $result = Cart::instance(\App\Constants\Cart::STOCK_IN)->content();
     return $result->toJson();
 });
 
@@ -75,6 +75,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/transfer/create', 'TransferController@create');
 
     Route::get('/stockin/create', 'StockInController@create');
+    Route::post('/stockin/', 'StockInController@store');
 
     Route::get('/issue/create', 'IssueController@create');
 

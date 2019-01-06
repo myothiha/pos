@@ -157,15 +157,15 @@
                                                         <div class="form-group">
                                                             <label for="voucherNo">Voucher No</label>
                                                             <input id="voucherNo" placeholder="Enter Voucher"
-                                                                   type="text" class="form-control" name="voucherNo">
+                                                                   type="text" class="form-control" name="voucherNo" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="form-group has-feedback">
                                                             <label for="saleType">Sale Type</label>
-                                                            <select class="form-control" id="saleType" name="saleType">
-                                                                <option value="cash_down">Cash Down</option>
-                                                                <option value="credit">Credit</option>
+                                                            <select class="form-control" id="saleType" name="saleType" onchange="javascript:changeType()">
+                                                                <option value="{{ \App\Constants::CASH_DOWN }}" selected>Cash Down</option>
+                                                                <option value="{{ \App\Constants::CREDIT }}">Credit</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -219,7 +219,7 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody id="cardItems">
-                                                            @foreach( Cart::content() as $key => $item )
+                                                            @foreach( Cart::instance(\App\Constants\Cart::SALE)->content() as $key => $item )
                                                                 <tr class="cart-item">
                                                                     <td class="product-name">{{ $item->name }}</td>
                                                                     <td class="product-name">{{ $item->options->color }}
@@ -238,7 +238,7 @@
                                                                                value="{{ $item->qty }}"/>
                                                                     </td>
                                                                     <td class="product-total">
-                                                                        <span>$ {{ $item->qty * $item->price }} USD</span>
+                                                                        <span>{{ $item->qty * $item->price }} MMK</span>
                                                                     </td>
                                                                     <td class="product-remove">
                                                                         <a href="javascript:void(0)"
@@ -260,30 +260,30 @@
                                                                 <td class="product-list text-right"><label for="paid">Paid</label></td>
                                                                 <td class="product-quanity d-none d-lg-table-cell">
                                                                     <div class="form-group">
-                                                                        <input type="text" id="paid" class="form-control" name="paid"/>
+                                                                        <input type="text" id="paid" class="form-control" name="paid" value="{{ Cart::total(0) }}" readonly=true onchange="updateBalance()" />
                                                                     </div>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="product-list text-right">Discount (0%)</td>
                                                                 <td class="product-total">
-                                                                    <span>$ 0 USD</span>
+                                                                    <span id="discount"> 0 MMK</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="product-list text-right">Total
-                                                                    Due
-                                                                </td>
+                                                                <td class="product-list text-right">Balance</td>
                                                                 <td class="product-total">
-                                                                    <span id="total_price">$ {{ Cart::total() }} USD</span>
+                                                                    <input type="hidden" id="balance" class="form-control" name="balance" value="0"/>
+                                                                    <span id="balance_amount"> 0 MMK</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="product-list text-right" colspan="4">
-                                                                    Total Due
+                                                                    Total
                                                                 </td>
                                                                 <td class="product-total">
-                                                                    <span id="total_due">$ 100 USD</span>
+                                                                    <input type="hidden" id="total" class="form-control" name="total" value="{{ Cart::total(0) }}"/>
+                                                                    <span id="total_price">{{ Cart::total(0) }} MMK</span>
                                                                 </td>
                                                             </tr>
                                                             </tbody>
@@ -369,6 +369,7 @@
             var formdata = new FormData();
             formdata.append("_token", token);
             formdata.append("itemId", $itemId);
+            formdata.append("cart", '{{ \App\Constants\Cart::SALE }}');
             var ajax = new XMLHttpRequest();
             ajax.upload.addEventListener("progress", progressHandler, false);
             ajax.addEventListener("load", addCompleteHandler, false);
@@ -386,6 +387,7 @@
             var formdata = new FormData();
             formdata.append("_token", token);
             formdata.append("rowId", rowId);
+            formdata.append("cart", '{{ \App\Constants\Cart::SALE }}');
             var ajax = new XMLHttpRequest();
             ajax.upload.addEventListener("progress", progressHandler, false);
             ajax.addEventListener("load", addCompleteHandler, false);
@@ -402,6 +404,7 @@
             var formdata = new FormData();
             formdata.append("_token", token);
             formdata.append("rowId", rowId);
+            formdata.append("cart", '{{ \App\Constants\Cart::SALE }}');
             formdata.append("itemId", itemId);
             formdata.append("price", price);
             var ajax = new XMLHttpRequest();
@@ -419,6 +422,7 @@
 
             var formdata = new FormData();
             formdata.append("_token", token);
+            formdata.append("cart", '{{ \App\Constants\Cart::SALE }}');
             formdata.append("rowId", rowId);
             formdata.append("itemId", itemId);
             formdata.append("qty", qty);
@@ -431,13 +435,38 @@
             ajax.send(formdata);
         }
 
+        function changeType()
+        {
+            let saleType = _("saleType").value;
+
+            if (saleType === "{{ \App\Constants::CASH_DOWN }}") {
+                let total = _("total").value;
+                _("paid").readOnly = true;
+                _("paid").value = total;
+                updateBalance();
+            } else {
+                _("paid").readOnly = false;
+            }
+        }
+
+        function updateBalance()
+        {
+            let paid = _("paid").value;
+            let total = _("total").value;
+            let balance = total - paid;
+            setBalanceAmount(balance);
+        }
+
         function addCompleteHandler(event) {
             let items = JSON.parse(event.target.responseText);
             // console.log(items);
 
             let markUp = '';
+            let total = 0;
             for (var key in items) {
                 let item = items[key];
+                let subTotal = item.price * item.qty;
+                total += subTotal;
                 markUp += `
                      <tr class="cart-item">
                         <td class="product-name">${item.name}</td>
@@ -449,7 +478,7 @@
                         <td class="product-quanity d-none d-lg-table-cell">
                             <input type="text" id="qty${item.id}" onchange="updateQty('${item.rowId}', ${item.id})" class="form-control" value="${item.qty}" />
                         </td>
-                        <td class="product-total"><span>$ ${item.price * item.qty} USD</span></td>
+                        <td class="product-total"><span>$ ${subTotal} USD</span></td>
                         <td class="product-remove">
                             <a href="javascript:void(0)" onclick="removeItem('${item.rowId}')" class="text-right pl-4">
                                 <i class="ion-trash-a"></i>
@@ -459,6 +488,27 @@
 `;
             }
             _("cardItems").innerHTML = markUp;
+            setTotalAmount(total);
+
+            let saleType = _("saleType").value;
+            if( saleType === "{{ \App\Constants::CASH_DOWN }}" )
+            {
+                _("paid").value = total;
+            }
+
+            let paid = _("paid").value;
+            let balance = total - paid;
+            updateBalance(balance);
+        }
+
+        function setTotalAmount(total) {
+            _("total_price").innerHTML = total + " MMK";
+            _("total").value = total;
+        }
+
+        function setBalanceAmount(balance) {
+            _("balance_amount").innerHTML = balance + " MMK";
+            _("balance").value = balance;
         }
 
         function progressHandler(event) {
@@ -471,7 +521,5 @@
         function errorHandler(event) {
             // _("status").innerHTML = "Upload Failed";
         }
-
-
     </script>
 @endsection

@@ -72,14 +72,14 @@
                                                 <li class="nav-item" role="presentation">
                                                     <a href="#tabTwo-1"
                                                        role="tab" data-toggle="tab"
-                                                       class="nav-link active text-normal strong-600">Stock In</a>
+                                                       class="nav-link active text-normal strong-600">Sale</a>
                                                 </li>
                                             </ul>
 
                                             <div class="search-box" style="margin-top: 22px;">
                                                 <div class="container">
                                                     <div class="row">
-                                                        <form action="#" class="form-default" id="form" onsubmit="return false">
+                                                        <form action="#" class="form-default" id="form">
                                                             <div class="col-lg-2">
                                                                 <input id="itemCode" placeholder="Item Code"
                                                                        type="text" class="form-control" name="itemCode">
@@ -89,9 +89,11 @@
                                                                        type="text" class="form-control" name="name">
                                                             </div>
                                                             <div class="col-lg-2">
-                                                                <select class="form-control" id="type_id" name="type_id">
+                                                                <select class="form-control" id="type_id"
+                                                                        name="type_id">
                                                                     @foreach($types as $type)
-                                                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                                        <option
+                                                                            value="{{ $type->id }}">{{ $type->name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -99,12 +101,14 @@
                                                                 <select class="form-control" id="category_id"
                                                                         name="category_id">
                                                                     @foreach($categories as $category)
-                                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                                        <option
+                                                                            value="{{ $category->id }}">{{ $category->name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
                                                             <div class="col-lg-2">
-                                                                <button type="submit" class="btn btn-primary" onclick="uploadFile()">Submit
+                                                                <button type="submit" class="btn btn-primary"
+                                                                        onclick="searchItem()">Submit
                                                                 </button>
                                                             </div>
                                                         </form>
@@ -119,67 +123,57 @@
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="sm-wrapper">
-                                                                <table class="table table-striped table-bordered nowrap w-in-100">
-                                                                    <thead>
-                                                                    <tr>
-                                                                        <th>#</th>
-                                                                        <th>Name</th>
-                                                                        <th>Remark</th>
-                                                                        <th>Action</th>
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    <?php $no = 1; ?>
-                                                                    @foreach($items as $item)
+                                                                <div class="sm-box">
+                                                                    <table id="data-table"
+                                                                           class="table table-striped table-bordered nowrap w-in-100">
+                                                                        <thead>
                                                                         <tr>
-                                                                            <td>{{ $no++ }}</td>
-                                                                            <td>{{ $item->name }}</td>
-                                                                            <td>{{ $item->remark }}</td>
-                                                                            <td width="20%">
-                                                                                <form
-                                                                                        action=""
-                                                                                        method="Post">
-                                                                                    <input type="hidden" name="_method"
-                                                                                           value="add">
-                                                                                    {{ csrf_field() }}
-
-                                                                                    <input type="submit"
-                                                                                           class="btn btn-outline-primary"
-                                                                                           value="Add">
-                                                                                </form>
-                                                                            </td>
+                                                                            <th>#</th>
+                                                                            <th>Name</th>
+                                                                            <th>Color</th>
+                                                                            <th>Category</th>
+                                                                            <th>Action</th>
                                                                         </tr>
-                                                                    @endforeach
-                                                                    </tbody>
-                                                                </table>
+                                                                        </thead>
+                                                                        <tbody id="searchResult">
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                 </div>
                                             </div>
+
                                             <hr>
 
-                                            <form class="form-default">
-                                                <h3>Stock In Form</h3>
+                                            <form class="form-default" action="{{ action('StockInController@store') }}"
+                                                  method="POST">
+                                                {{ csrf_field() }}
+                                                <h3>Sale Form</h3>
                                                 <hr class="m-t-0">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                            <label class="control-label">Date</label>
-                                                            <div class="input-group date input-group--style-1">
-                                                                <input type="date" class="form-control" name="dob" placeholder="Select Date"><br>
-                                                                <span class="input-group-addon">
-                                                                    <i class="ion-ios-calendar-outline"></i>
-                                                                </span>
-                                                            </div>
+                                                            <label for="voucherNo">Voucher No</label>
+                                                            <input id="voucherNo" placeholder="Enter Voucher"
+                                                                   type="text" class="form-control" name="voucherNo">
                                                         </div>
                                                     </div>
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="voucher_no">Voucher No</label>
-                                                            <input id="voucher_no" placeholder="Enter Voucher"
-                                                                   type="text" class="form-control" name="voucher_no">
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group has-feedback">
+                                                            <label for="suppliers">Supplier</label>
+                                                            <select class="form-control" id="suppliers"
+                                                                    name="supplier_id">
+                                                                @foreach($suppliers as $supplier)
+                                                                    <option
+                                                                        value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -188,30 +182,13 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group has-feedback">
                                                             <label for="location_id">Location</label>
-                                                            <select class="form-control" id="select" name="location_id">
+                                                            <select class="form-control" id="location_id"
+                                                                    name="location_id">
                                                                 @foreach($locations as $location)
-                                                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                                    <option
+                                                                        value="{{ $location->id }}">{{ $location->name }}</option>
                                                                 @endforeach
                                                             </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="form-group has-feedback">
-                                                            <label for="supplier_id">Supplier</label>
-                                                            <select class="form-control" id="select" name="supplier_id">
-                                                                @foreach($suppliers as $supplier)
-                                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="form-group">
-                                                            <label for="voucher_no">Voucher No</label>
-                                                            <input id="voucher_no" placeholder="Enter Voucher"
-                                                                   type="text" class="form-control" name="voucher_no">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -220,219 +197,67 @@
                                                 <div class="tab-content">
                                                     <div role="tabpanel" class="tab-pane active"
                                                          id="tabTwo-1">
-                                                        <div class="tab-body">
-                                                            <table class="table-cart">
-                                                                <thead>
-                                                                <tr>
-                                                                    <th class="product-image">Img</th>
-                                                                    <th class="product-name">Product</th>
-                                                                    <th class="product-size d-none d-lg-table-cell">
-                                                                        Size
-                                                                    </th>
-                                                                    <th class="product-price d-none d-lg-table-cell">
-                                                                        Price
-                                                                    </th>
-                                                                    <th class="product-quanity d-none d-md-table-cell">
-                                                                        Quantity
-                                                                    </th>
-                                                                    <th class="product-total">Total</th>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody>
+                                                        <table class="table table-cart">
+                                                            <thead>
+                                                            <tr>
+                                                                <th class="product-name">Item</th>
+                                                                <th class="product-size d-none d-lg-table-cell">
+                                                                    Color
+                                                                </th>
+                                                                <th class="product-size d-none d-lg-table-cell">
+                                                                    Category
+                                                                </th>
+                                                                <th class="product-quanity d-none d-md-table-cell">
+                                                                    Quantity
+                                                                </th>
+                                                                <th width="50px;"></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody id="cardItems">
+                                                            @foreach( Cart::instance(\App\Constants\Cart::STOCK_IN)->content() as $key => $item )
                                                                 <tr class="cart-item">
-                                                                    <td class="product-image">
-                                                                        <a href="javascript:void(0)">
-                                                                            <img alt=""
-                                                                                 src="http://via.placeholder.com/600x600">
-                                                                        </a>
+                                                                    <td class="product-name">{{ $item->name }}</td>
+                                                                    <td class="product-name">{{ $item->options->color }}</td>
+                                                                    <td class="product-quanity d-none d-lg-table-cell">
+                                                                        {{ $item->model->category->name }}
                                                                     </td>
-
-                                                                    <td class="product-name">
-                                                                        Seagate Backup Plus Slim 1TB
-                                                                        Portable
-                                                                    </td>
-
-                                                                    <td class="product-price d-none d-lg-table-cell">
-                                                                        $279 USD
-                                                                    </td>
-
-                                                                    <td class="product-quantity d-none d-md-table-cell">
-                                                                        <div class="input-group input-group--style-2 pr-4"
-                                                                             style="width: 130px;">
-                                                                        <span class="input-group-btn">
-                                                                            <button class="btn btn-number"
-                                                                                    type="button"
-                                                                                    data-type="minus"
-                                                                                    data-field="quantity[1]"
-                                                                                    disabled="disabled">
-                                                                                <i class="ion-minus"></i>
-                                                                            </button>
-                                                                        </span>
-                                                                            <input type="text"
-                                                                                   name="quantity[1]"
-                                                                                   class="form-control input-number"
-                                                                                   placeholder="3" value="1"
-                                                                                   minlength="1"
-                                                                                   maxlength="10">
-                                                                            <span class="input-group-btn">
-                                                                            <button class="btn btn-number"
-                                                                                    type="button"
-                                                                                    data-type="plus"
-                                                                                    data-field="quantity[1]">
-                                                                                 <i class="ion-plus"></i>
-                                                                            </button>
-                                                                        </span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="product-total">
-                                                                        <span>$279.00 USD</span>
+                                                                    <td class="product-quanity d-none d-lg-table-cell">
+                                                                        <input type="text" id="qty{{ $item->id }}"
+                                                                               class="form-control"
+                                                                               onchange="updateQty('{{ $item->rowId }}', '{{ $item->id }}')"
+                                                                               value="{{ $item->qty }}"/>
                                                                     </td>
                                                                     <td class="product-remove">
                                                                         <a href="javascript:void(0)"
-                                                                           class="text-right pl-4">
+                                                                           onclick="removeItem('{{ $item->rowId }}')"
+                                                                           class="pl-4">
                                                                             <i class="ion-trash-a"></i>
                                                                         </a>
                                                                     </td>
                                                                 </tr>
-
-                                                                <!-- Cart item -->
-                                                                <tr class="cart-item">
-                                                                    <td class="product-image">
-                                                                        <a href="javascript:void(0)">
-                                                                            <img alt=""
-                                                                                 src="http://via.placeholder.com/600x600">
-                                                                        </a>
-                                                                    </td>
-
-                                                                    <td class="product-name">
-                                                                        Amazon Echo - Powered by Dolby
-                                                                    </td>
-
-                                                                    <td class="product-price d-none d-lg-table-cell">
-                                                                        $578 USD
-                                                                    </td>
-
-                                                                    <td class="product-quantity d-none d-md-table-cell">
-                                                                        <div class="input-group input-group--style-2 pr-4"
-                                                                             style="width: 130px;">
-                                                                        <span class="input-group-btn">
-                                                                            <button class="btn btn-number"
-                                                                                    type="button"
-                                                                                    data-type="minus"
-                                                                                    data-field="quantity[2]">
-                                                                                <i class="ion-minus"></i>
-                                                                            </button>
-                                                                        </span>
-                                                                            <input type="text"
-                                                                                   name="quantity[2]"
-                                                                                   class="form-control input-number"
-                                                                                   placeholder="3" value="2"
-                                                                                   minlength="1"
-                                                                                   maxlength="10">
-                                                                            <span class="input-group-btn">
-                                                                            <button class="btn btn-number"
-                                                                                    type="button"
-                                                                                    data-type="plus"
-                                                                                    data-field="quantity[2]">
-                                                                                 <i class="ion-plus"></i>
-                                                                            </button>
-                                                                        </span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="product-total">
-                                                                        <span>$1156.00 USD</span>
-                                                                    </td>
-                                                                    <td class="product-remove">
-                                                                        <a href="javascript:void(0)"
-                                                                           class="text-right pl-4">
-                                                                            <i class="ion-trash-a"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-
-                                                                <!-- Cart item -->
-                                                                <tr class="cart-item">
-                                                                    <td class="product-image">
-                                                                        <a href="javascript:void(0)">
-                                                                            <img alt=""
-                                                                                 src="http://via.placeholder.com/600x600">
-                                                                        </a>
-                                                                    </td>
-
-                                                                    <td class="product-name">
-                                                                        Sony MDR-XB450 On-Ear Headphones
-                                                                    </td>
-
-                                                                    <td class="product-price d-none d-lg-table-cell">
-                                                                        $365 USD
-                                                                    </td>
-
-                                                                    <td class="product-quantity d-none d-md-table-cell">
-                                                                        <div class="input-group input-group--style-2 pr-4"
-                                                                             style="width: 130px;">
-                                                                        <span class="input-group-btn">
-                                                                            <button class="btn btn-number"
-                                                                                    type="button"
-                                                                                    data-type="minus"
-                                                                                    data-field="quantity[3]"
-                                                                                    disabled="disabled">
-                                                                                <i class="ion-minus"></i>
-                                                                            </button>
-                                                                        </span>
-                                                                            <input type="text"
-                                                                                   name="quantity[3]"
-                                                                                   class="form-control input-number"
-                                                                                   placeholder="3" value="1"
-                                                                                   minlength="1"
-                                                                                   maxlength="10">
-                                                                            <span class="input-group-btn">
-                                                                            <button class="btn btn-number"
-                                                                                    type="button"
-                                                                                    data-type="plus"
-                                                                                    data-field="quantity[3]">
-                                                                                 <i class="ion-plus"></i>
-                                                                            </button>
-                                                                        </span>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td class="product-total">
-                                                                        <span>$368.00 USD</span>
-                                                                    </td>
-                                                                    <td class="product-remove">
-                                                                        <a href="javascript:void(0)"
-                                                                           class="text-right pl-4">
-                                                                            <i class="ion-trash-a"></i>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                                <!-- Cart item -->
-                                                                <tr class="cart-item">
-                                                                    <td class="product-price d-none d-lg-table-cell" colspan="4">
-                                                                        Total
-                                                                    </td>
-
-                                                                    
-                                                                    <td class="product-total">
-                                                                        <span>$368.00 USD</span>
-                                                                    </td>
-                                                                </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <div class="col-lg-12"
-                                                                 style="margin-top: 15px;">
-                                                                <button class="btn btn-primary btn-block"
-                                                                        type="submit">
-                                                                    Place Order
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                        <img alt="" class="m-t-20 w-in-100"
-                                                             src="http://via.placeholder.com/848x154">
+                                                            @endforeach
+                                                            </tbody>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td class="product-name" rowspan="3" colspan="4">
+                                                                    <textarea name="remark" id="remark"
+                                                                              class="form-control"
+                                                                              cols="30" rows="3" placeholder="Remark"
+                                                                              tabindex="4"></textarea>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
-                                            </form>                                                
+                                                <div class="col-lg-12 text-right"
+                                                     style="margin-top: 15px;">
+                                                    <button class="btn btn-primary"
+                                                            type="submit">
+                                                        Place Order
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -441,7 +266,6 @@
                     </div>
                 </div>
             </div>
-            <!--END PAGE CONTENT-->
         </div>
     </section>
     <!--END CONTENT-->
@@ -453,28 +277,129 @@
             return document.getElementById(el);
         }
 
-        function uploadFile() {
+        function searchItem() {
             event.preventDefault();
             var name = _("name").value;
             var itemCode = _('itemCode').value;
             var type_id = _("type_id").value;
             var category_id = _("category_id").value;
-            console.log(name, itemCode, type_id, category_id);
-            // alert(file.name+" | "+file.size+" | "+file.type);
+            // alert(file.name+" | "+file.size+"  | "+file.type);
 
             var formdata = new FormData();
             formdata.append("name", name);
-            formdata.append("itemCode", name);
+            formdata.append("itemCode", itemCode);
             formdata.append("type_id", type_id);
             formdata.append("category_id", category_id);
             var ajax = new XMLHttpRequest();
             ajax.upload.addEventListener("progress", progressHandler, false);
-            ajax.addEventListener("load", completeHandler, false);
+            ajax.addEventListener("load", searchCompleteHandler, false);
             ajax.addEventListener("error", errorHandler, false);
-            ajax.addEventListener("abort", abortHandler, false);
-            ajax.open("GET", "{{ action('AddToCartController@addItem') }}"); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
+            ajax.open("POST", "{{ action('AddToCartController@searchItem') }}"); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
             //use file_upload_parser.php from above url
             ajax.send(formdata);
+        }
+
+        function searchCompleteHandler(event) {
+            // console.log(event.target.responseText);
+            let items = JSON.parse(event.target.responseText);
+
+            let markUp = '';
+            items.forEach(function (item, index) {
+                markUp += `
+                     <tr>
+                        <td>${++index}</td>
+                        <td>${item.name}</td>
+                        <td>${item.color.name}</td>
+                        <td>${item.category.name}</td>
+                        <td width="20%">
+                        <form action="#" method="Post">
+                            <input type="submit" class="btn btn-outline-primary" onclick="addItem(${item.id})" value="Add">
+                        </form>
+            </td>
+        </tr>
+`;
+                _("searchResult").innerHTML = markUp;
+            });
+        }
+
+        function addItem($itemId) {
+            event.preventDefault();
+            var token = "{{ csrf_token() }}";
+
+            var formdata = new FormData();
+            formdata.append("_token", token);
+            formdata.append("cart", '{{ \App\Constants\Cart::STOCK_IN }}');
+            formdata.append("itemId", $itemId);
+            var ajax = new XMLHttpRequest();
+            ajax.upload.addEventListener("progress", progressHandler, false);
+            ajax.addEventListener("load", addCompleteHandler, false);
+            ajax.addEventListener("error", errorHandler, false);
+            ajax.open("POST", "{{ action('AddToCartController@addItem') }}"); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
+            //use file_upload_parser.php from above url
+            ajax.send(formdata);
+        }
+
+
+        function removeItem(rowId) {
+            event.preventDefault();
+            var token = "{{ csrf_token() }}";
+
+            var formdata = new FormData();
+            formdata.append("_token", token);
+            formdata.append("cart", '{{ \App\Constants\Cart::STOCK_IN }}');
+            formdata.append("rowId", rowId);
+            var ajax = new XMLHttpRequest();
+            ajax.upload.addEventListener("progress", progressHandler, false);
+            ajax.addEventListener("load", addCompleteHandler, false);
+            ajax.addEventListener("error", errorHandler, false);
+            ajax.open("POST", "{{ action('AddToCartController@removeItem') }}"); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
+            //use file_upload_parser.php from above url
+            ajax.send(formdata);
+        }
+
+        function updateQty(rowId, itemId) {
+            var token = "{{ csrf_token() }}";
+            var qty = _("qty" + itemId).value;
+
+            var formdata = new FormData();
+            formdata.append("_token", token);
+            formdata.append("cart", '{{ \App\Constants\Cart::STOCK_IN }}');
+            formdata.append("rowId", rowId);
+            formdata.append("itemId", itemId);
+            formdata.append("qty", qty);
+            var ajax = new XMLHttpRequest();
+            ajax.upload.addEventListener("progress", progressHandler, false);
+            ajax.addEventListener("load", addCompleteHandler, false);
+            ajax.addEventListener("error", errorHandler, false);
+            ajax.open("POST", "{{ action('AddToCartController@updateItem') }}"); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
+            //use file_upload_parser.php from above url
+            ajax.send(formdata);
+        }
+
+        function addCompleteHandler(event) {
+            let items = JSON.parse(event.target.responseText);
+            console.log(items);
+
+            let markUp = '';
+            for (var key in items) {
+                let item = items[key];
+                markUp += `
+                     <tr class="cart-item">
+                        <td class="product-name">${item.name}</td>
+                        <td class="product-name">${item.options.color}</td>
+                        <td class="product-name">${item.options.category}</td>
+                        <td class="product-quanity d-none d-lg-table-cell">
+                            <input type="text" id="qty${item.id}" onchange="updateQty('${item.rowId}', ${item.id})" class="form-control" value="${item.qty}" />
+                        </td>
+                        <td class="product-remove">
+                            <a href="javascript:void(0)" onclick="removeItem('${item.rowId}')" class="text-right pl-4">
+                                <i class="ion-trash-a"></i>
+                            </a>
+                        </td>
+                     </tr>
+`;
+            }
+            _("cardItems").innerHTML = markUp;
         }
 
         function progressHandler(event) {
@@ -484,20 +409,10 @@
             _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";*/
         }
 
-        function completeHandler(event) {
-            alert(event.target.responseText);
-            _("status").innerHTML = "Upload Complete";
-            _("filename").value = event.target.responseText;
-            _("file").value = "";
-            _("progressBar").value = 0; //wil clear progress bar after successful upload
-        }
-
         function errorHandler(event) {
             // _("status").innerHTML = "Upload Failed";
         }
 
-        function abortHandler(event) {
-            // _("status").innerHTML = "Upload Aborted";
-        }
+
     </script>
 @endsection
