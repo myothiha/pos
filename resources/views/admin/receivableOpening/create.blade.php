@@ -23,17 +23,9 @@
                         <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
                             <div class="sm-box">
 
-                                <form class="form-default" action="" method="post" enctype="multipart/form-data">
+                                <form class="form-default" action="{{ action('ReceivableOpeningController@store') }}" method="post" enctype="multipart/form-data">
+
                                     {{ csrf_field() }}
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="date">Date</label>
-                                                <input id="date" placeholder="Enter Name"
-                                                       type="date" class="form-control" name="date">
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="row">
                                         <div class="col-6">

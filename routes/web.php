@@ -68,8 +68,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('item', 'ItemController');
 
-    Route::resource('receivableopening', 'ReceivableOpeningController');
-
     Route::resource('stockopening', 'StockOpeningController');
 
     Route::resource('damage', 'DamageController');
@@ -85,6 +83,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/stockin/', 'StockInController@store');
 
     Route::get('/issue/create', 'IssueController@create');
+
+    Route::resource('receivableopening', 'ReceivableOpeningController');
 
     Route::get('/receivable/getcustomer', 'ReceivableController@getCustomer');
 

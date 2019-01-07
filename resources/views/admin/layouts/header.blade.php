@@ -167,7 +167,7 @@
                                 <a href="{{ action('ReceivableController@getCustomer') }}" class="dropdown-item">Recevieable</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('ReceivableOpeningController@create') }}" class="dropdown-item">RecevieableOpening</a>
+                                <a href="{{ action('ReceivableOpeningController@index') }}" class="dropdown-item">RecevieableOpening</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ action('DamageController@create') }}" class="dropdown-item">Damage</a>

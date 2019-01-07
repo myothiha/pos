@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class ReceivableController extends Controller
 {
+
     public function __construct()
     {
         $this->location = new Location();
@@ -38,11 +39,25 @@ class ReceivableController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $customer = Customer::find($request->customer_id);
+
+        $totalBalance = \DB::table('sales')
+                            ->where('customer_id', $customer->id)
+                            ->sum('balance');
+
+        $totalReceivable = \DB::table('receivables')
+                                ->where('customer_id', $customer->id)
+                                ->sum('amount');
+
+        $remaining = $totalBalance - $totalReceivable;
+
         $locations = $this->location->all();
+
         return view('admin.receivable.create', [
             'locations' => $locations,
+            'remaining' => $remaining,
         ]);
     }
  

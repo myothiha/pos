@@ -29,7 +29,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/style.css">
     
-    
+    @yield('plugins')
 </head>
 <body class="body-boxed">
 

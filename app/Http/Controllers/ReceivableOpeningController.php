@@ -21,7 +21,10 @@ class ReceivableOpeningController extends Controller
      */
     public function index()
     {
-        return view('admin.receivable.index');
+        $receivableOpenings = ReceivableOpening::all();
+        return view('admin.receivable.index', [
+            'receivableOpenings' => $receivableOpenings,
+        ]);
     }
 
     /**
@@ -48,7 +51,13 @@ class ReceivableOpeningController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $receivableOpening = new ReceivableOpening();
+        $receivableOpening->location_id = $request->location_id;
+        $receivableOpening->customer_id = $request->customer_id;
+        $receivableOpening->balance = $request->balance;
+        $receivableOpening->save();
+
+        return redirect()->action('ReceivableOpeningController@index');
     }
 
     /**
