@@ -49,8 +49,8 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <label for="location">Location</label>
-                                            <select class="form-control" id="type_id"
-                                                        name="type_id">
+                                            <select class="form-control" id="location_id"
+                                                        name="location_id4">
                                                 @foreach($locations as $location)
                                                     <option value="{{ $location->id }}">{{ $location->name }}</option>
                                                 @endforeach

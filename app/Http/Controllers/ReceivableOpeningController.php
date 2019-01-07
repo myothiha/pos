@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\ReceivableOpening;
+use App\Customer;
+use App\Location;
 use Illuminate\Http\Request;
+
 
 class ReceivableOpeningController extends Controller
 {
+    public function __construct(){
+        $this->location = new Location();
+        $this->customer = new Customer();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +31,13 @@ class ReceivableOpeningController extends Controller
      */
     public function create()
     {
-        return view('admin.receivable.create');
+        $locations = $this->location->all();
+        $customers = $this->customer->all();
+
+        return view('admin.receivableOpening.create', [
+            'customers' => $customers,
+            'locations' => $locations,
+        ]);
     }
 
     /**

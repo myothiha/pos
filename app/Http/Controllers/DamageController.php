@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Damage;
+use App\Location;
+use App\Item;
 use Illuminate\Http\Request;
 
 class DamageController extends Controller
 {
+    public function __construct(){
+        $this->location = new Location();
+        $this->item = new Item();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,11 +28,17 @@ class DamageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        return view('admin.damage.create');
-    }
+        $locations = $this->location->all();
+        $items = $this->item->all();
 
+        return view('admin.damage.create', [
+            'items' => $items,
+            'locations' => $locations,
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      *

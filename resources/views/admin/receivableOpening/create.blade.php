@@ -30,28 +30,32 @@
                                             <div class="form-group">
                                                 <label for="date">Date</label>
                                                 <input id="date" placeholder="Enter Name"
-                                                       type="text" class="form-control" name="date">
+                                                       type="date" class="form-control" name="date">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group has-feedback">
-                                                <label for="gender">Location ID</label>
-                                                <input type="text" id="location_id"
-                                                       placeholder="Location ID" class="form-control" name="location_id">
-                                            </div>
+                                        <div class="col-6">
+                                            <label for="location">Location</label>
+                                            <select class="form-control" id="location_id"
+                                                        name="location_id">
+                                                @foreach($locations as $location)
+                                                    <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group has-feedback">
-                                                <label for="gender">Customer ID</label>
-                                                <input type="text" id="customer_id"
-                                                       placeholder="Customer ID" class="form-control" name="customer_id">
-                                            </div>
+                                        <div class="col-6">
+                                            <label for="customer">Customer</label>
+                                            <select class="form-control" id="customer_id"
+                                                        name="customer_id">
+                                                @foreach($customers as $customer)
+                                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
 

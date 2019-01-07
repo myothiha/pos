@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\StockOpening;
+use App\Location;
+use App\Category;
 use Illuminate\Http\Request;
 
 class StockOpeningController extends Controller
 {
+    public function __construct(){
+        $this->location = new Location();
+        $this->category = new Category();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +30,13 @@ class StockOpeningController extends Controller
      */
     public function create()
     {
-        return view('admin.stockopening.create');
+        $locations = $this->location->all();
+        $categories = $this->category->all();
+
+        return view('admin.stockOpening.create', [
+            'categories' => $categories,
+            'locations' => $locations,
+        ]);
     }
 
     /**

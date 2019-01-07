@@ -39,8 +39,12 @@
                                         <div class="col-lg-6">
                                             <div class="form-group has-feedback">
                                                 <label for="gender">Location ID</label>
-                                                <input type="text" id="location_id"
-                                                       placeholder="Location ID" class="form-control" name="location_id">
+                                                <select class="form-control" id="location_id"
+                                                        name="location_id">
+                                                    @foreach($locations as $location)
+                                                        <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -49,8 +53,12 @@
                                         <div class="col-lg-6">
                                             <div class="form-group has-feedback">
                                                 <label for="gender">Item ID</label>
-                                                <input type="text" id="customer_id"
-                                                       placeholder="Customer ID" class="form-control" name="customer_id">
+                                                <select class="form-control" id="item_id"
+                                                        name="item_id">
+                                                    @foreach($items as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

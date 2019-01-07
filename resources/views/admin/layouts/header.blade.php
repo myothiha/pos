@@ -167,13 +167,13 @@
                                 <a href="{{ action('ReceivableController@getCustomer') }}" class="dropdown-item">Recevieable</a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.html" class="dropdown-item">RecevieableOpening</a>
+                                <a href="{{ action('ReceivableOpeningController@create') }}" class="dropdown-item">RecevieableOpening</a>
                             </li>
                             <li class="nav-item">
-                                <a href="sm_dashboard_02.html" class="dropdown-item">Damage</a>
+                                <a href="{{ action('DamageController@create') }}" class="dropdown-item">Damage</a>
                             </li>
                             <li class="nav-item">
-                                <a href="sm_dashboard_03.html" class="dropdown-item">Category</a>
+                                <a href="{{ action('StockOpeningController@create') }}" class="dropdown-item">StockOpening</a>
                             </li>
                         </ul>
                     </li>

@@ -68,6 +68,12 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('item', 'ItemController');
 
+    Route::resource('receivableopening', 'ReceivableOpeningController');
+
+    Route::resource('stockopening', 'StockOpeningController');
+
+    Route::resource('damage', 'DamageController');
+
     Route::get('/sale/create', 'SaleController@create');
 
     Route::post('/sale', 'SaleController@store');
