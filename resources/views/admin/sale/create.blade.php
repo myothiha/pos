@@ -24,19 +24,9 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="up-main-info" style="margin-top: -50px;">
-                        <div class="profile-picture profile-picture--style-2 w-200"
-                             style="margin: 0 auto !important;">
-                            <img alt="" src="http://via.placeholder.com/128x128" class="img-center">
-                            <a href="javascript:void(0)" class="btn-aux">
-                                <i class="ion ion-edit"></i>
-                            </a>
-                        </div>
                         <h2 class="up-header m-b-5 text-white">
-                            Andrew Heston
+                            Sale Form
                         </h2>
-                        <h6 class="up-sub-header text-white">
-                            Product Designer at Facebook
-                        </h6>
                     </div>
                 </div>
             </div>
@@ -259,9 +249,7 @@
                                                                               tabindex="4"></textarea></td>
                                                                 <td class="product-list text-right"><label for="paid">Paid</label></td>
                                                                 <td class="product-quanity d-none d-lg-table-cell">
-                                                                    <div class="form-group">
-                                                                        <input type="text" id="paid" class="form-control" name="paid" value="{{ Cart::total(0) }}" readonly=true onchange="updateBalance()" />
-                                                                    </div>
+                                                                    <input type="text" id="paid" class="form-control" name="paid" value="{{ Cart::total(0) }}" readonly=true onchange="updateBalance()" />
                                                                 </td>
                                                             </tr>
                                                             <tr>

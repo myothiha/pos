@@ -9,9 +9,9 @@
         <div class="breadcrumb-pageheader">
             <ol class="breadcrumb sm-breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Create Receiveable</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Create Receivable</a></li>
             </ol>
-            <h6 class="sm-pagetitle--style-1 has_page_title">Create Receiveable</h6>
+            <h6 class="sm-pagetitle--style-1 has_page_title">Create Receivable</h6>
         </div>
         <!--END BREADCRUMB-->
 
@@ -29,19 +29,9 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="date">Date</label>
-                                                <input id="date" placeholder="Enter Name"
-                                                       type="text" class="form-control" name="date">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group has-feedback">
-                                                <label for="customer_id">Customer ID</label>
-                                                <input type="text" id="customer_id"
-                                                       placeholder="Enter Customer ID" class="form-control" name="customer_id">
+                                                <label for="voucherNo">Voucher No</label>
+                                                <input id="voucherNo" placeholder="Enter Voucher"
+                                                       type="text" class="form-control" name="voucherNo" required>
                                             </div>
                                         </div>
                                     </div>
@@ -49,32 +39,35 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="voucher_no">Voucher No</label>
-                                                <input id="voucher_no" placeholder="Enter Voucher No"
-                                                       type="text" class="form-control" name="voucher_no">
+                                                <label for="date">Date</label>
+                                                <input id="date" placeholder="Enter Date"
+                                                       type="date" class="form-control" name="date" required>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group has-feedback">
+                                        <div class="col-6">
+                                            <label for="location">Location</label>
+                                            <select class="form-control" id="type_id"
+                                                        name="type_id">
+                                                @foreach($locations as $location)
+                                                    <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
                                                 <label for="amount">Amount</label>
-                                                <input type="text" id="amount"
-                                                       placeholder="Enter Amount" class="form-control" name="amount">
+                                                <input id="amount" placeholder="Enter Amount"
+                                                       type="text" class="form-control" name="amount" required>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group has-feedback">
-                                                <label for="location_id">Location ID</label>
-                                                <input type="text" id="location_id"
-                                                       placeholder="Enter Location ID" class="form-control" name="location_id">
-                                            </div>
-                                        </div>
-                                    </div>
                                     
                                     <div class="row m-t-20">
                                         <div class="col-lg-12">

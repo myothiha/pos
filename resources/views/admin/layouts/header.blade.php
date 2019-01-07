@@ -164,7 +164,7 @@
                                 <a href="{{ action('TransferController@create') }}" class="dropdown-item">Transfer</a>
                             </li>
                             <li class="nav-item">
-                                <a href="sm_dashboard_03.html" class="dropdown-item">Recevieable</a>
+                                <a href="{{ action('ReceivableController@getCustomer') }}" class="dropdown-item">Recevieable</a>
                             </li>
                             <li class="nav-item">
                                 <a href="index.html" class="dropdown-item">RecevieableOpening</a>
