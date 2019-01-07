@@ -1,5 +1,10 @@
 @extends('admin.layouts.back')
 
+@section('plugins')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+@endsection
+
 @section('content')
 
 <!--BEGIN CONTENT-->
@@ -43,7 +48,7 @@
                                         <div class="col-6">
                                             <label for="customer">Customer</label>
                                             <select class="form-control" id="customer_id"
-                                                        name="customer_id">
+                                                    name="customer_id">
                                                 @foreach($customers as $customer)
                                                     <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                                 @endforeach
@@ -79,4 +84,12 @@
 </section>
 <!--END CONTENT-->
 
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#customer_id').select2();
+        });
+    </script>
 @endsection
