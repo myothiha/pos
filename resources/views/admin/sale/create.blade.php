@@ -1,5 +1,10 @@
 @extends('admin.layouts.back')
 
+@section('plugins')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+@endsection
+
 @section('content')
 
     <!--BEGIN CONTENT-->
@@ -165,7 +170,7 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group has-feedback">
                                                             <label for="customers">Customer</label>
-                                                            <select class="form-control" id="customers" name="customer_id">
+                                                            <select class="form-control" id="customer_id" name="customer_id">
                                                                 @foreach($customers as $customer)
                                                                     <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                                                 @endforeach
@@ -301,6 +306,10 @@
 
 @section('script')
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#customer_id').select2();
+        });
+
         function _(el) {
             return document.getElementById(el);
         }
