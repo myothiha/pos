@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereSaleType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereTotalAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereVoucherNo($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
  */
 class Sale extends Model
 {

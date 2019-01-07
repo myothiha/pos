@@ -28,7 +28,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ReceivableOpening[] $receivableOpenings
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Customer whereDeletedAt($value)
+ * @property-read \App\CreditBalance $creditBalance
  */
+
 class Customer extends Model
 {
     protected $casts = [
@@ -38,5 +40,10 @@ class Customer extends Model
     public function receivableOpenings()
     {
         return $this->hasMany(ReceivableOpening::class);
+    }
+
+    public function creditBalance()
+    {
+        return $this->hasOne(CreditBalance::class);
     }
 }

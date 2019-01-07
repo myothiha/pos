@@ -40,6 +40,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Store[] $stores
  * @property-read \App\Type $type
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereDeletedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Sale[] $sales
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\StockIn[] $stockIns
  */
 class Item extends Model implements Buyable
 {

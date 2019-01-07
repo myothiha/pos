@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Constants;
+use App\CreditBalance;
 use App\Receivable;
 use App\Sale;
 use App\Item;
@@ -118,6 +119,14 @@ class SaleController extends Controller
 
                     $store->quantity -= $item->qty;
                     $store->save();
+                }
+
+                //Update Customer Credit balance for Credit Sale
+                if ( $sale->saleType == Constants::CREDIT )
+                {
+                    $balance = CreditBalance::firstOrNew(['customer_id' => $sale->customer_id]);
+                    $balance->amount += $sale->balance;
+                    $balance->save();
                 }
 
                 Cart::instance(CartConst::SALE)->destroy();

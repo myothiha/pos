@@ -5,16 +5,21 @@ namespace App\Http\Controllers;
 use App\Receivable;
 use App\Customer;
 use App\Location;
+use App\Repositories\Customers\ReceivableRepository;
 use Illuminate\Http\Request;
 
 class ReceivableController extends Controller
 {
 
-    public function __construct()
+    protected $receivableRepository;
+
+    public function __construct(ReceivableRepository $receivableRepository)
     {
+        $this->receivableRepository = $receivableRepository;
         $this->location = new Location();
         $this->customer = new Customer();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,21 +48,13 @@ class ReceivableController extends Controller
     {
         $customer = Customer::find($request->customer_id);
 
-        $totalBalance = \DB::table('sales')
-                            ->where('customer_id', $customer->id)
-                            ->sum('balance');
-
-        $totalReceivable = \DB::table('receivables')
-                                ->where('customer_id', $customer->id)
-                                ->sum('amount');
-
-        $remaining = $totalBalance - $totalReceivable;
+        $creditBalance = $this->receivableRepository->getCredit($customer);
 
         $locations = $this->location->all();
 
         return view('admin.receivable.create', [
             'locations' => $locations,
-            'remaining' => $remaining,
+            'creditBalance' => $creditBalance,
         ]);
     }
  
@@ -70,7 +67,7 @@ class ReceivableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = Customer::find($request->customer_id);
     }
 
     /**

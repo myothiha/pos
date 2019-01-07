@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CreditBalance;
 use App\ReceivableOpening;
 use App\Customer;
 use App\Location;
@@ -55,7 +56,20 @@ class ReceivableOpeningController extends Controller
         $receivableOpening->location_id = $request->location_id;
         $receivableOpening->customer_id = $request->customer_id;
         $receivableOpening->balance = $request->balance;
-        $receivableOpening->save();
+
+        $creditBalance = CreditBalance::firstOrNew(['customer_id' => $request->customer_id]);
+
+        $creditBalance->amount += $request->balance;
+
+        try {
+            \DB::transaction(function () use ($receivableOpening, $creditBalance) {
+                $receivableOpening->save();
+                $creditBalance->save();
+            });
+        } catch (\Throwable $e) {
+            \Log::error('Receivable Opening Storing Error : ' . $e->getMessage());
+            dd($e); // Todo Remove
+        }
 
         return redirect()->action('ReceivableOpeningController@index');
     }

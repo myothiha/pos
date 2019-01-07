@@ -9,6 +9,7 @@
 namespace App\Repositories\Customers;
 
 
+use App\CreditBalance;
 use App\Customer;
 use App\Receivable;
 use App\ReceivableOpening;
@@ -25,18 +26,8 @@ class ReceivableRepository extends BaseRepository
         parent::__construct(new Receivable());
     }
 
-    public function getCredit(Customer $customer)
+    public function getCredit(Customer $customer) : CreditBalance
     {
-        $receivableOpening = ReceivableOpening::where('customer_id', $customer)->select(['balance']);
-
-        $totalBalance = \DB::table('sales')
-        ->where('customer_id', $customer->id)
-        ->sum('balance');
-
-        $totalReceivable = \DB::table('receivables')
-            ->where('customer_id', $customer->id)
-            ->sum('amount');
-
-        return ($totalBalance + $receivableOpening) - $totalReceivable;
+        return CreditBalance::firstOrNew(['customer_id' => $customer->id]);
     }
 }

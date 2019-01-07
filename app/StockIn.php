@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereRemark($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereSupplierId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereVoucherNo($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
  */
 class StockIn extends Model
 {
