@@ -43,7 +43,7 @@
             <!--BEGIN BREADCRUMB-->
             <div class="breadcrumb-pageheader">
                 <ol class="breadcrumb sm-breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/admin">Home</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
                     <li class="breadcrumb-item active" aria-current="page">E-Commerce Profile v1</li>
                 </ol>
@@ -145,8 +145,6 @@
 
                                             <form class="form-default" action="{{ action('SaleController@store') }}" method="POST">
                                                 {{ csrf_field() }}
-                                                <h3>Sale Form</h3>
-                                                <hr class="m-t-0">
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <div class="form-group">

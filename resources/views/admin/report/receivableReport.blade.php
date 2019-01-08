@@ -9,7 +9,7 @@
         <div class="breadcrumb-pageheader p-b-25">
             <ol class="breadcrumb sm-breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                <li class="breadcrumb-item"><a href="/admin">Receivable Report</a></li>
+                <li class="breadcrumb-item"><a href="/admin/receivablereport">Receivable Report</a></li>
             </ol>
             <h6 class="sm-pagetitle--style-1 has_page_title">Receivable Report</h6>
         </div>

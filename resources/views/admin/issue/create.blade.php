@@ -24,19 +24,9 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="up-main-info" style="margin-top: -50px;">
-                        <div class="profile-picture profile-picture--style-2 w-200"
-                             style="margin: 0 auto !important;">
-                            <img alt="" src="http://via.placeholder.com/128x128" class="img-center">
-                            <a href="javascript:void(0)" class="btn-aux">
-                                <i class="ion ion-edit"></i>
-                            </a>
-                        </div>
                         <h2 class="up-header m-b-5 text-white">
-                            Andrew Heston
+                            Issue Form
                         </h2>
-                        <h6 class="up-sub-header text-white">
-                            Product Designer at Facebook
-                        </h6>
                     </div>
                 </div>
             </div>
@@ -48,7 +38,7 @@
             <!--BEGIN BREADCRUMB-->
             <div class="breadcrumb-pageheader">
                 <ol class="breadcrumb sm-breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="/admin">Home</a></li>
                     <li class="breadcrumb-item"><a href="javascript:void(0)">Issue</a></li>
                 </ol>
                 <h6 class="sm-pagetitle--style-1 has_page_title">Issue</h6>
@@ -71,7 +61,7 @@
                                                 <li class="nav-item" role="presentation">
                                                     <a href="#tabTwo-1"
                                                        role="tab" data-toggle="tab"
-                                                       class="nav-link active text-normal strong-600">Sale</a>
+                                                       class="nav-link active text-normal strong-600">Issue</a>
                                                 </li>
                                             </ul>
 
@@ -159,199 +149,6 @@
                                             </div>
                                             <hr>
 
-                                            <!-- Tab panes -->
-                                            <div class="tab-content">
-
-                                                <div role="tabpanel" class="tab-pane active"
-                                                     id="tabTwo-1">
-                                                    <div class="tab-body">
-                                                        <table class="table-cart">
-                                                            <thead>
-                                                            <tr>
-                                                                <th class="product-image">Img</th>
-                                                                <th class="product-name">Product</th>
-                                                                <th class="product-size d-none d-lg-table-cell">
-                                                                    Size
-                                                                </th>
-                                                                <th class="product-price d-none d-lg-table-cell">
-                                                                    Price
-                                                                </th>
-                                                                <th class="product-quanity d-none d-md-table-cell">
-                                                                    Quantity
-                                                                </th>
-                                                                <th class="product-total">Total</th>
-                                                            </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                            <tr class="cart-item">
-                                                                <td class="product-image">
-                                                                    <a href="javascript:void(0)">
-                                                                        <img alt=""
-                                                                             src="http://via.placeholder.com/600x600">
-                                                                    </a>
-                                                                </td>
-
-                                                                <td class="product-name">
-                                                                    Seagate Backup Plus Slim 1TB
-                                                                    Portable
-                                                                </td>
-
-                                                                <td class="product-price d-none d-lg-table-cell">
-                                                                    $279 USD
-                                                                </td>
-
-                                                                <td class="product-quantity d-none d-md-table-cell">
-                                                                    <div class="input-group input-group--style-2 pr-4"
-                                                                         style="width: 130px;">
-                                                                    <span class="input-group-btn">
-                                                                        <button class="btn btn-number"
-                                                                                type="button"
-                                                                                data-type="minus"
-                                                                                data-field="quantity[1]"
-                                                                                disabled="disabled">
-                                                                            <i class="ion-minus"></i>
-                                                                        </button>
-                                                                    </span>
-                                                                        <input type="text"
-                                                                               name="quantity[1]"
-                                                                               class="form-control input-number"
-                                                                               placeholder="3" value="1"
-                                                                               minlength="1"
-                                                                               maxlength="10">
-                                                                        <span class="input-group-btn">
-                                                                        <button class="btn btn-number"
-                                                                                type="button"
-                                                                                data-type="plus"
-                                                                                data-field="quantity[1]">
-                                                                             <i class="ion-plus"></i>
-                                                                        </button>
-                                                                    </span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="product-total">
-                                                                    <span>$279.00 USD</span>
-                                                                </td>
-                                                                <td class="product-remove">
-                                                                    <a href="javascript:void(0)"
-                                                                       class="text-right pl-4">
-                                                                        <i class="ion-trash-a"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-
-                                                            <!-- Cart item -->
-                                                            <tr class="cart-item">
-                                                                <td class="product-image">
-                                                                    <a href="javascript:void(0)">
-                                                                        <img alt=""
-                                                                             src="http://via.placeholder.com/600x600">
-                                                                    </a>
-                                                                </td>
-
-                                                                <td class="product-name">
-                                                                    Amazon Echo - Powered by Dolby
-                                                                </td>
-
-                                                                <td class="product-price d-none d-lg-table-cell">
-                                                                    $578 USD
-                                                                </td>
-
-                                                                <td class="product-quantity d-none d-md-table-cell">
-                                                                    <div class="input-group input-group--style-2 pr-4"
-                                                                         style="width: 130px;">
-                                                                    <span class="input-group-btn">
-                                                                        <button class="btn btn-number"
-                                                                                type="button"
-                                                                                data-type="minus"
-                                                                                data-field="quantity[2]">
-                                                                            <i class="ion-minus"></i>
-                                                                        </button>
-                                                                    </span>
-                                                                        <input type="text"
-                                                                               name="quantity[2]"
-                                                                               class="form-control input-number"
-                                                                               placeholder="3" value="2"
-                                                                               minlength="1"
-                                                                               maxlength="10">
-                                                                        <span class="input-group-btn">
-                                                                        <button class="btn btn-number"
-                                                                                type="button"
-                                                                                data-type="plus"
-                                                                                data-field="quantity[2]">
-                                                                             <i class="ion-plus"></i>
-                                                                        </button>
-                                                                    </span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="product-total">
-                                                                    <span>$1156.00 USD</span>
-                                                                </td>
-                                                                <td class="product-remove">
-                                                                    <a href="javascript:void(0)"
-                                                                       class="text-right pl-4">
-                                                                        <i class="ion-trash-a"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-
-                                                            <!-- Cart item -->
-                                                            <tr class="cart-item">
-                                                                <td class="product-image">
-                                                                    <a href="javascript:void(0)">
-                                                                        <img alt=""
-                                                                             src="http://via.placeholder.com/600x600">
-                                                                    </a>
-                                                                </td>
-
-                                                                <td class="product-name">
-                                                                    Sony MDR-XB450 On-Ear Headphones
-                                                                </td>
-
-                                                                <td class="product-price d-none d-lg-table-cell">
-                                                                    $365 USD
-                                                                </td>
-
-                                                                <td class="product-quantity d-none d-md-table-cell">
-                                                                    <div class="input-group input-group--style-2 pr-4"
-                                                                         style="width: 130px;">
-                                                                    <span class="input-group-btn">
-                                                                        <button class="btn btn-number"
-                                                                                type="button"
-                                                                                data-type="minus"
-                                                                                data-field="quantity[3]"
-                                                                                disabled="disabled">
-                                                                            <i class="ion-minus"></i>
-                                                                        </button>
-                                                                    </span>
-                                                                        <input type="text"
-                                                                               name="quantity[3]"
-                                                                               class="form-control input-number"
-                                                                               placeholder="3" value="1"
-                                                                               minlength="1"
-                                                                               maxlength="10">
-                                                                        <span class="input-group-btn">
-                                                                        <button class="btn btn-number"
-                                                                                type="button"
-                                                                                data-type="plus"
-                                                                                data-field="quantity[3]">
-                                                                             <i class="ion-plus"></i>
-                                                                        </button>
-                                                                    </span>
-                                                                    </div>
-                                                                </td>
-                                                                <td class="product-total">
-                                                                    <span>$368.00 USD</span>
-                                                                </td>
-                                                                <td class="product-remove">
-                                                                    <a href="javascript:void(0)"
-                                                                       class="text-right pl-4">
-                                                                        <i class="ion-trash-a"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
                                                     <div class="row mb-3">
                                                         <div class="col-lg-12"
                                                              style="margin-top: 15px;">

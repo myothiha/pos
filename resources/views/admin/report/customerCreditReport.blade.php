@@ -9,7 +9,7 @@
         <div class="breadcrumb-pageheader p-b-25">
             <ol class="breadcrumb sm-breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                <li class="breadcrumb-item"><a href="/admin">Customer Credit Report</a></li>
+                <li class="breadcrumb-item"><a href="/admin/customercreditreport">Customer Credit Report</a></li>
             </ol>
             <h6 class="sm-pagetitle--style-1 has_page_title">Customer Credit Report</h6>
         </div>

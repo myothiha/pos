@@ -36,9 +36,8 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-scale">
                                     <h6 class="dropdown-header">Navigation</h6>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <span class="float-right badge badge-primary">4</span>
-                                        <i class="ion-ios-email-outline icon-lg text-primary"></i>Messages
+                                    <a class="dropdown-item" href="/admin">
+                                        <i class="ion-ios-email-outline icon-lg text-primary"></i>Dashboard
                                     </a>
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ion-ios-person-outline icon-lg text-primary"></i>Profile

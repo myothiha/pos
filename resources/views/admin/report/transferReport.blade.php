@@ -9,7 +9,7 @@
         <div class="breadcrumb-pageheader p-b-25">
             <ol class="breadcrumb sm-breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                <li class="breadcrumb-item"><a href="/admin">Transfer Report</a></li>
+                <li class="breadcrumb-item"><a href="/admin/transferreport">Transfer Report</a></li>
             </ol>
             <h6 class="sm-pagetitle--style-1 has_page_title">Transfer Report</h6>
         </div>

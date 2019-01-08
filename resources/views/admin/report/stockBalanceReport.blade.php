@@ -9,7 +9,7 @@
         <div class="breadcrumb-pageheader p-b-25">
             <ol class="breadcrumb sm-breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                <li class="breadcrumb-item"><a href="/admin">Stock Balance Report</a></li>
+                <li class="breadcrumb-item"><a href="/admin/stockbalancereport">Stock Balance Report</a></li>
             </ol>
             <h6 class="sm-pagetitle--style-1 has_page_title">Stock Balance Report</h6>
         </div>
