@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIssuesTable extends Migration
+class CreateTransferDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,20 +12,18 @@ class CreateIssuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('issues', function (Blueprint $table) {
+        Schema::create('transfer_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('employee_id');
+            $table->unsignedInteger('transfer_id');
             $table->unsignedInteger('item_id');
             $table->unsignedInteger('quantity');
-            $table->string('paint');
-            $table->string('tinder');
-            $table->string('liker');
-            $table->text('remark');
+            $table->unsignedInteger('price');
+            $table->unsignedInteger('total');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('employee_id')
-                ->references('id')->on('employees');
+            $table->foreign('sale_id')
+                ->references('id')->on('sales');
 
             $table->foreign('item_id')
                 ->references('id')->on('items');
@@ -39,6 +37,6 @@ class CreateIssuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('issues');
+        Schema::dropIfExists('transfer_details');
     }
 }
