@@ -89,6 +89,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/receivable/getcustomer', 'ReceivableController@getCustomer');
 
     Route::get('/receivable/create', 'ReceivableController@create');
+    Route::post('/receivable', 'ReceivableController@store');
 
     Route::get('/stockinreport', 'ReportController@stockInReport');
 

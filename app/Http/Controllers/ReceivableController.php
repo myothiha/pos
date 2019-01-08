@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CreditBalance;
 use App\Receivable;
 use App\Customer;
 use App\Location;
@@ -48,13 +49,11 @@ class ReceivableController extends Controller
     {
         $customer = Customer::find($request->customer_id);
 
-        $creditBalance = $this->receivableRepository->getCredit($customer);
-
         $locations = $this->location->all();
 
         return view('admin.receivable.create', [
             'locations' => $locations,
-            'creditBalance' => $creditBalance,
+            'customer' => $customer,
         ]);
     }
  
@@ -67,7 +66,26 @@ class ReceivableController extends Controller
      */
     public function store(Request $request)
     {
-        $customer = Customer::find($request->customer_id);
+        $receivable = new Receivable();
+        $receivable->voucherNo = $request->voucherNo;
+        $receivable->amount = $request->amount;
+        $receivable->customer_id = $request->customer_id;
+        $receivable->location_id = $request->location_id;
+
+        $creditBalance = CreditBalance::firstOrNew(['customer_id' => $receivable->customer_id]);
+        $creditBalance->amount -= $receivable->amount;
+
+        try {
+            \DB::transaction(function () use ($receivable, $creditBalance) {
+                $receivable->save();
+                $creditBalance->save();
+            });
+        } catch (\Throwable $e) {
+            \Log::error('Save Receivable Error: ' . $e->getMessage());
+            dd($e->getMessage()); //Todo remove
+        }
+
+        return redirect()->action('ReceivableController@getCustomer');
     }
 
     /**

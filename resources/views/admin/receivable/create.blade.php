@@ -23,15 +23,17 @@
                         <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
                             <div class="sm-box">
 
-                                <form class="form-default" action="" method="post" enctype="multipart/form-data">
+                                <form class="form-default" action="{{ action('ReceivableController@store') }}" method="post" enctype="multipart/form-data">
                                     {{ csrf_field() }}
+
+                                    <input type="hidden" name="customer_id" value="{{ $customer->id }}">
 
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label for="voucherNo">Voucher No</label>
                                                 <input id="voucherNo" placeholder="Enter Voucher"
-                                                       type="text" class="form-control" name="voucherNo" required>
+                                                       type="text" class="form-control" name="voucherNo">
                                             </div>
                                         </div>
                                     </div>
@@ -39,9 +41,9 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-group">
-                                                <label for="date">Date</label>
-                                                <input id="date" placeholder="Enter Date"
-                                                       type="date" class="form-control" name="date" required>
+                                                <label for="voucherNo">Balance</label>
+                                                <input id="voucherNo" placeholder="Enter Voucher"
+                                                       type="text" class="form-control" name="balance" value="{{ $customer->creditBalance->amount ?? 0 }}" readonly="true" required>
                                             </div>
                                         </div>
                                     </div>
@@ -50,7 +52,7 @@
                                         <div class="col-6">
                                             <label for="location">Location</label>
                                             <select class="form-control" id="location_id"
-                                                        name="location_id4">
+                                                        name="location_id">
                                                 @foreach($locations as $location)
                                                     <option value="{{ $location->id }}">{{ $location->name }}</option>
                                                 @endforeach

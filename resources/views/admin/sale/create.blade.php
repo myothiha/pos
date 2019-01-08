@@ -81,11 +81,22 @@
                                                             </div>
                                                             <div class="col-lg-2">
                                                                 <input id="name" placeholder="Item Name"
-                                                                       type="text" class="form-control" name="name">
+                                                                       type="text" class="form-control" name="itemName">
+                                                            </div>
+                                                            <div class="col-lg-2">
+                                                                <select class="form-control" id="color"
+                                                                        name="color_id">
+                                                                    <option value="">Select Color</option>
+                                                                    @foreach($colors as $color)
+                                                                        <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                             </div>
                                                             <div class="col-lg-2">
                                                                 <select class="form-control" id="type_id"
                                                                         name="type_id">
+                                                                    <option value="">Select Type</option>
+
                                                                     @foreach($types as $type)
                                                                         <option value="{{ $type->id }}">{{ $type->name }}</option>
                                                                     @endforeach
@@ -94,6 +105,7 @@
                                                             <div class="col-lg-2">
                                                                 <select class="form-control" id="category_id"
                                                                         name="category_id">
+                                                                    <option value="">Select Category</option>
                                                                     @foreach($categories as $category)
                                                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                                     @endforeach
@@ -143,22 +155,28 @@
 
                                             <hr>
 
-                                            <form class="form-default" action="{{ action('SaleController@store') }}" method="POST">
+                                            <form class="form-default" action="{{ action('SaleController@store') }}"
+                                                  method="POST">
                                                 {{ csrf_field() }}
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label for="voucherNo">Voucher No</label>
                                                             <input id="voucherNo" placeholder="Enter Voucher"
-                                                                   type="text" class="form-control" name="voucherNo" required>
+                                                                   type="text" class="form-control" name="voucherNo"
+                                                                   required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="form-group has-feedback">
                                                             <label for="saleType">Sale Type</label>
-                                                            <select class="form-control" id="saleType" name="saleType" onchange="javascript:changeType()">
-                                                                <option value="{{ \App\Constants::CASH_DOWN }}" selected>Cash Down</option>
-                                                                <option value="{{ \App\Constants::CREDIT }}">Credit</option>
+                                                            <select class="form-control" id="saleType" name="saleType"
+                                                                    onchange="javascript:changeType()">
+                                                                <option value="{{ \App\Constants::CASH_DOWN }}"
+                                                                        selected>Cash Down
+                                                                </option>
+                                                                <option value="{{ \App\Constants::CREDIT }}">Credit
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -168,7 +186,8 @@
                                                     <div class="col-lg-6">
                                                         <div class="form-group has-feedback">
                                                             <label for="customers">Customer</label>
-                                                            <select class="form-control" id="customer_id" name="customer_id">
+                                                            <select class="form-control" id="customer_id"
+                                                                    name="customer_id">
                                                                 @foreach($customers as $customer)
                                                                     <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                                                                 @endforeach
@@ -250,9 +269,12 @@
                                                                               class="form-control"
                                                                               cols="30" rows="3" placeholder="Remark"
                                                                               tabindex="4"></textarea></td>
-                                                                <td class="product-list text-right"><label for="paid">Paid</label></td>
+                                                                <td class="product-list text-right"><label for="paid">Paid</label>
+                                                                </td>
                                                                 <td class="product-quanity d-none d-lg-table-cell">
-                                                                    <input type="text" id="paid" class="form-control" name="paid" value="{{ Cart::total(0) }}" readonly=true onchange="updateBalance()" />
+                                                                    <input type="text" id="paid" class="form-control"
+                                                                           name="paid" value="{{ Cart::total(0) }}"
+                                                                           readonly=true onchange="updateBalance()"/>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -264,7 +286,9 @@
                                                             <tr>
                                                                 <td class="product-list text-right">Balance</td>
                                                                 <td class="product-total">
-                                                                    <input type="hidden" id="balance" class="form-control" name="balance" value="0"/>
+                                                                    <input type="hidden" id="balance"
+                                                                           class="form-control" name="balance"
+                                                                           value="0"/>
                                                                     <span id="balance_amount"> 0 MMK</span>
                                                                 </td>
                                                             </tr>
@@ -273,7 +297,8 @@
                                                                     Total
                                                                 </td>
                                                                 <td class="product-total">
-                                                                    <input type="hidden" id="total" class="form-control" name="total" value="{{ Cart::total(0) }}"/>
+                                                                    <input type="hidden" id="total" class="form-control"
+                                                                           name="total" value="{{ Cart::total(0) }}"/>
                                                                     <span id="total_price">{{ Cart::total(0) }} MMK</span>
                                                                 </td>
                                                             </tr>
@@ -304,7 +329,7 @@
 
 @section('script')
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#customer_id').select2();
         });
 
@@ -430,8 +455,7 @@
             ajax.send(formdata);
         }
 
-        function changeType()
-        {
+        function changeType() {
             let saleType = _("saleType").value;
 
             if (saleType === "{{ \App\Constants::CASH_DOWN }}") {
@@ -444,8 +468,7 @@
             }
         }
 
-        function updateBalance()
-        {
+        function updateBalance() {
             let paid = _("paid").value;
             let total = _("total").value;
             let balance = total - paid;
@@ -486,8 +509,7 @@
             setTotalAmount(total);
 
             let saleType = _("saleType").value;
-            if( saleType === "{{ \App\Constants::CASH_DOWN }}" )
-            {
+            if (saleType === "{{ \App\Constants::CASH_DOWN }}") {
                 _("paid").value = total;
             }
 
