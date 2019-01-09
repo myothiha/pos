@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\StockOpening;
 use App\Item;
+use App\Store;
 use App\Type;
 use App\Category;
 use App\Location;
@@ -21,6 +22,7 @@ class StockOpeningController extends Controller
         $this->color = new Color();
         $this->stockOpening = new StockOpening();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -52,15 +54,15 @@ class StockOpeningController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function searchItems(Request $request)
-    {  
+    {
         $types = $this->type->all();
         $categories = $this->category->all();
         $colors = $this->color->all();
-        
+
         $items = Item::query()
             ->when($request->itemCode, function ($q) use ($request) {
                 return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
@@ -79,7 +81,7 @@ class StockOpeningController extends Controller
             })
             ->with('color')->with('category')->get();
 
-            return view("admin.stockopening.getItem", [
+        return view("admin.stockopening.getItem", [
             'types' => $types,
             'categories' => $categories,
             'colors' => $colors,
@@ -92,7 +94,8 @@ class StockOpeningController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Item $item){
+    public function create(Item $item)
+    {
 
         $locations = $this->location->all();
         return view("admin.stockopening.create", [
@@ -104,7 +107,8 @@ class StockOpeningController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
+     * @param Item $item
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Item $item)
@@ -113,20 +117,33 @@ class StockOpeningController extends Controller
             'quantity' => 'required',
         ]);
 
-        $stockOpening = new $this->stockOpening();
+        $stockOpening = new StockOpening();
         $stockOpening->location_id = $request->location_id;
         $stockOpening->quantity = $request->quantity;
-        $item->stockOpenings()->save($stockOpening);
+
+        try {
+            \DB::transaction(function () use ($stockOpening, $item) {
+                $item->stockOpenings()->save($stockOpening);
+
+                $store = Store::where([
+                    ['location_id', '=', $stockOpening->location_id],
+                    ['item_id', '=', $item->id],
+                ])->get()->first();
+
+                $store->quantity += $stockOpening->quantity;
+                $store->save();
+            });
+        } catch (\Throwable $e) {
+        }
 
         return redirect()->action('StockOpeningController@getItem');
     }
 
-    
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\StockOpening  $stockOpening
+     * @param  \App\StockOpening $stockOpening
      * @return \Illuminate\Http\Response
      */
     public function show(StockOpening $stockOpening)
@@ -137,7 +154,7 @@ class StockOpeningController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\StockOpening  $stockOpening
+     * @param  \App\StockOpening $stockOpening
      * @return \Illuminate\Http\Response
      */
     public function edit(StockOpening $stockOpening)
@@ -148,8 +165,8 @@ class StockOpeningController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\StockOpening  $stockOpening
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\StockOpening $stockOpening
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, StockOpening $stockOpening)
@@ -160,7 +177,7 @@ class StockOpeningController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\StockOpening  $stockOpening
+     * @param  \App\StockOpening $stockOpening
      * @return \Illuminate\Http\Response
      */
     public function destroy(StockOpening $stockOpening)

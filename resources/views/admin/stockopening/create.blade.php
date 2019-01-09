@@ -8,7 +8,6 @@
 @section('content')
 
     <!--BEGIN CONTENT-->
-    <!--BEGIN CONTENT-->
     <section class="slice-lg page-title border-bottom has-bg-cover bg-size-cover"
              style="background-image: url('http://via.placeholder.com/1980x1322');">
         <div class="bg_source">

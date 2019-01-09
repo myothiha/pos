@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Damage;
 use App\Location;
 use App\Item;
+use App\Store;
 use App\Type;
 use App\Category;
 use App\Color;
@@ -108,10 +109,24 @@ class DamageController extends Controller
             'quantity' => 'required',
         ]);
 
-        $damage = new $this->damage();
+        $damage = new Damage();
         $damage->location_id = $request->location_id;
         $damage->quantity = $request->quantity;
-        $item->damages()->save($damage);
+
+        try {
+            \DB::transaction(function () use ($damage, $item) {
+                $item->damages()->save($damage);
+                
+                $store = Store::where([
+                    ['location_id', '=', $damage->location_id],
+                    ['item_id', '=', $item->id],
+                ])->get()->first();
+
+                $store->quantity -= $damage->quantity;
+                $store->save();
+            });
+        } catch (\Throwable $e) {
+        }
 
         return redirect()->action('DamageController@getItem');
     }
