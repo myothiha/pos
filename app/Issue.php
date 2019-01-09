@@ -34,5 +34,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Issue extends Model
 {
-    //
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
+
+    public function inspects()
+    {
+        return $this->hasMany(Inspect::class);
+    }
 }

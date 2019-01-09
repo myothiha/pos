@@ -94,18 +94,15 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/stockin/', 'StockInController@store');
 
     // issue
-
     Route::get('/getitem', 'IssueController@getItem');
-
     Route::post('/getitem', 'IssueController@searchItems');
 
     Route::get('issue/{item}/create', 'IssueController@create');
     Route::post('issue/{item}', 'IssueController@store');
 
-   
-
-
-
+    Route::get('inspect/', 'InspectController@index');
+    Route::get('inspect/{issue}/create', 'InspectController@create');
+    Route::post('inspect/{issue}', 'InspectController@store');
 
     // receivable
 
