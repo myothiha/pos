@@ -5,13 +5,21 @@ namespace App\Http\Controllers;
 use App\Damage;
 use App\Location;
 use App\Item;
+use App\Type;
+use App\Category;
+use App\Color;
 use Illuminate\Http\Request;
 
 class DamageController extends Controller
 {
-    public function __construct(){
-        $this->location = new Location();
+    public function __construct()
+    {
         $this->item = new Item();
+        $this->location = new Location();
+        $this->type = new Type();
+        $this->category = new Category();
+        $this->color = new Color();
+        $this->damage = new Damage();
     }
     /**
      * Display a listing of the resource.
@@ -28,26 +36,84 @@ class DamageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function create()
+    public function getItem()
     {
-        $locations = $this->location->all();
-        $items = $this->item->all();
+        $types = $this->type->all();
+        $categories = $this->category->all();
+        $colors = $this->color->all();
 
-        return view('admin.damage.create', [
-            'items' => $items,
-            'locations' => $locations,
+        return view("admin.damage.getItem", [
+            'types' => $types,
+            'categories' => $categories,
+            'colors' => $colors,
         ]);
     }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function searchItems(Request $request)
+    {  
+        $types = $this->type->all();
+        $categories = $this->category->all();
+        $colors = $this->color->all();
+        
+        $items = Item::query()
+            ->when($request->itemCode, function ($q) use ($request) {
+                return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
+            })
+            ->when($request->itemName, function ($q) use ($request) {
+                return $q->where('name', 'LIKE', "%{$request->itemName}%");
+            })
+            ->when($request->color_id, function ($q) use ($request) {
+                return $q->where('color_id', '=', $request->color_id);
+            })
+            ->when($request->type_id, function ($q) use ($request) {
+                return $q->where('type_id', '=', $request->type_id);
+            })
+            ->when($request->category_id, function ($q) use ($request) {
+                return $q->where('category_id', '=', $request->category_id);
+            })
+            ->with('color')->with('category')->get();
+
+            return view("admin.damage.getItem", [
+            'types' => $types,
+            'categories' => $categories,
+            'colors' => $colors,
+            'items' => $items,
+        ]);
+    }
+
+    public function create(Item $item){
+
+        $locations = $this->location->all();
+        return view("admin.damage.create", [
+            'item' => $item,
+            'locations' => $locations,
+        ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request, Item $item)
     {
-        //
+        $request->validate([
+            'quantity' => 'required',
+        ]);
+
+        $damage = new $this->damage();
+        $damage->location_id = $request->location_id;
+        $damage->quantity = $request->quantity;
+        $item->damages()->save($damage);
+
+        return redirect()->action('DamageController@getItem');
     }
 
     /**

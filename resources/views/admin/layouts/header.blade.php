@@ -144,6 +144,9 @@
                             <li class="nav-item">
                                 <a href="{{ action('SupplierController@index') }}" class="dropdown-item">Supplier</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ action('LocationController@index') }}" class="dropdown-item">Location</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -169,10 +172,10 @@
                                 <a href="{{ action('ReceivableOpeningController@index') }}" class="dropdown-item">RecevieableOpening</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('DamageController@create') }}" class="dropdown-item">Damage</a>
+                                <a href="{{ action('DamageController@getItem') }}" class="dropdown-item">Damage</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('StockOpeningController@create') }}" class="dropdown-item">StockOpening</a>
+                                <a href="{{ action('StockOpeningController@getItem') }}" class="dropdown-item">StockOpening</a>
                             </li>
                         </ul>
                     </li>
