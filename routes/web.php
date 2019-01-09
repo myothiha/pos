@@ -99,9 +99,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('/getitem', 'IssueController@searchItems');
 
-    Route::get('/getitem/{item}/issue/create', 'IssueController@create');
-
-    Route::post('/getitem/{item}/issue', 'IssueController@store');
+    Route::get('issue/{item}/create', 'IssueController@create');
+    Route::post('issue/{item}', 'IssueController@store');
 
    
 

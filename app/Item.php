@@ -95,6 +95,11 @@ class Item extends Model implements Buyable
         return $this->belongsToMany(Transfer::class, 'transfer_details');
     }
 
+    public function issues()
+    {
+        return $this->hasMany(Issue::class);
+    }
+
     /**
      * Get the identifier of the Buyable item.
      *

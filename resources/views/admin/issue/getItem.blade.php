@@ -149,9 +149,7 @@
                                                                                 <td>{{$item->color->name}}</td>
                                                                                 <td>{{$item->category->name}}</td>
                                                                                 <td width="20%">
-                                                                                <form action="{{ action('IssueController@create', $item->id) }}">
-                                                                                    <input type="submit" class="btn btn-outline-primary" value="Add">
-                                                                                </form>
+                                                                                    <a href="{{ action('IssueController@create', $item->id) }}" class="btn btn-outline-primary">Create Issue</a>
                                                                                 </td>
                                                                             </tr>
                                                                         @endforeach

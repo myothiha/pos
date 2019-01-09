@@ -99,14 +99,15 @@ class IssueController extends Controller
     /**
      * Store the specified resource.
      *
-     * @param  \App\Issue  $issue
+     * @param Request $request
+     * @param Item $item
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Item $item)
     {
         $request->validate([
             'employee_id' => 'required',
-            'item_quantity' => 'required',
+            'quantity' => 'required',
             'paint' => 'required',
             'tinder' => 'required',
             'liker' => 'required',
@@ -115,14 +116,14 @@ class IssueController extends Controller
 
         $issue = new $this->issue();
         $issue->employee_id = $request->employee_id;
-        $issue->item_quantity = $request->quantity;
+        $issue->quantity = $request->quantity;
         $issue->paint = $request->paint;
         $issue->tinder = $request->tinder;
-        $issue->liker = $request->likder;
+        $issue->liker = $request->liker;
         $issue->remark = $request->remark;
-        $issue->save();
+        $item->issues()->save($issue);
 
-        return redirect("/admin");
+        return redirect()->action('IssueController@getItem');
     }
 
     /**

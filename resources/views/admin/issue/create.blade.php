@@ -56,7 +56,7 @@
                 <div class="sm-content-box">
                     <div class="row justify-content-center">
                         <div class="col-lg-12 mt--180">
-                            <form class="form-default" action="{{ action('IssueController@store') }}" method="post" enctype="multipart/form-data">
+                            <form class="form-default" action="{{ action('IssueController@store', $item->id) }}" method="post" enctype="multipart/form-data">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tabs tabs--style-2" role="tabpanel">
@@ -141,8 +141,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="remark">Remark</label>
-                                                        <input id="remark" placeholder="Enter Remark"
-                                                               type="text" class="form-control" name="remark">
+                                                        <textarea id="remark" placeholder="Enter Remark" class="form-control" name="remark"> </textarea>
                                                     </div>
                                                 </div>
                                             </div>
