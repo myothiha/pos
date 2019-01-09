@@ -20,6 +20,8 @@ Route::get('/', function () {
     return $result->toJson();
 });
 
+
+
 Route::post('/login', 'AuthController@checkLogin');
 
 Route::post('/addItem', 'AddToCartController@addItem');
@@ -72,25 +74,49 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('damage', 'DamageController');
 
+    Route::resource('receivableopening', 'ReceivableOpeningController');
+
+    // sale
+
     Route::get('/sale/create', 'SaleController@create');
 
     Route::post('/sale', 'SaleController@store');
 
+
+
     Route::get('/transfer/create', 'TransferController@create');
     Route::post('/transfer', 'TransferController@store');
+
+    // stockin
 
     Route::get('/stockin/create', 'StockInController@create');
 
     Route::post('/stockin/', 'StockInController@store');
 
-    Route::get('/issue/create', 'IssueController@create');
+    // issue
 
-    Route::resource('receivableopening', 'ReceivableOpeningController');
+    Route::get('/getitem', 'IssueController@getItem');
+
+    Route::post('/getitem', 'IssueController@searchItems');
+
+    Route::get('/getitem/{item}/issue/create', 'IssueController@create');
+
+    Route::post('/getitem/{item}/issue', 'IssueController@store');
+
+   
+
+
+
+
+    // receivable
 
     Route::get('/receivable/getcustomer', 'ReceivableController@getCustomer');
 
     Route::get('/receivable/create', 'ReceivableController@create');
+
     Route::post('/receivable', 'ReceivableController@store');
+
+    // report
 
     Route::get('/stockinreport', 'ReportController@stockInReport');
 

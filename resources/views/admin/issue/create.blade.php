@@ -1,5 +1,10 @@
 @extends('admin.layouts.back')
 
+@section('plugins')
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+@endsection
+
 @section('content')
 
     <!--BEGIN CONTENT-->
@@ -39,9 +44,10 @@
             <div class="breadcrumb-pageheader">
                 <ol class="breadcrumb sm-breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Issue</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">E-Commerce Profile v1</li>
                 </ol>
-                <h6 class="sm-pagetitle--style-1 has_page_title">Issue</h6>
+                <h6 class="sm-pagetitle--style-1 has_page_title">E-Commerce Profile v1</h6>
             </div>
             <!--END BREADCRUMB-->
 
@@ -50,7 +56,7 @@
                 <div class="sm-content-box">
                     <div class="row justify-content-center">
                         <div class="col-lg-12 mt--180">
-                            <form class="form-default">
+                            <form class="form-default" action="{{ action('IssueController@store') }}" method="post" enctype="multipart/form-data">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tabs tabs--style-2" role="tabpanel">
@@ -64,102 +70,86 @@
                                                        class="nav-link active text-normal strong-600">Issue</a>
                                                 </li>
                                             </ul>
-
-                                            <div class="search-box" style="margin-top: 22px;">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <form action="#" class="form-default" id="form" onsubmit="return false">
-                                                            <div class="col-lg-2">
-                                                                <input id="itemCode" placeholder="Item Code"
-                                                                       type="text" class="form-control" name="itemCode">
-                                                            </div>
-                                                            <div class="col-lg-2">
-                                                                <input id="name" placeholder="Item Name"
-                                                                       type="text" class="form-control" name="name">
-                                                            </div>
-                                                            <div class="col-lg-2">
-                                                                <select class="form-control" id="type_id" name="type_id">
-                                                                    @foreach($types as $type)
-                                                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-lg-2">
-                                                                <select class="form-control" id="category_id"
-                                                                        name="category_id">
-                                                                    @foreach($categories as $category)
-                                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-lg-2">
-                                                                <button type="submit" class="btn btn-primary" onclick="uploadFile()">Submit
-                                                                </button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                             <br>
-
-                                            <div class="sm-content">
-                                                <div class="sm-content-box">
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="sm-wrapper">
-                                                                <table class="table table-striped table-bordered nowrap w-in-100">
-                                                                    <thead>
-                                                                    <tr>
-                                                                        <th>#</th>
-                                                                        <th>Name</th>
-                                                                        <th>Remark</th>
-                                                                        <th>Action</th>
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                    <?php $no = 1; ?>
-                                                                    @foreach($items as $item)
-                                                                        <tr>
-                                                                            <td>{{ $no++ }}</td>
-                                                                            <td>{{ $item->name }}</td>
-                                                                            <td>{{ $item->remark }}</td>
-                                                                            <td width="20%">
-                                                                                <form
-                                                                                        action=""
-                                                                                        method="Post">
-                                                                                    <input type="hidden" name="_method"
-                                                                                           value="add">
-                                                                                    {{ csrf_field() }}
-
-                                                                                    <input type="submit"
-                                                                                           class="btn btn-outline-primary"
-                                                                                           value="Add">
-                                                                                </form>
-                                                                            </td>
-                                                                        </tr>
-                                                                    @endforeach
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
+                                            {{ csrf_field() }}
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group has-feedback">
+                                                        <label for="employee_id">Employee</label>
+                                                        <select class="form-control" id="select" name="employee_id">
+                                                            @foreach($employees as $employee)
+                                                            <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
-
                                                 </div>
                                             </div>
-                                            <hr>
 
-                                                    <div class="row mb-3">
-                                                        <div class="col-lg-12"
-                                                             style="margin-top: 15px;">
-                                                            <button class="btn btn-primary btn-block"
-                                                                    type="submit">
-                                                                Place Order
-                                                            </button>
-                                                        </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group has-feedback">
+                                                        <label for="item_id">Item</label>
+                                                        <input
+                                                               type="text" class="form-control" value="{{ $item->id }}" name="item_id" hidden>
+                                                        <input id="item_id"
+                                                               type="text" class="form-control" value="{{ $item->name }}" disabled="true">
                                                     </div>
-                                                    <img alt="" class="m-t-20 w-in-100"
-                                                         src="http://via.placeholder.com/848x154">
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="quantity">Item Quantity</label>
+                                                        <input id="quantity" placeholder="Enter Item Quantity"
+                                                               type="text" class="form-control" name="quantity">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="paint">Paint</label>
+                                                        <input id="paint" placeholder="Enter Paint"
+                                                               type="text" class="form-control" name="paint">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="tinder">Tinder</label>
+                                                        <input id="tinder" placeholder="Enter Tinder"
+                                                               type="text" class="form-control" name="tinder">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="liker">Liker</label>
+                                                        <input id="liker" placeholder="Enter Liker"
+                                                               type="text" class="form-control" name="liker">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="remark">Remark</label>
+                                                        <input id="remark" placeholder="Enter Remark"
+                                                               type="text" class="form-control" name="remark">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row m-t-20">
+                                                <div class="col-lg-12">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -170,8 +160,15 @@
                     </div>
                 </div>
             </div>
-            <!--END PAGE CONTENT-->
         </div>
     </section>
     <!--END CONTENT-->
+@endsection
+
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#customer_id').select2();
+        });
+    </script>
 @endsection

@@ -184,7 +184,7 @@
 
                         <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
                             <li class="nav-item">
-                                <a href="{{ action('IssueController@create') }}" class="dropdown-item">Issue</a>
+                                <a href="{{ action('IssueController@getItem') }}" class="dropdown-item">Issue</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="dropdown-item">Inspect</a>

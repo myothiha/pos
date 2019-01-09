@@ -7,6 +7,7 @@ use App\Item;
 use App\Type;
 use App\Category;
 use App\Color;
+use App\Employee;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
@@ -14,9 +15,11 @@ class IssueController extends Controller
     public function __construct()
     {
         $this->item = new Item();
+        $this->employee = new Employee();
         $this->type = new Type();
         $this->category = new Category();
         $this->color = new Color();
+        $this->issue = new Issue();
     }
     /**
      * Display a listing of the resource.
@@ -33,18 +36,16 @@ class IssueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getItem()
     {
         $types = $this->type->all();
-        $items = $this->item->all();
         $categories = $this->category->all();
         $colors = $this->color->all();
 
-        return view("admin.issue.create", [
+        return view("admin.issue.getItem", [
             'types' => $types,
             'categories' => $categories,
             'colors' => $colors,
-            'items' => $items,
         ]);
     }
 
@@ -54,9 +55,74 @@ class IssueController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function searchItems(Request $request)
+    {  
+        $types = $this->type->all();
+        $categories = $this->category->all();
+        $colors = $this->color->all();
+        
+        $items = Item::query()
+            ->when($request->itemCode, function ($q) use ($request) {
+                return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
+            })
+            ->when($request->itemName, function ($q) use ($request) {
+                return $q->where('name', 'LIKE', "%{$request->itemName}%");
+            })
+            ->when($request->color_id, function ($q) use ($request) {
+                return $q->where('color_id', '=', $request->color_id);
+            })
+            ->when($request->type_id, function ($q) use ($request) {
+                return $q->where('type_id', '=', $request->type_id);
+            })
+            ->when($request->category_id, function ($q) use ($request) {
+                return $q->where('category_id', '=', $request->category_id);
+            })
+            ->with('color')->with('category')->get();
+
+            return view("admin.issue.getItem", [
+            'types' => $types,
+            'categories' => $categories,
+            'colors' => $colors,
+            'items' => $items,
+        ]);
+    }
+
+    public function create(Item $item){
+
+        $employees = $this->employee->all();
+        return view("admin.issue.create", [
+            'item' => $item,
+            'employees' => $employees,
+        ]);
+    }
+
+    /**
+     * Store the specified resource.
+     *
+     * @param  \App\Issue  $issue
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'employee_id' => 'required',
+            'item_quantity' => 'required',
+            'paint' => 'required',
+            'tinder' => 'required',
+            'liker' => 'required',
+            'remark' => 'required',
+        ]);
+
+        $issue = new $this->issue();
+        $issue->employee_id = $request->employee_id;
+        $issue->item_quantity = $request->quantity;
+        $issue->paint = $request->paint;
+        $issue->tinder = $request->tinder;
+        $issue->liker = $request->likder;
+        $issue->remark = $request->remark;
+        $issue->save();
+
+        return redirect("/admin");
     }
 
     /**
