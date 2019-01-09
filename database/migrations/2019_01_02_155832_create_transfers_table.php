@@ -18,6 +18,10 @@ class CreateTransfersTable extends Migration
             $table->unsignedInteger('location_id');
             $table->text('remark');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('location_id')
+                ->references('id')->on('locations');
         });
     }
 

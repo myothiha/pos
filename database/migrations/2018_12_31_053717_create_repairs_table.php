@@ -14,13 +14,13 @@ class CreateRepairsTable extends Migration
     {
         Schema::create('repairs', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('inspect_id');
             $table->unsignedInteger('employee_id');
             $table->unsignedInteger('item_id');
             $table->unsignedInteger('itemQty');
             $table->string('paint');
             $table->string('tinker');
             $table->string('liker');
-            $table->string('referenceId');
             $table->timestamps();
             $table->softDeletes();
 
@@ -29,6 +29,9 @@ class CreateRepairsTable extends Migration
 
             $table->foreign('item_id')
                 ->references('id')->on('items');
+
+            $table->foreign('inspect_id')
+                ->references('id')->on('inspects');
         });
     }
 

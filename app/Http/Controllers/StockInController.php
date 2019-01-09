@@ -71,7 +71,7 @@ class StockInController extends Controller
         $stockIn = new StockIn();
         $stockIn->supplier_id = $request->supplier_id;
         $stockIn->location_id = $request->location_id;
-        $stockIn->voucherNo = $request->voucherNo;
+        $stockIn->voucherNo = $request->voucherNo ?? '';
         $stockIn->remark = $request->remark;
 
         try {
@@ -89,10 +89,12 @@ class StockInController extends Controller
 
                     $store->quantity += $item->qty;
                     $store->save();
+
+                    Cart::instance(CartConst::STOCK_IN)->destroy();
                 }
             });
         } catch (\Throwable $e) {
-            dd($e->getMessage());
+            dd($e->getMessage()); // Todo Remove
         }
     }
 

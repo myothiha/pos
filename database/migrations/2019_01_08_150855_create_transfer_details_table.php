@@ -17,13 +17,11 @@ class CreateTransferDetailsTable extends Migration
             $table->unsignedInteger('transfer_id');
             $table->unsignedInteger('item_id');
             $table->unsignedInteger('quantity');
-            $table->unsignedInteger('price');
-            $table->unsignedInteger('total');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('sale_id')
-                ->references('id')->on('sales');
+            $table->foreign('transfer_id')
+                ->references('id')->on('transfers');
 
             $table->foreign('item_id')
                 ->references('id')->on('items');

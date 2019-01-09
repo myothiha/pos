@@ -42,6 +42,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereDeletedAt($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Sale[] $sales
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\StockIn[] $stockIns
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Transfer[] $transfers
  */
 class Item extends Model implements Buyable
 {
@@ -87,6 +88,11 @@ class Item extends Model implements Buyable
     public function stockIns()
     {
         return $this->belongsToMany(StockIn::class, 'stock_in_details');
+    }
+
+    public function transfers()
+    {
+        return $this->belongsToMany(Transfer::class, 'transfer_details');
     }
 
     /**

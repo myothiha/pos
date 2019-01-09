@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Store;
 use App\Transfer;
 use App\Item;
 use App\Type;
@@ -9,7 +10,10 @@ use App\Category;
 use App\Color;
 use App\Customer;
 use App\Location;
+use Cart;
 use Illuminate\Http\Request;
+use App\Constants\Cart as CartConst;
+
 
 class TransferController extends Controller
 {
@@ -65,7 +69,43 @@ class TransferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transfer = new Transfer();
+        $transfer->location_id = $request->location_id;
+        $transfer->voucherNo = $request->voucherNo ?? '';
+        $transfer->remark = $request->remark ?? '';
+
+        try {
+            \DB::transaction(function () use ($transfer) {
+                $transfer->save();
+
+                foreach (Cart::instance(CartConst::TRANSFER)->content() as $item)
+                {
+                    $transfer->items()->attach($item->id, ['quantity' => $item->qty]);
+
+                    $currentStore = Store::where([
+                        ['location_id', '=', $transfer->location_id],
+                        ['item_id', '=', $item->id],
+                    ])->get()->first();
+
+                    $currentStore->quantity -= $item->qty;
+                    $currentStore->save();
+
+                    $transferStore = Store::where([
+                        ['location_id', '=', 2],
+                        ['item_id', '=', $item->id],
+                    ])->get()->first();
+
+                    $transferStore->quantity += $item->qty;
+                    $transferStore->save();
+
+                    Cart::instance(CartConst::TRANSFER)->destroy();
+                }
+            });
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+        }
+
+        return redirect()->action('TransferController@create');
     }
 
     /**

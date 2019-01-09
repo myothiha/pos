@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/sale', 'SaleController@store');
 
     Route::get('/transfer/create', 'TransferController@create');
+    Route::post('/transfer', 'TransferController@store');
 
     Route::get('/stockin/create', 'StockInController@create');
 
