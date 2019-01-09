@@ -22,7 +22,7 @@ class CreateTransferDetailsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('sale_id')
+            $table->foreign('transfer_id')
                 ->references('id')->on('sales');
 
             $table->foreign('item_id')

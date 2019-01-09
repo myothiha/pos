@@ -375,8 +375,8 @@
                         <form action="#" method="Post">
                             <input type="submit" class="btn btn-outline-primary" onclick="addItem(${item.id})" value="Add">
                         </form>
-            </td>
-        </tr>
+                        </td>
+                    </tr>
 `;
                 _("searchResult").innerHTML = markUp;
             });
