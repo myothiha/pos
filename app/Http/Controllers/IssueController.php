@@ -21,6 +21,7 @@ class IssueController extends Controller
         $this->color = new Color();
         $this->issue = new Issue();
     }
+
     /**
      * Display a listing of the resource.
      *

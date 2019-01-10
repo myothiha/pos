@@ -344,13 +344,15 @@
             var name = _("name").value;
             var itemCode = _('itemCode').value;
             var type_id = _("type_id").value;
+            var color_id = _("color").value;
             var category_id = _("category_id").value;
             // alert(file.name+" | "+file.size+"  | "+file.type);
 
             var formdata = new FormData();
-            formdata.append("name", name);
+            formdata.append("itemName", name);
             formdata.append("itemCode", itemCode);
             formdata.append("type_id", type_id);
+            formdata.append("color_id", color_id);
             formdata.append("category_id", category_id);
             var ajax = new XMLHttpRequest();
             ajax.upload.addEventListener("progress", progressHandler, false);

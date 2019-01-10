@@ -22,3 +22,49 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Employee::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'dob' => \Carbon\Carbon::now(),
+        'gender' => \App\Constants::MALE,
+        'phone' => $faker->phoneNumber,
+        'address' => $faker->address,
+        'isActive' => \App\Constants::TRUE,
+    ];
+});
+
+$factory->define(App\Color::class, function (Faker $faker) {
+    return [
+        'name' => $faker->colorName
+    ];
+});
+
+$factory->define(App\Item::class, function (Faker $faker) {
+    return [
+        'itemCode' => $faker->asciify('*****'),
+        'name' => $faker->word,
+        'type_id' => $faker->randomElement([1,2,3]),
+        'category_id' => $faker->randomElement([1,2,3]),
+        'color_id' => $faker->randomElement([1,2,3]),
+        'remark' => $faker->paragraph,
+    ];
+});
+
+$factory->define(App\Customer::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'phone' => $faker->phoneNumber,
+        'address' => $faker->address,
+        'isActive' => \App\Constants::TRUE,
+    ];
+});
+
+$factory->define(App\Supplier::class, function (Faker $faker) {
+    return [
+        'name' => $faker->name,
+        'phone' => $faker->phoneNumber,
+        'address' => $faker->address,
+        'isActive' => \App\Constants::TRUE,
+    ];
+});

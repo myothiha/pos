@@ -93,15 +93,18 @@ Route::group(['prefix' => 'admin'], function () {
     // issue
 
     Route::get('/issue', 'IssueController@getItem');
-
     Route::post('/issue', 'IssueController@searchItems');
+
 
     Route::get('issue/{item}/create', 'IssueController@create');
 
     Route::post('issue/{item}', 'IssueController@store');
 
-   
-    // stockopening
+    Route::get('inspect/', 'InspectController@index');
+    Route::get('inspect/{issue}/create', 'InspectController@create');
+    Route::post('inspect/{issue}', 'InspectController@store');
+
+    //stockopening
 
     Route::get('/stock-opening', 'StockOpeningController@getItem');
 
@@ -111,7 +114,7 @@ Route::group(['prefix' => 'admin'], function () {
     
     Route::post('stock-opening/{item}', 'StockOpeningController@store');
 
-    // damage
+    //damage
 
     Route::get('/damage', 'DamageController@getItem');
 
