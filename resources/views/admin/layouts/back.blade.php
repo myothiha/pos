@@ -24,9 +24,9 @@
     <link type="text/css" href="{{ url('') }}/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet">
     <link href="{{ url('') }}/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ url('') }}/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
-    <link href="{{ url('') }}/assets/plugins/bootstrap-daterangepicker.css" rel="stylesheet"/>
     
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/style.css">
+    
     @yield('plugins')
 </head>
 <body class="body-boxed">

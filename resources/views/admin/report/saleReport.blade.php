@@ -1,5 +1,12 @@
 @extends('admin.layouts.back')
 
+@section('plugins')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url('') }}/assets/plugins/bootstrap-daterangepicker/moment.js"></script>
+    <script type="text/javascript" src="{{ url('') }}/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <link href="{{ url('') }}/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"/>
+@endsection
+
 @section('title', 'Sale Report')
 
 @section('content')
@@ -30,11 +37,7 @@
                                             Ranges</label>
                                         <div class="col-md-8">
                                             <div class="input-group date input-group--style-1" id="default-daterange">
-                                                <input type="text" class="form-control"
-                                                       placeholder="Click to select the date range" autocomplete="off">
-                                                <span class="input-group-addon">
-                                                                    <i class="ion-ios-calendar-outline"></i>
-                                                                </span>
+                                                <input class="form-control" type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
                                             </div>
                                         </div>
                                     </div>
@@ -42,13 +45,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label">Advance Date
                                             Ranges</label>
-                                        <div class="col-md-8">
-                                            <div id="advance-daterange"
-                                                 class="btn btn-inverse btn-block text-left f-s-12">
-                                                <i class="fa fa-caret-down pull-right m-t-2"></i>
-                                                <span>December 12, 2018 - January 10, 2019</span>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </form>
                             </div>
@@ -99,5 +96,14 @@
         </div>
     </section>
     <!--END CONTENT-->
+<script>
+$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+</script>
 
 @endsection
