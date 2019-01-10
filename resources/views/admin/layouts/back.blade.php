@@ -24,6 +24,7 @@
     <link type="text/css" href="{{ url('') }}/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet">
     <link href="{{ url('') }}/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ url('') }}/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/style.css">
     
