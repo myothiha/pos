@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Sale;
 use App\StockIn;
 use Carbon\Carbon;
+use DB;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -48,7 +51,27 @@ class ReportController extends Controller
 
     public function saleReportByItem()
     {
-        return view('admin.report.saleReportByItem');
+
+        $item = Item::find(4);
+
+        foreach($item->sales as $sale)
+        {
+            dd($sale->pivot->toArray());
+        }
+
+        $items = DB::table('items')
+            ->select([
+                'items.id',
+                'name',
+                'color_id',
+                DB::raw('(SELECT sum(`quantity`) FROM sale_details sd WHERE sd.item_id = items.id ) as quantity'),
+                DB::raw('(SELECT sum(`price`) FROM sale_details sd WHERE sd.item_id = items.id ) as price'),
+                DB::raw('(SELECT sum(`total`) FROM sale_details sd WHERE sd.item_id = items.id ) as total'),
+            ])
+            ->get();
+
+        return $items->toJson();
+//        return view('admin.report.saleReportByItem');
     }
 
     public function transferReport()

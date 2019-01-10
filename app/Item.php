@@ -83,7 +83,7 @@ class Item extends Model implements Buyable
 
     public function sales()
     {
-        return $this->belongsToMany(Sale::class);
+        return $this->belongsToMany(Sale::class, 'sale_details')->withPivot('quantity', 'price', 'total');
     }
 
     public function stockIns()
