@@ -24,9 +24,8 @@
     <link type="text/css" href="{{ url('') }}/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet">
     <link href="{{ url('') }}/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ url('') }}/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
-    <link href="{{ url('') }}/assets/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
-    <link href="http://ivaynberg.github.io/select2/select2-2.1/select2.css" rel="stylesheet"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ url('') }}/assets/plugins/bootstrap-daterangepicker.css" rel="stylesheet"/>
+    
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/style.css">
     @yield('plugins')
 </head>
@@ -70,8 +69,6 @@
 <a href="javascript:void(0)" class="back-to-top btn-back-to-top sm_bg_1"></a>
 
 <!-- CORE JS -->
-<script src="{{ url('') }}/assets/plugins/jquery/jquery.min.js"></script>
-<script src="{{ url('') }}/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script src="{{ url('') }}/assets/plugins/popper/popper.min.js"></script>
 <script src="{{ url('') }}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="{{ url('') }}/assets/js/slidebar/slidebar.js"></script>
@@ -89,7 +86,7 @@
 <script src="{{ url('') }}/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{ url('') }}/assets/js/sm_tables_dataTable_Responsive.js"></script>
 <script src="{{ url('') }}/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-<script src="{{ url('') }}/assets/plugins/bootstrap-daterangepicker/moment.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
 <!-- APP JS -->

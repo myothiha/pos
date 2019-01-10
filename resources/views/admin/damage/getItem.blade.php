@@ -151,7 +151,7 @@
                                                                                 <td>{{$item->color->name}}</td>
                                                                                 <td>{{$item->category->name}}</td>
                                                                                 <td width="20%">
-                                                                                    <a href="{{ action('DamageController@create', $item->id) }}" class="btn btn-outline-primary">Create Issue</a>
+                                                                                    <a href="{{ action('DamageController@create', $item->id) }}" class="btn btn-outline-primary">Create Damage</a>
                                                                                 </td>
                                                                             </tr>
                                                                         @endforeach
