@@ -1,5 +1,12 @@
 @extends('admin.layouts.back')
 
+@section('plugins')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url('') }}/assets/plugins/bootstrap-daterangepicker/moment.js"></script>
+    <script type="text/javascript" src="{{ url('') }}/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <link href="{{ url('') }}/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"/>
+@endsection
+
 @section('title', 'Sale Report')
 
 @section('content')
@@ -30,7 +37,7 @@
                                     <th>Date</th>
                                     <th>Voucher NO</th>
                                     <th>Sale Type</th>
-                                    <th>Customer</th>
+                                    <th><input class="form-control" type="text" name="daterange" value="01/01/2018 - 01/15/2018" /></th>
                                     <th>Total Amount</th>
                                     <th>Paid</th>
                                     <th>Balance</th>
@@ -39,7 +46,7 @@
                                 </thead>
                                 <tbody>
                                 <tr class="odd gradeX">
-                                    <td>Trident</td>
+                                    <td></td>
                                     <td>Internet Explorer 4.0</td>
                                     <td>Win 95+</td>
                                     <td>4</td>
@@ -94,5 +101,13 @@
     </div>
 </section>
 <!--END CONTENT-->
-
+<script>
+$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+</script>
 @endsection
