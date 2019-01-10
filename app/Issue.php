@@ -31,6 +31,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue wherePaint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereTinder($value)
+ * @property int $item_id
+ * @property string $remark
+ * @property-read \App\Employee $employee
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Inspect[] $inspects
+ * @property-read \App\Item $item
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereRemark($value)
  */
 class Issue extends Model
 {

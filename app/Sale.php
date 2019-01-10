@@ -40,6 +40,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereTotalAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereVoucherNo($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
+ * @property-read \App\Customer $customer
+ * @property-read \App\Location $location
  */
 class Sale extends Model
 {
@@ -49,4 +51,13 @@ class Sale extends Model
         return $this->belongsToMany(Item::class, 'sale_details');
     }
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }
