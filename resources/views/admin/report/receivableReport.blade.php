@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@include('admin.layouts.dateRangePicker')
+
 @section('title', 'Receivable Reports')
 
 @section('content')
@@ -19,6 +21,31 @@
     </div>
     <div class="sm-content">
         <div class="sm-content-box">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sm-wrapper">
+                        <div class="sm-box">
+                            <form action="{{ action('ReportController@receivableReportFilter') }}" class="form-horizontal form-bordered" method="post">
+
+                                @csrf
+
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label">Date Range</label>
+                                    <div class="col-md-8">
+                                        <div class="input-group date input-group--style-1" id="default-daterange">
+                                            <input class="form-control" type="text" name="daterange" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <input type="submit" class="btn btn-primary" value="Apply">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="sm-wrapper">
@@ -74,5 +101,15 @@
     </div>
 </section>
 <!--END CONTENT-->
+
+<script type="text/javascript">
+$(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+</script>
 
 @endsection

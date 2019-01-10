@@ -74,9 +74,19 @@ class ReportController extends Controller
 //        return view('admin.report.saleReportByItem');
     }
 
+    public function saleReportByItemFilter(Request $request)
+    {
+        //
+    }
+
     public function transferReport()
     {
         return view('admin.report.transferReport');
+    }
+
+    public function transferReportFilter(Request $request)
+    {
+        //
     }
 
     public function receivableReport()
@@ -84,9 +94,19 @@ class ReportController extends Controller
         return view('admin.report.receivableReport');
     }
 
+    public function receivableReportFilter(Request $request)
+    {
+        //
+    }
+
     public function customerCreditReport()
     {
         return view('admin.report.customerCreditReport');
+    }
+
+    public function customerCreditReportFilter(Request $request)
+    {
+        //
     }
 
     public function stockBalanceReport()
@@ -94,9 +114,19 @@ class ReportController extends Controller
         return view('admin.report.stockBalanceReport');
     }
 
+    public function stockBalanceReportFilter(Request $request)
+    {
+        //
+    }
+
     public function stockInOutReport()
     {
         return view('admin.report.stockInOutReport');
+    }
+
+    public function stockInOutReportFilter(Request $request)
+    {
+        //
     }
 
     public function processReportByEmployee()
@@ -104,8 +134,18 @@ class ReportController extends Controller
         return view('admin.report.processReportByEmployee');
     }
 
+    public function processReportByEmployeeFilter(Request $request)
+    {
+        //
+    }
+
     public function processReportDaily()
     {
         return view('admin.report.processReportDaily');
+    }
+
+    public function processReportDailyFilter(Request $request)
+    {
+        //
     }
 }
