@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Repair wherePaint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Repair whereReferenceId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Repair whereTinker($value)
+ * @property int $inspect_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Repair whereInspectId($value)
  */
 class Repair extends Model
 {

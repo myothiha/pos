@@ -27,7 +27,6 @@
     <link href="{{ url('') }}/assets/plugins/bootstrap-daterangepicker.css" rel="stylesheet"/>
     
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/style.css">
-    
     @yield('plugins')
 </head>
 <body class="body-boxed">

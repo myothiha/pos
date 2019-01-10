@@ -20,8 +20,6 @@ Route::get('/', function () {
     return $result->toJson();
 });
 
-
-
 Route::post('/login', 'AuthController@checkLogin');
 
 Route::post('/addItem', 'AddToCartController@addItem');
@@ -75,7 +73,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('receivableopening', 'ReceivableOpeningController');
 
     // sale
-
     Route::get('/sale/create', 'SaleController@create');
 
     Route::post('/sale', 'SaleController@store');
@@ -115,7 +112,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('stock-opening/{item}', 'StockOpeningController@store');
 
     //damage
-
     Route::get('/damage', 'DamageController@getItem');
 
     Route::post('/damage', 'DamageController@searchItems');

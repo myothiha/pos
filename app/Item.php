@@ -43,6 +43,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Sale[] $sales
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\StockIn[] $stockIns
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Transfer[] $transfers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Issue[] $issues
  */
 class Item extends Model implements Buyable
 {

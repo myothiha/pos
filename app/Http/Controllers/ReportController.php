@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Sale;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -13,7 +14,13 @@ class ReportController extends Controller
 
    	public function saleReport()
     {
-        return view('admin.report.saleReport');
+        $sales = Sale::all();
+
+        $sale = Sale::find(1)->customer->name;
+
+        return view('admin.report.saleReport', [
+            'sales' => $sales,
+        ]);
     }
 
     public function saleReportByItem()
