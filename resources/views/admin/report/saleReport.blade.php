@@ -31,21 +31,33 @@
                     <div class="col-lg-12">
                         <div class="sm-wrapper">
                             <div class="sm-box">
-                                <form class="form-horizontal form-bordered">
+                                <form action="{{ action('ReportController@saleReportFilter') }}" class="form-horizontal form-bordered" method="post">
+
+                                    @csrf
+
                                     <div class="form-group row">
-                                        <label class="col-md-4 col-form-label">Default Date
-                                            Ranges</label>
+                                        <label class="col-md-4 col-form-label">Date Range</label>
                                         <div class="col-md-8">
                                             <div class="input-group date input-group--style-1" id="default-daterange">
-                                                <input class="form-control" type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+                                                <input class="form-control" type="text" name="daterange" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-md-4 col-form-label">Advance Date
-                                            Ranges</label>
-                                        
+                                        <label class="col-md-4 col-form-label">Sale Type </label>
+                                        <div class="col-md-8">
+                                            <div class="input-group date input-group--style-1" id="default-daterange">
+                                                <select name="saleType" class="form-control" id="sale_type">
+                                                    <option value="{{ \App\Constants::CASH_DOWN }}">Cash Down</option>
+                                                    <option value="{{ \App\Constants::CREDIT }}">Credit</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <input type="submit" class="btn btn-primary" value="Apply">
                                     </div>
                                 </form>
                             </div>

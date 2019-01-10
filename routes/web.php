@@ -133,6 +133,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/stockinreport', 'ReportController@stockInReport');
 
     Route::get('/salereport', 'ReportController@saleReport');
+    Route::post('/salereport', 'ReportController@saleReportFilter');
 
     Route::get('/salereportbyitem', 'ReportController@saleReportByItem');
 
