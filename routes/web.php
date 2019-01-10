@@ -131,23 +131,33 @@ Route::group(['prefix' => 'admin'], function () {
     // report
 
     Route::get('/stockinreport', 'ReportController@stockInReport');
+    Route::post('/stockinreport', 'ReportController@stockInReportFilter');
 
     Route::get('/salereport', 'ReportController@saleReport');
     Route::post('/salereport', 'ReportController@saleReportFilter');
 
     Route::get('/salereportbyitem', 'ReportController@saleReportByItem');
+    Route::post('/salereportbyitem', 'ReportController@saleReportByItemFilter');
 
     Route::get('/transferreport', 'ReportController@transferReport');
+    Route::post('/transferreport', 'ReportController@transferReportFilter');
 
     Route::get('/receivablereport', 'ReportController@receivableReport');
+    Route::post('/receivablereport', 'ReportController@receivableReportFilter');
 
     Route::get('/customercreditreport', 'ReportController@customerCreditReport');
+    Route::post('/customercreditreport', 'ReportController@customerCreditReportFilter');
 
     Route::get('/stockbalancereport', 'ReportController@stockBalanceReport');
+    Route::post('/stockbalancereport', 'ReportController@stockBalanceReportFilter');
 
     Route::get('/stockinoutreport', 'ReportController@stockInOutReport');
+    Route::post('/stockinoutreport', 'ReportController@stockInOutReportFilter');
+
 
     Route::get('/processreportbyemployee', 'ReportController@processReportByEmployee');
+    Route::post('/processreportbyemployee', 'ReportController@processReportByEmployeeFilter');
 
     Route::get('/processreportdaily', 'ReportController@processReportDaily');
+    Route::post('/processreportdaily', 'ReportController@processReportDailyFilter');
 });
