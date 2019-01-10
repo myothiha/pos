@@ -154,7 +154,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/stockinoutreport', 'ReportController@stockInOutReport');
     Route::post('/stockinoutreport', 'ReportController@stockInOutReportFilter');
 
-
     Route::get('/processreportbyemployee', 'ReportController@processReportByEmployee');
     Route::post('/processreportbyemployee', 'ReportController@processReportByEmployeeFilter');
 
