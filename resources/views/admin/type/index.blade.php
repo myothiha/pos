@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'View Transfer Data')
+
 @section('content')
 
 <!--BEGIN CONTENT-->

@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Edit Color Data')
+
 @section('content')
 
 <!--BEGIN CONTENT-->

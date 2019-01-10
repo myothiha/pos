@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Create Supplier Data')
+
 @section('content')
 
 <!--BEGIN CONTENT-->

@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Customer Credit Report')
+
 @section('content')
 
 <!--BEGIN CONTENT-->

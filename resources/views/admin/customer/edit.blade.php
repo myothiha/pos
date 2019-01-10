@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Edit Customer Data')
+
 @section('content')
 
 <!--BEGIN CONTENT-->

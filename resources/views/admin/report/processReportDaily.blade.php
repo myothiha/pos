@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Process Daily Report')
+
 @section('content')
 
 <!--BEGIN CONTENT-->

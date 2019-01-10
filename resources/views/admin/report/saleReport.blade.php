@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Sale Report')
+
 @section('content')
 
 <!--BEGIN CONTENT-->

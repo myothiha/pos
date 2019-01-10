@@ -101,7 +101,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('issue/{item}', 'IssueController@store');
 
    
-    //stockopening
+    // stockopening
 
     Route::get('/stock-opening', 'StockOpeningController@getItem');
 
@@ -111,7 +111,7 @@ Route::group(['prefix' => 'admin'], function () {
     
     Route::post('stock-opening/{item}', 'StockOpeningController@store');
 
-    //damage
+    // damage
 
     Route::get('/damage', 'DamageController@getItem');
 

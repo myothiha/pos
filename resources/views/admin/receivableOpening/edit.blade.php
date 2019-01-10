@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Edit Receivable Opening Data')
+
 @section('content')
 
 <!--BEGIN CONTENT-->

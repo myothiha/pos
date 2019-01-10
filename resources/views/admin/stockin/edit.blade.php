@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Edit StockIn Data')
+
 @section('content')
 
 <!--BEGIN CONTENT-->
