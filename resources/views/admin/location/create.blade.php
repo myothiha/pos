@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Create Location Data')
+
 @section('content')
 
 <!--BEGIN CONTENT-->

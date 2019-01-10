@@ -1,5 +1,7 @@
 @extends('admin.layouts.back')
 
+@section('title', 'Edit Supplier Data')
+
 @section('content')
 {{ dd($item->name;)}}
 <!--BEGIN CONTENT-->

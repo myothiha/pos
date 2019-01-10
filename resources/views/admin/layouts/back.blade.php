@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <title class="has_page_title">Boxed Layout - Aarvi | Perfectin</title>
+    <title class="has_page_title">App Name - @yield('title')</title>
     <!-- FAVICON -->
     <link href="http://via.placeholder.com/32x32" rel="icon" type="image/png">
     <!-- BOOTSTRAP -->
