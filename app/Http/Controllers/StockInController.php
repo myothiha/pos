@@ -96,6 +96,8 @@ class StockInController extends Controller
         } catch (\Throwable $e) {
             dd($e->getMessage()); // Todo Remove
         }
+
+        return redirect()->action('StockInController@create');
     }
 
     /**

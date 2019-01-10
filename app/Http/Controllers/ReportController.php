@@ -3,20 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Sale;
+use App\StockIn;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
     public function stockInReport()
     {
-        return view('admin.report.stockInReport');
+        $stockIns = StockIn::all();
+        
+        return view('admin.report.stockInReport', [
+            'stockIns' => $stockIns,
+        ]);
     }
 
    	public function saleReport()
     {
         $sales = Sale::all();
-
-        $sale = Sale::find(1)->customer->name;
 
         return view('admin.report.saleReport', [
             'sales' => $sales,

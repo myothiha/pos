@@ -83,18 +83,18 @@
                                                             <div class="col-lg-2">
                                                                 <select class="form-control" id="type_id"
                                                                         name="type_id">
+                                                                    <option value="">Choose Type</option>
                                                                     @foreach($types as $type)
-                                                                        <option
-                                                                            value="{{ $type->id }}">{{ $type->name }}</option>
+                                                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
                                                             <div class="col-lg-2">
                                                                 <select class="form-control" id="category_id"
                                                                         name="category_id">
+                                                                    <option value="">Choose Category</option>
                                                                     @foreach($categories as $category)
-                                                                        <option
-                                                                            value="{{ $category->id }}">{{ $category->name }}</option>
+                                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </div>
@@ -161,7 +161,7 @@
                                                                     name="supplier_id">
                                                                 @foreach($suppliers as $supplier)
                                                                     <option
-                                                                        value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                                                            value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -176,7 +176,7 @@
                                                                     name="location_id">
                                                                 @foreach($locations as $location)
                                                                     <option
-                                                                        value="{{ $location->id }}">{{ $location->name }}</option>
+                                                                            value="{{ $location->id }}">{{ $location->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
