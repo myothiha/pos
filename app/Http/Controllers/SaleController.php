@@ -112,10 +112,10 @@ class SaleController extends Controller
 
                     $sale->items()->attach($item->id, ['quantity' => $item->qty, 'price' => $item->price, 'total' => $total]);
 
-                    $store = Store::where([
-                        ['location_id', '=', $sale->location_id],
-                        ['item_id', '=', $item->id],
-                    ])->get()->first();
+                    $store = Store::firstOrNew([
+                        'location_id' => $sale->location_id,
+                        'item_id' => $item->id,
+                    ]);
 
                     $store->quantity -= $item->qty;
                     $store->save();

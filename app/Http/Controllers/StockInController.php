@@ -82,10 +82,10 @@ class StockInController extends Controller
                 {
                     $stockIn->items()->attach($item->id, ['quantity' => $item->qty]);
 
-                    $store = Store::where([
-                        ['location_id', '=', $stockIn->location_id],
-                        ['item_id', '=', $item->id],
-                    ])->get()->first();
+                    $store = Store::firstOrNew([
+                        'location_id' => $stockIn->location_id,
+                        'item_id' => $item->id,
+                    ]);
 
                     $store->quantity += $item->qty;
                     $store->save();

@@ -82,18 +82,18 @@ class TransferController extends Controller
                 {
                     $transfer->items()->attach($item->id, ['quantity' => $item->qty]);
 
-                    $currentStore = Store::where([
-                        ['location_id', '=', $transfer->location_id],
-                        ['item_id', '=', $item->id],
-                    ])->get()->first();
+                    $currentStore = Store::firstOrNew([
+                        'location_id' => $transfer->location_id,
+                        'item_id' => $item->id,
+                    ]);
 
                     $currentStore->quantity -= $item->qty;
                     $currentStore->save();
 
-                    $transferStore = Store::where([
-                        ['location_id', '=', 2],
-                        ['item_id', '=', $item->id],
-                    ])->get()->first();
+                    $transferStore = Store::firstOrNew([
+                        'location_id' => 2,
+                        'item_id' => $item->id,
+                    ]);
 
                     $transferStore->quantity += $item->qty;
                     $transferStore->save();

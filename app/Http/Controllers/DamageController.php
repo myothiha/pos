@@ -117,10 +117,10 @@ class DamageController extends Controller
             \DB::transaction(function () use ($damage, $item) {
                 $item->damages()->save($damage);
                 
-                $store = Store::where([
-                    ['location_id', '=', $damage->location_id],
-                    ['item_id', '=', $item->id],
-                ])->get()->first();
+                $store = Store::firstOrNew([
+                    'location_id' => $damage->location_id,
+                    'item_id' => $item->id,
+                ]);
 
                 $store->quantity -= $damage->quantity;
                 $store->save();

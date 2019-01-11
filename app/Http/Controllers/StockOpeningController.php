@@ -125,15 +125,17 @@ class StockOpeningController extends Controller
             \DB::transaction(function () use ($stockOpening, $item) {
                 $item->stockOpenings()->save($stockOpening);
 
-                $store = Store::where([
-                    ['location_id', '=', $stockOpening->location_id],
-                    ['item_id', '=', $item->id],
-                ])->get()->first();
+                $store = Store::firstOrNew([
+                    'location_id' => $stockOpening->location_id,
+                    'item_id' => $item->id,
+                ]);
 
                 $store->quantity += $stockOpening->quantity;
                 $store->save();
             });
         } catch (\Throwable $e) {
+            \Log::error('Error Creating Stock Opening');
+            dd($e->getMessage()); //Todo Remove
         }
 
         return redirect()->action('StockOpeningController@getItem');

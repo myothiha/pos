@@ -30,6 +30,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Store extends Model
 {
+    protected $fillable = [
+        'location_id',
+        'item_id',
+    ];
+
     public function location()
     {
         return $this->belongsTo(Location::class);
