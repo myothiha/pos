@@ -101,6 +101,20 @@ class Item extends Model implements Buyable
         return $this->hasMany(Issue::class);
     }
 
+    public function getQuantityAttribute()
+    {
+        return $this->sales->sum(function(Sale $sale) {
+            return $sale->pivot->quantity;
+        });
+    }
+
+    public function getTotalAttribute()
+    {
+        return $this->sales->sum(function(Sale $sale) {
+            return $sale->pivot->total;
+        });
+    }
+
     /**
      * Get the identifier of the Buyable item.
      *

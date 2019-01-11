@@ -136,8 +136,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/salereport', 'ReportController@saleReport');
     Route::post('/salereport', 'ReportController@saleReportFilter');
 
-    Route::get('/salereportbyitem', 'ReportController@saleReportByItem');
-    Route::post('/salereportbyitem', 'ReportController@saleReportByItemFilter');
+    Route::get('/sale-report-by-item', 'ReportController@saleReportByItem');
+    Route::get('/sale-report-item-detail/{item}', 'ReportController@saleReportByItemDetail');
 
     Route::get('/transferreport', 'ReportController@transferReport');
     Route::post('/transferreport', 'ReportController@transferReportFilter');

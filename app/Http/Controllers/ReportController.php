@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Color;
 use App\Item;
 use App\Sale;
 use App\StockIn;
+use App\Type;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class ReportController extends Controller
 {
@@ -40,8 +44,8 @@ class ReportController extends Controller
                 $dateRange = explode(' - ', $request->daterange);
                 $from = Carbon::parse($dateRange[0]);
                 $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at','>=', $from)
-                    ->whereDate('created_at','<=', $to);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
             })->get();
 
         return view('admin.report.saleReport', [
@@ -49,34 +53,73 @@ class ReportController extends Controller
         ]);
     }
 
-    public function saleReportByItem()
+    public function saleReportByItem(Request $request)
     {
+        $items = Item::whereHas('sales', function (Builder $q) {
+            return $q->where('sale_details.quantity', '>', 0);
+        });
 
-        $item = Item::find(4);
-
-        foreach($item->sales as $sale)
-        {
-            dd($sale->pivot->toArray());
+        if ($request->search) {
+            $items->when($request->itemCode, function (Builder $q) use ($request) {
+                return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
+            })
+                ->when($request->itemName, function (Builder $q) use ($request) {
+                    return $q->where('name', 'LIKE', "%{$request->itemName}%");
+                })
+                ->when($request->color_id, function (Builder $q) use ($request) {
+                    return $q->where('color_id', '=', $request->color_id);
+                })
+                ->when($request->type_id, function (Builder $q) use ($request) {
+                    return $q->where('type_id', '=', $request->type_id);
+                })
+                ->when($request->category_id, function (Builder $q) use ($request) {
+                    return $q->where('category_id', '=', $request->category_id);
+                })
+                ->with('color')->with('category');
         }
 
-        $items = DB::table('items')
-            ->select([
-                'items.id',
-                'name',
-                'color_id',
-                DB::raw('(SELECT sum(`quantity`) FROM sale_details sd WHERE sd.item_id = items.id ) as quantity'),
-                DB::raw('(SELECT sum(`price`) FROM sale_details sd WHERE sd.item_id = items.id ) as price'),
-                DB::raw('(SELECT sum(`total`) FROM sale_details sd WHERE sd.item_id = items.id ) as total'),
-            ])
-            ->get();
-
-        return $items->toJson();
-//        return view('admin.report.saleReportByItem');
+        return view('admin.report.saleReportByItem', [
+            'items' => $items->get(),
+            'colors' => Color::all(),
+            'types' => Type::all(),
+            'categories' => Category::all(),
+        ]);
     }
 
-    public function saleReportByItemFilter(Request $request)
+    public function saleReportByItemDetail(Request $request, Item $item)
     {
-        //
+        if ($request->search) {
+
+            $dateRange = explode(' - ', $request->daterange);
+            $from = Carbon::parse($dateRange[0]);
+            $to = Carbon::parse($dateRange[1]);
+
+            $sales = $item->sales()->whereDate('sales.created_at', '>=', $from)
+                ->whereDate('sales.created_at', '<=', $to)->get();
+        } else {
+            $sales = $item->sales;
+        }
+
+        $itemSales = $sales
+            ->mapToGroups(function (Sale $sale) {
+                return [
+                    $sale->created_at->toDateString() => $sale
+                ];
+            })->map(function (Collection $sales, $date) {
+                return [
+                    'quantity' => $sales->sum(function (Sale $sale) {
+                        return $sale->pivot->quantity;
+                    }),
+                    'total' => $sales->sum(function (Sale $sale) {
+                        return $sale->pivot->total;
+                    }),
+                ];
+            });
+
+        return view('admin.report.saleReportByItemDetail', [
+            'sales' => $itemSales,
+            'item' => $item,
+        ]);
     }
 
     public function transferReport()
