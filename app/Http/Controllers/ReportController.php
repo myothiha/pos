@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Color;
+use App\Customer;
 use App\Item;
+use App\Receivable;
 use App\Sale;
 use App\StockIn;
+use App\Store;
 use App\Type;
 use Carbon\Carbon;
 use DB;
@@ -134,7 +137,10 @@ class ReportController extends Controller
 
     public function receivableReport()
     {
-        return view('admin.report.receivableReport');
+        $receivables = Receivable::all();
+        return view('admin.report.receivableReport', [
+            'receivables' => $receivables,
+        ]);
     }
 
     public function receivableReportFilter(Request $request)
@@ -144,7 +150,14 @@ class ReportController extends Controller
 
     public function customerCreditReport()
     {
-        return view('admin.report.customerCreditReport');
+        $customers = Customer::whereHas('creditBalance', function (Builder $q) {
+            return $q->where('amount', '>', 0);
+        });
+
+
+        return view('admin.report.customerCreditReport', [
+            'customers' => $customers->get(),
+        ]);
     }
 
     public function customerCreditReportFilter(Request $request)
@@ -154,7 +167,10 @@ class ReportController extends Controller
 
     public function stockBalanceReport()
     {
-        return view('admin.report.stockBalanceReport');
+        $stocks = Store::all();
+        return view('admin.report.stockBalanceReport', [
+            'stocks' => $stocks,
+        ]);
     }
 
     public function stockBalanceReportFilter(Request $request)
