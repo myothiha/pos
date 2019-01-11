@@ -13,7 +13,7 @@
             <div class="breadcrumb-pageheader p-b-25">
                 <ol class="breadcrumb sm-breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                    <li class="breadcrumb-item"><a href="/admin/salereportbyitem">Sale Report By Item</a></li>
+                    <li class="breadcrumb-item"><a href="{{ action('ReportController@saleReportByItem') }}">Sale Report By Item</a></li>
                 </ol>
                 <h6 class="sm-pagetitle--style-1 has_page_title">Sale Report By Item</h6>
             </div>
@@ -26,46 +26,48 @@
                         <div class="sm-wrapper">
                             <div class="sm-box">
                                 <form action="{{ action('ReportController@saleReportByItem') }}" class="form-default" id="form" method="get">
-                                    <div class="col-lg-2">
-                                        <input id="itemCode" placeholder="Item Code"
-                                               type="text" class="form-control" name="itemCode">
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <input id="name" placeholder="Item Name"
-                                               type="text" class="form-control" name="itemName">
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <select class="form-control" id="color"
-                                                name="color_id">
-                                            <option value="">Select Color</option>
-                                            @foreach($colors as $color)
-                                                <option value="{{ $color->id }}">{{ $color->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <select class="form-control" id="type_id"
-                                                name="type_id">
-                                            <option value="">Select Type</option>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <input id="itemCode" placeholder="Item Code"
+                                                   type="text" class="form-control" name="itemCode">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input id="name" placeholder="Item Name"
+                                                   type="text" class="form-control" name="itemName">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control" id="color"
+                                                    name="color_id">
+                                                <option value="">Select Color</option>
+                                                @foreach($colors as $color)
+                                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control" id="type_id"
+                                                    name="type_id">
+                                                <option value="">Select Type</option>
 
-                                            @foreach($types as $type)
-                                                <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <select class="form-control" id="category_id"
-                                                name="category_id">
-                                            <option value="">Select Category</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <button type="submit" class="btn btn-primary" name="search" value="submit"
-                                                onclick="searchItem()">Submit
-                                        </button>
+                                                @foreach($types as $type)
+                                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <select class="form-control" id="category_id"
+                                                    name="category_id">
+                                                <option value="">Select Category</option>
+                                                @foreach($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn-primary" name="search" value="submit"
+                                                    onclick="searchItem()">Submit
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -113,7 +115,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

@@ -13,7 +13,7 @@
         <div class="breadcrumb-pageheader p-b-25">
             <ol class="breadcrumb sm-breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                <li class="breadcrumb-item"><a href="/admin/customercreditreport">Customer Credit Report</a></li>
+                <li class="breadcrumb-item"><a href="{{ action('ReportController@customerCreditReport') }}">Customer Credit Report</a></li>
             </ol>
             <h6 class="sm-pagetitle--style-1 has_page_title">Customer Credit Report</h6>
         </div>
@@ -30,8 +30,8 @@
                                 @csrf
 
                                 <div class="form-group row">
-                                    <label class="col-md-4 col-form-label">Date Range</label>
-                                    <div class="col-md-8">
+                                    <label class="col-md-3 col-form-label">Date Range</label>
+                                    <div class="col-md-9">
                                         <div class="input-group date input-group--style-1" id="default-daterange">
                                             <input class="form-control" type="text" name="daterange" />
                                         </div>
@@ -39,7 +39,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <input type="submit" class="btn btn-primary" value="Apply">
+                                    <div class="col-md-12 text-right" style="margin-top: 15px;">
+                                        <input type="submit" class="btn btn-primary" value="Generate">
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -96,7 +98,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
