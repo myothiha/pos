@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereLocationId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereVoucherNo($value)
+ * @property-read \App\Customer $customer
  */
 class Receivable extends Model
 {

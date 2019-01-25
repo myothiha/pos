@@ -26,13 +26,11 @@ class InspectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param Issue $issue
      * @return \Illuminate\Http\Response
      */
-    public function create(Issue $issue)
+    public function create()
     {
         return view('admin.inspect.create', [
-            'issue' => $issue,
             'employees' => Employee::all(),
         ]);
     }
@@ -44,14 +42,13 @@ class InspectController extends Controller
      * @param Issue $issue
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, Issue $issue)
+    public function store(Request $request)
     {
         $inspect = new Inspect();
         $inspect->employee_id = $request->employee_id;
         $inspect->acceptQty = $request->acceptQty;
         $inspect->rejectQty = $request->rejectQty;
-
-        $issue->inspects()->save($inspect);
+        $inspect->save();
 
         return redirect()->action('InspectController@index');
     }

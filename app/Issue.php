@@ -37,6 +37,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Inspect[] $inspects
  * @property-read \App\Item $item
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereRemark($value)
+ * @property string $type
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereType($value)
  */
 class Issue extends Model
 {

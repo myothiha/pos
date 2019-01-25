@@ -44,6 +44,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\StockIn[] $stockIns
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Transfer[] $transfers
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Issue[] $issues
+ * @property-read mixed $quantity
+ * @property-read mixed $total
  */
 class Item extends Model implements Buyable
 {

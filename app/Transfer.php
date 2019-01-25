@@ -26,11 +26,25 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereRemark($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereVoucherNo($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
+ * @property-read mixed $quantity
+ * @property-read \App\Location $location
  */
 class Transfer extends Model
 {
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'transfer_details');
+        return $this->belongsToMany(Item::class, 'transfer_details')->withPivot(['quantity']);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function getQuantityAttribute()
+    {
+        return $this->items->sum(function(Item $item) {
+            return $item->pivot->quantity;
+        });
     }
 }

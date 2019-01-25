@@ -14,15 +14,12 @@ class CreateInspectsTable extends Migration
     {
         Schema::create('inspects', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('issue_id');
+            $table->unsignedInteger('issue_id')->nullable();
             $table->unsignedInteger('employee_id');
             $table->unsignedInteger('acceptQty');
             $table->unsignedInteger('rejectQty');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('issue_id')
-                ->references('id')->on('issues');
 
             $table->foreign('employee_id')
                 ->references('id')->on('employees');

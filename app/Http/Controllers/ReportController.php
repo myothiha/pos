@@ -5,11 +5,15 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Color;
 use App\Customer;
+use App\Employee;
+use App\Inspect;
+use App\Issue;
 use App\Item;
 use App\Receivable;
 use App\Sale;
 use App\StockIn;
 use App\Store;
+use App\Transfer;
 use App\Type;
 use Carbon\Carbon;
 use DB;
@@ -40,16 +44,16 @@ class ReportController extends Controller
     public function saleReportFilter(Request $request)
     {
         $sales = Sale::query()
-            ->when($request->saleType, function ($q) use ($request) {
-                return $q->where('saleType', '=', $request->saleType);
-            })
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
+        ->when($request->saleType, function ($q) use ($request) {
+            return $q->where('saleType', '=', $request->saleType);
+        })
+        ->when($request->daterange, function ($q) use ($request) {
+            $dateRange = explode(' - ', $request->daterange);
+            $from = Carbon::parse($dateRange[0]);
+            $to = Carbon::parse($dateRange[1]);
+            return $q->whereDate('created_at', '>=', $from)
+                ->whereDate('created_at', '<=', $to);
+        })->get();
 
         return view('admin.report.saleReport', [
             'sales' => $sales,
@@ -125,14 +129,20 @@ class ReportController extends Controller
         ]);
     }
 
-    public function transferReport()
+    public function transferReport(Request $request)
     {
-        return view('admin.report.transferReport');
-    }
+        $transfers = Transfer::query()
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
 
-    public function transferReportFilter(Request $request)
-    {
-        //
+        return view('admin.report.transferReport', [
+            'transfers' => $transfers,
+        ]);
     }
 
     public function receivableReport()
@@ -143,20 +153,21 @@ class ReportController extends Controller
         ]);
     }
 
-    public function receivableReportFilter(Request $request)
-    {
-        //
-    }
-
-    public function customerCreditReport()
+    public function customerCreditReport(Request $request)
     {
         $customers = Customer::whereHas('creditBalance', function (Builder $q) {
             return $q->where('amount', '>', 0);
         });
 
+        $customers->when($request->customer_id, function (Builder $q) use ($request) {
+            return $q->where('id', '=', $request->customer_id);
+        });
+
+        $allCustomers = Customer::all();
 
         return view('admin.report.customerCreditReport', [
             'customers' => $customers->get(),
+            'allCustomers' => $allCustomers,
         ]);
     }
 
@@ -178,18 +189,9 @@ class ReportController extends Controller
         //
     }
 
-    public function stockInOutReport()
-    {
-        return view('admin.report.stockInOutReport');
-    }
-
-    public function stockInOutReportFilter(Request $request)
-    {
-        //
-    }
-
     public function processReportByEmployee()
     {
+        $inspects = Inspect::all();
         return view('admin.report.processReportByEmployee');
     }
 

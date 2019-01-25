@@ -58,7 +58,8 @@
                 <div class="sm-content-box">
                     <div class="row justify-content-center">
                         <div class="col-lg-12 mt--180">
-                            <form class="form-default" action="{{ action('IssueController@store', $item->id) }}" method="post" enctype="multipart/form-data">
+                            <form class="form-default" action="{{ action('IssueController@store', $item->id) }}"
+                                  method="post" enctype="multipart/form-data">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tabs tabs--style-2" role="tabpanel">
@@ -73,14 +74,17 @@
                                                 </li>
                                             </ul>
                                             <br>
+
                                             {{ csrf_field() }}
+
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group has-feedback">
                                                         <label for="employee_id">Employee</label>
                                                         <select class="form-control" id="select" name="employee_id">
                                                             @foreach($employees as $employee)
-                                                            <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                                                <option
+                                                                    value="{{ $employee->id }}">{{ $employee->name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -92,9 +96,23 @@
                                                     <div class="form-group has-feedback">
                                                         <label for="item_id">Item</label>
                                                         <input
-                                                               type="text" class="form-control" value="{{ $item->id }}" name="item_id" hidden>
+                                                            type="text" class="form-control" value="{{ $item->id }}"
+                                                            name="item_id" hidden>
                                                         <input id="item_id"
-                                                               type="text" class="form-control" value="{{ $item->name }}" disabled="true">
+                                                               type="text" class="form-control"
+                                                               value="{{ $item->name }}" readonly="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group has-feedback">
+                                                        <label for="type">Issue Type: </label>
+                                                        <select class="form-control" id="type" name="type">
+                                                            <option value="{{ \App\Constants::NEW }}">New</option>
+                                                            <option value="{{ \App\Constants::REPAIR }}">Repair</option>
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -118,7 +136,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-6">
                                                     <div class="form-group">
@@ -143,7 +161,8 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="remark">Remark</label>
-                                                        <textarea id="remark" placeholder="Enter Remark" class="form-control" name="remark"> </textarea>
+                                                        <textarea id="remark" placeholder="Enter Remark"
+                                                                  class="form-control" name="remark"> </textarea>
                                                     </div>
                                                 </div>
                                             </div>

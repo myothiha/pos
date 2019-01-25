@@ -1,4 +1,3 @@
-
 <?php
 
 /*
@@ -12,12 +11,10 @@
 |
 */
 
+use Routes\App\Report;
+
 Route::get('/', function () {
-    /*foreach(Cart::content() as $row) {
-        echo 'You have ' . $row->qty . ' items of ' . $row->model->name . ' with description: "' . $row->model->description . '" in your cart.';
-    }*/
-    $result = Cart::instance(\App\Constants\Cart::STOCK_IN)->content();
-    return $result->toJson();
+    return redirect('/admin');
 });
 
 Route::post('/login', 'AuthController@checkLogin');
@@ -70,7 +67,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('damage', 'DamageController');
 
-    Route::resource('receivableopening', 'ReceivableOpeningController');
+    Route::resource('receivable-opening', 'ReceivableOpeningController');
 
     // sale
     Route::get('/sale/create', 'SaleController@create');
@@ -83,9 +80,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     // stockin
 
-    Route::get('/stockin/create', 'StockInController@create');
+    Route::get('/stock-in/create', 'StockInController@create');
 
-    Route::post('/stockin/', 'StockInController@store');
+    Route::post('/stock-in/', 'StockInController@store');
 
     // issue
 
@@ -98,8 +95,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('issue/{item}', 'IssueController@store');
 
     Route::get('inspect/', 'InspectController@index');
-    Route::get('inspect/{issue}/create', 'InspectController@create');
-    Route::post('inspect/{issue}', 'InspectController@store');
+    Route::get('inspect/create', 'InspectController@create');
+    Route::post('inspect', 'InspectController@store');
 
     //stockopening
 
@@ -122,7 +119,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     // receivable
 
-    Route::get('/receivable/getcustomer', 'ReceivableController@getCustomer');
+    Route::get('/receivable/get-customer', 'ReceivableController@getCustomer');
 
     Route::get('/receivable/create', 'ReceivableController@create');
 
@@ -130,33 +127,5 @@ Route::group(['prefix' => 'admin'], function () {
 
     // report
 
-    Route::get('/stockinreport', 'ReportController@stockInReport');
-    Route::post('/stockinreport', 'ReportController@stockInReportFilter');
-
-    Route::get('/salereport', 'ReportController@saleReport');
-    Route::post('/salereport', 'ReportController@saleReportFilter');
-
-    Route::get('/sale-report-by-item', 'ReportController@saleReportByItem');
-    Route::get('/sale-report-item-detail/{item}', 'ReportController@saleReportByItemDetail');
-
-    Route::get('/transferreport', 'ReportController@transferReport');
-    Route::post('/transferreport', 'ReportController@transferReportFilter');
-
-    Route::get('/receivablereport', 'ReportController@receivableReport');
-    Route::post('/receivablereport', 'ReportController@receivableReportFilter');
-
-    Route::get('/customercreditreport', 'ReportController@customerCreditReport');
-    Route::post('/customercreditreport', 'ReportController@customerCreditReportFilter');
-
-    Route::get('/stockbalancereport', 'ReportController@stockBalanceReport');
-    Route::post('/stockbalancereport', 'ReportController@stockBalanceReportFilter');
-
-    Route::get('/stockinoutreport', 'ReportController@stockInOutReport');
-    Route::post('/stockinoutreport', 'ReportController@stockInOutReportFilter');
-
-    Route::get('/processreportbyemployee', 'ReportController@processReportByEmployee');
-    Route::post('/processreportbyemployee', 'ReportController@processReportByEmployeeFilter');
-
-    Route::get('/processreportdaily', 'ReportController@processReportDaily');
-    Route::post('/processreportdaily', 'ReportController@processReportDailyFilter');
+    Report::routes();
 });

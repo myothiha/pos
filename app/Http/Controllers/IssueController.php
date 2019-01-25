@@ -115,8 +115,9 @@ class IssueController extends Controller
             'remark' => 'required',
         ]);
 
-        $issue = new $this->issue();
+        $issue = new Issue();
         $issue->employee_id = $request->employee_id;
+        $issue->type = $request->type;
         $issue->quantity = $request->quantity;
         $issue->paint = $request->paint;
         $issue->tinder = $request->tinder;
