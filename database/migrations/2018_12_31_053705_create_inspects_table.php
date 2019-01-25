@@ -15,6 +15,7 @@ class CreateInspectsTable extends Migration
         Schema::create('inspects', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('issue_id')->nullable();
+            $table->unsignedInteger('item_id')->nullable();
             $table->unsignedInteger('employee_id');
             $table->unsignedInteger('acceptQty');
             $table->unsignedInteger('rejectQty');

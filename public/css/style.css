@@ -7,6 +7,10 @@
 }
 
 .select2 .selection .select2-selection {
-	height: 45px;
+	height: 35px;
 	border: 1px solid #e6e6e6;
+}
+
+.select2 .selection .select2-selection .select2-selection__rendered {
+	padding: 8px 0px;
 }

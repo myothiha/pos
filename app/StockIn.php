@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Location;
 /**
  * App\StockIn
  *
@@ -36,4 +36,20 @@ class StockIn extends Model
     {
         return $this->belongsToMany(Item::class, 'stock_in_details');
     }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
+
 }

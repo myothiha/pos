@@ -23,8 +23,8 @@
                     <div class="col-lg-12">
                         <div class="sm-wrapper">
                             <div class="sm-box">
-                                <form action="{{ action('ReportController@receivableReportFilter') }}"
-                                      class="form-horizontal form-bordered" method="post">
+                                <form action="{{ action('ReportController@receivableReport') }}"
+                                      class="form-horizontal form-bordered" method="get">
 
                                     @csrf
 
@@ -32,7 +32,7 @@
                                         <label class="col-md-4 col-form-label">Date Range</label>
                                         <div class="col-md-8">
                                             <div class="input-group date input-group--style-1" id="default-daterange">
-                                                <input class="form-control" type="text" name="daterange"/>
+                                                <input class="form-control" type="text" name="daterange" readonly="true"/>
                                             </div>
                                         </div>
                                     </div>

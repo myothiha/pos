@@ -13,7 +13,7 @@
         <div class="breadcrumb-pageheader p-b-25">
             <ol class="breadcrumb sm-breadcrumb">
                 <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ action('ReportController@saleReportByItemDetail') }}">Sale Report By Item</a></li>
+                <li class="breadcrumb-item"><a href="{{ action('ReportController@saleReportByItemDetail', $item->id) }}">Sale Report By Item</a></li>
             </ol>
             <h6 class="sm-pagetitle--style-1 has_page_title">Sale Report By Item</h6>
         </div>
@@ -31,7 +31,7 @@
                                     <label class="col-md-4 col-form-label">Date Range</label>
                                     <div class="col-md-8">
                                         <div class="input-group date input-group--style-1" id="default-daterange">
-                                            <input class="form-control" type="text" name="daterange" />
+                                            <input class="form-control" type="text" name="daterange" readonly="true" />
                                         </div>
                                     </div>
                                 </div>

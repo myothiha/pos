@@ -25,7 +25,7 @@
                 <div class="col-lg-12">
                     <div class="sm-wrapper">
                         <div class="sm-box">
-                            <form action="{{ action('ReportController@processReportDailyFilter') }}" class="form-horizontal form-bordered" method="post">
+                            <form action="{{ action('ReportController@processReportDaily') }}" class="form-horizontal form-bordered" method="post">
 
                                 @csrf
 
@@ -33,7 +33,7 @@
                                     <label class="col-md-3 col-form-label">Date Range</label>
                                     <div class="col-md-9">
                                         <div class="input-group date input-group--style-1" id="default-daterange">
-                                            <input class="form-control" type="text" name="daterange" />
+                                            <input class="form-control" type="text" name="daterange" readonly="true" />
                                         </div>
                                     </div>
                                 </div>

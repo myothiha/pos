@@ -11,7 +11,6 @@ class Report
         Route::get('/stockinreport', 'ReportController@stockInReport');
 
         Route::get('/salereport', 'ReportController@saleReport');
-        Route::post('/salereport', 'ReportController@saleReportFilter');
 
         Route::get('/sale-report-by-item', 'ReportController@saleReportByItem');
         Route::get('/sale-report-item-detail/{item}', 'ReportController@saleReportByItemDetail');

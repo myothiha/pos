@@ -23,9 +23,32 @@ use Illuminate\Support\Collection;
 
 class ReportController extends Controller
 {
-    public function stockInReport()
+    public function stockInReport(Request $request)
     {
-        $stockIns = StockIn::all();
+        $stockIns = StockIn::query()
+        ->when($request->daterange, function ($q) use ($request) {
+            $dateRange = explode(' - ', $request->daterange);
+            $from = Carbon::parse($dateRange[0]);
+            $to = Carbon::parse($dateRange[1]);
+            return $q->whereDate('created_at', '>=', $from)
+                ->whereDate('created_at', '<=', $to);
+        })->get();
+
+        // $itemSales = $stockIns
+        //     ->mapToGroups(function (StockIn $stockIns) {
+        //         return [
+        //             $sale->created_at->toDateString() => $sale
+        //         ];
+        //     })->map(function (Collection $sales, $date) {
+        //         return [
+        //             'quantity' => $sales->sum(function (Sale $sale) {
+        //                 return $sale->pivot->quantity;
+        //             }),
+        //             'total' => $sales->sum(function (Sale $sale) {
+        //                 return $sale->pivot->total;
+        //             }),
+        //         ];
+        //     });
 
         return view('admin.report.stockInReport', [
             'stockIns' => $stockIns,
@@ -33,15 +56,6 @@ class ReportController extends Controller
     }
 
     public function saleReport(Request $request)
-    {
-        $sales = Sale::all();
-
-        return view('admin.report.saleReport', [
-            'sales' => $sales,
-        ]);
-    }
-
-    public function saleReportFilter(Request $request)
     {
         $sales = Sale::query()
         ->when($request->saleType, function ($q) use ($request) {
@@ -145,9 +159,17 @@ class ReportController extends Controller
         ]);
     }
 
-    public function receivableReport()
+    public function receivableReport(Request $request)
     {
-        $receivables = Receivable::all();
+        $receivables = Receivable::query()
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
+
         return view('admin.report.receivableReport', [
             'receivables' => $receivables,
         ]);
@@ -171,11 +193,6 @@ class ReportController extends Controller
         ]);
     }
 
-    public function customerCreditReportFilter(Request $request)
-    {
-        //
-    }
-
     public function stockBalanceReport()
     {
         $stocks = Store::all();
@@ -184,29 +201,14 @@ class ReportController extends Controller
         ]);
     }
 
-    public function stockBalanceReportFilter(Request $request)
-    {
-        //
-    }
-
     public function processReportByEmployee()
     {
         $inspects = Inspect::all();
         return view('admin.report.processReportByEmployee');
     }
 
-    public function processReportByEmployeeFilter(Request $request)
-    {
-        //
-    }
-
     public function processReportDaily()
     {
         return view('admin.report.processReportDaily');
-    }
-
-    public function processReportDailyFilter(Request $request)
-    {
-        //
     }
 }

@@ -31,7 +31,7 @@
                                     <label class="col-md-3 col-form-label">Date Range</label>
                                     <div class="col-md-9">
                                         <div class="input-group date input-group--style-1" id="default-daterange">
-                                            <input class="form-control" type="text" name="daterange" />
+                                            <input class="form-control" type="text" name="daterange" readonly="true" />
                                         </div>
                                     </div>
                                 </div>

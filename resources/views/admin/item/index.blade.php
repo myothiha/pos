@@ -34,7 +34,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Remark</th>
+                                        <th>Color</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -44,7 +44,7 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->remark }}</td>
+                                            <td>{{ $item->color->name }}</td>
                                             <td width="20%">
                                                 <form
                                                     action="{{ action('ItemController@destroy', $item->id) }}"

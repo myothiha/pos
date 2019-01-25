@@ -190,7 +190,7 @@
                                 <a href="{{ action('IssueController@getItem') }}" class="dropdown-item">Issue</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('InspectController@create') }}" class="dropdown-item">Inspect</a>
+                                <a href="{{ action('InspectController@getItem') }}" class="dropdown-item">Inspect</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="dropdown-item">Repair</a>

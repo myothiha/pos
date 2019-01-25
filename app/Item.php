@@ -90,7 +90,7 @@ class Item extends Model implements Buyable
 
     public function stockIns()
     {
-        return $this->belongsToMany(StockIn::class, 'stock_in_details');
+        return $this->belongsToMany(StockIn::class, 'stock_in_details')->withPivot('quantity');
     }
 
     public function transfers()

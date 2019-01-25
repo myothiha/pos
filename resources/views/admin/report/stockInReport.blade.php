@@ -25,7 +25,7 @@
                 <div class="col-lg-12">
                     <div class="sm-wrapper">
                         <div class="sm-box">
-                            <form action="{{ action('ReportController@stockInReportFilter') }}" class="form-horizontal form-bordered" method="post">
+                            <form action="{{ action('ReportController@stockInReport') }}" class="form-horizontal form-bordered" method="post">
 
                                 @csrf
 
@@ -33,7 +33,7 @@
                                     <label class="col-md-4 col-form-label">Date Range</label>
                                     <div class="col-md-8">
                                         <div class="input-group date input-group--style-1" id="default-daterange">
-                                            <input class="form-control" type="text" name="daterange" />
+                                            <input class="form-control" type="text" name="daterange"readonly="true" />
                                         </div>
                                     </div>
                                 </div>
@@ -65,42 +65,17 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="odd gradeX">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.0</td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr class="odd gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.5</td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr class="even gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 6</td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                </tr>
+                                @foreach($stockIns as $index => $stockIn)
+                                    <tr class="odd gradeX">
+                                        <td>{{ ++$index }}</td>
+                                        <td>{{ $stockIn->created_at }}</td>
+                                        <td>{{ $stockIn->voucherNo }}</td>
+                                        <td>{{ $stockIn->location->name }}</td>
+                                        <td>{{ $stockIn->supplier->name }}</td>
+
+                                        <td>{{ $item['quantity'] }}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
 
