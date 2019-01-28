@@ -60,8 +60,7 @@
                                     <th>Voucher NO</th>
                                     <th>Location</th>
                                     <th>Supplier</th>
-                                    <th>Item</th>
-                                    <th>Quantity</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -72,18 +71,15 @@
                                         <td>{{ $stockIn->voucherNo }}</td>
                                         <td>{{ $stockIn->location->name }}</td>
                                         <td>{{ $stockIn->supplier->name }}</td>
-
-                                        <td>{{ $item['quantity'] }}</td>
+                                        <td><a class="btn btn-primary" href="#">Detail</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>

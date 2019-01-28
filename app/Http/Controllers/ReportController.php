@@ -33,26 +33,14 @@ class ReportController extends Controller
             return $q->whereDate('created_at', '>=', $from)
                 ->whereDate('created_at', '<=', $to);
         })->get();
-
-        // $itemSales = $stockIns
-        //     ->mapToGroups(function (StockIn $stockIns) {
-        //         return [
-        //             $sale->created_at->toDateString() => $sale
-        //         ];
-        //     })->map(function (Collection $sales, $date) {
-        //         return [
-        //             'quantity' => $sales->sum(function (Sale $sale) {
-        //                 return $sale->pivot->quantity;
-        //             }),
-        //             'total' => $sales->sum(function (Sale $sale) {
-        //                 return $sale->pivot->total;
-        //             }),
-        //         ];
-        //     });
-
         return view('admin.report.stockInReport', [
             'stockIns' => $stockIns,
         ]);
+    }
+
+    public function stockInReportDetail()
+    {
+      return view('admin.report.stockInReportDetail');
     }
 
     public function saleReport(Request $request)
@@ -72,6 +60,11 @@ class ReportController extends Controller
         return view('admin.report.saleReport', [
             'sales' => $sales,
         ]);
+    }
+
+    public function saleReportDetail()
+    {
+      return view('admin.report.saleReportDetail');
     }
 
     public function saleReportByItem(Request $request)

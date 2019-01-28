@@ -50,6 +50,7 @@
                 <div class="col-lg-12">
                     <div class="sm-wrapper">
                         <div class="sm-box">
+                            <h3>Issue</h3>
                             <table class="table table-striped table-bordered nowrap w-in-100">
                                 <thead>
                                 <tr>
@@ -105,7 +106,63 @@
                                 </tr>
                                 </tbody>
                             </table>
-
+                            <hr>
+                            <h3>Inspect</h3>
+                            <table class="table table-striped table-bordered nowrap w-in-100">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Date</th>
+                                    <th>Item</th>
+                                    <th>Color</th>
+                                    <th>Paint Consume</th>
+                                    <th>Paint Finished</th>
+                                    <th>Liker Consume</th>
+                                    <th>Liker FInished</th>
+                                    <th>Reject Quantity</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="odd gradeX">
+                                    <td>Trident</td>
+                                    <td>Internet Explorer 4.0</td>
+                                    <td>Win 95+</td>
+                                    <td>4</td>
+                                    <td>Internet Explorer 4.0</td>
+                                    <td>4</td>
+                                    <td>Win 95+</td>
+                                    <td>4</td>
+                                    <td>Internet Explorer 4.0</td>
+                                </tr>
+                                <tr class="even gradeC">
+                                    <td>Trident</td>
+                                    <td>Internet Explorer 5.0</td>
+                                    <td>Win 95+</td>
+                                    <td>5</td>
+                                    <td>Internet Explorer 4.0</td>
+                                    <td>4</td>
+                                    <td>Win 95+</td>
+                                    <td>4</td>
+                                    <td>Internet Explorer 4.0</td>
+                                </tr>
+                                <tr class="odd gradeA">
+                                    <td>Trident</td>
+                                    <td>Internet Explorer 5.5</td>
+                                    <td>Win 95+</td>
+                                    <td>5.5</td>
+                                    <td>Internet Explorer 4.0</td>
+                                    <td>4</td>
+                                </tr>
+                                <tr class="even gradeA">
+                                    <td>Trident</td>
+                                    <td>Internet Explorer 6</td>
+                                    <td>Win 98+</td>
+                                    <td>6</td>
+                                    <td>Internet Explorer 4.0</td>
+                                    <td>4</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

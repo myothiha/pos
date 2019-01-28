@@ -8,19 +8,21 @@ class Report
 {
     public static function routes()
     {
-        Route::get('/stockinreport', 'ReportController@stockInReport');
+        Route::get('/stockin-report', 'ReportController@stockInReport');
+        Route::get('/stockin-report-detail', 'ReportController@stockInReportDetail');
 
-        Route::get('/salereport', 'ReportController@saleReport');
+        Route::get('/sale-report', 'ReportController@saleReport');
+        Route::get('/sale-report-detail', 'ReportController@saleReportDetail');
 
         Route::get('/sale-report-by-item', 'ReportController@saleReportByItem');
         Route::get('/sale-report-item-detail/{item}', 'ReportController@saleReportByItemDetail');
 
-        Route::get('/transferreport', 'ReportController@transferReport');
-        Route::get('/receivablereport', 'ReportController@receivableReport');
-        Route::get('/customercreditreport', 'ReportController@customerCreditReport');
-        Route::get('/stockbalancereport', 'ReportController@stockBalanceReport');
+        Route::get('/transfer-report', 'ReportController@transferReport');
+        Route::get('/receivable-report', 'ReportController@receivableReport');
+        Route::get('/customer-credit-report', 'ReportController@customerCreditReport');
+        Route::get('/stock-balance-report', 'ReportController@stockBalanceReport');
 
-        Route::get('/processreportbyemployee', 'ReportController@processReportByEmployee');
-        Route::get('/processreportdaily', 'ReportController@processReportDaily');
+        Route::get('/process-reportby-employee', 'ReportController@processReportByEmployee');
+        Route::get('/process-report-daily', 'ReportController@processReportDaily');
     }
 }

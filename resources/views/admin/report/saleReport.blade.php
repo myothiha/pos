@@ -80,7 +80,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
                                     @foreach( $sales as $index => $sale )
                                         <tr class="odd gradeX">
                                             <td>{{ ++$index }}</td>
