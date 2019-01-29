@@ -37,6 +37,21 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label class="col-md-3 col-form-label">Employees </label>
+                                    <div class="col-md-9">
+                                        <div class="input-group date input-group--style-1"
+                                             id="default-daterange">
+                                            <select name="employee_id" class="form-control" id="customer_id">
+                                                <option value="">Select Employee</option>
+                                                @foreach( $employees as $employee)
+                                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <div class="col-md-12 text-right" style="margin-top: 15px;">
                                         <input type="submit" class="btn btn-primary" value="Generate">
                                     </div>
@@ -56,54 +71,33 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Date</th>
+                                    <th>Employee</th>
                                     <th>Item</th>
                                     <th>Color</th>
                                     <th>Paint Consume</th>
                                     <th>Paint Finished</th>
                                     <th>Liker Consume</th>
-                                    <th>Liker FInished</th>
-                                    <th>Reject Quantity</th>
+                                    <th>Liker Finished</th>
+                                    <th>Tinder Comsume</th>
+                                    <th>Tinder Finished</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="odd gradeX">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>Internet Explorer 4.0</td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.0</td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>Internet Explorer 4.0</td>
-                                </tr>
-                                <tr class="odd gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.5</td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr class="even gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 6</td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                </tr>
+                                @foreach($issues as $index => $issue)
+                                    <tr class="odd gradeX">
+                                        <td>{{ ++$index }}</td>
+                                        <td>{{ $issue->created_at }}</td>
+                                        <td>{{ $issue->employee->name }}</td>
+                                        <td>{{ $issue->item->name }}</td>
+                                        <td>{{ $issue->quantity }}</td>
+                                        <td>{{ $issue->paint }}</td>
+                                        <td>Comming Soon</td>
+                                        <td>{{ $issue->liker }}</td>
+                                        <td>Comming Soon</td>
+                                        <td>{{ $issue->tinder }}</td>
+                                        <td>Comming Soon</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <hr>
@@ -113,54 +107,23 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Date</th>
+                                    <th>Employee</th>
                                     <th>Item</th>
-                                    <th>Color</th>
-                                    <th>Paint Consume</th>
-                                    <th>Paint Finished</th>
-                                    <th>Liker Consume</th>
-                                    <th>Liker FInished</th>
-                                    <th>Reject Quantity</th>
+                                    <th>Accepted Quantity</th>
+                                    <th>Rejected Quantity</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="odd gradeX">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>Internet Explorer 4.0</td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.0</td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>Internet Explorer 4.0</td>
-                                </tr>
-                                <tr class="odd gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.5</td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr class="even gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 6</td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                </tr>
+                                @foreach($inspects as $index => $inspect)
+                                    <tr class="odd gradeX">
+                                        <td>{{ ++$index }}</td>
+                                        <td>{{ $inspect->created_at }}</td>
+                                        <td>{{ $inspect->employee->name }}</td>
+                                        <td>{{ $inspect->item->name }}</td>
+                                        <td>{{ $inspect->acceptQty }}</td>
+                                        <td>{{ $inspect->rejectQty }}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -173,12 +136,15 @@
 </section>
 <!--END CONTENT-->
 <script>
-$(function() {
-  $('input[name="daterange"]').daterangepicker({
-    opens: 'left'
-  }, function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
-});
+    $(function() {
+      $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+      }, function(start, end, label) {
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      });
+    });
+    $(document).ready(function () {
+        $('#customer_id').select2();
+    });
 </script>
 @endsection

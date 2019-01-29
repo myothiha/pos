@@ -194,14 +194,62 @@ class ReportController extends Controller
         ]);
     }
 
-    public function processReportByEmployee()
+    public function processReportByEmployee(Request $request)
     {
-        $inspects = Inspect::all();
-        return view('admin.report.processReportByEmployee');
+        $inspects = Inspect::query()
+            ->when($request->employee_id, function ($q) use ($request) {
+                return $q->where('employee_id', '=', $request->employee_id);
+            })
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
+
+        $issues = Issue::query()
+            ->when($request->employee_id, function ($q) use ($request) {
+                return $q->where('employee_id', '=', $request->employee_id);
+            })
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
+
+        return view('admin.report.processReportByEmployee', [
+            'employees' => Employee::all(),
+            'inspects' => $inspects,
+            'issues' => $issues,
+        ]);
     }
 
-    public function processReportDaily()
+    public function processReportDaily(Request $request)
     {
-        return view('admin.report.processReportDaily');
+        $inspects = Inspect::query()
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
+
+        $issues = Issue::query()
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
+
+        return view('admin.report.processReportDaily', [
+            'inspects' => $inspects,
+            'issues' => $issues,
+        ]);
     }
 }

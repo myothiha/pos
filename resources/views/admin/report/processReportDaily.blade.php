@@ -25,10 +25,7 @@
                 <div class="col-lg-12">
                     <div class="sm-wrapper">
                         <div class="sm-box">
-                            <form action="{{ action('ReportController@processReportDaily') }}" class="form-horizontal form-bordered" method="post">
-
-                                @csrf
-
+                            <form action="{{ action('ReportController@processReportDaily') }}" class="form-horizontal form-bordered" method="get">
                                 <div class="form-group row">
                                     <label class="col-md-3 col-form-label">Date Range</label>
                                     <div class="col-md-9">
@@ -60,48 +57,25 @@
                                     <th>Date</th>
                                     <th>Employee</th>
                                     <th>Item</th>
+                                    <th>Quantity</th>
                                     <th>Paint Finished</th>
                                     <th>Liker FInished</th>
-                                    <th>Reject Quantity</th>
+                                    <th>Tinder FInished</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="odd gradeX">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>Win 95+</td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.0</td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>Win 95+</td>
-                                </tr>
-                                <tr class="odd gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.5</td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr class="even gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 6</td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                </tr>
+                                @foreach($issues as $index => $issue)
+                                    <tr class="odd gradeX">
+                                        <td>{{ ++$index }}</td>
+                                        <td>{{ $issue->created_at->todatestring() }}</td>
+                                        <td>{{ $issue->employee->name }}</td>
+                                        <td>{{ $issue->item->name }}</td>
+                                        <td>{{ $issue->quantity }}</td>
+                                        <td>{{ $issue->paint }}</td>
+                                        <td>{{ $issue->liker }}</td>
+                                        <td>{{ $issue->tinder }}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <hr>
@@ -113,48 +87,21 @@
                                     <th>Date</th>
                                     <th>Employee</th>
                                     <th>Item</th>
-                                    <th>Paint Finished</th>
-                                    <th>Liker FInished</th>
+                                    <th>Accepted Quantity</th>
                                     <th>Reject Quantity</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="odd gradeX">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>Win 95+</td>
-                                </tr>
-                                <tr class="even gradeC">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.0</td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>Win 95+</td>
-                                </tr>
-                                <tr class="odd gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 5.5</td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr class="even gradeA">
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 6</td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                </tr>
+                                @foreach($inspects as $index => $inspect)
+                                    <tr class="odd gradeX">
+                                        <td>{{ ++$index }}</td>
+                                        <td>{{ $inspect->created_at }}</td>
+                                        <td>{{ $inspect->employee->name }}</td>
+                                        <td>{{ $inspect->item->name }}</td>
+                                        <td>{{ $inspect->acceptQty }}</td>
+                                        <td>{{ $inspect->rejectQty }}</td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -30,5 +30,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Inspect extends Model
 {
-    //
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 }
