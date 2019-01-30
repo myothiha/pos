@@ -74,6 +74,7 @@ class ItemController extends Controller
         $item->remark = $request->remark;
         $item->save();
 
+        $request->session()->flash('alert-success', 'Item was successful added!');
         return redirect("admin/item");
     }
 
@@ -133,6 +134,7 @@ class ItemController extends Controller
         $item->remark = $request->remark;
         $item->save();
 
+        $request->session()->flash('alert-success', 'Item was successful updated!');
         return redirect("admin/item");
     }
 
@@ -142,9 +144,10 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(Request $request Item $item)
     {
         $item->Delete();
+        $request->session()->flash('alert-danger', 'Item was successful deleted!');
         return redirect("admin/item");
     }
 }

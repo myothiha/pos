@@ -3,7 +3,6 @@
 @section('title', 'View Employee Data')
 
 @section('content')
-
 <!--BEGIN CONTENT-->
 <section id="main_content" class="bg slice-sm sct-color-1">
     <div class="container" id="container">
@@ -25,6 +24,14 @@
         <!--BEGIN PAGE CONTENT-->
         <div class="sm-content">
             <div class="sm-content-box">
+                <div class="row">
+                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                      @if(Session::has('alert-' . $msg))
+
+                      <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">  &times;</a></p>
+                      @endif
+                    @endforeach
+                </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="sm-wrapper">

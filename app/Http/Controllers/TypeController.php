@@ -51,6 +51,7 @@ class TypeController extends Controller
         $type->name = $request->name;
         $type->save();
 
+        $request->session()->flash('alert-success', 'Type was successful added!');
         return redirect("admin/type");
     }
 
@@ -94,6 +95,7 @@ class TypeController extends Controller
         $type->name = $request->name;
         $type->save();
 
+        $request->session()->flash('alert-success', 'Type was successful updated!');
         return redirect("admin/type");
     }
 
@@ -103,9 +105,10 @@ class TypeController extends Controller
      * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy(Request $request, Type $type)
     {
         $type->Delete();
+        $request->session()->flash('alert-danger', 'Employee was successful deleted!');
         return redirect("admin/type");
     }
 }

@@ -56,6 +56,7 @@ class EmployeeController extends Controller
         $employee->address = $request->address;
         $employee->save();
 
+        $request->session()->flash('alert-success', 'Employee was successful added!');
         return redirect("admin/employee");
     }
 
@@ -103,6 +104,7 @@ class EmployeeController extends Controller
         $employee->address = $request->address;
         $employee->save();
 
+        $request->session()->flash('alert-success', 'Employee was successful updated!');
         return redirect("admin/employee");
     }
 
@@ -112,9 +114,10 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(Request $request, Employee $employee)
     {
         $employee->delete();
+        $request->session()->flash('alert-danger', 'Employee was successful deleted!');
         return redirect("admin/employee");
     }
 }

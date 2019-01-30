@@ -5,7 +5,11 @@
 @section('title', 'Customer Credit Report')
 
 @section('content')
-
+    <style type="text/css">
+        .select2 .selection .select2-selection .select2-selection__rendered {
+            padding: 8px 0px;
+        }
+    </style>
     <!--BEGIN CONTENT-->
     <section id="main_content" class="bg slice-sm sct-color-1">
         <div class="container" id="container">

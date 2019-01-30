@@ -53,6 +53,7 @@ class CustomerController extends Controller
         $customer->address = $request->address;
         $customer->save();
 
+        $request->session()->flash('alert-success', 'Customer was successful added!');
         return redirect("admin/customer");
     }
 
@@ -98,6 +99,7 @@ class CustomerController extends Controller
         $customer->address = $request->address;
         $customer->save();
 
+        $request->session()->flash('alert-success', 'Customer was successful updated!');
         return redirect("admin/customer");
     }
 
@@ -107,9 +109,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(Request $request Customer $customer)
     {
         $customer->Delete();
+        $request->session()->flash('alert-danger', 'Customer was successful deleted!');
         return redirect("admin/customer");
     }
 }

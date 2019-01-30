@@ -51,6 +51,7 @@ class LocationController extends Controller
         $location->name = $request->name;
         $location->save();
 
+        $request->session()->flash('alert-success', 'Location was successful added!');
         return redirect("admin/location");
     }
 
@@ -94,6 +95,7 @@ class LocationController extends Controller
         $location->name = $request->name;
         $location->save();
 
+        $request->session()->flash('alert-success', 'Location was successful updated!');
         return redirect("admin/location");
     }
 
@@ -103,9 +105,10 @@ class LocationController extends Controller
      * @param  \App\Location  $location
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Location $location)
+    public function destroy(Request $request, Location $location)
     {
         $location->Delete();
+        $request->session()->flash('alert-danger', 'Location was successful deleted!');
         return redirect("admin/location");
     }
 }

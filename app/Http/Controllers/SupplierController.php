@@ -53,6 +53,7 @@ class SupplierController extends Controller
         $supplier->address = $request->address;
         $supplier->save();
 
+        $request->session()->flash('alert-success', 'Supplier was successful added!');
         return redirect("admin/supplier");
     }
 
@@ -98,6 +99,7 @@ class SupplierController extends Controller
         $supplier->address = $request->address;
         $supplier->save();
 
+        $request->session()->flash('alert-success', 'Supplier was successful updated!');
         return redirect("admin/supplier");
     }
 
@@ -107,9 +109,10 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy(Request $request, Supplier $supplier)
     {
         $supplier->Delete();
+        $request->session()->flash('alert-danger', 'Supplier was successful deleted!');
         return redirect("admin/supplier");
     }
 }

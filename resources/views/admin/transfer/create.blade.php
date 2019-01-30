@@ -83,6 +83,7 @@
                                                             <div class="col-lg-2">
                                                                 <select class="form-control" id="type_id"
                                                                         name="type_id">
+                                                                        <option value="">Select Type</option>
                                                                     @foreach($types as $type)
                                                                         <option
                                                                                 value="{{ $type->id }}">{{ $type->name }}</option>
@@ -92,6 +93,7 @@
                                                             <div class="col-lg-2">
                                                                 <select class="form-control" id="category_id"
                                                                         name="category_id">
+                                                                        <option value="">Select Category</option>
                                                                     @foreach($categories as $category)
                                                                         <option
                                                                                 value="{{ $category->id }}">{{ $category->name }}</option>

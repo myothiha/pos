@@ -23,7 +23,7 @@ class CreateSalesTable extends Migration
             $table->integer('totalAmount');
             $table->integer('paid');
             $table->integer('balance');
-            $table->text('remark');
+            $table->text('remark')->nullable();
             $table->string('isPaid')->default(Constants::TRUE);
             $table->timestamps();
             $table->softDeletes();

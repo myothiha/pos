@@ -51,6 +51,7 @@ class ColorController extends Controller
         $color->name = $request->name;
         $color->save();
 
+        $request->session()->flash('alert-success', 'Color was successful added!');
         return redirect("admin/color");
     }
 
@@ -94,6 +95,7 @@ class ColorController extends Controller
         $color->name = $request->name;
         $color->save();
 
+        $request->session()->flash('alert-success', 'Color was successful updated!');
         return redirect("admin/color");
     }
 
@@ -103,9 +105,10 @@ class ColorController extends Controller
      * @param  \App\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Color $color)
+    public function destroy(Request $request, Color $color)
     {
         $color->delete();
+        $request->session()->flash('alert-danger', 'Color was successful delete!');
         return redirect("admin/color");
     }
 }

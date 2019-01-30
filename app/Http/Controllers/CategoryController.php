@@ -51,6 +51,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
+        $request->session()->flash('alert-success', 'Category was successful added!');
         return redirect("admin/category");
     }
 
@@ -94,6 +95,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
 
+        $request->session()->flash('alert-success', 'Category was successful updated!');
         return redirect("admin/category");
     }
 
@@ -103,9 +105,10 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request, Category $category)
     {
         $category->Delete();
+        $request->session()->flash('alert-danger', 'Category was successful deleted!');
         return redirect("admin/category");
     }
 }
