@@ -138,6 +138,7 @@ class StockOpeningController extends Controller
             dd($e->getMessage()); //Todo Remove
         }
 
+        $request->session()->flash('alert-success', 'StockOpening has been processed!');
         return redirect()->action('StockOpeningController@getItem');
     }
 

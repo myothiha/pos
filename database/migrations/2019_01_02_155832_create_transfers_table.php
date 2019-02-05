@@ -16,7 +16,7 @@ class CreateTransfersTable extends Migration
             $table->increments('id');
             $table->string('voucherNo');
             $table->unsignedInteger('location_id');
-            $table->text('remark');
+            $table->text('remark')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

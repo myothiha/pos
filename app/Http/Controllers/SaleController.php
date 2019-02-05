@@ -136,6 +136,7 @@ class SaleController extends Controller
             dd($e->getMessage());
         }
 
+        $request->session()->flash('alert-success', 'Sale has been processed!');
         return redirect()->action('SaleController@create');
     }
 

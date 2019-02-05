@@ -71,6 +71,7 @@ class ReceivableOpeningController extends Controller
             dd($e); // Todo Remove
         }
 
+        $request->session()->flash('alert-success', 'ReceivableOpening has been processed!');
         return redirect()->action('ReceivableOpeningController@index');
     }
 

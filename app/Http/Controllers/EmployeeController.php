@@ -46,6 +46,10 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'dob' => 'required',
+            'gender' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
         ]);
 
         $employee = new $this->employee();
@@ -95,6 +99,10 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'dob' => 'required',
+            'gender' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
         ]);
 
         $employee->name = $request->name;

@@ -114,6 +114,7 @@ class InspectController extends Controller
         $inspect->item_id = $request->item_id;
         $inspect->save();
 
+        $request->session()->flash('alert-success', 'Inspect has been processed!');
         return redirect()->action('InspectController@getItem');
     }
 

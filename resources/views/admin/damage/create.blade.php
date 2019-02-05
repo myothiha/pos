@@ -74,6 +74,7 @@
                                             </ul>
                                             <br>
                                             {{ csrf_field() }}
+                                            @include('admin.errors.error')
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group has-feedback">

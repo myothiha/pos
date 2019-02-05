@@ -144,7 +144,7 @@ class ItemController extends Controller
      * @param  \App\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request Item $item)
+    public function destroy(Request $request, Item $item)
     {
         $item->Delete();
         $request->session()->flash('alert-danger', 'Item was successful deleted!');

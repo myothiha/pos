@@ -21,7 +21,7 @@ class CreateIssuesTable extends Migration
             $table->string('paint');
             $table->string('tinder');
             $table->string('liker');
-            $table->text('remark');
+            $table->text('remark')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

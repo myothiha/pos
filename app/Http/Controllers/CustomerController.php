@@ -109,7 +109,7 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request Customer $customer)
+    public function destroy(Request $request, Customer $customer)
     {
         $customer->Delete();
         $request->session()->flash('alert-danger', 'Customer was successful deleted!');

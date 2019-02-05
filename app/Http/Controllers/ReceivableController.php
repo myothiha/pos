@@ -85,6 +85,7 @@ class ReceivableController extends Controller
             dd($e->getMessage()); //Todo remove
         }
 
+        $request->session()->flash('alert-success', 'Receivable has been processed!');
         return redirect()->action('ReceivableController@getCustomer');
     }
 

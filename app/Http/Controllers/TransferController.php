@@ -105,6 +105,7 @@ class TransferController extends Controller
             dd($e->getMessage());
         }
 
+        $request->session()->flash('alert-success', 'Transfer has been processed!');
         return redirect()->action('TransferController@create');
     }
 

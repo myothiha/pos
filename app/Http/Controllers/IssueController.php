@@ -125,6 +125,7 @@ class IssueController extends Controller
         $issue->remark = $request->remark;
         $item->issues()->save($issue);
 
+        $request->session()->flash('alert-success', 'Issue has been processed!');
         return redirect()->action('IssueController@getItem');
     }
 

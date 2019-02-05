@@ -97,6 +97,7 @@ class StockInController extends Controller
             dd($e->getMessage()); // Todo Remove
         }
 
+        $request->session()->flash('alert-success', 'Stock In has been processed!');
         return redirect()->action('StockInController@create');
     }
 

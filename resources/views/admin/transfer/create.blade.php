@@ -114,6 +114,7 @@
 
                                             <div class="sm-content">
                                                 <div class="sm-content-box">
+                                                    @include('admin.errors.error')
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="sm-wrapper">

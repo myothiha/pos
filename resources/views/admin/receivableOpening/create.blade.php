@@ -26,6 +26,7 @@
         <div class="sm-content">
             <div class="sm-content-box">
                 <div class="row">
+                    @include('admin.errors.error')
                     <div class="col-lg-12">
                         <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
                             <div class="sm-box">

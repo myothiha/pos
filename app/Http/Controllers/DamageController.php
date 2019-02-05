@@ -22,15 +22,6 @@ class DamageController extends Controller
         $this->color = new Color();
         $this->damage = new Damage();
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('admin.damage.index');
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -128,6 +119,7 @@ class DamageController extends Controller
         } catch (\Throwable $e) {
         }
 
+        $request->session()->flash('alert-success', 'Damage has been processed!');
         return redirect()->action('DamageController@getItem');
     }
 

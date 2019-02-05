@@ -65,8 +65,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::resource('item', 'ItemController');
 
-    Route::resource('damage', 'DamageController');
-
     Route::resource('receivable-opening', 'ReceivableOpeningController');
 
     // sale
@@ -86,8 +84,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     // issue
 
-    Route::get('/issue', 'IssueController@getItem');
-    Route::post('/issue', 'IssueController@searchItems');
+    Route::get('/issue/get-item', 'IssueController@getItem');
+    Route::post('/issue/get-item', 'IssueController@searchItems');
 
 
     Route::get('issue/{item}/create', 'IssueController@create');
@@ -96,8 +94,8 @@ Route::group(['prefix' => 'admin'], function () {
 
     // inspect
 
-    Route::get('/inspect', 'InspectController@getItem');
-    Route::post('/inspect', 'InspectController@searchItems');
+    Route::get('/inspect/get-item', 'InspectController@getItem');
+    Route::post('/inspect/get-item', 'InspectController@searchItems');
 
 
     Route::get('inspect/{item}/create', 'InspectController@create');
@@ -106,19 +104,19 @@ Route::group(['prefix' => 'admin'], function () {
 
     //stockopening
 
-    Route::get('/stock-opening', 'StockOpeningController@getItem');
+    Route::get('stock-opening/get-item', 'StockOpeningController@getItem');
 
-    Route::post('/stock-opening', 'StockOpeningController@searchItems');
+    Route::post('stock-opening/get-item', 'StockOpeningController@searchItems');
 
     Route::get('stock-opening/{item}/create', 'StockOpeningController@create');
 
     Route::post('stock-opening/{item}', 'StockOpeningController@store');
 
     //damage
-    //
-    Route::get('/damage', 'DamageController@getItem');
+    
+    Route::get('damage/get-item', 'DamageController@getItem');
 
-    Route::post('/damage', 'DamageController@searchItems');
+    Route::post('damage/get-item', 'DamageController@searchItems');
 
     Route::get('damage/{item}/create', 'DamageController@create');
 

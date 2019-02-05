@@ -105,7 +105,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Category $category)
+    public function destroy(Request $Request, Category $category)
     {
         $category->Delete();
         $request->session()->flash('alert-danger', 'Category was successful deleted!');
