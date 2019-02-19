@@ -81,8 +81,8 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @param  \App\Item $item
+     * @return void
      */
     public function show(Item $item)
     {
@@ -141,13 +141,14 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Item  $item
+     * @param  \App\Item $item
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Request $request, Item $item)
     {
-        $item->Delete();
-        $request->session()->flash('alert-danger', 'Item was successful deleted!');
+        $item->delete();
+        $request->session()->flash('alert-success', 'Item was successful deleted!');
         return redirect("admin/item");
     }
 }
