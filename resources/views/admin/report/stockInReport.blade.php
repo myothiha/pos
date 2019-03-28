@@ -71,7 +71,7 @@
                                         <td>{{ $stockIn->voucherNo }}</td>
                                         <td>{{ $stockIn->location->name }}</td>
                                         <td>{{ $stockIn->supplier->name }}</td>
-                                        <td><a class="btn btn-primary" href="#">Detail</a></td>
+                                        <td><a class="btn btn-primary" href="{{ action('ReportController@stockInReportDetail', $stockIn->id) }}">Detail</a></td>
                                     </tr>
                                 @endforeach
                                 </tbody>

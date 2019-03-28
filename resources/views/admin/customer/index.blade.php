@@ -45,7 +45,7 @@
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $customer->name }}</td>
-                                            <td>{{ $customer->isActive }}</td>
+                                            <td>{{ $customer->phone }}</td>
                                             <td width="20%">
                                                 <form
                                                     action="{{ action('CustomerController@destroy', $customer->id) }}"

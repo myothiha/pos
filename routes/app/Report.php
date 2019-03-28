@@ -9,10 +9,10 @@ class Report
     public static function routes()
     {
         Route::get('/stockin-report', 'ReportController@stockInReport');
-        Route::get('/stockin-report-detail', 'ReportController@stockInReportDetail');
+        Route::get('/stockin-report-detail/{stockIn}', 'ReportController@stockInReportDetail');
 
         Route::get('/sale-report', 'ReportController@saleReport');
-        Route::get('/sale-report-detail', 'ReportController@saleReportDetail');
+        Route::get('/sale-report-detail/{sale}', 'ReportController@saleReportDetail');
 
         Route::get('/sale-report-by-item', 'ReportController@saleReportByItem');
         Route::get('/sale-report-item-detail/{item}', 'ReportController@saleReportByItemDetail');

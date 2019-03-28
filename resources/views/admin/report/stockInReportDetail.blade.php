@@ -57,6 +57,34 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tabs tabs--style-2" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="voucherNo">Voucher No</label>
+                                                        <input id="voucherNo" value="{{ $stockIn->voucherNo }}"
+                                                               type="text" class="form-control" name="voucherNo" readonly>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <div class="form-group has-feedback">
+                                                        <label for="suppliers">Supplier</label>
+                                                        <input id="voucherNo" value="{{ $supplier->name }}"
+                                                               type="text" class="form-control" name="supplier" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group has-feedback">
+                                                        <label for="location_id">Location</label>
+                                                        <input id="voucherNo" value="{{ $location->name }}"
+                                                               type="text" class="form-control" name="location" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <!-- Tab panes -->
                                             <div class="tab-content">
                                                 <div role="tabpanel" class="tab-pane active"
@@ -79,55 +107,16 @@
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                              <td>No</td>
-                                                              <td>Item</td>
-                                                              <td>Color</td>
-                                                              <td>Category</td>
-                                                              <td>Quantity</td>
-                                                              <td width="50px;"></td>
-                                                          </tr>
-                                                        </tbody>
-                                                        <tbody>
-                                                          <tr>
-                                                              <td class="product-name" rowspan="3" colspan="3">
-                                                                  <textarea name="remark" id="remark"
-                                                                            class="form-control"
-                                                                            cols="30" rows="3" placeholder="Remark"
-                                                                            tabindex="4"></textarea></td>
-                                                              <td class="product-list text-right"><label for="paid">Paid</label>
-                                                              </td>
-                                                              <td class="product-quanity d-none d-lg-table-cell">
-                                                                  <input type="text" id="paid" class="form-control"
-                                                                         name="paid" value=""
-                                                                         readonly=true onchange="updateBalance()"/>
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td class="product-list text-right">Discount (0%)</td>
-                                                              <td class="product-total">
-                                                                  <span id="discount"> 0 MMK</span>
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td class="product-list text-right">Balance</td>
-                                                              <td class="product-total">
-                                                                  <input type="hidden" id="balance"
-                                                                         class="form-control" name="balance"
-                                                                         value="0"/>
-                                                                  <span id="balance_amount"> 0 MMK</span>
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td class="product-list text-right" colspan="4">
-                                                                  Total
-                                                              </td>
-                                                              <td class="product-total">
-                                                                  <input type="hidden" id="total" class="form-control"
-                                                                         name="total" value=""/>
-                                                                  <span id="total_price"> MMK</span>
-                                                              </td>
-                                                          </tr>
+                                                            <?php $no = 0; ?>
+                                                            @foreach( $items as $date => $item )
+                                                                <tr class="odd gradeX">
+                                                                    <td>{{ ++$no }}</td>
+                                                                    <td>{{ $item->name }}</td>
+                                                                    <td>{{ $item->color->name }}</td>
+                                                                    <td>{{ $item->category->name }}</td>
+                                                                    <td>{{ $item->pivot->quantity }}</td>
+                                                                </tr>
+                                                            @endforeach
                                                         </tbody>
                                                     </table>
                                                 </div>

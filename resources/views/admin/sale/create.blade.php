@@ -220,9 +220,6 @@
                                                                 <th class="product-size d-none d-lg-table-cell">
                                                                     Color
                                                                 </th>
-                                                                {{--<th class="product-size d-none d-lg-table-cell">
-                                                                    Category
-                                                                </th>--}}
                                                                 <th class="product-price d-none d-md-table-cell">
                                                                     Price
                                                                 </th>
@@ -280,12 +277,7 @@
                                                                            readonly=true onchange="updateBalance()"/>
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td class="product-list text-right">Discount (0%)</td>
-                                                                <td class="product-total">
-                                                                    <span id="discount"> 0 MMK</span>
-                                                                </td>
-                                                            </tr>
+
                                                             <tr>
                                                                 <td class="product-list text-right">Balance</td>
                                                                 <td class="product-total">
@@ -296,7 +288,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="product-list text-right" colspan="4">
+                                                                <td class="product-list text-right">
                                                                     Total
                                                                 </td>
                                                                 <td class="product-total">

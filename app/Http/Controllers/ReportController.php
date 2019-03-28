@@ -9,10 +9,12 @@ use App\Employee;
 use App\Inspect;
 use App\Issue;
 use App\Item;
+use App\Location;
 use App\Receivable;
 use App\Sale;
 use App\StockIn;
 use App\Store;
+use App\Supplier;
 use App\Transfer;
 use App\Type;
 use Carbon\Carbon;
@@ -23,6 +25,10 @@ use Illuminate\Support\Collection;
 
 class ReportController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function stockInReport(Request $request)
     {
         $stockIns = StockIn::query()
@@ -38,11 +44,28 @@ class ReportController extends Controller
         ]);
     }
 
-    public function stockInReportDetail()
+    /**
+     * @param StockIn $stockIn
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function stockInReportDetail(StockIn $stockIn)
     {
-      return view('admin.report.stockInReportDetail');
+        $supplier = Supplier::find($stockIn->supplier_id);
+        $location = Location::find(($stockIn->location_id));
+        $items = $stockIn->items;
+
+        return view('admin.report.stockInReportDetail', [
+            'stockIn' => $stockIn,
+            'supplier' => $supplier,
+            'location' => $location,
+            'items' => $items
+        ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function saleReport(Request $request)
     {
         $sales = Sale::query()
@@ -62,9 +85,13 @@ class ReportController extends Controller
         ]);
     }
 
-    public function saleReportDetail()
+    public function saleReportDetail(Sale $sale)
     {
-      return view('admin.report.saleReportDetail');
+        $items = $sale->items;
+        return view('admin.report.saleReportDetail', [
+            'sale' => $sale,
+            'items' => $items
+        ]);
     }
 
     public function saleReportByItem(Request $request)
