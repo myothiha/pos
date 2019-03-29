@@ -25,7 +25,7 @@
                     <div class="col-lg-12">
                         <div class="sm-wrapper">
                             <div class="sm-box">
-                                <form action="{{ action('ReportController@saleReport') }}" class="form-horizontal form-bordered" method="post">
+                                <form action="{{ action('ReportController@saleReport') }}" class="form-horizontal form-bordered">
 
                                     @csrf
 

@@ -52,6 +52,10 @@ class ReceivableOpeningController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'balance' => 'required',
+        ]);
+
         $receivableOpening = new ReceivableOpening();
         $receivableOpening->location_id = $request->location_id;
         $receivableOpening->customer_id = $request->customer_id;

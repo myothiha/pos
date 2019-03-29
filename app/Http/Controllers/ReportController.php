@@ -213,9 +213,18 @@ class ReportController extends Controller
         ]);
     }
 
-    public function stockBalanceReport()
+    public function stockBalanceReport(Request $request)
     {
-        $stocks = Store::all();
+        $stocks = Store::query()
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
+
+
         return view('admin.report.stockBalanceReport', [
             'stocks' => $stocks,
         ]);
