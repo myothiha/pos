@@ -26,13 +26,13 @@ class ReportController extends Controller
     public function stockInReport(Request $request)
     {
         $stockIns = StockIn::query()
-        ->when($request->daterange, function ($q) use ($request) {
-            $dateRange = explode(' - ', $request->daterange);
-            $from = Carbon::parse($dateRange[0]);
-            $to = Carbon::parse($dateRange[1]);
-            return $q->whereDate('created_at', '>=', $from)
-                ->whereDate('created_at', '<=', $to);
-        })->get();
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
         return view('admin.report.stockInReport', [
             'stockIns' => $stockIns,
         ]);
@@ -40,22 +40,22 @@ class ReportController extends Controller
 
     public function stockInReportDetail()
     {
-      return view('admin.report.stockInReportDetail');
+        return view('admin.report.stockInReportDetail');
     }
 
     public function saleReport(Request $request)
     {
         $sales = Sale::query()
-        ->when($request->saleType, function ($q) use ($request) {
-            return $q->where('saleType', '=', $request->saleType);
-        })
-        ->when($request->daterange, function ($q) use ($request) {
-            $dateRange = explode(' - ', $request->daterange);
-            $from = Carbon::parse($dateRange[0]);
-            $to = Carbon::parse($dateRange[1]);
-            return $q->whereDate('created_at', '>=', $from)
-                ->whereDate('created_at', '<=', $to);
-        })->get();
+            ->when($request->saleType, function ($q) use ($request) {
+                return $q->where('saleType', '=', $request->saleType);
+            })
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
 
         return view('admin.report.saleReport', [
             'sales' => $sales,
@@ -64,7 +64,7 @@ class ReportController extends Controller
 
     public function saleReportDetail()
     {
-      return view('admin.report.saleReportDetail');
+        return view('admin.report.saleReportDetail');
     }
 
     public function saleReportByItem(Request $request)
@@ -189,6 +189,26 @@ class ReportController extends Controller
     public function stockBalanceReport()
     {
         $stocks = Store::all();
+
+        if ($request->search) {
+            $items->when($request->itemCode, function (Builder $q) use ($request) {
+                return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
+            })
+                ->when($request->itemName, function (Builder $q) use ($request) {
+                    return $q->where('name', 'LIKE', "%{$request->itemName}%");
+                })
+                ->when($request->color_id, function (Builder $q) use ($request) {
+                    return $q->where('color_id', '=', $request->color_id);
+                })
+                ->when($request->type_id, function (Builder $q) use ($request) {
+                    return $q->where('type_id', '=', $request->type_id);
+                })
+                ->when($request->category_id, function (Builder $q) use ($request) {
+                    return $q->where('category_id', '=', $request->category_id);
+                })
+                ->with('color')->with('category');
+        }
+
         return view('admin.report.stockBalanceReport', [
             'stocks' => $stocks,
         ]);
