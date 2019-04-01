@@ -2,32 +2,36 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use App\Location;
+use Illuminate\Support\Carbon;
+
 /**
  * App\StockIn
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|StockIn newModelQuery()
+ * @method static Builder|StockIn newQuery()
+ * @method static Builder|StockIn query()
+ * @method static Builder|StockIn whereCreatedAt($value)
+ * @method static Builder|StockIn whereId($value)
+ * @method static Builder|StockIn whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string $voucherNo
  * @property int $location_id
  * @property int $supplier_id
  * @property string $remark
  * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereLocationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereRemark($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereSupplierId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereVoucherNo($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
+ * @method static Builder|StockIn whereDeletedAt($value)
+ * @method static Builder|StockIn whereLocationId($value)
+ * @method static Builder|StockIn whereRemark($value)
+ * @method static Builder|StockIn whereSupplierId($value)
+ * @method static Builder|StockIn whereVoucherNo($value)
+ * @property-read Collection|Item[] $items
  */
 class StockIn extends Model
 {

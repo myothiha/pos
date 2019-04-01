@@ -3,146 +3,82 @@
 @section('title', 'View Transfer Data')
 
 @section('content')
+    <!--BEGIN CONTENT-->
+    <section id="main_content" class="bg slice-sm sct-color-1">
+        <div class="container" id="container">
+            <!--BEGIN BREADCRUMB-->
+            <div class="breadcrumb-pageheader">
+                <ol class="breadcrumb sm-breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">View Transfer</a></li>
+                </ol>
+                <h6 class="sm-pagetitle--style-1 has_page_title">View Transfer</h6>
+            </div>
+            <!--END BREADCRUMB-->
+            <div>
+                <a href="{{ action('TransferController@create') }}" class="btn btn-wd btn-outline-primary m-t-5">
+                    New Transfer
+                </a>
+                <hr>
+            </div>
+            <!--BEGIN PAGE CONTENT-->
+            <div class="sm-content">
+                <div class="sm-content-box">
+                    @include('admin.errors.error')
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sm-wrapper">
+                                <div class="sm-box">
+                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Date</th>
+                                            <th>Voucher No</th>
+                                            <th>Location</th>
+                                            <th>Total Quantity</th>
+                                            <th>Remark</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php $no = 1; ?>
+                                        @foreach($transfers as $transfer)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $transfer->created_at->toDateString() }}</td>
+                                                <td>{{ $transfer->voucherNo }}</td>
+                                                <td>{{ $transfer->location->name }}</td>
+                                                <td>{{ $transfer->quantity }}</td>
+                                                <td>{{ $transfer->remark }}</td>
+                                                <td width="20%">
+                                                    <form
+                                                        action="{{ action('TransferController@destroy', $transfer->id) }}"
+                                                        method="Post">
+                                                        <input type="hidden" name="_method" value="delete">
+                                                        {{ csrf_field() }}
+                                                        <a class="btn btn-primary" href="{{ action('TransferController@show', $transfer->id) }}">Detail</a>
+                                                        <a class="btn btn-outline-primary"
+                                                           href="{{ action("TransferController@edit", $transfer->id) }}">Edit</a>
 
-<!--BEGIN CONTENT-->
-<section id="main_content" class="bg slice-sm sct-color-1">
-    <div class="container" id="container">
-        <!--BEGIN BREADCRUMB-->
-        <div class="breadcrumb-pageheader">
-            <ol class="breadcrumb sm-breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Create Sale</a></li>
-            </ol>
-            <h6 class="sm-pagetitle--style-1 has_page_title">Create Sale</h6>
-        </div>
-        <!--END BREADCRUMB-->
+                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
 
-        <!--BEGIN PAGE CONTENT-->
-        <div class="sm-content">
-            <div class="sm-content-box">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="sm-wrapper" data-sortable-id="sm_form_elements_1">
-                            <div class="sm-box">
-
-                                <form class="form-default" action="" method="post" enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="voucher_no">Voucher No</label>
-                                                <input id="voucher_no" placeholder="Enter Voucher No"
-                                                       type="text" class="form-control" name="voucher_no">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="date">Date</label>
-                                                <input id="date" placeholder="Enter Name"
-                                                       type="text" class="form-control" name="date">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="process_type">Process Type</label>
-                                                <input id="process_type" placeholder="Enter Process Type"
-                                                       type="text" class="form-control" name="process_type">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="sale_type">Sale Type</label>
-                                                <input id="sale_type" placeholder="Enter Sale Type"
-                                                       type="text" class="form-control" name="sale_type">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group has-feedback">
-                                                <label for="customer_id">Customer ID</label>
-                                                <input type="text" id="customer_id"
-                                                       placeholder="Customer ID" class="form-control" name="customer_id">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group has-feedback">
-                                                <label for="gender">Location ID</label>
-                                                <input type="text" id="location_id"
-                                                       placeholder="Location ID" class="form-control" name="location_id">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="total_amount">Total Amount</label>
-                                                <input id="total_amount" placeholder="Enter Total Amount"
-                                                       type="text" class="form-control" name="total_amount">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="paid">Paid</label>
-                                                <input id="paid" placeholder="Enter Paid"
-                                                       type="text" class="form-control" name="paid">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label for="balance">Balance</label>
-                                                <input id="balance" placeholder="Enter Balance"
-                                                       type="text" class="form-control" name="balance">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <div class="form-group has-feedback">
-                                                <label for="remark">Remark</label>
-                                                <input type="text" id="remark"
-                                                       placeholder="Remark" class="form-control" name="remark">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row m-t-20">
-                                        <div class="col-lg-12">
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                    </div>
-                                </form>
-
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
+            <!--END PAGE CONTENT-->
         </div>
-        <!--END PAGE CONTENT-->
-    </div>
-</section>
-<!--END CONTENT-->
+    </section>
+    <!--END CONTENT-->
 
 @endsection

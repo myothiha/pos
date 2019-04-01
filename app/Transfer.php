@@ -2,38 +2,42 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Transfer
  *
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer query()
- * @mixin \Eloquent
+ * @method static Builder|Transfer newModelQuery()
+ * @method static Builder|Transfer newQuery()
+ * @method static Builder|Transfer query()
+ * @mixin Eloquent
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereUpdatedAt($value)
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Transfer whereCreatedAt($value)
+ * @method static Builder|Transfer whereId($value)
+ * @method static Builder|Transfer whereUpdatedAt($value)
  * @property string $voucherNo
  * @property int $location_id
  * @property string $remark
  * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereLocationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereRemark($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereVoucherNo($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
+ * @method static Builder|Transfer whereDeletedAt($value)
+ * @method static Builder|Transfer whereLocationId($value)
+ * @method static Builder|Transfer whereRemark($value)
+ * @method static Builder|Transfer whereVoucherNo($value)
+ * @property-read Collection|Item[] $items
  * @property-read mixed $quantity
- * @property-read \App\Location $location
+ * @property-read Location $location
  */
 class Transfer extends Model
 {
     public function items()
     {
-        return $this->belongsToMany(Item::class, 'transfer_details')->withPivot(['quantity']);
+        return $this->belongsToMany(Item::class, 'transfer_details')->withPivot('item_id', 'quantity');
     }
 
     public function location()

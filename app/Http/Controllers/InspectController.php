@@ -22,11 +22,14 @@ class InspectController extends Controller
         $this->color = new Color();
         $this->inspect = new Inspect();
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function index()
+    {
+        $inspects = Inspect::all();
+        return view('admin.inspect.index', [
+            'inspects' => $inspects
+        ]);
+    }
      /**
       * Show the form for creating a new resource.
       *

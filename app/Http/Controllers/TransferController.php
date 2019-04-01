@@ -13,6 +13,7 @@ use App\Location;
 use Cart;
 use Illuminate\Http\Request;
 use App\Constants\Cart as CartConst;
+use Illuminate\Http\Response;
 
 
 class TransferController extends Controller
@@ -30,17 +31,20 @@ class TransferController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        //
+        $transfers = Transfer::all();
+        return view('admin.transfer.index', [
+            'transfers' => $transfers
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -65,7 +69,7 @@ class TransferController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -112,19 +116,23 @@ class TransferController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Transfer  $transfer
-     * @return \Illuminate\Http\Response
+     * @param Transfer $transfer
+     * @return Response
      */
     public function show(Transfer $transfer)
     {
-        //
+        $items = $transfer->items;
+        return view('admin.transfer.detail', [
+            'transfer' => $transfer,
+            'items' => $items
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Transfer  $transfer
-     * @return \Illuminate\Http\Response
+     * @param Transfer $transfer
+     * @return Response
      */
     public function edit(Transfer $transfer)
     {
@@ -135,8 +143,8 @@ class TransferController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Transfer  $transfer
-     * @return \Illuminate\Http\Response
+     * @param Transfer $transfer
+     * @return Response
      */
     public function update(Request $request, Transfer $transfer)
     {
@@ -146,8 +154,8 @@ class TransferController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Transfer  $transfer
-     * @return \Illuminate\Http\Response
+     * @param Transfer $transfer
+     * @return void
      */
     public function destroy(Transfer $transfer)
     {

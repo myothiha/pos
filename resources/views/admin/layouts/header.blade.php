@@ -157,25 +157,25 @@
 
                         <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
                             <li class="nav-item">
-                                <a href="{{ action('StockInController@create')}}" class="dropdown-item">StockIn</a>
+                                <a href="{{ action('StockInController@index')}}" class="dropdown-item">StockIn</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('SaleController@create') }}" class="dropdown-item">Sale</a>
+                                <a href="{{ action('SaleController@index') }}" class="dropdown-item">Sale</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('TransferController@create') }}" class="dropdown-item">Transfer</a>
+                                <a href="{{ action('TransferController@index') }}" class="dropdown-item">Transfer</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('ReceivableController@getCustomer') }}" class="dropdown-item">Recevieable</a>
+                                <a href="{{ action('ReceivableController@index') }}" class="dropdown-item">Recevieable</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ action('ReceivableOpeningController@index') }}" class="dropdown-item">RecevieableOpening</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('DamageController@getItem') }}" class="dropdown-item">Damage</a>
+                                <a href="{{ action('DamageController@index') }}" class="dropdown-item">Damage</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('StockOpeningController@getItem') }}" class="dropdown-item">StockOpening</a>
+                                <a href="{{ action('StockOpeningController@index') }}" class="dropdown-item">StockOpening</a>
                             </li>
                         </ul>
                     </li>
@@ -187,10 +187,10 @@
 
                         <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
                             <li class="nav-item">
-                                <a href="{{ action('IssueController@getItem') }}" class="dropdown-item">Issue</a>
+                                <a href="{{ action('IssueController@index') }}" class="dropdown-item">Issue</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ action('InspectController@getItem') }}" class="dropdown-item">Inspect</a>
+                                <a href="{{ action('InspectController@index') }}" class="dropdown-item">Inspect</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="dropdown-item">Repair</a>

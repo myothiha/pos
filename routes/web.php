@@ -68,67 +68,69 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('receivable-opening', 'ReceivableOpeningController');
 
     // sale
-    Route::get('/sale/create', 'SaleController@create');
+    Route::resource('sale', 'SaleController');
 
-    Route::post('/sale', 'SaleController@store');
-
-
-    Route::get('/transfer/create', 'TransferController@create');
-    Route::post('/transfer', 'TransferController@store');
+    // transfer
+    Route::resource('transfer', 'TransferController');
 
     // stockin
-
-    Route::get('/stock-in/create', 'StockInController@create');
-
-    Route::post('/stock-in/', 'StockInController@store');
-
-    // issue
-
-    Route::get('/issue/get-item', 'IssueController@getItem');
-    Route::post('/issue/get-item', 'IssueController@searchItems');
-
-
-    Route::get('issue/{item}/create', 'IssueController@create');
-
-    Route::post('issue/{item}', 'IssueController@store');
-
-    // inspect
-
-    Route::get('/inspect/get-item', 'InspectController@getItem');
-    Route::post('/inspect/get-item', 'InspectController@searchItems');
-
-
-    Route::get('inspect/{item}/create', 'InspectController@create');
-
-    Route::post('inspect/{item}', 'InspectController@store');
-
-    //stockopening
-
-    Route::get('stock-opening/get-item', 'StockOpeningController@getItem');
-
-    Route::post('stock-opening/get-item', 'StockOpeningController@searchItems');
-
-    Route::get('stock-opening/{item}/create', 'StockOpeningController@create');
-
-    Route::post('stock-opening/{item}', 'StockOpeningController@store');
-
-    //damage
-    
-    Route::get('damage/get-item', 'DamageController@getItem');
-
-    Route::post('damage/get-item', 'DamageController@searchItems');
-
-    Route::get('damage/{item}/create', 'DamageController@create');
-
-    Route::post('damage/{item}', 'DamageController@store');
+    Route::resource('stock-in', 'StockInController');
 
     // receivable
 
     Route::get('/receivable/get-customer', 'ReceivableController@getCustomer');
+    Route::resource('receivable', 'ReceivableController');
 
-    Route::get('/receivable/create', 'ReceivableController@create');
+    // issue
 
-    Route::post('/receivable', 'ReceivableController@store');
+    Route::get('issue', 'IssueController@index');
+    Route::delete('issue/{issue}', 'IssueController@destroy');
+    Route::put('issue/{issue}', 'IssueController@update');
+    Route::get('issue/{issue}/edit', 'IssueController@edit');
+
+    Route::get('issue/get-item', 'IssueController@getItem');
+    Route::post('issue/get-item', 'IssueController@searchItems');
+    Route::get('issue/{item}/create', 'IssueController@create');
+    Route::post('issue/{item}', 'IssueController@store');
+
+    // inspect
+
+    Route::get('inspect', 'InspectController@index');
+    Route::delete('inspect/{inspect}', 'InspectController@destroy');
+    Route::put('inspect/{inspect}', 'InspectController@update');
+    Route::get('inspect/{inspect}/edit', 'InspectController@edit');
+
+    Route::get('inspect/get-item', 'InspectController@getItem');
+    Route::post('inspect/get-item', 'InspectController@searchItems');
+    Route::get('inspect/{item}/create', 'InspectController@create');
+    Route::post('inspect/{item}', 'InspectController@store');
+    Route::get('inspect', 'InspectController@index');
+
+    //stockopening
+
+    Route::get('stock-opening', 'StockOpeningController@index');
+    Route::delete('stock-opening/{stock-opening}', 'StockOpeningController@destroy');
+    Route::put('stock-opening/{stock-opening}', 'StockOpeningController@update');
+    Route::get('stock-opening/{stock-opening}/edit', 'StockOpeningController@edit');
+
+    Route::get('stock-opening/get-item', 'StockOpeningController@getItem');
+    Route::post('stock-opening/get-item', 'StockOpeningController@searchItems');
+    Route::get('stock-opening/{item}/create', 'StockOpeningController@create');
+    Route::post('stock-opening/{item}', 'StockOpeningController@store');
+
+    //damage
+
+    Route::get('damage', 'DamageController@index');
+    Route::delete('damage/{damage}', 'DamageController@destroy');
+    Route::put('damage/{damage}', 'DamageController@update');
+    Route::get('damage/{damage}/edit', 'DamageController@edit');
+
+    Route::get('damage/get-item', 'DamageController@getItem');
+    Route::post('damage/get-item', 'DamageController@searchItems');
+    Route::get('damage/{item}/create', 'DamageController@create');
+    Route::post('damage/{item}', 'DamageController@store');
+
+
 
     // report
 

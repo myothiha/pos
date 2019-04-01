@@ -8,6 +8,7 @@ use App\Customer;
 use App\Location;
 use App\Repositories\Customers\ReceivableRepository;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ReceivableController extends Controller
 {
@@ -24,17 +25,20 @@ class ReceivableController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
-        return view('admin.receivable.index');
+        $receivables = Receivable::all();
+        return view('admin.receivable.index', [
+            'receivables' => $receivables
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function getCustomer()
     {
@@ -61,8 +65,8 @@ class ReceivableController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -114,9 +118,9 @@ class ReceivableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Receivable  $receivable
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Receivable $receivable
+     * @return void
      */
     public function update(Request $request, Receivable $receivable)
     {
@@ -126,8 +130,8 @@ class ReceivableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Receivable  $receivable
-     * @return \Illuminate\Http\Response
+     * @param Receivable $receivable
+     * @return void
      */
     public function destroy(Receivable $receivable)
     {

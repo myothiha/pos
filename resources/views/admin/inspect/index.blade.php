@@ -1,7 +1,8 @@
 @extends('admin.layouts.back')
 
-@section('content')
+@section('title', 'View Inspect Data')
 
+@section('content')
     <!--BEGIN CONTENT-->
     <section id="main_content" class="bg slice-sm sct-color-1">
         <div class="container" id="container">
@@ -9,18 +10,21 @@
             <div class="breadcrumb-pageheader">
                 <ol class="breadcrumb sm-breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">View Issue</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">View Inspect</a></li>
                 </ol>
-                <h6 class="sm-pagetitle--style-1 has_page_title">View Issue</h6>
+                <h6 class="sm-pagetitle--style-1 has_page_title">View Inspect</h6>
             </div>
             <!--END BREADCRUMB-->
             <div>
-
+                <a href="{{ action('InspectController@getItem') }}" class="btn btn-wd btn-outline-primary m-t-5">
+                    New Inspect
+                </a>
                 <hr>
             </div>
             <!--BEGIN PAGE CONTENT-->
             <div class="sm-content">
                 <div class="sm-content-box">
+                    @include('admin.errors.error')
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="sm-wrapper">
@@ -29,22 +33,37 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>Date</th>
                                             <th>Employee</th>
                                             <th>Item</th>
-                                            <th>Qty</th>
+                                            <th>Accept Quantity</th>
+                                            <th>Reject Quantity</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach( $issues as $key => $issue )
-                                            <td>{{ ++$key }}</td>
-                                            <td>{{ $issue->employee->name }}</td>
-                                            <td>{{ $issue->item->name }}</td>
-                                            <td>{{ $issue->quantity }}</td>
-                                            <td>
-                                                <a class="btn btn-primary"
-                                                   href="{{ action('InspectController@create', $issue->id) }}">Inspect</a>
-                                            </td>
+                                        <?php $no = 1; ?>
+                                        @foreach($inspects as $inspect)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $inspect->created_at->toDateString() }}</td>
+                                                <td>{{ $inspect->employee->name }}</td>
+                                                <td>{{ $inspect->item->name }}</td>
+                                                <td>{{ $inspect->acceptQty }}</td>
+                                                <td>{{ $inspect->rejectQty }}</td>
+                                                <td width="20%">
+                                                    <form
+                                                        action="{{ action('InspectController@destroy', $inspect->id) }}"
+                                                        method="Post">
+                                                        <input type="hidden" name="_method" value="delete">
+                                                        {{ csrf_field() }}
+                                                        <a class="btn btn-outline-primary"
+                                                           href="{{ action("InspectController@edit", $inspect->id) }}">Edit</a>
+
+                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                    </form>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                         </tbody>
                                     </table>

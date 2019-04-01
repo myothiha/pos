@@ -33,7 +33,10 @@ class StockInController extends Controller
      */
     public function index()
     {
-        return view('admin.stockin.index');
+        $stockIns = StockIn::all();
+        return view('admin.stockin.index',[
+            'stockIns' => $stockIns
+        ]);
     }
 
     /**
@@ -110,7 +113,11 @@ class StockInController extends Controller
      */
     public function show(StockIn $stockIn)
     {
-        //
+        $items = $stockIn->items;
+        return view('admin.stockin.detail', [
+            'items' => $items,
+            'stockIn' => $stockIn
+        ]);
     }
 
     /**

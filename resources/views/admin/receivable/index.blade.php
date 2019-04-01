@@ -1,7 +1,8 @@
 @extends('admin.layouts.back')
 
-@section('content')
+@section('title', 'View Receivable Data')
 
+@section('content')
     <!--BEGIN CONTENT-->
     <section id="main_content" class="bg slice-sm sct-color-1">
         <div class="container" id="container">
@@ -9,15 +10,14 @@
             <div class="breadcrumb-pageheader">
                 <ol class="breadcrumb sm-breadcrumb">
                     <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">View Reveiveable</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">View Receivable</a></li>
                 </ol>
-                <h6 class="sm-pagetitle--style-1 has_page_title">View Reveiveable</h6>
+                <h6 class="sm-pagetitle--style-1 has_page_title">View Receivable</h6>
             </div>
             <!--END BREADCRUMB-->
             <div>
-                <a href="{{ action('ReceivableOpeningController@create') }}"
-                   class="btn btn-wd btn-outline-primary m-t-5">
-                    Create Reveiveable
+                <a href="{{ action('ReceivableController@getCustomer') }}" class="btn btn-wd btn-outline-primary m-t-5">
+                    New Receivable
                 </a>
                 <hr>
             </div>
@@ -34,19 +34,33 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Date</th>
-                                            <th>Location</th>
+                                            <th>Voucher No</th>
                                             <th>Customer</th>
-                                            <th>Balance</th>
+                                            <th>Amount</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach( $receivableOpenings as $index => $receivable )
-                                            <tr class="odd gradeX">
-                                                <td>{{ ++$index }}</td>
-                                                <td>{{ $receivable->created_at }}</td>
-                                                <td>{{ $receivable->location->name }}</td>
+                                        <?php $no = 1; ?>
+                                        @foreach($receivables as $receivable)
+                                            <tr>
+                                                <td>{{ $no++ }}</td>
+                                                <td>{{ $receivable->created_at->toDateString() }}</td>
+                                                <td>{{ $receivable->voucherNo }}</td>
                                                 <td>{{ $receivable->customer->name }}</td>
-                                                <td>{{ $receivable->balance }}</td>
+                                                <td>{{ $receivable->amount }}</td>
+                                                <td width="20%">
+                                                    <form
+                                                        action="{{ action('ReceivableController@destroy', $receivable->id) }}"
+                                                        method="Post">
+                                                        <input type="hidden" name="_method" value="delete">
+                                                        {{ csrf_field() }}
+                                                        <a class="btn btn-outline-primary"
+                                                           href="{{ action("ReceivableController@edit", $receivable->id) }}">Edit</a>
+
+                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
