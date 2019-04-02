@@ -57,6 +57,43 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="tabs tabs--style-2" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="voucherNo">Voucher No</label>
+                                                        <input id="voucherNo" placeholder="Enter Voucher"
+                                                               type="text" class="form-control" value="{{ $sale->voucherNo }}"
+                                                               readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group has-feedback">
+                                                        <label for="saleType">Sale Type</label>
+                                                        <input id="voucherNo" placeholder="Enter Sale Type"
+                                                               type="text" class="form-control" value="{{ $sale->saleType }}"
+                                                               readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group has-feedback">
+                                                        <label for="customers">Customer</label>
+                                                        <input id="voucherNo" placeholder="Enter Customer"
+                                                               type="text" class="form-control" value="{{ $sale->customer->name }}"
+                                                               readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group has-feedback">
+                                                        <label for="location_id">Location</label>
+                                                        <input id="voucherNo" placeholder="Enter Customer"
+                                                               type="text" class="form-control" value="{{ $sale->location->name }}"
+                                                               readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <!-- Tab panes -->
                                             <div class="tab-content">
                                                 <div role="tabpanel" class="tab-pane active"
@@ -69,65 +106,60 @@
                                                               <th class="product-size d-none d-lg-table-cell">
                                                                   Color
                                                               </th>
-                                                              <th class="product-size d-none d-lg-table-cell">
-                                                                  Category
-                                                              </th>
                                                               <th class="product-quanity d-none d-md-table-cell">
                                                                   Quantity
                                                               </th>
-                                                              <th width="50px;"></th>
+                                                              <th class="product-price d-none d-md-table-cell">
+                                                                  Price
+                                                              </th>
+                                                              <th class="product-total">Total</th>
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                              <td>No</td>
-                                                              <td>Item</td>
-                                                              <td>Color</td>
-                                                              <td>Category</td>
-                                                              <td>Quantity</td>
-                                                              <td width="50px;"></td>
-                                                          </tr>
+                                                        <?php $no = 0; ?>
+                                                        @foreach( $items as $date => $item )
+                                                            <tr class="odd gradeX">
+                                                                <td>{{ ++$no }}</td>
+                                                                <td>{{ $item->name }}</td>
+                                                                <td>{{ $item->color->name }}</td>
+                                                                <td>{{ $item->pivot->quantity }}</td>
+                                                                <td>{{ $item->pivot->price }}</td>
+                                                                <td>{{ $item->pivot->total }}</td>
+                                                            </tr>
+                                                        @endforeach
                                                         </tbody>
                                                         <tbody>
-                                                          <tr>
-                                                              <td class="product-name" rowspan="3" colspan="3">
-                                                                  <textarea name="remark" id="remark"
-                                                                            class="form-control"
-                                                                            cols="30" rows="3" placeholder="Remark"
-                                                                            tabindex="4"></textarea></td>
-                                                              <td class="product-list text-right"><label for="paid">Paid</label>
-                                                              </td>
-                                                              <td class="product-quanity d-none d-lg-table-cell">
-                                                                  <input type="text" id="paid" class="form-control"
-                                                                         name="paid" value=""
-                                                                         readonly=true onchange="updateBalance()"/>
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td class="product-list text-right">Discount (0%)</td>
-                                                              <td class="product-total">
-                                                                  <span id="discount"> 0 MMK</span>
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td class="product-list text-right">Balance</td>
-                                                              <td class="product-total">
-                                                                  <input type="hidden" id="balance"
-                                                                         class="form-control" name="balance"
-                                                                         value="0"/>
-                                                                  <span id="balance_amount"> 0 MMK</span>
-                                                              </td>
-                                                          </tr>
-                                                          <tr>
-                                                              <td class="product-list text-right" colspan="4">
-                                                                  Total
-                                                              </td>
-                                                              <td class="product-total">
-                                                                  <input type="hidden" id="total" class="form-control"
-                                                                         name="total" value=""/>
-                                                                  <span id="total_price"> MMK</span>
-                                                              </td>
-                                                          </tr>
+                                                        <tr>
+                                                            <td class="product-list text-right" colspan="5">
+                                                                Total
+                                                            </td>
+                                                            <td class="product-total">
+                                                                <input type="hidden" id="total" class="form-control"
+                                                                       name="total" value=""/>
+                                                                <span id="total_price">{{ $sale->totalAmount }}</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="product-name" rowspan="3" colspan="4">
+                                                                    <textarea name="remark" id="remark"
+                                                                              class="form-control"
+                                                                              cols="30" rows="3"
+                                                                              tabindex="4" readonly>{{ $sale->remark }}</textarea></td>
+                                                            <td class="product-list text-right"><label for="paid">Paid</label>
+                                                            </td>
+                                                            <td class="product-quanity d-none d-lg-table-cell">
+                                                                <span id="paid">{{ $sale->paid }} MMK</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="product-list text-right">Balance</td>
+                                                            <td class="product-total">
+                                                                <input type="hidden" id="balance"
+                                                                       class="form-control" name="balance"
+                                                                       value="0"/>
+                                                                <span id="balance_amount">{{ $sale->balance }} MMK</span>
+                                                            </td>
+                                                        </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>

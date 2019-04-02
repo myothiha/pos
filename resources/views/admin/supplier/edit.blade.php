@@ -3,7 +3,6 @@
 @section('title', 'Edit Supplier Data')
 
 @section('content')
-{{ dd($item->name;)}}
 <!--BEGIN CONTENT-->
 <section id="main_content" class="bg slice-sm sct-color-1">
     <div class="container" id="container">

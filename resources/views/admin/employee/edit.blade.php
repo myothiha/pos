@@ -43,9 +43,9 @@
                                             <div class="form-group">
                                                 <label class="control-label">Date of Birth</label>
                                                 <div class="input-group date input-group--style-1" id="datepicker-component" data-date-format="dd-mm-yyyy" data-date-start-date="Date.default">
-                                                    <input type="date" class="form-control" name="dob" placeholder="Select Date" value="{{ $employee->dob }}"><br>
+                                                    <input type="date" class="form-control" name="dob" placeholder="Select Date" value="{{ $employee->dob->toDateString() }}"><br>
                                                     <span class="input-group-addon">
-                                                        <i class="ion-ios-calendar-outline"></i>
+                                                        <i class="ion-ios-calendar-outline"></i>x
                                                     </span>
                                                 </div>
                                             </div>

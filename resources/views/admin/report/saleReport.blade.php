@@ -25,7 +25,7 @@
                     <div class="col-lg-12">
                         <div class="sm-wrapper">
                             <div class="sm-box">
-                                <form action="{{ action('ReportController@saleReport') }}" class="form-horizontal form-bordered" method="post">
+                                <form action="{{ action('ReportController@saleReport') }}" class="form-horizontal form-bordered">
 
                                     @csrf
 
@@ -74,9 +74,7 @@
                                         <th>Sale Type</th>
                                         <th>Customer</th>
                                         <th>Total Amount</th>
-                                        <th>Paid</th>
-                                        <th>Balance</th>
-                                        <th>Remark</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -88,9 +86,7 @@
                                             <td>{{ $sale->saleType }}</td>
                                             <td>{{ $sale->customer->name }}</td>
                                             <td>{{ $sale->totalAmount }}</td>
-                                            <td>{{ $sale->paid }}</td>
-                                            <td>{{ $sale->balance }}</td>
-                                            <td>{{ $sale->remark }}</td>
+                                            <td><a class="btn btn-primary" href="{{ action('ReportController@saleReportDetail', $sale->id) }}">Detail</a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

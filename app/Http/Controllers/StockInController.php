@@ -68,6 +68,7 @@ class StockInController extends Controller
      */
     public function store(Request $request)
     {
+
         $stockIn = new StockIn();
         $stockIn->supplier_id = $request->supplier_id;
         $stockIn->location_id = $request->location_id;
