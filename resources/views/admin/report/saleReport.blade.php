@@ -81,7 +81,7 @@
                                     @foreach( $sales as $index => $sale )
                                         <tr class="odd gradeX">
                                             <td>{{ ++$index }}</td>
-                                            <td>{{ $sale->created_at }}</td>
+                                            <td>{{ $sale->created_at->toDateString() }}</td>
                                             <td>{{ $sale->voucherNo }}</td>
                                             <td>{{ $sale->saleType }}</td>
                                             <td>{{ $sale->customer->name }}</td>

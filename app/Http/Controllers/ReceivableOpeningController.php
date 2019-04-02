@@ -23,7 +23,7 @@ class ReceivableOpeningController extends Controller
     public function index()
     {
         $receivableOpenings = ReceivableOpening::all();
-        return view('admin.receivable.index', [
+        return view('admin.receivableOpening.index', [
             'receivableOpenings' => $receivableOpenings,
         ]);
     }

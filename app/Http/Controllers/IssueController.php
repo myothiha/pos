@@ -29,7 +29,10 @@ class IssueController extends Controller
      */
     public function index()
     {
-        return view('admin.issue.index');
+        $issues = Issue::all();
+        return view('admin.issue.index', [
+            'issues' => $issues
+        ]);
     }
 
     /**

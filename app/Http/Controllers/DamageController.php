@@ -9,7 +9,9 @@ use App\Store;
 use App\Type;
 use App\Category;
 use App\Color;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class DamageController extends Controller
 {
@@ -21,6 +23,16 @@ class DamageController extends Controller
         $this->category = new Category();
         $this->color = new Color();
         $this->damage = new Damage();
+    }
+
+    /**
+     * @return Factory|View
+     */
+    public function index(){
+        $damages = Damage::all();
+        return view('admin.damage.index', [
+            'damages' => $damages
+        ]);
     }
 
     /**
@@ -80,7 +92,6 @@ class DamageController extends Controller
     }
 
     public function create(Item $item){
-
         $locations = $this->location->all();
         return view("admin.damage.create", [
             'item' => $item,

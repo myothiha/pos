@@ -51,7 +51,10 @@ class SaleController extends Controller
      */
     public function index()
     {
-        
+        $sales = Sale::all();
+        return view('admin.sale.index', [
+           'sales' => $sales
+        ]);
     }
 
     /**
@@ -148,7 +151,11 @@ class SaleController extends Controller
      */
     public function show(Sale $sale)
     {
-        //
+        $items = $sale->items;
+        return view('admin.sale.detail', [
+            'items' => $items,
+            'sale' => $sale
+        ]);
     }
 
     /**

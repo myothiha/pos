@@ -30,7 +30,10 @@ class StockOpeningController extends Controller
      */
     public function index()
     {
-        return view('admin.stockopening.index');
+        $stockOpenings = StockOpening::all();
+        return view('admin.stockopening.index', [
+            'stockOpenings' => $stockOpenings
+        ]);
     }
 
     /**

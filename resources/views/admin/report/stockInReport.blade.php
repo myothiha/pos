@@ -67,7 +67,7 @@
                                 @foreach($stockIns as $index => $stockIn)
                                     <tr class="odd gradeX">
                                         <td>{{ ++$index }}</td>
-                                        <td>{{ $stockIn->created_at }}</td>
+                                        <td>{{ $stockIn->created_at->toDateString() }}</td>
                                         <td>{{ $stockIn->voucherNo }}</td>
                                         <td>{{ $stockIn->location->name }}</td>
                                         <td>{{ $stockIn->supplier->name }}</td>
