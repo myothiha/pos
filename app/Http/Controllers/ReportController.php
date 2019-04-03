@@ -32,13 +32,13 @@ class ReportController extends Controller
     public function stockInReport(Request $request)
     {
         $stockIns = StockIn::query()
-        ->when($request->daterange, function ($q) use ($request) {
-            $dateRange = explode(' - ', $request->daterange);
-            $from = Carbon::parse($dateRange[0]);
-            $to = Carbon::parse($dateRange[1]);
-            return $q->whereDate('created_at', '>=', $from)
-                ->whereDate('created_at', '<=', $to);
-        })->get();
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
         return view('admin.report.stockInReport', [
             'stockIns' => $stockIns,
         ]);
@@ -50,6 +50,7 @@ class ReportController extends Controller
      */
     public function stockInReportDetail(StockIn $stockIn)
     {
+
         $supplier = Supplier::find($stockIn->supplier_id);
         $location = Location::find(($stockIn->location_id));
         $items = $stockIn->items;
@@ -69,16 +70,16 @@ class ReportController extends Controller
     public function saleReport(Request $request)
     {
         $sales = Sale::query()
-        ->when($request->saleType, function ($q) use ($request) {
-            return $q->where('saleType', '=', $request->saleType);
-        })
-        ->when($request->daterange, function ($q) use ($request) {
-            $dateRange = explode(' - ', $request->daterange);
-            $from = Carbon::parse($dateRange[0]);
-            $to = Carbon::parse($dateRange[1]);
-            return $q->whereDate('created_at', '>=', $from)
-                ->whereDate('created_at', '<=', $to);
-        })->get();
+            ->when($request->saleType, function ($q) use ($request) {
+                return $q->where('saleType', '=', $request->saleType);
+            })
+            ->when($request->daterange, function ($q) use ($request) {
+                $dateRange = explode(' - ', $request->daterange);
+                $from = Carbon::parse($dateRange[0]);
+                $to = Carbon::parse($dateRange[1]);
+                return $q->whereDate('created_at', '>=', $from)
+                    ->whereDate('created_at', '<=', $to);
+            })->get();
 
         return view('admin.report.saleReport', [
             'sales' => $sales,
@@ -87,6 +88,7 @@ class ReportController extends Controller
 
     public function saleReportDetail(Sale $sale)
     {
+
         $items = $sale->items;
         return view('admin.report.saleReportDetail', [
             'sale' => $sale,
@@ -215,18 +217,47 @@ class ReportController extends Controller
 
     public function stockBalanceReport(Request $request)
     {
-        $stocks = Store::query()
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
+        $stocks = Store::with(['item']);
+
+
+        if ($request->search) {
+
+            /*$stores = Store::whereHas('item', function($q) {
+                return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
+            });*/
+            $stocks->when($request->itemCode, function (Builder $q) use ($request) {
+                return $q->whereHas('item', function ($q) use ($request) {
+                    return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
+                });
+            })
+                ->when($request->itemName, function (Builder $q) use ($request) {
+                    return $q->whereHas('item', function ($q) use ($request) {
+                        return $q->where('name', 'LIKE', "%{$request->itemName}%");
+                    });
+                })
+                ->when($request->color_id, function (Builder $q) use ($request) {
+                    return $q->whereHas('item', function ($q) use ($request) {
+                        return $q->where('color_id', '=', $request->color_id);
+                    });
+                })
+                ->when($request->type_id, function (Builder $q) use ($request) {
+                    return $q->whereHas('item', function ($q) use ($request) {
+                        return $q->where('type_id', '=', $request->type_id);
+                    });
+                })
+                ->when($request->category_id, function (Builder $q) use ($request) {
+                    return $q->whereHas('item', function ($q) use ($request) {
+                        return $q->where('category_id', '=', $request->category_id);
+                    });
+                });
+        }
 
 
         return view('admin.report.stockBalanceReport', [
-            'stocks' => $stocks,
+            'stocks' => $stocks->get(),
+            'colors' => Color::all(),
+            'types' => Type::all(),
+            'categories' => Category::all(),
         ]);
     }
 
