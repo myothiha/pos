@@ -204,7 +204,7 @@ class ReportController extends Controller
         $customers->when($request->customer_id, function (Builder $q) use ($request) {
             return $q->where('id', '=', $request->customer_id);
         });
-
+        
         $allCustomers = Customer::all();
 
         return view('admin.report.customerCreditReport', [

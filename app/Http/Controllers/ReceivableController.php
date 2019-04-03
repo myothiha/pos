@@ -90,7 +90,7 @@ class ReceivableController extends Controller
         }
 
         $request->session()->flash('alert-success', 'Receivable has been processed!');
-        return redirect()->action('ReceivableController@getCustomer');
+        return redirect()->action('ReceivableController@index');
     }
 
     /**

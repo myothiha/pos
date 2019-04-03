@@ -2,20 +2,24 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Issue
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereUpdatedAt($value)
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Issue newModelQuery()
+ * @method static Builder|Issue newQuery()
+ * @method static Builder|Issue query()
+ * @method static Builder|Issue whereCreatedAt($value)
+ * @method static Builder|Issue whereId($value)
+ * @method static Builder|Issue whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property int $employee_id
  * @property int $itemId
@@ -24,24 +28,26 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $tinder
  * @property string $liker
  * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereEmployeeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereItemId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereLiker($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue wherePaint($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereTinder($value)
+ * @method static Builder|Issue whereDeletedAt($value)
+ * @method static Builder|Issue whereEmployeeId($value)
+ * @method static Builder|Issue whereItemId($value)
+ * @method static Builder|Issue whereLiker($value)
+ * @method static Builder|Issue wherePaint($value)
+ * @method static Builder|Issue whereQuantity($value)
+ * @method static Builder|Issue whereTinder($value)
  * @property int $item_id
  * @property string $remark
- * @property-read \App\Employee $employee
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Inspect[] $inspects
- * @property-read \App\Item $item
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereRemark($value)
+ * @property-read Employee $employee
+ * @property-read Collection|Inspect[] $inspects
+ * @property-read Item $item
+ * @method static Builder|Issue whereRemark($value)
  * @property string $type
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereType($value)
+ * @method static Builder|Issue whereType($value)
  */
 class Issue extends Model
 {
+    use SoftDeletes;
+
     public function item()
     {
         return $this->belongsTo(Item::class);

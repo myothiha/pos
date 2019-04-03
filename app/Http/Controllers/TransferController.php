@@ -110,7 +110,7 @@ class TransferController extends Controller
         }
 
         $request->session()->flash('alert-success', 'Transfer has been processed!');
-        return redirect()->action('TransferController@create');
+        return redirect()->action('TransferController@index');
     }
 
     /**

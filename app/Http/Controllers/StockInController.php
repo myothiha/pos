@@ -13,7 +13,11 @@ use App\Location;
 use Cart;
 use App\Constants\Cart as CartConst;
 use DB;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+use PHPUnit\Framework\Constraint\Count;
 
 class StockInController extends Controller
 {
@@ -29,7 +33,7 @@ class StockInController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -42,7 +46,7 @@ class StockInController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -66,17 +70,33 @@ class StockInController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'voucherNo' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if (count(Cart::content()) == 0){
+            $request->session()->flash('alert-danger', 'Stock In cannot be processed with 0 item!');
+            return redirect()->back()
+                ->withInput();
+        }
 
         $stockIn = new StockIn();
         $stockIn->supplier_id = $request->supplier_id;
         $stockIn->location_id = $request->location_id;
-        $stockIn->voucherNo = $request->voucherNo ?? '';
+        $stockIn->voucherNo = $request->voucherNo;
         $stockIn->remark = $request->remark;
+
 
         try {
             DB::transaction(function () use ($stockIn) {
@@ -102,14 +122,14 @@ class StockInController extends Controller
         }
 
         $request->session()->flash('alert-success', 'Stock In has been processed!');
-        return redirect()->action('StockInController@create');
+        return redirect()->action('StockInController@index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\StockIn  $stockIn
-     * @return \Illuminate\Http\Response
+     * @param StockIn $stockIn
+     * @return Response
      */
     public function show(StockIn $stockIn)
     {
@@ -123,8 +143,8 @@ class StockInController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\StockIn  $stockIn
-     * @return \Illuminate\Http\Response
+     * @param StockIn $stockIn
+     * @return Response
      */
     public function edit(StockIn $stockIn)
     {
@@ -134,9 +154,9 @@ class StockInController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\StockIn  $stockIn
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param StockIn $stockIn
+     * @return void
      */
     public function update(Request $request, StockIn $stockIn)
     {
@@ -146,11 +166,14 @@ class StockInController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\StockIn  $stockIn
-     * @return \Illuminate\Http\Response
+     * @param StockIn $stockIn
+     * @return Response
+     * @throws Exception
      */
     public function destroy(StockIn $stockIn)
     {
-        //
+        $store = Store($stockIn->location_id);
+        $stockIn->delete();
+        return redirect()->action('StockInController@index');
     }
 }

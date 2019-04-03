@@ -140,7 +140,7 @@ class SaleController extends Controller
         }
 
         $request->session()->flash('alert-success', 'Sale has been processed!');
-        return redirect()->action('SaleController@create');
+        return redirect()->action('SaleController@index');
     }
 
     /**

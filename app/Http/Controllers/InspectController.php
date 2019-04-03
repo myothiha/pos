@@ -8,11 +8,19 @@ use App\Category;
 use App\Color;
 use App\Employee;
 use App\Inspect;
-use App\Issue;
+use Exception;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class InspectController extends Controller
 {
+
+    /**
+     * InspectController constructor.
+     */
     public function __construct()
     {
         $this->item = new Item();
@@ -23,6 +31,9 @@ class InspectController extends Controller
         $this->inspect = new Inspect();
     }
 
+    /**
+     * @return Factory|View
+     */
     public function index()
     {
         $inspects = Inspect::all();
@@ -33,7 +44,7 @@ class InspectController extends Controller
      /**
       * Show the form for creating a new resource.
       *
-      * @return \Illuminate\Http\Response
+      * @return Response
       */
      public function getItem()
      {
@@ -51,8 +62,8 @@ class InspectController extends Controller
      /**
       * Store a newly created resource in storage.
       *
-      * @param  \Illuminate\Http\Request  $request
-      * @return \Illuminate\Http\Response
+      * @param Request $request
+      * @return Response
       */
      public function searchItems(Request $request)
      {
@@ -87,7 +98,11 @@ class InspectController extends Controller
      }
 
 
-     public function create(Item $item){
+    /**
+     * @param Item $item
+     * @return Factory|View
+     */
+    public function create(Item $item){
 
          $employees = $this->employee->all();
          return view("admin.inspect.create", [
@@ -99,9 +114,8 @@ class InspectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param Issue $issue
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -118,14 +132,14 @@ class InspectController extends Controller
         $inspect->save();
 
         $request->session()->flash('alert-success', 'Inspect has been processed!');
-        return redirect()->action('InspectController@getItem');
+        return redirect()->action('InspectController@index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Inspect  $inspect
-     * @return \Illuminate\Http\Response
+     * @param Inspect $inspect
+     * @return void
      */
     public function show(Inspect $inspect)
     {
@@ -135,8 +149,8 @@ class InspectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Inspect  $inspect
-     * @return \Illuminate\Http\Response
+     * @param Inspect $inspect
+     * @return void
      */
     public function edit(Inspect $inspect)
     {
@@ -146,9 +160,9 @@ class InspectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Inspect  $inspect
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Inspect $inspect
+     * @return void
      */
     public function update(Request $request, Inspect $inspect)
     {
@@ -158,11 +172,13 @@ class InspectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Inspect  $inspect
-     * @return \Illuminate\Http\Response
+     * @param Inspect $inspect
+     * @return Response
+     * @throws Exception
      */
     public function destroy(Inspect $inspect)
     {
-        //
+        $inspect->delete();
+        return redirect()->action('InspectController@index');
     }
 }

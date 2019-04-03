@@ -131,7 +131,7 @@ class DamageController extends Controller
         }
 
         $request->session()->flash('alert-success', 'Damage has been processed!');
-        return redirect()->action('DamageController@getItem');
+        return redirect()->action('DamageController@index');
     }
 
     /**
