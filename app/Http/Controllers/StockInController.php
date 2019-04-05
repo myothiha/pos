@@ -82,6 +82,10 @@ class StockInController extends Controller
         $stockIn->voucherNo = $request->voucherNo;
         $stockIn->remark = $request->remark;
 
+        if(Cart::instance(CartConst::STOCK_IN)->content()->isEmpty()){
+            $request->session()->flash('alert-danger', 'Stock In cannot be processed without any item!');
+            return redirect()->action('StockInController@create');
+        }
 
         try {
             DB::transaction(function () use ($stockIn) {

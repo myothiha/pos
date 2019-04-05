@@ -105,6 +105,10 @@ class SaleController extends Controller
         $sale->isPaid = $request->isPaid ?? Constants::TRUE;
 
 //        dd($sale->toArray());
+        if(Cart::instance(CartConst::SALE)->content()->isEmpty()){
+            $request->session()->flash('alert-danger', 'Sale cannot be processed without any item!');
+            return redirect()->action('SaleController@create');
+        }
 
         try {
             DB::transaction(function () use ($sale) {

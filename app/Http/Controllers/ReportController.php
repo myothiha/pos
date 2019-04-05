@@ -221,7 +221,6 @@ class ReportController extends Controller
     {
         $stocks = Store::with(['item']);
 
-
         if ($request->search) {
 
             /*$stores = Store::whereHas('item', function($q) {

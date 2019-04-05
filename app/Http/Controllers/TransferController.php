@@ -80,6 +80,11 @@ class TransferController extends Controller
         $transfer->voucherNo = $request->voucherNo ?? '';
         $transfer->remark = $request->remark ?? '';
 
+        if(Cart::instance(CartConst::TRANSFER)->content()->isEmpty()){
+            $request->session()->flash('alert-danger', 'Transfer cannot be processed without any item!');
+            return redirect()->action('TransferController@create');
+        }
+
         try {
             DB::transaction(function () use ($transfer) {
                 $transfer->save();

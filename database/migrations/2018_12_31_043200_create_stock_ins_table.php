@@ -14,7 +14,7 @@ class CreateStockInsTable extends Migration
     {
         Schema::create('stock_ins', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('voucherNo');
+            $table->string('voucherNo')->nullable();
             $table->unsignedInteger('location_id');
             $table->unsignedInteger('supplier_id');
             $table->text('remark')->nullable();

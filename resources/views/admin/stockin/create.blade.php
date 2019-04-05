@@ -177,7 +177,7 @@
                                                                     name="location_id">
                                                                 @foreach($locations as $location)
                                                                     <option
-                                                                            value="{{ $location->id }}">{{ $location->name }}</option>
+                                                                            value="{{ $location->id }}" {{ old('location_id') == $location->id ? "selected" : " " }}>{{ $location->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -234,7 +234,7 @@
                                                                     <textarea name="remark" id="remark"
                                                                               class="form-control"
                                                                               cols="30" rows="3" placeholder="Remark"
-                                                                              tabindex="4"></textarea>
+                                                                              tabindex="4">{{ old('remark') }}</textarea>
                                                                 </td>
                                                             </tr>
                                                             </tbody>

@@ -166,8 +166,7 @@
                                                         <div class="form-group">
                                                             <label for="voucherNo">Voucher No</label>
                                                             <input id="voucherNo" placeholder="Enter Voucher"
-                                                                   type="text" class="form-control" name="voucherNo"
-                                                                   required>
+                                                                   type="text" class="form-control" name="voucherNo" value="{{ old('voucherNo') }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
@@ -175,10 +174,9 @@
                                                             <label for="saleType">Sale Type</label>
                                                             <select class="form-control" id="saleType" name="saleType"
                                                                     onchange="javascript:changeType()">
-                                                                <option value="{{ \App\Constants::CREDIT }}">Credit
+                                                                <option selected value="{{ \App\Constants::CREDIT }}">Credit
                                                                 </option>
-                                                                <option value="{{ \App\Constants::CASH_DOWN }}"
-                                                                        selected>Cash Down
+                                                                <option value="{{ \App\Constants::CASH_DOWN }}">Cash Down
                                                                 </option>
                                                             </select>
                                                         </div>
