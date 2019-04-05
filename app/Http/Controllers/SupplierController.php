@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Supplier;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Validator;
 
 class SupplierController extends Controller
 {
@@ -14,7 +17,7 @@ class SupplierController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -28,7 +31,7 @@ class SupplierController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -38,14 +41,20 @@ class SupplierController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $supplier = new $this->supplier();
         $supplier->name = $request->name;
@@ -60,8 +69,8 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @param Supplier $supplier
+     * @return void
      */
     public function show(Supplier $supplier)
     {
@@ -71,8 +80,8 @@ class SupplierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @param Supplier $supplier
+     * @return Response
      */
     public function edit(Supplier $supplier)
     {
@@ -84,15 +93,21 @@ class SupplierController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Supplier $supplier
+     * @return Response
      */
     public function update(Request $request, Supplier $supplier)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $supplier->name = $request->name;
         $supplier->phone = $request->phone;
@@ -106,8 +121,9 @@ class SupplierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
+     * @param Supplier $supplier
+     * @return Response
+     * @throws Exception
      */
     public function destroy(Request $request, Supplier $supplier)
     {

@@ -52,7 +52,7 @@ nv.models.pie = function() {
                 , arcsRadiusInner = []
                 ;
 
-            container = d3.select(this)
+            container = d3.select(this);
             if (arcsRadius.length === 0) {
                 var outer = radius - radius / 5;
                 var inner = donutRatio * radius;

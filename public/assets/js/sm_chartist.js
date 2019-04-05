@@ -147,7 +147,7 @@ var lineChart = function () {
     new ResizeSensor($('#sm-container'), function () {
         pie2.update();
     });
-}
+};
 
 
 var chartistChart = function () {

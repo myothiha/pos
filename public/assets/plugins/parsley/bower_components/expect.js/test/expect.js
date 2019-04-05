@@ -107,13 +107,13 @@ describe('expect', function () {
 
     var anonItThrows = function () {
       a.b.c;
-    }
+    };
 
     function itWorks () {
-      return
+
     }
 
-    var anonItWorks = function () { }
+    var anonItWorks = function () { };
 
     expect(itThrows).to.throwException();
     expect(itWorks).to.not.throwException();
@@ -279,8 +279,8 @@ describe('expect', function () {
   });
 
   it('should test match(regexp)', function () {
-    expect('foobar').to.match(/^foo/)
-    expect('foobar').to.not.match(/^bar/)
+    expect('foobar').to.match(/^foo/);
+    expect('foobar').to.not.match(/^bar/);
 
     err(function () {
       expect('foobar').to.match(/^bar/i)

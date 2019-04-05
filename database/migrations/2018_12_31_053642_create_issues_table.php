@@ -1,5 +1,6 @@
 <?php
 
+use App\Constants;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -17,7 +18,7 @@ class CreateIssuesTable extends Migration
             $table->unsignedInteger('employee_id');
             $table->unsignedInteger('item_id');
             $table->unsignedInteger('quantity');
-            $table->string('type')->default(\App\Constants::NEW);
+            $table->string('type')->default(Constants::NEW);
             $table->string('paint');
             $table->string('tinder');
             $table->string('liker');

@@ -8,7 +8,7 @@
                         <div class="copyright mt-1">
                             <ul class="copy-links">
                                 <li>
-                                    © 2019 <a href="#" target="_blank">UpSalute</a>
+                                    © 2019 <a href="http://upsalute.com" target="_blank">UpSalute</a>
                                 </li>
                             </ul>
                         </div>
@@ -19,7 +19,7 @@
                     <div class="text-xs-center text-sm-right">
                         <ul class="social-media social-media--style-1-v4">
                             <li>
-                                <a href="https://www.linkedin.com/company/upsalute/about/" target="_blank" data-toggle="tooltip"
+                                <a href="https://www.linkedin.com/company/upsalute/" target="_blank" data-toggle="tooltip"
                                    data-original-title="linkedin">
                                     <i class="fa fa-linkedin"></i>
                                 </a>

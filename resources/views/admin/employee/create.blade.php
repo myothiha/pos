@@ -32,14 +32,14 @@
                                             <div class="form-group">
                                                 <label for="name">Name</label>
                                                 <input id="name" placeholder="Enter Name"
-                                                       type="text" class="form-control" name="name">
+                                                       type="text" class="form-control" name="name" value="{{ old('name') }}">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-group">
                                                 <label class="control-label">Date of Birth</label>
                                                 <div class="input-group date input-group--style-1" id="datepicker-component" data-date-format="dd-mm-yyyy" data-date-start-date="Date.default">
-                                                    <input type="date" class="form-control" name="dob" placeholder="Select Date"><br>
+                                                    <input type="date" class="form-control" name="dob" placeholder="Select Date" value="{{ old('dob') }}"><br>
                                                     <span class="input-group-addon">
                                                         <i class="ion-ios-calendar-outline"></i>
                                                     </span>
@@ -52,15 +52,18 @@
                                         <div class="col-lg-6">
                                             <div class="form-group has-feedback">
                                                 <label for="gender">Gender</label>
-                                                <input type="text" id="gender"
-                                                       placeholder="Gender" class="form-control" name="gender">
+                                                <select class="form-control" id="gender" name="gender">
+                                                    <option {{ old('gender') === "Male" ? "selected" : " " }} value="Male">Male</option>
+                                                    <option {{ old('gender') === "Female" ? "selected" : " " }} value="Female">Female</option>
+                                                    <option {{ old('gender') === "Other" ? "selected" : " " }} value="Other">Other</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="form-group has-feedback">
                                                 <label for="phone">Phone</label>
                                                 <input type="text" id="phone"
-                                                       placeholder="Phone" class="form-control" name="phone">
+                                                       placeholder="Phone" class="form-control" name="phone" value="{{ old('phone') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +72,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label for="address">Address</label>
-                                                <textarea class="form-control" id="Address" rows="3" name="address"></textarea>
+                                                <textarea class="form-control" id="Address" rows="3" name="address">{{ old('address') }}</textarea>
                                             </div>
                                         </div>
                                     </div>

@@ -63,8 +63,7 @@ nv.models.parallelCoordinates = function() {
             var dataValues = data.map(function (d) {return d.values});
             if (active.length === 0) {
                 active = data;
-            }; //set all active before first brush call
-            
+            } //set all active before first brush call
             dimensionNames = dimensionData.sort(function (a, b) { return a.currentPosition - b.currentPosition; }).map(function (d) { return d.key });
             enabledDimensions = dimensionData.filter(function (d) { return !d.disabled; });
             
@@ -173,7 +172,7 @@ nv.models.parallelCoordinates = function() {
 
             // Add blue foreground lines for focus.
             foreground = wrap.select('.foreground').selectAll('path').data(data);
-            foreground.enter().append('path')
+            foreground.enter().append('path');
             foreground.exit().remove();
             foreground.attr('d', path)
                 .style("stroke-width", function (d, i) {

@@ -6,7 +6,10 @@ use App\Item;
 use App\Type;
 use App\Category;
 use App\Color;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Validator;
 
 class ItemController extends Controller
 {
@@ -20,7 +23,7 @@ class ItemController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -34,7 +37,7 @@ class ItemController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -52,18 +55,29 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'itemCode' => 'required',
             'type_id' => 'required',
             'category_id' => 'required',
             'color_id' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if (count(Item::where('itemCode', $request->itemCode)->get()) > 0){
+            $request->session()->flash('alert-danger', 'Item Code is already used!');
+            return redirect()->back();
+        }
 
         $item = new $this->item();
         $item->name = $request->name;
@@ -81,7 +95,7 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Item $item
+     * @param Item $item
      * @return void
      */
     public function show(Item $item)
@@ -92,8 +106,8 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @param Item $item
+     * @return Response
      */
     public function edit(Item $item)
     {
@@ -112,19 +126,30 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Item  $item
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Item $item
+     * @return Response
      */
     public function update(Request $request, Item $item)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'itemCode' => 'required',
             'type_id' => 'required',
             'category_id' => 'required',
             'color_id' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        if (count(Item::where('itemCode', $request->itemCode)->get()) > 0){
+            $request->session()->flash('alert-danger', 'Item Code is already used!');
+            return redirect()->back();
+        }
 
         $item->name = $request->name;
         $item->itemCode = $request->itemCode;
@@ -141,9 +166,9 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Item $item
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param Item $item
+     * @return Response
+     * @throws Exception
      */
     public function destroy(Request $request, Item $item)
     {

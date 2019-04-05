@@ -73,13 +73,13 @@ nv.models.linePlusBarChart = function() {
         return switchYAxisOrder
             ? { main: y2Axis, focus: y4Axis }
             : { main: y1Axis, focus: y3Axis }
-    }
+    };
 
     var getLinesAxis = function() {
         return switchYAxisOrder
             ? { main: y1Axis, focus: y3Axis }
             : { main: y2Axis, focus: y4Axis }
-    }
+    };
 
     var stateGetter = function(data) {
         return function(){
@@ -102,7 +102,7 @@ nv.models.linePlusBarChart = function() {
       return data.every(function(series) {
         return series.disabled;
       });
-    }
+    };
 
     function chart(selection) {
         selection.each(function(data) {
@@ -138,7 +138,7 @@ nv.models.linePlusBarChart = function() {
 
             // Display No Data message if there's nothing to show.
             if (!data || !data.length || !data.filter(function(d) { return d.values.length }).length) {
-                nv.utils.noData(chart, container)
+                nv.utils.noData(chart, container);
                 return chart;
             } else {
                 container.selectAll('.nv-noData').remove();

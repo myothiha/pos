@@ -9,7 +9,11 @@ use App\Type;
 use App\Category;
 use App\Location;
 use App\Color;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Log;
+use Throwable;
 
 class StockOpeningController extends Controller
 {
@@ -26,7 +30,7 @@ class StockOpeningController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -39,7 +43,7 @@ class StockOpeningController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function getItem()
     {
@@ -57,8 +61,8 @@ class StockOpeningController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function searchItems(Request $request)
     {
@@ -95,7 +99,7 @@ class StockOpeningController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create(Item $item)
     {
@@ -110,9 +114,9 @@ class StockOpeningController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @param Item $item
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request, Item $item)
     {
@@ -125,7 +129,7 @@ class StockOpeningController extends Controller
         $stockOpening->quantity = $request->quantity;
 
         try {
-            \DB::transaction(function () use ($stockOpening, $item) {
+            DB::transaction(function () use ($stockOpening, $item) {
                 $item->stockOpenings()->save($stockOpening);
 
                 $store = Store::firstOrNew([
@@ -136,8 +140,8 @@ class StockOpeningController extends Controller
                 $store->quantity += $stockOpening->quantity;
                 $store->save();
             });
-        } catch (\Throwable $e) {
-            \Log::error('Error Creating Stock Opening');
+        } catch (Throwable $e) {
+            Log::error('Error Creating Stock Opening');
             dd($e->getMessage()); //Todo Remove
         }
 
@@ -149,8 +153,8 @@ class StockOpeningController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\StockOpening $stockOpening
-     * @return \Illuminate\Http\Response
+     * @param StockOpening $stockOpening
+     * @return Response
      */
     public function show(StockOpening $stockOpening)
     {
@@ -160,8 +164,8 @@ class StockOpeningController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\StockOpening $stockOpening
-     * @return \Illuminate\Http\Response
+     * @param StockOpening $stockOpening
+     * @return Response
      */
     public function edit(StockOpening $stockOpening)
     {
@@ -171,9 +175,9 @@ class StockOpeningController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\StockOpening $stockOpening
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param StockOpening $stockOpening
+     * @return Response
      */
     public function update(Request $request, StockOpening $stockOpening)
     {
@@ -183,8 +187,8 @@ class StockOpeningController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\StockOpening $stockOpening
-     * @return \Illuminate\Http\Response
+     * @param StockOpening $stockOpening
+     * @return Response
      */
     public function destroy(StockOpening $stockOpening)
     {

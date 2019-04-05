@@ -2,7 +2,10 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\StockOpening
@@ -11,22 +14,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $location_id
  * @property int $item_id
  * @property int $quantity
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening whereItemId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening whereLocationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|StockOpening newModelQuery()
+ * @method static Builder|StockOpening newQuery()
+ * @method static Builder|StockOpening query()
+ * @method static Builder|StockOpening whereCreatedAt($value)
+ * @method static Builder|StockOpening whereId($value)
+ * @method static Builder|StockOpening whereItemId($value)
+ * @method static Builder|StockOpening whereLocationId($value)
+ * @method static Builder|StockOpening whereQuantity($value)
+ * @method static Builder|StockOpening whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string|null $deleted_at
- * @property-read \App\Item $item
- * @property-read \App\Location $location
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockOpening whereDeletedAt($value)
+ * @property-read Item $item
+ * @property-read Location $location
+ * @method static Builder|StockOpening whereDeletedAt($value)
  */
 class StockOpening extends Model
 {

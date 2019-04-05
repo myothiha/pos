@@ -2,7 +2,10 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\TransferDetail
@@ -13,22 +16,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $quantity
  * @property int $price
  * @property int $total
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail whereItemId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail whereTotal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail whereTransferId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\TransferDetail whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @method static Builder|TransferDetail newModelQuery()
+ * @method static Builder|TransferDetail newQuery()
+ * @method static Builder|TransferDetail query()
+ * @method static Builder|TransferDetail whereCreatedAt($value)
+ * @method static Builder|TransferDetail whereDeletedAt($value)
+ * @method static Builder|TransferDetail whereId($value)
+ * @method static Builder|TransferDetail whereItemId($value)
+ * @method static Builder|TransferDetail wherePrice($value)
+ * @method static Builder|TransferDetail whereQuantity($value)
+ * @method static Builder|TransferDetail whereTotal($value)
+ * @method static Builder|TransferDetail whereTransferId($value)
+ * @method static Builder|TransferDetail whereUpdatedAt($value)
+ * @mixin Eloquent
  */
 class TransferDetail extends Model
 {

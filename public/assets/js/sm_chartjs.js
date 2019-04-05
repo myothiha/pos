@@ -268,7 +268,7 @@ var lineChart = function () {
             // Create the chart
             var pieSimpleChart = new Chart(ctx, config);
         });
-    }
+    };
 var chartJS = function () {
     "use strict";
     return {

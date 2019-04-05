@@ -2,28 +2,31 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\CreditBalance
  *
- * @property-read \App\Customer $customer
- * @method static \Illuminate\Database\Eloquent\Builder|\App\CreditBalance newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\CreditBalance newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\CreditBalance query()
- * @mixin \Eloquent
+ * @property-read Customer $customer
+ * @method static Builder|CreditBalance newModelQuery()
+ * @method static Builder|CreditBalance newQuery()
+ * @method static Builder|CreditBalance query()
+ * @mixin Eloquent
  * @property int $id
  * @property int $customer_id
  * @property int $amount
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\CreditBalance whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\CreditBalance whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\CreditBalance whereCustomerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\CreditBalance whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\CreditBalance whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\CreditBalance whereUpdatedAt($value)
+ * @method static Builder|CreditBalance whereAmount($value)
+ * @method static Builder|CreditBalance whereCreatedAt($value)
+ * @method static Builder|CreditBalance whereCustomerId($value)
+ * @method static Builder|CreditBalance whereDeletedAt($value)
+ * @method static Builder|CreditBalance whereId($value)
+ * @method static Builder|CreditBalance whereUpdatedAt($value)
  */
 class CreditBalance extends Model
 {

@@ -30,4 +30,4 @@ var Timeline = function () {
 
 $(function () {
     googleMapSetting();
-})
+});

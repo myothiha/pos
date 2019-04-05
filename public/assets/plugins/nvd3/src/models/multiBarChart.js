@@ -39,7 +39,7 @@ nv.models.multiBarChart = function() {
         , useInteractiveGuideline = false
         ;
 
-    state.stacked = false // DEPRECATED Maintained for backward compatibility
+    state.stacked = false; // DEPRECATED Maintained for backward compatibility
 
     multibar.stacked(false);
     xAxis
@@ -135,7 +135,7 @@ nv.models.multiBarChart = function() {
 
             // Display noData message if there's nothing to show.
             if (!data || !data.length || !data.filter(function(d) { return d.values.length }).length) {
-                nv.utils.noData(chart, container)
+                nv.utils.noData(chart, container);
                 return chart;
             } else {
                 container.selectAll('.nv-noData').remove();
@@ -229,7 +229,7 @@ nv.models.multiBarChart = function() {
 
                 xTicks
                     .selectAll('line, text')
-                    .style('opacity', 1)
+                    .style('opacity', 1);
 
                 if (staggerLabels) {
                     var getTranslate = function(x,y) {
@@ -357,14 +357,14 @@ nv.models.multiBarChart = function() {
                             return !series.disabled;
                         })
                         .forEach(function(series,i) {
-                            pointIndex = x.domain().indexOf(e.pointXValue)
+                            pointIndex = x.domain().indexOf(e.pointXValue);
 
                             var point = series.values[pointIndex];
                             if (point === undefined) return;
 
                             xValue = point.x;
                             if (singlePoint === undefined) singlePoint = point;
-                            if (pointXLocation === undefined) pointXLocation = e.mouseX
+                            if (pointXLocation === undefined) pointXLocation = e.mouseX;
                             allData.push({
                                 key: series.key,
                                 value: chart.y()(point, pointIndex),

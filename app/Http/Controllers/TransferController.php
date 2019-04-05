@@ -11,9 +11,11 @@ use App\Color;
 use App\Customer;
 use App\Location;
 use Cart;
+use DB;
 use Illuminate\Http\Request;
 use App\Constants\Cart as CartConst;
 use Illuminate\Http\Response;
+use Throwable;
 
 
 class TransferController extends Controller
@@ -68,7 +70,7 @@ class TransferController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -79,7 +81,7 @@ class TransferController extends Controller
         $transfer->remark = $request->remark ?? '';
 
         try {
-            \DB::transaction(function () use ($transfer) {
+            DB::transaction(function () use ($transfer) {
                 $transfer->save();
 
                 foreach (Cart::instance(CartConst::TRANSFER)->content() as $item)
@@ -105,7 +107,7 @@ class TransferController extends Controller
                     Cart::instance(CartConst::TRANSFER)->destroy();
                 }
             });
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             dd($e->getMessage());
         }
 
@@ -142,7 +144,7 @@ class TransferController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param Transfer $transfer
      * @return Response
      */

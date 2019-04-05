@@ -134,7 +134,7 @@ nv.models.stackedAreaChart = function() {
 
             // Display No Data message if there's nothing to show.
             if (!data || !data.length || !data.filter(function(d) { return d.values.length }).length) {
-                nv.utils.noData(chart, container)
+                nv.utils.noData(chart, container);
                 return chart;
             } else {
                 container.selectAll('.nv-noData').remove();
@@ -430,7 +430,7 @@ nv.models.stackedAreaChart = function() {
                         if (showTotalInTooltip && stacked.style() != 'expand' && tooltipValue != null) {
                           valueSum += tooltipValue;
                           allNullValues = false;
-                        };
+                        }
                     });
 
                 allData.reverse();
@@ -449,7 +449,7 @@ nv.models.stackedAreaChart = function() {
                         if ( yValue >= stackedY0 && yValue <= (stackedY + stackedY0))
                         {
                             indexToHighlight = i;
-                            return;
+
                         }
                     });
                     if (indexToHighlight != null)

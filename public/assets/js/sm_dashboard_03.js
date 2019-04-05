@@ -170,7 +170,7 @@ var material_icons = function () {
         barSpacing: 10,
         barColor  : 'rgba(255,255,255,.3)'
     });
-}
+};
 var icons = function () {
     "use strict";
     return {

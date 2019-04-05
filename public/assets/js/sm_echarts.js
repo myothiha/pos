@@ -1267,7 +1267,7 @@ var lineChart = function () {
                 }
             );
         });
-    }
+    };
 var eCharts = function () {
     "use strict";
     return {

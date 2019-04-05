@@ -172,7 +172,7 @@ var material_icons = function () {
         });
         ch3.render();
     });
-}
+};
 var icons = function () {
     "use strict";
     return {

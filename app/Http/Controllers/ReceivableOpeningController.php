@@ -6,7 +6,11 @@ use App\CreditBalance;
 use App\ReceivableOpening;
 use App\Customer;
 use App\Location;
+use DB;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Log;
+use Throwable;
 
 
 class ReceivableOpeningController extends Controller
@@ -18,7 +22,7 @@ class ReceivableOpeningController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -31,7 +35,7 @@ class ReceivableOpeningController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -47,8 +51,8 @@ class ReceivableOpeningController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -66,12 +70,12 @@ class ReceivableOpeningController extends Controller
         $creditBalance->amount += $request->balance;
 
         try {
-            \DB::transaction(function () use ($receivableOpening, $creditBalance) {
+            DB::transaction(function () use ($receivableOpening, $creditBalance) {
                 $receivableOpening->save();
                 $creditBalance->save();
             });
-        } catch (\Throwable $e) {
-            \Log::error('Receivable Opening Storing Error : ' . $e->getMessage());
+        } catch (Throwable $e) {
+            Log::error('Receivable Opening Storing Error : ' . $e->getMessage());
             dd($e); // Todo Remove
         }
 
@@ -104,7 +108,7 @@ class ReceivableOpeningController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      * @param ReceivableOpening $receivableOpening
      * @return void
      */

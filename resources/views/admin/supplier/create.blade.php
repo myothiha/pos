@@ -33,7 +33,7 @@
                                             <div class="form-group">
                                                 <label for="username">Name</label>
                                                 <input id="username" placeholder="Enter Name"
-                                                       type="text" class="form-control" name="name">
+                                                       type="text" class="form-control" name="name" value="{{ old('name') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@
                                             <div class="form-group has-feedback">
                                                 <label for="phone">Phone</label>
                                                 <input type="text" id="phone"
-                                                       placeholder="Phone" class="form-control" name="phone">
+                                                       placeholder="Phone" class="form-control" name="phone" value="{{ old('phone') }}}">
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label for="address">Address</label>
-                                                <textarea class="form-control" id="Address" rows="3" name="address"></textarea>
+                                                <textarea class="form-control" id="Address" rows="3" name="address">{{ old('address') }}</textarea>
                                             </div>
                                         </div>
                                     </div>

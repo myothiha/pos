@@ -238,10 +238,10 @@
                         var dayCode = "";
                         dayCode += '<td class="invalid';
                         if (i==7)
-                            dayCode += ' last'
+                            dayCode += ' last';
                         dayCode += '"></td>';
                         if (i==7)
-                            dayCode += '</tr>'
+                            dayCode += '</tr>';
                         lblDaysMonth_string += dayCode
                     }
                 }

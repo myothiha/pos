@@ -19,15 +19,17 @@ use App\Transfer;
 use App\Type;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class ReportController extends Controller
 {
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function stockInReport(Request $request)
     {
@@ -46,7 +48,7 @@ class ReportController extends Controller
 
     /**
      * @param StockIn $stockIn
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function stockInReportDetail(StockIn $stockIn)
     {
@@ -65,7 +67,7 @@ class ReportController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
     public function saleReport(Request $request)
     {

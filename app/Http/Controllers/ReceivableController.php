@@ -7,8 +7,11 @@ use App\Receivable;
 use App\Customer;
 use App\Location;
 use App\Repositories\Customers\ReceivableRepository;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Log;
+use Throwable;
 
 class ReceivableController extends Controller
 {
@@ -80,12 +83,12 @@ class ReceivableController extends Controller
         $creditBalance->amount -= $receivable->amount;
 
         try {
-            \DB::transaction(function () use ($receivable, $creditBalance) {
+            DB::transaction(function () use ($receivable, $creditBalance) {
                 $receivable->save();
                 $creditBalance->save();
             });
-        } catch (\Throwable $e) {
-            \Log::error('Save Receivable Error: ' . $e->getMessage());
+        } catch (Throwable $e) {
+            Log::error('Save Receivable Error: ' . $e->getMessage());
             dd($e->getMessage()); //Todo remove
         }
 

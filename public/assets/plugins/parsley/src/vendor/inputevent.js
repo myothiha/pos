@@ -62,6 +62,5 @@ function InputEvent() {
     }
 
   });
-};
-
+}
 export default new InputEvent();

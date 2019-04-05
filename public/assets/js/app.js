@@ -604,7 +604,7 @@ var _sm_pvrWriteCopyrights = function () {
                     $(ele).addClass("hide")
                 }, 1000)
             } else {
-                $(ele).removeClass("hide")
+                $(ele).removeClass("hide");
                 $(ele).removeClass("slideOutDown").addClass("animated slideInUp")
             }
         });
@@ -623,7 +623,7 @@ var _sm_pvrWriteCopyrights = function () {
         $(".fullscreen_element").on("click", function (e) {
             e.preventDefault();
             var a = $(this).closest(".sm-wrapper");
-            console.log(a)
+            console.log(a);
             if (!$(a).hasClass("fullscreen")) {
                 $("body").css("overflow", "hidden");
                 $(a).addClass("fullscreen");
@@ -684,7 +684,7 @@ var _sm_pvrWriteCopyrights = function () {
                             $('.chat-messages').append('<div class="message"><div class="message-content">' + val + '</div></div>');
                             $messages_w.scrollTop($messages_w.prop("scrollHeight"));
                             $messages_w.perfectScrollbar('update');
-                        }, 200)
+                        }, 200);
                         var $messages_w = $('.pvr_chat_cnt .chat-messages');
                         $messages_w.scrollTop($messages_w.prop("scrollHeight"));
                         $messages_w.perfectScrollbar('update');
@@ -822,7 +822,7 @@ var _sm_pvrWriteCopyrights = function () {
                 $($(ui.item[ 0 ]).next()[ 0 ]).remove();
             },*/
             stop       : function (e, a) {
-                console.log(a.item)
+                console.log(a.item);
                 a.item.find(".sm-header").append('<i class="fa ion-android-sync fa-spin m-l-5" data-id="title-spinner"></i>');
                 PanelPosition(a.item)
             }

@@ -2,7 +2,10 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Damage
@@ -11,22 +14,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $location_id
  * @property int $item_id
  * @property int $quantity
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage whereItemId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage whereLocationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Damage newModelQuery()
+ * @method static Builder|Damage newQuery()
+ * @method static Builder|Damage query()
+ * @method static Builder|Damage whereCreatedAt($value)
+ * @method static Builder|Damage whereId($value)
+ * @method static Builder|Damage whereItemId($value)
+ * @method static Builder|Damage whereLocationId($value)
+ * @method static Builder|Damage whereQuantity($value)
+ * @method static Builder|Damage whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string|null $deleted_at
- * @property-read \App\Item $item
- * @property-read \App\Location $location
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage whereDeletedAt($value)
+ * @property-read Item $item
+ * @property-read Location $location
+ * @method static Builder|Damage whereDeletedAt($value)
  */
 class Damage extends Model
 {

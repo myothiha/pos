@@ -9,9 +9,12 @@ use App\Store;
 use App\Type;
 use App\Category;
 use App\Color;
+use DB;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\View\View;
+use Throwable;
 
 class DamageController extends Controller
 {
@@ -38,7 +41,7 @@ class DamageController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function getItem()
     {
@@ -56,8 +59,8 @@ class DamageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function searchItems(Request $request)
     {  
@@ -102,8 +105,8 @@ class DamageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request, Item $item)
     {
@@ -116,7 +119,7 @@ class DamageController extends Controller
         $damage->quantity = $request->quantity;
 
         try {
-            \DB::transaction(function () use ($damage, $item) {
+            DB::transaction(function () use ($damage, $item) {
                 $item->damages()->save($damage);
                 
                 $store = Store::firstOrNew([
@@ -127,7 +130,7 @@ class DamageController extends Controller
                 $store->quantity -= $damage->quantity;
                 $store->save();
             });
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
         }
 
         $request->session()->flash('alert-success', 'Damage has been processed!');
@@ -137,8 +140,8 @@ class DamageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Damage  $damage
-     * @return \Illuminate\Http\Response
+     * @param Damage $damage
+     * @return Response
      */
     public function show(Damage $damage)
     {
@@ -148,8 +151,8 @@ class DamageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Damage  $damage
-     * @return \Illuminate\Http\Response
+     * @param Damage $damage
+     * @return Response
      */
     public function edit(Damage $damage)
     {
@@ -159,9 +162,9 @@ class DamageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Damage  $damage
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Damage $damage
+     * @return Response
      */
     public function update(Request $request, Damage $damage)
     {
@@ -171,8 +174,8 @@ class DamageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Damage  $damage
-     * @return \Illuminate\Http\Response
+     * @param Damage $damage
+     * @return Response
      */
     public function destroy(Damage $damage)
     {

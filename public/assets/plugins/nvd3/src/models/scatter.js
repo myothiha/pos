@@ -112,7 +112,7 @@ nv.models.scatter = function() {
                     })
                 );
 
-            x   .domain(xDomain || d3.extent(seriesData.map(function(d) { return d.x; }).concat(forceX)))
+            x   .domain(xDomain || d3.extent(seriesData.map(function(d) { return d.x; }).concat(forceX)));
 
             if (padData && data[0])
                 x.range(xRange || [(availableWidth * padDataOuter +  availableWidth) / (2 *data[0].values.length), availableWidth - availableWidth * (1 + padDataOuter) / (2 * data[0].values.length)  ]);

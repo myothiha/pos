@@ -276,4 +276,4 @@ nv.models.discreteBarChart = function() {
     nv.utils.initOptions(chart);
 
     return chart;
-}
+};

@@ -151,7 +151,7 @@
                                                         <div class="form-group">
                                                             <label for="voucherNo">Voucher No</label>
                                                             <input id="voucherNo" placeholder="Enter Voucher"
-                                                                   type="text" class="form-control" name="voucherNo">
+                                                                   type="text" class="form-control" name="voucherNo" value="{{ old('voucherNo') }}">
                                                         </div>
                                                     </div>
 
@@ -162,7 +162,7 @@
                                                                     name="supplier_id">
                                                                 @foreach($suppliers as $supplier)
                                                                     <option
-                                                                            value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                                                            value="{{ $supplier->id }}" {{ old('supplier_id') == $supplier->id ? "selected" : " " }}>{{ $supplier->name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>

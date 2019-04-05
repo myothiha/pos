@@ -85,7 +85,7 @@ nv.models.axis = function() {
                     w = isOrdinal ? scale.range()[0] + scale.range()[1] + scale.rangeBand() : scale.range()[1];
                   } else if ( scale.range().length > 2){
                     w = scale.range()[scale.range().length-1]+(scale.range()[1]-scale.range()[0]);
-                  };
+                  }
                     axisLabel
                         .attr('text-anchor', 'middle')
                         .attr('y', 0)
@@ -157,7 +157,7 @@ nv.models.axis = function() {
                         w = isOrdinal ? scale.range()[0] + scale.range()[1] + scale.rangeBand() : scale.range()[1];
                     } else if ( scale.range().length > 2){
                         w = scale.range()[scale.range().length-1]+(scale.range()[1]-scale.range()[0]);
-                    };
+                    }
                     axisLabel
                         .attr('text-anchor', 'middle')
                         .attr('y', xLabelMargin)

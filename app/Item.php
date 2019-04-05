@@ -2,8 +2,12 @@
 
 namespace App;
 
+use Eloquent;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Item
@@ -16,34 +20,34 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $color_id
  * @property string|null $remark
  * @property int $isActive
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereColorId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereItemCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereRemark($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereTypeId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Item newModelQuery()
+ * @method static Builder|Item newQuery()
+ * @method static Builder|Item query()
+ * @method static Builder|Item whereCategoryId($value)
+ * @method static Builder|Item whereColorId($value)
+ * @method static Builder|Item whereCreatedAt($value)
+ * @method static Builder|Item whereId($value)
+ * @method static Builder|Item whereIsActive($value)
+ * @method static Builder|Item whereItemCode($value)
+ * @method static Builder|Item whereName($value)
+ * @method static Builder|Item whereRemark($value)
+ * @method static Builder|Item whereTypeId($value)
+ * @method static Builder|Item whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string|null $deleted_at
- * @property-read \App\Category $category
- * @property-read \App\Color $color
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Damage[] $damages
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\StockOpening[] $stockOpenings
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Store[] $stores
- * @property-read \App\Type $type
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Item whereDeletedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Sale[] $sales
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\StockIn[] $stockIns
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Transfer[] $transfers
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Issue[] $issues
+ * @property-read Category $category
+ * @property-read Color $color
+ * @property-read Collection|Damage[] $damages
+ * @property-read Collection|StockOpening[] $stockOpenings
+ * @property-read Collection|Store[] $stores
+ * @property-read Type $type
+ * @method static Builder|Item whereDeletedAt($value)
+ * @property-read Collection|Sale[] $sales
+ * @property-read Collection|StockIn[] $stockIns
+ * @property-read Collection|Transfer[] $transfers
+ * @property-read Collection|Issue[] $issues
  * @property-read mixed $quantity
  * @property-read mixed $total
  */

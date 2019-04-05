@@ -107,7 +107,7 @@ nv.models.multiBar = function() {
                     var posBase = 0, negBase = 0;
                     data.map(function(d, idx) {
                         if (!data[idx].nonStackable) {
-                            var f = d.values[i]
+                            var f = d.values[i];
                             f.size = Math.abs(f.y);
                             if (f.y<0)  {
                                 f.y1 = negBase;
@@ -275,7 +275,7 @@ nv.models.multiBar = function() {
                 });
             bars
                 .attr('class', function(d,i) { return getY(d,i) < 0 ? 'nv-bar negative' : 'nv-bar positive'})
-                .attr('transform', function(d,i) { return 'translate(' + x(getX(d,i)) + ',0)'; })
+                .attr('transform', function(d,i) { return 'translate(' + x(getX(d,i)) + ',0)'; });
 
             if (barColor) {
                 if (!disabled) disabled = data.map(function() { return true });

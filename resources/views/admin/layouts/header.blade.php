@@ -97,7 +97,7 @@
         <!--navbar-inverse bg-dark-->
         <div class="container navbar-container">
             <!-- BEGIN LOGO -->
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="/">
                 <img src="http://via.placeholder.com/106x20" class="" alt="perfectin.co">
             </a>
             <!--END LOGO-->
@@ -191,9 +191,6 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ action('InspectController@index') }}" class="dropdown-item">Inspect</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="dropdown-item">Repair</a>
                             </li>
                         </ul>
                     </li>

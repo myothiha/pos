@@ -2,7 +2,10 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Supplier
@@ -12,21 +15,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $phone
  * @property string|null $address
  * @property int $isActive
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Supplier newModelQuery()
+ * @method static Builder|Supplier newQuery()
+ * @method static Builder|Supplier query()
+ * @method static Builder|Supplier whereAddress($value)
+ * @method static Builder|Supplier whereCreatedAt($value)
+ * @method static Builder|Supplier whereId($value)
+ * @method static Builder|Supplier whereIsActive($value)
+ * @method static Builder|Supplier whereName($value)
+ * @method static Builder|Supplier wherePhone($value)
+ * @method static Builder|Supplier whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Supplier whereDeletedAt($value)
+ * @method static Builder|Supplier whereDeletedAt($value)
  */
 class Supplier extends Model
 {

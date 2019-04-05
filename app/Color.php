@@ -2,7 +2,11 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Color
@@ -10,20 +14,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property int $isActive
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Color newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Color newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Color query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Color newModelQuery()
+ * @method static Builder|Color newQuery()
+ * @method static Builder|Color query()
+ * @method static Builder|Color whereCreatedAt($value)
+ * @method static Builder|Color whereId($value)
+ * @method static Builder|Color whereIsActive($value)
+ * @method static Builder|Color whereName($value)
+ * @method static Builder|Color whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Color whereDeletedAt($value)
+ * @property-read Collection|Item[] $items
+ * @method static Builder|Color whereDeletedAt($value)
  */
 class Color extends Model
 {

@@ -71,13 +71,13 @@ var liveChart = function () {
         dateAxis.renderer.labels.template.adapter.add("fillOpacity", function (fillOpacity, target) {
             var dataItem = target.dataItem;
             return dataItem.position;
-        })
+        });
 // need to set this, otherwise fillOpacity is not changed and not set
         dateAxis.events.on("datarangechanged", function () {
             am4core.iter.each(dateAxis.renderer.labels.iterator(), function (label) {
                 label.fillOpacity = label.fillOpacity;
             })
-        })
+        });
 // this makes date axis labels which are at equal minutes to be rotated
         dateAxis.renderer.labels.template.adapter.add("rotation", function (rotation, target) {
             var dataItem = target.dataItem;
@@ -91,7 +91,7 @@ var liveChart = function () {
                 target.horizontalCenter = "middle";
                 return 0;
             }
-        })
+        });
 // bullet at the front of the line
         var bullet = series.createChild(am4charts.CircleBullet);
         bullet.circle.radius = 5;
@@ -234,7 +234,7 @@ var liveChart = function () {
             var dataItem = event.target.dataItem;
             var itemBullet = dataItem.bullets.getKey(bullet.uid);
             itemBullet.isHover = true;
-        })
+        });
 // hide bullet when mouse is out
         columnTemplate.events.on("out", function (event) {
             var dataItem = event.target.dataItem;
@@ -243,13 +243,13 @@ var liveChart = function () {
             setTimeout(function () {
                 itemBullet.isHover = false
             }, 1000);
-        })
+        });
 // start dragging bullet even if we hit on column not just a bullet, this will make it more friendly for touch devices
         columnTemplate.events.on("down", function (event) {
             var dataItem = event.target.dataItem;
             var itemBullet = dataItem.bullets.getKey(bullet.uid);
             itemBullet.dragStart(event.pointer);
-        })
+        });
 // when columns position changes, adjust minX/maxX of bullets so that we could only dragg vertically
         columnTemplate.events.on("positionchanged", function (event) {
             var dataItem = event.target.dataItem;
@@ -259,7 +259,7 @@ var liveChart = function () {
             itemBullet.maxX = itemBullet.minX;
             itemBullet.minY = 0;
             itemBullet.maxY = chart.seriesContainer.pixelHeight;
-        })
+        });
 // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
         columnTemplate.adapter.add("fill", function (fill, target) {
             return chart.colors.getIndex(target.dataItem.index).saturate(0.3);
@@ -342,7 +342,7 @@ var liveChart = function () {
         dateAxis.mouseEnabled = false;
         dateAxis.tooltip.disabled = true;
         dateAxis.periodChangeDateFormats.setKey("month", dateAxis.language.translate("_date_month"));
-        dateAxis
+        dateAxis;
         var series1 = chart.series.push(new am4charts.RadarColumnSeries());
         series1.name = "Series 1";
         series1.dataFields.openDateX = "startDate1";
@@ -512,7 +512,7 @@ var liveChart = function () {
                 [ "New Zealand", 12.39, 0.27, 0.47, 0.43, -0.27, -0.31, 0.44, -0.16, -0.18, 0.08, -0.28, -0.36, 0.32, 0.29, 0.27, 0.35, 0.41, 0.63, 0.57, -0.2, -0.59, -0.37, -0.71, 0.26, 0.28, -0.06, 0.96, 0.91, 0.52, 0.65, 0.69, 0.47, 0.04, 0.84, 0.01, 0.26, 0.34, -0.26, 0.53, 0.21, 0.62, 1.62, 0.79, 0.37, 0.64 ],
                 [ "Tuvalu", 26.37, 0, 0, 0, 0, 0, 0, -0.92, -1.87, -0.87, 1.73, 1.49, 1.63, 1.85, 2.03, 1.65, 1.62, 1.57, 1.94, 2.03, 1.86, 1.77, 2.3, 1.86, 1.52, 1.52, 1.54, 1.73, 2.09, 2.23, 2.33, 2.38, 2.21, 2.32, 2.35, 2.23, 1.86, 2.23, 2.03, 2.12, 1.77, 2.38, 2.34, 2.36, 2.64 ],
             ]
-        }
+        };
         var startYear = 1973;
         var endYear = 2016;
         var currentYear = 1995;
@@ -612,7 +612,7 @@ var liveChart = function () {
         var yearSlider = yearSliderContainer.createChild(am4core.Slider);
         yearSlider.events.on("rangechanged", function () {
             updateRadarData(startYear + Math.round(yearSlider.start * (endYear - startYear)));
-        })
+        });
         yearSlider.orientation = "horizontal";
         yearSlider.start = 0.5;
         chart.data = generateRadarData();
@@ -622,7 +622,7 @@ var liveChart = function () {
             for (var continent in temperatures) {
                 var continentData = temperatures[ continent ];
                 continentData.forEach(function (country) {
-                    var rawDataItem = {"country": country[ 0 ]}
+                    var rawDataItem = {"country": country[ 0 ]};
                     for (var y = 2; y < country.length; y++) {
                         rawDataItem[ "value" + (startYear + y - 2) ] = country[ y ];
                     }
@@ -669,7 +669,7 @@ var liveChart = function () {
                 else {
                     categoryAxis.zoomToCategories(dataItem.category, dataItem.endCategory);
                 }
-            })
+            });
             // hover state
             var hoverState = axisFill.states.create("hover");
             hoverState.properties.innerRadius = -10;
@@ -740,7 +740,7 @@ var liveChart = function () {
             "value2": 16,
             "value3": 5,
             "value4": 1
-        }]
+        }];
         chart.fontSize = 12;
         chart.radius = am4core.percent(95);
         chart.startAngle = 260;
@@ -756,7 +756,7 @@ var liveChart = function () {
         var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
         valueAxis.tooltip.disabled = true;
         valueAxis.renderer.minGridDistance = 20;
-        valueAxis.renderer.grid.template.strokeOpacity = 0.05
+        valueAxis.renderer.grid.template.strokeOpacity = 0.05;
         valueAxis.renderer.labels.template.fontSize = 9;
         valueAxis.renderer.axisFills.template.disabled = true;
         valueAxis.mouseEnabled = false;
@@ -800,7 +800,7 @@ var liveChart = function () {
             chart.endAngle = 270 + start * 179 + 1;
             valueAxis.renderer.axisAngle = chart.startAngle;
         })
-    }
+    };
 var AMChart = function () {
     "use strict";
     return {

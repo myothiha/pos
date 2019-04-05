@@ -106,7 +106,7 @@ nv.models.boxPlotChart = function() {
             boxplot.width(availableWidth).height(availableHeight);
 
             var barsWrap = g.select('.nv-barsWrap')
-                .datum(data.filter(function(d) { return !d.disabled }))
+                .datum(data.filter(function(d) { return !d.disabled }));
 
             barsWrap.transition().call(boxplot);
 
@@ -229,4 +229,4 @@ nv.models.boxPlotChart = function() {
     nv.utils.initOptions(chart);
 
     return chart;
-}
+};

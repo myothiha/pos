@@ -58,8 +58,6 @@
                                                         <input type="hidden" name="_method" value="delete">
                                                         {{ csrf_field() }}
                                                         <a class="btn btn-primary" href="{{ action('TransferController@show', $transfer->id) }}">Detail</a>
-                                                        <a class="btn btn-outline-primary"
-                                                           href="{{ action("TransferController@edit", $transfer->id) }}">Edit</a>
 
                                                         <input type="submit" class="btn btn-outline-danger" value="Delete">
                                                     </form>

@@ -16,7 +16,7 @@ class CreateReceivablesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('location_id');
-            $table->string('voucherNo');
+            $table->string('voucherNo')->nullable();
             $table->integer('amount');
             $table->timestamps();
             $table->softDeletes();

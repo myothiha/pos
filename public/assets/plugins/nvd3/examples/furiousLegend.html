@@ -64,7 +64,7 @@
 
     var update = function(i,l) {
         d3.select('#test' + i).call(l);
-    }
+    };
 
     update(1,legend);
     legend.dispatch.on('stateChange', function(d) {

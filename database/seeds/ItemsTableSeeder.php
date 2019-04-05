@@ -1,6 +1,7 @@
 <?php
 
 use App\Item;
+use App\StockOpening;
 use App\Store;
 use Illuminate\Database\Seeder;
 
@@ -19,7 +20,7 @@ class ItemsTableSeeder extends Seeder
             $ygnStore->location_id = 1;
             $ygnStore->quantity = 100;
 
-            $ygnStockOpening = new \App\StockOpening();
+            $ygnStockOpening = new StockOpening();
             $ygnStockOpening->item_id = $item->id;
             $ygnStockOpening->location_id = 1;
             $ygnStockOpening->quantity = 100;
@@ -32,7 +33,7 @@ class ItemsTableSeeder extends Seeder
             $mdyStore->location_id = 2;
             $mdyStore->quantity = 100;
 
-            $mdyStockOpening = new \App\StockOpening();
+            $mdyStockOpening = new StockOpening();
             $mdyStockOpening->item_id = $item->id;
             $mdyStockOpening->location_id = 2;
             $mdyStockOpening->quantity = 100;

@@ -43,7 +43,7 @@ nv.models.furiousLegend = function() {
                         return expanded ? true : !n.disengaged;
                     });
                 });
-            var seriesEnter = series.enter().append('g').attr('class', 'nv-series')
+            var seriesEnter = series.enter().append('g').attr('class', 'nv-series');
 
             var seriesShape;
 

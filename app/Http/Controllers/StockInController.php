@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use PHPUnit\Framework\Constraint\Count;
+use Throwable;
 
 class StockInController extends Controller
 {
@@ -75,22 +76,6 @@ class StockInController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'voucherNo' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        if (count(Cart::content()) == 0){
-            $request->session()->flash('alert-danger', 'Stock In cannot be processed with 0 item!');
-            return redirect()->back()
-                ->withInput();
-        }
-
         $stockIn = new StockIn();
         $stockIn->supplier_id = $request->supplier_id;
         $stockIn->location_id = $request->location_id;
@@ -117,7 +102,7 @@ class StockInController extends Controller
                     Cart::instance(CartConst::STOCK_IN)->destroy();
                 }
             });
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             dd($e->getMessage()); // Todo Remove
         }
 

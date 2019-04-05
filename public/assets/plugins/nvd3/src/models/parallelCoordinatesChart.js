@@ -4,8 +4,8 @@ nv.models.parallelCoordinatesChart = function () {
         // Public Variables with Default Settings
         //------------------------------------------------------------
 
-        var parallelCoordinates = nv.models.parallelCoordinates()
-        var legend = nv.models.legend()
+        var parallelCoordinates = nv.models.parallelCoordinates();
+        var legend = nv.models.legend();
         var tooltip = nv.models.tooltip();
         var dimensionTooltip = nv.models.tooltip();
 
@@ -224,7 +224,7 @@ nv.models.parallelCoordinatesChart = function () {
                 key: evt.label,
                 color: evt.color,
                 series: []
-             }
+             };
             if(evt.values){
                 Object.keys(evt.values).forEach(function (d) {
                     var dim = evt.dimensions.filter(function (dd) {return dd.key === d;})[0];

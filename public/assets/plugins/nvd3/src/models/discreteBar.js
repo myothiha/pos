@@ -153,7 +153,7 @@ nv.models.discreteBar = function() {
 
             barsEnter.append('rect')
                 .attr('height', 0)
-                .attr('width', x.rangeBand() * .9 / data.length )
+                .attr('width', x.rangeBand() * .9 / data.length );
 
             if (showValues) {
                 barsEnter.append('text')

@@ -39,8 +39,7 @@ nv.models.bullet = function() {
             var iB = lz.indexOf(b);
             return d3.descending(values[iA], values[iB]);
         });
-    };
-
+    }
     function chart(selection) {
         selection.each(function(d, i) {
             var availableWidth = width - margin.left - margin.right,

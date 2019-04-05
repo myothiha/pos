@@ -175,10 +175,10 @@
                                                             <label for="saleType">Sale Type</label>
                                                             <select class="form-control" id="saleType" name="saleType"
                                                                     onchange="javascript:changeType()">
+                                                                <option value="{{ \App\Constants::CREDIT }}">Credit
+                                                                </option>
                                                                 <option value="{{ \App\Constants::CASH_DOWN }}"
                                                                         selected>Cash Down
-                                                                </option>
-                                                                <option value="{{ \App\Constants::CREDIT }}">Credit
                                                                 </option>
                                                             </select>
                                                         </div>

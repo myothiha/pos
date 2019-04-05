@@ -73,8 +73,8 @@ nv.addGraph(function() {
     console.log('render complete');
   });
 
-  chart.xAxis.tickFormat(d3.format('.02f'))
-  chart.yAxis.tickFormat(d3.format('.02f'))
+  chart.xAxis.tickFormat(d3.format('.02f'));
+  chart.yAxis.tickFormat(d3.format('.02f'));
 
   d3.select('#test1 svg')
       .datum(nv.log(randomData(4,40)))

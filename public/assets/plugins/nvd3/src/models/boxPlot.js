@@ -51,7 +51,7 @@ nv.models.boxPlot = function() {
                 .rangeBands(xRange || [0, availableWidth], 0.1);
 
             // if we know yDomain, no need to calculate
-            var yData = []
+            var yData = [];
             if (!yDomain) {
                 // (y-range is based on quartiles, whiskers and outliers)
                 var values = [], yMin, yMax;

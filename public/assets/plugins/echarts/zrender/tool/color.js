@@ -218,7 +218,7 @@ define(function(require) {
             }
         }
 
-        return;
+
     }
 
     /**

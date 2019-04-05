@@ -49,7 +49,7 @@ nv.models.forceDirectedGraph = function() {
 
           // Display No Data message if there's nothing to show.
           if (!data || !data.links || !data.nodes) {
-              nv.utils.noData(chart, container)
+              nv.utils.noData(chart, container);
               return chart;
           } else {
               container.selectAll('.nv-noData').remove();

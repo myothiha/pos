@@ -1,5 +1,6 @@
 <?php
 
+use App\Type;
 use Illuminate\Database\Seeder;
 
 class TypesTableSeeder extends Seeder
@@ -11,7 +12,7 @@ class TypesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Type::insert([
+        Type::insert([
             ['name' => 'Type A'],
             ['name' => 'Type B'],
             ['name' => 'Type C'],

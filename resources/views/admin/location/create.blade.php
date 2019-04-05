@@ -33,7 +33,7 @@
                                             <div class="form-group">
                                                 <label for="name">Name</label>
                                                 <input id="name" placeholder="Enter Name"
-                                                       type="text" class="form-control" name="name">
+                                                       type="text" class="form-control" name="name" value="{{ old('name') }}">
                                             </div>
                                         </div>
                                     </div>

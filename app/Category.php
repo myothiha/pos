@@ -2,7 +2,11 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Category
@@ -10,20 +14,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property int $isActive
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Category newModelQuery()
+ * @method static Builder|Category newQuery()
+ * @method static Builder|Category query()
+ * @method static Builder|Category whereCreatedAt($value)
+ * @method static Builder|Category whereId($value)
+ * @method static Builder|Category whereIsActive($value)
+ * @method static Builder|Category whereName($value)
+ * @method static Builder|Category whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereDeletedAt($value)
+ * @property-read Collection|Item[] $items
+ * @method static Builder|Category whereDeletedAt($value)
  */
 class Category extends Model
 {

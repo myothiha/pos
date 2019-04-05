@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,7 +20,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Inspect whereCreatedAt($value)
  * @method static Builder|Inspect whereId($value)
  * @method static Builder|Inspect whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  * @property int $issue_id
  * @property int $employee_id
  * @property int $acceptQty

@@ -78,7 +78,7 @@
                                     <th>Date</th>
                                     <th>Employee</th>
                                     <th>Item</th>
-                                    <th>Color</th>
+                                    <th>Quantity</th>
                                     <th>Paint Consume</th>
                                     <th>Paint Finished</th>
                                     <th>Liker Consume</th>
@@ -100,7 +100,7 @@
                                         <td>{{ $issue->liker }}</td>
                                         <td>Comming Soon</td>
                                         <td>{{ $issue->tinder }}</td>
-                                        <td>Comming Soon</td>
+                                        <td>Comming Soon</td>   
                                     </tr>
                                 @endforeach
                                 </tbody>

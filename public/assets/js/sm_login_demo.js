@@ -1,6 +1,6 @@
 "use strict";
 var changeBackground = function () {
-        var images = new Array();
+        var images = [];
         images[ 0 ] = "http://preview.perfectin.co/demo/Aarvi/assets/img/login-bg/bg-1.jpg";
         images[ 1 ] = "http://preview.perfectin.co/demo/Aarvi/assets/img/login-bg/bg-2.jpg";
         images[ 2 ] = "http://preview.perfectin.co/demo/Aarvi/assets/img/login-bg/bg-3.jpg";

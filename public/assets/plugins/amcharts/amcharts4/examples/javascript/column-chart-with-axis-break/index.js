@@ -66,10 +66,10 @@ axisBreak.breakSize = 0.01;
 
 axisBreak.events.on("over", function () {
 	axisBreak.animate([{ property: "breakSize", to: 1 }, { property: "opacity", to: 0.1 }], 1500, am4core.ease.sinOut);
-})
+});
 axisBreak.events.on("out", function () {
 	axisBreak.animate([{ property: "breakSize", to: 0.01 }, { property: "opacity", to: 1 }], 1000, am4core.ease.quadOut);
-})
+});
 
 
 var series = chart.series.push(new am4charts.ColumnSeries());

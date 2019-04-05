@@ -1,5 +1,7 @@
 <?php
 
+use App\Constants;
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
 /*
@@ -26,11 +28,11 @@ $factory->define(App\User::class, function (Faker $faker) {
 $factory->define(App\Employee::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'dob' => \Carbon\Carbon::now(),
-        'gender' => \App\Constants::MALE,
+        'dob' => Carbon::now(),
+        'gender' => Constants::MALE,
         'phone' => $faker->phoneNumber,
         'address' => $faker->address,
-        'isActive' => \App\Constants::TRUE,
+        'isActive' => Constants::TRUE,
     ];
 });
 
@@ -56,7 +58,7 @@ $factory->define(App\Customer::class, function (Faker $faker) {
         'name' => $faker->name,
         'phone' => $faker->phoneNumber,
         'address' => $faker->address,
-        'isActive' => \App\Constants::TRUE,
+        'isActive' => Constants::TRUE,
     ];
 });
 
@@ -65,6 +67,6 @@ $factory->define(App\Supplier::class, function (Faker $faker) {
         'name' => $faker->name,
         'phone' => $faker->phoneNumber,
         'address' => $faker->address,
-        'isActive' => \App\Constants::TRUE,
+        'isActive' => Constants::TRUE,
     ];
 });

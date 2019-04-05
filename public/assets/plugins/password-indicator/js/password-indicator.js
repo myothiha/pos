@@ -57,7 +57,7 @@ $.fn.passwordStrength = function( options ){
 		var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$_+";
 		var size = 10;
 		var i = 1;
-		var ret = ""
+		var ret = "";
 		while ( i <= size ) {
 			$max = chars.length-1;
 			$num = Math.floor(Math.random()*$max);
@@ -74,4 +74,4 @@ $.fn.passwordStrength.defaults = {
 	classes : Array('is10','is20','is30','is40','is50','is60','is70','is80','is90','is100'),
 	targetDiv : '#passwordStrengthDiv',
 	cache : {}
-}
+};

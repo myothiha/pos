@@ -295,7 +295,7 @@ var lineChart = function () {
             graph.render();
         });
     });
-}
+};
 var rickChart = function () {
     "use strict";
     return {

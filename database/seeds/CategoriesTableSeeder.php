@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder
@@ -11,7 +12,7 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Category::insert([
+        Category::insert([
             ['name' => 'Category A'],
             ['name' => 'Category B'],
             ['name' => 'Category C'],

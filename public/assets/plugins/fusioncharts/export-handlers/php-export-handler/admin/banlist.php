@@ -98,7 +98,7 @@ document.write(d.getFullYear());
 		
 	
 		var countCheck = document.getElementsByName('selectDelete').length;
-		var idArray = new Array();
+		var idArray = [];
 		var idString, oneChecked=0, j=0 ;
 		for(i=0;i<countCheck;i++)
 		{

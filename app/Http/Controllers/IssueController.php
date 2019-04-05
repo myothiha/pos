@@ -117,7 +117,6 @@ class IssueController extends Controller
             'paint' => 'required',
             'tinder' => 'required',
             'liker' => 'required',
-            'remark' => 'required',
         ]);
 
         $issue = new Issue();

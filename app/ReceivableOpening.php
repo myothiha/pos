@@ -2,7 +2,10 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\ReceivableOpening
@@ -11,22 +14,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $location_id
  * @property int $customer_id
  * @property int $balance
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereBalance($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereCustomerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereLocationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|ReceivableOpening newModelQuery()
+ * @method static Builder|ReceivableOpening newQuery()
+ * @method static Builder|ReceivableOpening query()
+ * @method static Builder|ReceivableOpening whereBalance($value)
+ * @method static Builder|ReceivableOpening whereCreatedAt($value)
+ * @method static Builder|ReceivableOpening whereCustomerId($value)
+ * @method static Builder|ReceivableOpening whereId($value)
+ * @method static Builder|ReceivableOpening whereLocationId($value)
+ * @method static Builder|ReceivableOpening whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string|null $deleted_at
- * @property-read \App\Customer $customer
- * @property-read \App\Location $location
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereDeletedAt($value)
+ * @property-read Customer $customer
+ * @property-read Location $location
+ * @method static Builder|ReceivableOpening whereDeletedAt($value)
  */
 class ReceivableOpening extends Model
 {

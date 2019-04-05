@@ -76,7 +76,7 @@ dateAxis.max = new Date(2019, 0, 0, 0, 0, 0).getTime();
 dateAxis.mouseEnabled = false;
 dateAxis.tooltip.disabled = true;
 dateAxis.periodChangeDateFormats.setKey("month", dateAxis.language.translate("_date_month"));
-dateAxis
+dateAxis;
 var series1 = chart.series.push(new am4charts.RadarColumnSeries());
 series1.name = "Series 1";
 series1.dataFields.openDateX = "startDate1";

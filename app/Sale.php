@@ -2,21 +2,25 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Sale
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Sale newModelQuery()
+ * @method static Builder|Sale newQuery()
+ * @method static Builder|Sale query()
+ * @method static Builder|Sale whereCreatedAt($value)
+ * @method static Builder|Sale whereId($value)
+ * @method static Builder|Sale whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string $voucherNo
  * @property string $processType
  * @property string $saleType
@@ -28,20 +32,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $remark
  * @property string $isPaid
  * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereBalance($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereCustomerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereIsPaid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereLocationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale wherePaid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereProcessType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereRemark($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereSaleType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereTotalAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereVoucherNo($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
- * @property-read \App\Customer $customer
- * @property-read \App\Location $location
+ * @method static Builder|Sale whereBalance($value)
+ * @method static Builder|Sale whereCustomerId($value)
+ * @method static Builder|Sale whereDeletedAt($value)
+ * @method static Builder|Sale whereIsPaid($value)
+ * @method static Builder|Sale whereLocationId($value)
+ * @method static Builder|Sale wherePaid($value)
+ * @method static Builder|Sale whereProcessType($value)
+ * @method static Builder|Sale whereRemark($value)
+ * @method static Builder|Sale whereSaleType($value)
+ * @method static Builder|Sale whereTotalAmount($value)
+ * @method static Builder|Sale whereVoucherNo($value)
+ * @property-read Collection|Item[] $items
+ * @property-read Customer $customer
+ * @property-read Location $location
  */
 class Sale extends Model
 {

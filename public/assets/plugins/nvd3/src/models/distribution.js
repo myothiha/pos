@@ -54,7 +54,7 @@ nv.models.distribution = function() {
             var gEnter = wrapEnter.append('g');
             var g = wrap.select('g');
 
-            wrap.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+            wrap.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
             //------------------------------------------------------------
 
@@ -68,10 +68,10 @@ nv.models.distribution = function() {
                 .style('stroke', function(d,i) { return color(d, i) });
 
             var dist = distWrap.selectAll('line.nv-dist' + axis)
-                .data(function(d) { return d.values })
+                .data(function(d) { return d.values });
             dist.enter().append('line')
                 .attr(axis + '1', function(d,i) { return scale0(getData(d,i)) })
-                .attr(axis + '2', function(d,i) { return scale0(getData(d,i)) })
+                .attr(axis + '2', function(d,i) { return scale0(getData(d,i)) });
             renderWatch.transition(distWrap.exit().selectAll('line.nv-dist' + axis), 'dist exit')
                 // .transition()
                 .attr(axis + '1', function(d,i) { return scale(getData(d,i)) })
@@ -85,7 +85,7 @@ nv.models.distribution = function() {
             renderWatch.transition(dist, 'dist')
                 // .transition()
                 .attr(axis + '1', function(d,i) { return scale(getData(d,i)) })
-                .attr(axis + '2', function(d,i) { return scale(getData(d,i)) })
+                .attr(axis + '2', function(d,i) { return scale(getData(d,i)) });
 
 
             scale0 = scale.copy();
@@ -157,4 +157,4 @@ nv.models.distribution = function() {
 
 
     return chart;
-}
+};

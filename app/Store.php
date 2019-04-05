@@ -2,7 +2,10 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Store
@@ -11,22 +14,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $location_id
  * @property int $item_id
  * @property int $quantity
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereItemId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereLocationId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Store newModelQuery()
+ * @method static Builder|Store newQuery()
+ * @method static Builder|Store query()
+ * @method static Builder|Store whereCreatedAt($value)
+ * @method static Builder|Store whereId($value)
+ * @method static Builder|Store whereItemId($value)
+ * @method static Builder|Store whereLocationId($value)
+ * @method static Builder|Store whereQuantity($value)
+ * @method static Builder|Store whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string|null $deleted_at
- * @property-read \App\Item $item
- * @property-read \App\Location $location
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Store whereDeletedAt($value)
+ * @property-read Item $item
+ * @property-read Location $location
+ * @method static Builder|Store whereDeletedAt($value)
  */
 class Store extends Model
 {

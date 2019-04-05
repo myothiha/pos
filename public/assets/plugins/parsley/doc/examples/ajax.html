@@ -156,7 +156,7 @@ Parsley.addValidator('stateAndZip', {
   validateString: function(_ignoreValue, country, instance) {
     var state = instance.$element.find('[name="state"]').val();
     var zip = instance.$element.find('[name="zip"]').val();
-    var xhr = $.ajax('//www.zippopotam.us/' + country + '/' + zip)
+    var xhr = $.ajax('//www.zippopotam.us/' + country + '/' + zip);
     // When Zippopotam.us returns the info of the given zip, check it:
     return xhr.then(function(json) {
       var actualState = json.places[0]['state abbreviation'];

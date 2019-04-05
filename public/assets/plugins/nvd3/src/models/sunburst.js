@@ -87,7 +87,7 @@ nv.models.sunburst = function() {
                 y.domain(yd(t)).range(yr(t));
                 return arc(e);
             }
-        };
+        }
     }
 
     function arcTweenUpdate(d) {
@@ -137,8 +137,8 @@ nv.models.sunburst = function() {
     }
 
     function zoomClick(d) {
-        var labels = container.selectAll('text')
-        var path = container.selectAll('path')
+        var labels = container.selectAll('text');
+        var path = container.selectAll('path');
 
         // fade out all text elements
         labels.transition().attr("opacity",0);
@@ -231,15 +231,15 @@ nv.models.sunburst = function() {
 
             //reverse the drawing order so that the labels of inner
             //arcs are drawn on top of the outer arcs.
-            var nodes = partition.nodes(data[0]).reverse()
+            var nodes = partition.nodes(data[0]).reverse();
 
             storeRetrievePrevPositions(nodes);
-            var cG = wrap.selectAll('.arc-container').data(nodes, key)
+            var cG = wrap.selectAll('.arc-container').data(nodes, key);
 
             //handle new datapoints
             var cGE = cG.enter()
                 .append("g")
-                .attr("class",'arc-container')
+                .attr("class",'arc-container');
 
             cGE.append("path")
                 .attr("d", arc)
@@ -322,7 +322,7 @@ nv.models.sunburst = function() {
             }
 
             //zoom out to the center when the data is updated.
-            zoomClick(nodes[nodes.length - 1])
+            zoomClick(nodes[nodes.length - 1]);
 
 
             //remove unmatched elements ...

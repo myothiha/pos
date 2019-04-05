@@ -2,7 +2,11 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Type
@@ -10,20 +14,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $name
  * @property int $isActive
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Type newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Type newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Type query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Type whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Type whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Type whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Type whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Type whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Type newModelQuery()
+ * @method static Builder|Type newQuery()
+ * @method static Builder|Type query()
+ * @method static Builder|Type whereCreatedAt($value)
+ * @method static Builder|Type whereId($value)
+ * @method static Builder|Type whereIsActive($value)
+ * @method static Builder|Type whereName($value)
+ * @method static Builder|Type whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property string|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Item[] $items
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Type whereDeletedAt($value)
+ * @property-read Collection|Item[] $items
+ * @method static Builder|Type whereDeletedAt($value)
  */
 class Type extends Model
 {

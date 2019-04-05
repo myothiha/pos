@@ -45,7 +45,7 @@
                                                 <div class="input-group date input-group--style-1" id="datepicker-component" data-date-format="dd-mm-yyyy" data-date-start-date="Date.default">
                                                     <input type="date" class="form-control" name="dob" placeholder="Select Date" value="{{ $employee->dob->toDateString() }}"><br>
                                                     <span class="input-group-addon">
-                                                        <i class="ion-ios-calendar-outline"></i>x
+                                                        <i class="ion-ios-calendar-outline"></i>
                                                     </span>
                                                 </div>
                                             </div>

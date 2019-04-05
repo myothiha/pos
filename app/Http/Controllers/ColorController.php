@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Color;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Validator;
 
 class ColorController extends Controller
 {
@@ -14,7 +16,7 @@ class ColorController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -28,7 +30,7 @@ class ColorController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -38,14 +40,20 @@ class ColorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $color = new $this->color();
         $color->name = $request->name;
@@ -58,8 +66,8 @@ class ColorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Color  $color
-     * @return \Illuminate\Http\Response
+     * @param Color $color
+     * @return Response
      */
     public function show(Color $color)
     {
@@ -69,8 +77,8 @@ class ColorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Color  $color
-     * @return \Illuminate\Http\Response
+     * @param Color $color
+     * @return Response
      */
     public function edit(Color $color)
     {
@@ -82,15 +90,21 @@ class ColorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Color  $color
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Color $color
+     * @return Response
      */
     public function update(Request $request, Color $color)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $color->name = $request->name;
         $color->save();
@@ -102,8 +116,8 @@ class ColorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Color  $color
-     * @return \Illuminate\Http\Response
+     * @param Color $color
+     * @return Response
      */
     public function destroy(Request $request, Color $color)
     {

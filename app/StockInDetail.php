@@ -2,29 +2,32 @@
 
 namespace App;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\StockInDetail
  *
  * @property int $id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|StockInDetail newModelQuery()
+ * @method static Builder|StockInDetail newQuery()
+ * @method static Builder|StockInDetail query()
+ * @method static Builder|StockInDetail whereCreatedAt($value)
+ * @method static Builder|StockInDetail whereId($value)
+ * @method static Builder|StockInDetail whereUpdatedAt($value)
+ * @mixin Eloquent
  * @property int $stock_in_id
  * @property int $item_id
  * @property int $quantity
  * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail whereItemId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\StockInDetail whereStockInId($value)
+ * @method static Builder|StockInDetail whereDeletedAt($value)
+ * @method static Builder|StockInDetail whereItemId($value)
+ * @method static Builder|StockInDetail whereQuantity($value)
+ * @method static Builder|StockInDetail whereStockInId($value)
  */
 class StockInDetail extends Model
 {

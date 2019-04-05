@@ -88,7 +88,7 @@
                     if(q[i] !== ev) newQueue.push(q[i]);
                 }
                 q = newQueue;
-            }
+            };
 
             this.length = function() {
                 return q.length;
@@ -197,7 +197,7 @@
 
     ResizeSensor.detach = function(element, ev) {
         forEachElement(element, function(elem){
-            if (!elem) return
+            if (!elem) return;
             if(elem.resizedAttached && typeof ev == "function"){
                 elem.resizedAttached.remove(ev);
                 if(elem.resizedAttached.length()) return;
