@@ -59,7 +59,7 @@
                                                         {{ csrf_field() }}
                                                         <a class="btn btn-primary" href="{{ action('TransferController@show', $transfer->id) }}">Detail</a>
 
-                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
+{{--                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">--}}
                                                     </form>
                                                 </td>
                                             </tr>

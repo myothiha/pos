@@ -49,14 +49,14 @@
                                                 <td>{{ $damage->location->name }}</td>
                                                 <td>{{ $damage->item->name }}</td>
                                                 <td>{{ $damage->quantity }}</td>
-                                                <td width="20%">
+                                                <td width="20%"> Coming Soon
                                                     <form
                                                         action="{{ action('DamageController@destroy', $damage->id) }}"
                                                         method="Post">
                                                         <input type="hidden" name="_method" value="delete">
                                                         {{ csrf_field() }}
 
-                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
+{{--                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">--}}
                                                     </form>
                                                 </td>
                                             </tr>
