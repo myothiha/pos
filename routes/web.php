@@ -23,6 +23,8 @@ Route::get('login', 'LoginController@login')->name('login');
 
 Route::post('/login', 'LoginController@checkLogin');
 
+Route::get('/logout', 'LoginController@logout');
+
 Route::post('/addItem', 'AddToCartController@addItem');
 
 Route::post('/removeItem', 'AddToCartController@removeItem');

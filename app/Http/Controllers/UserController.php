@@ -82,13 +82,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        if ($request->role == 'admin'){
-            $user->role = User::ADMIN;
-        }elseif ($request->role == 'sale'){
-            $user->role = User::SALE;
-        }elseif ($request->role == 'processing'){
-            $user->role = User::PROCESSING;
-        }
+        $user->role = $request->role;
         $user->location_id = $request->location;
         $user->save();
 

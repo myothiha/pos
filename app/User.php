@@ -64,12 +64,13 @@ class User extends Authenticatable
 
     public const ADMIN = 'admin';
 
-    public const SALE = 'ygn_sale';
+    public const SALE = 'sale';
 
     public const PROCESSING = 'processing';
 
     public function hasRole($role)
     {
+//        dd($role);
         return $this->role == $role;
     }
 
