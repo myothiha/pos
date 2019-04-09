@@ -64,9 +64,9 @@ class User extends Authenticatable
 
     public const ADMIN = 'admin';
 
-    public const YGN_SALE = 'ygn_sale';
+    public const SALE = 'ygn_sale';
 
-    public const MDY_SALE = 'mdy_sale';
+    public const PROCESSING = 'processing';
 
     public function hasRole($role)
     {

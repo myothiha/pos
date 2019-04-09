@@ -14,19 +14,25 @@ class CheckRole
      *
      * @param  Request $request
      * @param Closure $next
+     * @param $roles
      * @return mixed
      */
-    public function handle($request, Closure $next, $roles)
+    public function handle($request, Closure $next, $roles = null)
     {
 
         $user = Auth::user();
 
-        if ($user->isAdmin())
-            return $next($request);
+        return $next($request); // todo remove after authentication
 
-        foreach ($roles as $role) {
-            if ($user->hasRole($role))
+        if($roles)
+        {
+            if ($user->isAdmin())
                 return $next($request);
+
+            foreach ($roles as $role) {
+                if ($user->hasRole($role))
+                    return $next($request);
+            }
         }
 
         return redirect()->route('login');
