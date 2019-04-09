@@ -70,6 +70,7 @@
 <a href="javascript:void(0)" class="back-to-top btn-back-to-top sm_bg_1"></a>
 
 <!-- CORE JS -->
+<script src="{{ url('') }}/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script src="{{ url('') }}/assets/plugins/popper/popper.min.js"></script>
 <script src="{{ url('') }}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="{{ url('') }}/assets/js/slidebar/slidebar.js"></script>
@@ -92,6 +93,7 @@
 
 <!-- APP JS -->
 <script src="{{ url('') }}/assets/js/app.js"></script>
+<script src="assets/js/sm_login_demo.js"></script>
 
 </body>
 </html>
