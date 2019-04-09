@@ -1,16 +1,8 @@
-@extends('admin.layouts.back')
+@extends('layouts.app')
 
 @section('title', 'Dashboard')
 
 @section('content')
-
-    <!-- BEGIN PRELOADER -->
-    <div id="preloader">
-        <div class="inner">
-            <span class="loader"></span>
-        </div>
-    </div>
-    <!-- END PRELOADER -->
 
     <div class="login-cover">
         <div class="login-cover-image"><img src="http://via.placeholder.com/1980x1080" id="login-cover" alt=""/></div>
@@ -70,10 +62,10 @@
                         <div class="form-user-footer-links pt-2">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="sm_forgot_password.html" class="text-white">Recover password</a>
+                                    <a href="#" class="text-white">Recover password</a>
                                 </div>
                                 <div class="col-6 text-right">
-                                    <a href="sm_registration_v1.html" class="text-white">Create a new account</a>
+                                    <a href="#" class="text-white">Create a new account</a>
                                 </div>
                             </div>
                         </div>
