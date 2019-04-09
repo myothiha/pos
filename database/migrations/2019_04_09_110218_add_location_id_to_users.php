@@ -14,7 +14,7 @@ class AddLocationIdToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedInteger('location_id')->after('role');
+            $table->unsignedInteger('location_id')->after('role')->default(1);
 
             $table->foreign('location_id')
                 ->references('id')->on('locations')

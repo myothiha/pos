@@ -75,16 +75,13 @@
                                                 <div class="form-group">
                                                     <label for="name">Role</label>
                                                     <select class="form-control" required="" tabindex="3" name="role">
-                                                        <option value="">
-                                                            --None--
-                                                        </option>
-                                                        <option value="admin" {{ $user->role == 'admin' ? 'selected' : ' ' }}>
+                                                        <option value="{{ \App\User::ADMIN  }}" {{ $user->role == \App\User::ADMIN ? 'selected' : '' }}>
                                                             Admin
                                                         </option>
-                                                        <option value="sale" {{ $user->role == 'sale' ? 'selected' : ' ' }}>
+                                                        <option value="{{ \App\User::SALE  }}" {{ $user->role == \App\User::SALE ? 'selected' : '' }}>
                                                             Sale
                                                         </option>
-                                                        <option value="processing" {{ $user->role == 'processing' ? 'selected' : ' ' }}>
+                                                        <option value="{{ \App\User::PROCESSING  }}" {{ $user->role == \App\User::PROCESSING ? 'selected' : '' }}>
                                                             Processing
                                                         </option>
                                                     </select>

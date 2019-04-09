@@ -2,11 +2,14 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Admin;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\CheckForMaintenanceMode;
 use App\Http\Middleware\CheckRole;
 use App\Http\Middleware\EncryptCookies;
+use App\Http\Middleware\Processing;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\Sale;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\VerifyCsrfToken;
@@ -81,6 +84,9 @@ class Kernel extends HttpKernel
         'signed' => ValidateSignature::class,
         'throttle' => ThrottleRequests::class,
         'verified' => EnsureEmailIsVerified::class,
+        'admin'  => Admin::class,
+        'sale'  => Sale::class,
+        'processing'  => Processing::class,
         'role' => CheckRole::class,
     ];
 

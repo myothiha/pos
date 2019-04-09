@@ -15,10 +15,13 @@ use Routes\App\Report;
 use Routes\App\Transaction;
 
 Route::get('/', function () {
+
     return redirect('/admin');
 });
 
-Route::post('/login', 'AuthController@checkLogin');
+Route::get('login', 'LoginController@login')->name('login');
+
+Route::post('/login', 'LoginController@checkLogin');
 
 Route::post('/addItem', 'AddToCartController@addItem');
 
@@ -26,32 +29,26 @@ Route::post('/removeItem', 'AddToCartController@removeItem');
 
 Route::post('/updateItem', 'AddToCartController@updateItem');
 
-Route::middleware(['auth', "role:admin"])->group(function () {
-    Route::get('/', function () {
-        // Uses first & second Middleware
-        return 'admin';
-    });
-});
 
-
-
-
-Route::group(['prefix' => 'admin', 'middleware' => ['auth' => 'role']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('/', function () {
         return view('admin.index');
     });
 
-    Route::middleware(['auth', "role:" . \App\User::SALE])->group(function () {
+    Route::middleware('sale')->group(function () {
         Transaction::routes();
     });
 
-    Route::middleware(['auth', "role:" . \App\User::PROCESSING])->group(function () {
+    Route::middleware(['processing'])->group(function () {
         \Routes\App\Processing::routes();
+    });
+
+    Route::middleware(['admin'])->group(function () {
+        // report
+        Report::routes();
     });
 
     \Routes\App\DataEntry::routes();
 
-    // report
-    Report::routes();
 });

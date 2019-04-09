@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\User;
+use Auth;
 use Blade;
+use const http\Client\Curl\AUTH_ANY;
 use Illuminate\Support\ServiceProvider;
 use Schema;
 
@@ -17,19 +20,29 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        Blade::directive('author', function () {
-            $isAuth = false;
+//        $this->registerDirective(User::ADMIN);
+//        $this->registerDirective(User::SALE);
+//        $this->registerDirective(User::PROCESSING);
+
+        Blade::if('role', function($role) {
+            return Auth::user() && Auth::user()->hasRole($role);
+        });
+    }
+
+    public function registerDirective($role)
+    {
+        Blade::directive($role, function () use ($role) {
+            $isRole = false;
 
             // check if the user authenticated is teacher
-            if (auth()->user() && auth()->user()->capability == 3) {
-
-                $isAuth = true;
+            if ( Auth::user() && Auth::user()->hasRole($role)) {
+                $isRole = true;
             }
 
-            return "<?php if ($isAuth) { ?>";
+            return "<?php if ($isRole) { ?>";
         });
 
-        Blade::directive('endauthor', function () {
+        Blade::directive('endadmin', function () {
             return "<?php } ?>";
         });
     }

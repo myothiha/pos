@@ -76,13 +76,13 @@
                                                         <option value="">
                                                             --None--
                                                         </option>
-                                                        <option value="admin">
+                                                        <option value="{{ \App\User::ADMIN  }}">
                                                             Admin
                                                         </option>
-                                                        <option value="admin">
+                                                        <option value="{{ \App\User::SALE }}">
                                                             Sale
                                                         </option>
-                                                        <option value="admin">
+                                                        <option value="{{ \App\User::PROCESSING }}">
                                                             Processing
                                                         </option>
                                                     </select>

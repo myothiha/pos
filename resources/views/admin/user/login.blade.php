@@ -26,12 +26,15 @@
                                     <h4 class="heading heading-4 strong-400 mb-4">Sign in to your account</h4>
                                 </div>
 
-                                <form class="form-default" >
+                                <form class="form-default" action="{{ action('LoginController@checkLogin') }}" method="post">
+
+                                    @csrf
+
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="username">Email</label>
-                                                <input id="username" placeholder="Enter Username" type="email" class="form-control form-control-lg">
+                                                <input id="username" placeholder="Enter Email" name="email" type="email" class="form-control form-control-lg">
                                             </div>
                                         </div>
                                     </div>
@@ -40,7 +43,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group has-feedback">
                                                 <label for="password">Password</label>
-                                                <input type="password" id="password" placeholder="Enter your password" class="form-control form-control-lg">
+                                                <input type="password" id="password" name="password" placeholder="Enter your password" class="form-control form-control-lg">
                                             </div>
                                         </div>
                                     </div>
@@ -53,7 +56,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="javascript:void(0)" class="btn btn-styled btn-lg btn-block text-white mt-4 sm_bg_6">Sign in</a>
+                                    <button type="submit" class="btn btn-styled btn-lg btn-block text-white mt-4 sm_bg_6">Sign in</button>
                                 </form>
                             </div>
                         </div>
