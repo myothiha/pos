@@ -39,8 +39,8 @@
                                     <a class="dropdown-item" href="/admin">
                                         <i class="ion-ios-email-outline icon-lg text-primary"></i>Dashboard
                                     </a>
-                                    <a class="dropdown-item" href="javascript:void(0)">
-                                        <i class="ion-ios-person-outline icon-lg text-primary"></i>Profile
+                                    <a class="dropdown-item" href="{{ action('UserController@index') }}">
+                                        <i class="ion-ios-person-outline icon-lg text-primary"></i>User List
                                     </a>
                                     <a class="dropdown-item" href="javascript:void(0)">
                                         <i class="ion-ios-gear-outline icon-lg text-primary"></i>Settings

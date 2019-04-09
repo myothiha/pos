@@ -8,6 +8,10 @@ class DataEntry
 {
     public static function routes()
     {
+        Route::get('login', 'UserController@login');
+
+        Route::resource('user', 'UserController');
+
         Route::resource('employee', 'EmployeeController');
 
         Route::resource('type', 'TypeController');

@@ -57,4 +57,9 @@ class Location extends Model
     {
         return $this->hasMany(Store::class);
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }
