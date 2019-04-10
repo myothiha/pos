@@ -31,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Receivable whereLocationId($value)
  * @method static Builder|Receivable whereVoucherNo($value)
  * @property-read Customer $customer
+ * @property int user_id
  */
 class Receivable extends Model
 {

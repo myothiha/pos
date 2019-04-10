@@ -33,7 +33,7 @@
                                                 <div class="form-group">
                                                     <label for="name">Name</label>
                                                     <input id="name" placeholder="Enter Name"
-                                                           type="text" class="form-control" name="name" value="{{ old('name') }}">
+                                                           type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -43,7 +43,7 @@
                                                 <div class="form-group">
                                                     <label for="email">Email</label>
                                                     <input id="email" placeholder="Enter Email"
-                                                           type="text" class="form-control" name="email" value="{{ old('email') }}">
+                                                           type="text" class="form-control" name="email" value="{{ old('email') }}" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -53,7 +53,7 @@
                                                 <div class="form-group">
                                                     <label for="password">Password</label>
                                                     <input id="password" placeholder="Enter Password"
-                                                           type="text" class="form-control" name="password" value="">
+                                                           type="password" class="form-control" name="password" value="" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -63,7 +63,7 @@
                                                 <div class="form-group">
                                                     <label for="password_confirmation">Confirm Password</label>
                                                     <input id="password_confirmation" placeholder="Enter Confirm Password"
-                                                           type="text" class="form-control" name="password_confirmation" value="">
+                                                           type="password" class="form-control" name="password_confirmation" value="" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -72,7 +72,7 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="name">Role</label>
-                                                    <select class="form-control" required="" tabindex="3" name="role">
+                                                    <select class="form-control" required tabindex="3" name="role">
                                                         <option value="">
                                                             --None--
                                                         </option>
@@ -94,7 +94,7 @@
                                             <div class="col-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Location</label>
-                                                    <select class="form-control" required="" tabindex="3" name="location">
+                                                    <select class="form-control" required tabindex="3" name="location">
                                                         <option value="">
                                                             --None--
                                                         </option>

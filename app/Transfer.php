@@ -32,6 +32,7 @@ use Illuminate\Support\Carbon;
  * @property-read Collection|Item[] $items
  * @property-read mixed $quantity
  * @property-read Location $location
+ * @property int user_id
  */
 class Transfer extends Model
 {

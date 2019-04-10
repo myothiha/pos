@@ -68,8 +68,6 @@ class UserController extends Controller
         $validator = Validator::make($request->all(),[
             'name' => 'required|min:3|max:50',
             'email' => 'email',
-            'password' => 'min:6',
-            'password_confirmation' => 'required_with:password|same:password|min:6',
             'role' => 'required',
             'location' => 'required'
         ]);
@@ -81,7 +79,9 @@ class UserController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        if($request->password){
+            $user->password = bcrypt($request->password);
+        }
         if ($request->role == 'admin'){
             $user->role = User::ADMIN;
         }elseif ($request->role == 'sale'){

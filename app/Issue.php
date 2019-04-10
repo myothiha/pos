@@ -43,6 +43,7 @@ use Illuminate\Support\Carbon;
  * @property-read Item $item
  * @method static Builder|Issue whereRemark($value)
  * @property string $type
+ * @property int user_id
  * @method static Builder|Issue whereType($value)
  */
 class Issue extends Model

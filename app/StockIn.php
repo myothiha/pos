@@ -33,6 +33,7 @@ use Illuminate\Support\Carbon;
  * @method static Builder|StockIn whereSupplierId($value)
  * @method static Builder|StockIn whereVoucherNo($value)
  * @property-read Collection|Item[] $items
+ * @property int user_id
  */
 class StockIn extends Model
 {

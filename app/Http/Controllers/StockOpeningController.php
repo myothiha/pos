@@ -9,6 +9,7 @@ use App\Type;
 use App\Category;
 use App\Location;
 use App\Color;
+use Auth;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -125,6 +126,7 @@ class StockOpeningController extends Controller
         ]);
 
         $stockOpening = new StockOpening();
+        $stockOpening->user_id = Auth::user()->id;
         $stockOpening->location_id = $request->location_id;
         $stockOpening->quantity = $request->quantity;
 

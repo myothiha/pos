@@ -10,6 +10,7 @@ use App\Category;
 use App\Color;
 use App\Customer;
 use App\Location;
+use Auth;
 use Cart;
 use DB;
 use Illuminate\Http\Request;
@@ -76,6 +77,7 @@ class TransferController extends Controller
     public function store(Request $request)
     {
         $transfer = new Transfer();
+        $transfer->user_id = Auth::user()->id;
         $transfer->location_id = $request->location_id;
         $transfer->voucherNo = $request->voucherNo ?? '';
         $transfer->remark = $request->remark ?? '';

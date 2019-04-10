@@ -10,13 +10,13 @@ use App\Category;
 use App\Color;
 use App\Supplier;
 use App\Location;
+use Auth;
 use Cart;
 use App\Constants\Cart as CartConst;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Validator;
 use PHPUnit\Framework\Constraint\Count;
 use Throwable;
 
@@ -77,6 +77,7 @@ class StockInController extends Controller
     public function store(Request $request)
     {
         $stockIn = new StockIn();
+        $stockIn->user_id = Auth::user()->id;
         $stockIn->supplier_id = $request->supplier_id;
         $stockIn->location_id = $request->location_id;
         $stockIn->voucherNo = $request->voucherNo;

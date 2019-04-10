@@ -6,6 +6,7 @@ use App\CreditBalance;
 use App\ReceivableOpening;
 use App\Customer;
 use App\Location;
+use Auth;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -61,6 +62,7 @@ class ReceivableOpeningController extends Controller
         ]);
 
         $receivableOpening = new ReceivableOpening();
+        $receivableOpening->user_id = Auth::user()->id;
         $receivableOpening->location_id = $request->location_id;
         $receivableOpening->customer_id = $request->customer_id;
         $receivableOpening->balance = $request->balance;

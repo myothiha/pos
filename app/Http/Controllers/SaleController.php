@@ -14,6 +14,7 @@ use App\Category;
 use App\Color;
 use App\Customer;
 use App\Location;
+use Auth;
 use Cart;
 use DB;
 use Illuminate\Http\Request;
@@ -93,13 +94,14 @@ class SaleController extends Controller
     {
 //        dd($request->all());
         $sale = new Sale();
+        $sale->user_id = Auth::user()->id;
         $sale->voucherNo = $request->voucherNo;
         $sale->processType = Constants::SALE;
         $sale->saleType = $request->saleType;
         $sale->location_id = $request->location_id;
         $sale->customer_id = $request->customer_id;
         $sale->totalAmount = Cart::instance(CartConst::SALE)->total(0);
-        $sale->paid = $request->paid ?? $request->totalAmount;
+        $sale->paid = $request->paid ?? $request->totalAmtount;
         $sale->balance = $request->balance ?? 0;
         $sale->remark = $request->remark;
         $sale->isPaid = $request->isPaid ?? Constants::TRUE;

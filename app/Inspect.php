@@ -26,6 +26,7 @@ use Illuminate\Support\Carbon;
  * @property int $acceptQty
  * @property int $rejectQty
  * @property string|null $deleted_at
+ * @property int user_id
  * @method static Builder|Inspect whereAcceptQty($value)
  * @method static Builder|Inspect whereDeletedAt($value)
  * @method static Builder|Inspect whereEmployeeId($value)

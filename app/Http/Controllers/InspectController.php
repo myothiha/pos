@@ -8,6 +8,7 @@ use App\Category;
 use App\Color;
 use App\Employee;
 use App\Inspect;
+use Auth;
 use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
@@ -125,6 +126,7 @@ class InspectController extends Controller
             'rejectQty' => 'required',
         ]);
         $inspect = new Inspect();
+        $inspect->user_id = Auth::user()->id;
         $inspect->employee_id = $request->employee_id;
         $inspect->acceptQty = $request->acceptQty;
         $inspect->rejectQty = $request->rejectQty;

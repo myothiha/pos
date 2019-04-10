@@ -8,6 +8,7 @@ use App\Type;
 use App\Category;
 use App\Color;
 use App\Employee;
+use Auth;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -120,6 +121,7 @@ class IssueController extends Controller
         ]);
 
         $issue = new Issue();
+        $issue->user_id = Auth::user()->id;
         $issue->employee_id = $request->employee_id;
         $issue->type = $request->type;
         $issue->quantity = $request->quantity;

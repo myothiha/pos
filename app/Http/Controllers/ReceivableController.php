@@ -7,6 +7,7 @@ use App\Receivable;
 use App\Customer;
 use App\Location;
 use App\Repositories\Customers\ReceivableRepository;
+use Auth;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -74,6 +75,7 @@ class ReceivableController extends Controller
     public function store(Request $request)
     {
         $receivable = new Receivable();
+        $receivable->user_id = Auth::user()->id;
         $receivable->voucherNo = $request->voucherNo;
         $receivable->amount = $request->amount;
         $receivable->customer_id = $request->customer_id;

@@ -9,6 +9,7 @@ use App\Store;
 use App\Type;
 use App\Category;
 use App\Color;
+use Auth;
 use DB;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -115,6 +116,7 @@ class DamageController extends Controller
         ]);
 
         $damage = new Damage();
+        $damage->user_id = Auth::user()->id;
         $damage->location_id = $request->location_id;
         $damage->quantity = $request->quantity;
 

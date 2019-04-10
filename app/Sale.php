@@ -46,6 +46,7 @@ use Illuminate\Support\Carbon;
  * @property-read Collection|Item[] $items
  * @property-read Customer $customer
  * @property-read Location $location
+ * @property  user_id
  */
 class Sale extends Model
 {
