@@ -25,7 +25,8 @@ class AppServiceProvider extends ServiceProvider
 //        $this->registerDirective(User::PROCESSING);
 
         Blade::if('role', function($role) {
-            return Auth::user() && Auth::user()->hasRole($role);
+            \Log::debug('aaaaaa' . $role);
+            return (Auth::user() && Auth::user()->hasRole($role));
         });
     }
 

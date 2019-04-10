@@ -12,7 +12,7 @@
                             </li>
                             <li>
                                 <a href="http://perfectin.co/" target="_blank"><i
-                                        class="fa fa-globe"></i>
+                                            class="fa fa-globe"></i>
                                     UpSalute Creative Solution</a>
                             </li>
                         </ul>
@@ -28,7 +28,7 @@
                                    data-hover="dropdown"
                                    aria-expanded="false">
                                     <span class="dropdown-text strong-600 d-none d-lg-inline-block d-xl-inline-block">
-                                        <i class="fa fa-user"></i> Admin
+                                        <i class="fa fa-user"></i> {{ Auth::user()->name }}
                                     </span>
                                     <span class="dropdown-text strong-600 d-xl-none d-lg-none d-md-inline-block">
                                         <i class="fa fa-user"></i>
@@ -46,7 +46,7 @@
                                         <i class="ion-ios-gear-outline icon-lg text-primary"></i>Settings
                                     </a>
                                     <div class="dropdown-divider" role="presentation"></div>
-                                    <a class="dropdown-item" href="javascript:void(0)">
+                                    <a class="dropdown-item" href="{{ action("LoginController@logout")}}">
                                         <i class="ion-log-out icon-lg text-primary"></i>Logoff
                                     </a>
                                 </div>
@@ -117,119 +117,17 @@
                  id="navbar_main">
                 <!-- BEGIN NAVBAR LINKS -->
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a href="javascript:void(0)" class="nav-link dropdown-toggle"
-                           data-toggle="dropdown">
-                            <i class="icon ion-ios-home-outline icon_nav"></i> Entry
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
-                            <li class="nav-item">
-                                <a href="{{ action('EmployeeController@index') }}" class="dropdown-item">Employee</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('TypeController@index') }}" class="dropdown-item">Type</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('CategoryController@index') }}" class="dropdown-item">Category</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ColorController@index') }}" class="dropdown-item">Color</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ItemController@index') }}" class="dropdown-item">Item</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('CustomerController@index') }}" class="dropdown-item">Customer</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('SupplierController@index') }}" class="dropdown-item">Supplier</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('LocationController@index') }}" class="dropdown-item">Location</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="javascript:void(0)" class="nav-link dropdown-toggle"
-                           data-toggle="dropdown">
-                            <i class="icon ion-ios-book-outline icon_nav"></i> Transaction
-                        </a>
+                    @include('admin._partials.nav.entry')
 
-                        <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
-                            <li class="nav-item">
-                                <a href="{{ action('StockInController@index')}}" class="dropdown-item">StockIn</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('SaleController@index') }}" class="dropdown-item">Sale</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('TransferController@index') }}" class="dropdown-item">Transfer</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReceivableController@index') }}" class="dropdown-item">Recevieable</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReceivableOpeningController@index') }}" class="dropdown-item">RecevieableOpening</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('DamageController@index') }}" class="dropdown-item">Damage</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('StockOpeningController@index') }}" class="dropdown-item">StockOpening</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="javascript:void(0)" class="nav-link dropdown-toggle"
-                           data-toggle="dropdown">
-                            <i class="icon ion-ios-book-outline icon_nav"></i> Processing
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
-                            <li class="nav-item">
-                                <a href="{{ action('IssueController@index') }}" class="dropdown-item">Issue</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('InspectController@index') }}" class="dropdown-item">Inspect</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="javascript:void(0)" class="nav-link dropdown-toggle"
-                           data-toggle="dropdown">
-                            <i class="icon ion-ios-book-outline icon_nav"></i> Report
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-right sm_p_t_b">
-                            <li class="nav-item">
-                                <a href="{{ action('ReportController@stockInReport') }}" class="dropdown-item">Stock In Report</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReportController@saleReport') }}" class="dropdown-item">Sale Report</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReportController@saleReportByItem') }}" class="dropdown-item">Sale Report By Item</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReportController@transferReport') }}" class="dropdown-item">Transfer Report</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReportController@receivableReport') }}" class="dropdown-item">Receivable Report</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReportController@customerCreditReport') }}" class="dropdown-item">Customer Credit Report</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReportController@stockBalanceReport') }}" class="dropdown-item">Stock Balance Report</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReportController@processReportByEmployee') }}" class="dropdown-item">Process Report By Employee</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ action('ReportController@processReportDaily') }}" class="dropdown-item">Process Report Daily</a>
-                            </li>
-                        </ul>
-                    </li>
+                    @role("sale")
+                        @include('admin._partials.nav.transaction')
+                    @elserole('processing')
+                        @include('admin._partials.nav.processing')
+                    @else
+                        @include('admin._partials.nav.transaction')
+                        @include('admin._partials.nav.processing')
+                        @include('admin._partials.nav.report')
+                    @endrole
                 </ul>
                 <!-- END NAVBAR LINKS -->
             </div>
