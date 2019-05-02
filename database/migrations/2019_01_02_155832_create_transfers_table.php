@@ -14,7 +14,7 @@ class CreateTransfersTable extends Migration
     {
         Schema::create('transfers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('voucherNo');
+            $table->string('voucherNo')->nullable();
             $table->unsignedInteger('location_id');
             $table->text('remark')->nullable();
             $table->timestamps();

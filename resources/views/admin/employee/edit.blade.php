@@ -56,8 +56,11 @@
                                         <div class="col-lg-6">
                                             <div class="form-group has-feedback">
                                                 <label for="gender">Gender</label>
-                                                <input type="text" id="gender"
-                                                       placeholder="Gender" class="form-control" name="gender" value="{{ $employee->gender }}">
+                                                <select class="form-control" id="gender" name="gender">
+                                                    <option {{ $employee->gender === "Male" ? "selected" : " " }} value="Male">Male</option>
+                                                    <option {{ $employee->gender === "Female" ? "selected" : " " }} value="Female">Female</option>
+                                                    <option {{ $employee->gender === "Other" ? "selected" : " " }} value="Other">Other</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
