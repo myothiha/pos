@@ -72,7 +72,7 @@
                                                     <div class="form-group">
                                                         <label for="voucherNo">Voucher No</label>
                                                         <input id="voucherNo" placeholder="Enter Voucher"
-                                                               type="text" class="form-control" name="voucherNo">
+                                                               type="text" class="form-control" name="voucherNo" readonly>
                                                     </div>
                                                 </div>
 
@@ -80,7 +80,7 @@
                                                     <div class="form-group has-feedback">
                                                         <label for="suppliers">Supplier</label>
                                                         <input id="suppliers" placeholder="Enter Supplier"
-                                                               type="text" class="form-control" name="suppliers" value="{{ $stockIn->supplier->name }}">
+                                                               type="text" class="form-control" name="suppliers" value="{{ $stockIn->supplier->name }}" readonly>
                                                     </div>
                                                 </div>
                                             </div>
@@ -90,7 +90,7 @@
                                                     <div class="form-group has-feedback">
                                                         <label for="location_id">Location</label>
                                                         <input id="location_id" placeholder="Enter Voucher"
-                                                               type="text" class="form-control" name="location_id" value="{{ $stockIn->location->name }}">
+                                                               type="text" class="form-control" name="location_id" value="{{ $stockIn->location->name }}" readonly>
                                                     </div>
                                                 </div>
                                             </div>

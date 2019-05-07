@@ -174,13 +174,16 @@ class InspectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param Inspect $inspect
      * @return Response
      * @throws Exception
      */
-    public function destroy(Inspect $inspect)
+    public function destroy(Request $request, Inspect $inspect)
     {
         $inspect->delete();
+
+        $request->session()->flash('alert-danger', 'Inspect was successfully deleted!');
         return redirect()->action('InspectController@index');
     }
 }

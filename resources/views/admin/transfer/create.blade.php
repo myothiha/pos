@@ -78,7 +78,7 @@
                                                             </div>
                                                             <div class="col-lg-2">
                                                                 <input id="name" placeholder="Item Name"
-                                                                       type="text" class="form-control" name="name">
+                                                                       type="text" class="form-control" name="itemName">
                                                             </div>
                                                             <div class="col-lg-2">
                                                                 <select class="form-control" id="type_id"

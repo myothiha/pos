@@ -35,8 +35,9 @@
                                             <th>#</th>
                                             <th>Date</th>
                                             <th>Voucher No</th>
-                                            <th>Location</th>
-                                            <th>Supplier</th>
+                                            <th>Sale Type</th>
+                                            <th>Customer</th>
+                                            <th>Total Amount</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>

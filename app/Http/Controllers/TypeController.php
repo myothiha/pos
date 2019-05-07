@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Type;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class TypeController extends Controller
 {

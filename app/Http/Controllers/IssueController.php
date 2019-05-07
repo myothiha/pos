@@ -172,13 +172,16 @@ class IssueController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param Issue $issue
      * @return void
      * @throws Exception
      */
-    public function destroy(Issue $issue)
+    public function destroy(Request $request, Issue $issue)
     {
         $issue->delete();
+
+        $request->session()->flash('alert-danger', 'Issue was successfully deleted!');
         return redirect()->action('IssueController@index');
     }
 }

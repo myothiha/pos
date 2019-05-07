@@ -74,6 +74,10 @@ class ReceivableController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'amount' => 'required',
+        ]);
+
         $receivable = new Receivable();
         $receivable->user_id = Auth::user()->id;
         $receivable->voucherNo = $request->voucherNo;
