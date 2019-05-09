@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Location;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Validator;
@@ -119,7 +120,7 @@ class LocationController extends Controller
      * @param Request $request
      * @param Location $location
      * @return Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Request $request, Location $location)
     {

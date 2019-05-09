@@ -7,6 +7,7 @@ use Auth;
 use Blade;
 use const http\Client\Curl\AUTH_ANY;
 use Illuminate\Support\ServiceProvider;
+use Log;
 use Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
 //        $this->registerDirective(User::PROCESSING);
 
         Blade::if('role', function($role) {
-            \Log::debug('aaaaaa' . $role);
+            Log::debug('aaaaaa' . $role);
             return (Auth::user() && Auth::user()->hasRole($role));
         });
     }

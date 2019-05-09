@@ -11,6 +11,8 @@
 |
 */
 
+use Routes\App\DataEntry;
+use Routes\App\Processing;
 use Routes\App\Report;
 use Routes\App\Transaction;
 
@@ -43,7 +45,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     });
 
     Route::middleware(['processing'])->group(function () {
-        \Routes\App\Processing::routes();
+        Processing::routes();
     });
 
     Route::middleware(['admin'])->group(function () {
@@ -51,6 +53,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Report::routes();
     });
 
-    \Routes\App\DataEntry::routes();
+    DataEntry::routes();
 
 });
