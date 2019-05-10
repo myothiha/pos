@@ -4,6 +4,7 @@
         <div class="col-lg-12">
             <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">  &times;</a></p>
         </div>
+            {{ Session::forget('alert-' . $msg) }}
       @endif
     @endforeach
     @if ($errors->any())
@@ -14,5 +15,5 @@
             @endforeach
         </ul>
     </div>
-@endif
+    @endif
 </div>

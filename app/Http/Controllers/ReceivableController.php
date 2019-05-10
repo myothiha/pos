@@ -86,7 +86,16 @@ class ReceivableController extends Controller
         $receivable->location_id = $request->location_id;
 
         $creditBalance = CreditBalance::firstOrNew(['customer_id' => $receivable->customer_id]);
-        $creditBalance->amount -= $receivable->amount;
+
+        if($creditBalance->amount < $receivable->amount){
+            $request->session()->flash('alert-danger', 'Customer cannot paid more than his credit balance!!!');
+            return redirect()->action('ReceivableController@create', [
+                'customer_id' => $receivable->customer_id
+            ]);
+        }else{
+            $creditBalance->amount -= $receivable->amount;
+            $request->session()->flash('alert-success', 'Receivable has been processed!');
+        }
 
         try {
             DB::transaction(function () use ($receivable, $creditBalance) {
@@ -98,7 +107,6 @@ class ReceivableController extends Controller
             dd($e->getMessage()); //Todo remove
         }
 
-        $request->session()->flash('alert-success', 'Receivable has been processed!');
         return redirect()->action('ReceivableController@index');
     }
 

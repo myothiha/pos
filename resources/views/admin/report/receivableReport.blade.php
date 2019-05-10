@@ -47,6 +47,11 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="container">
+                    @include('admin.errors.error')
+                </div>
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="sm-wrapper">

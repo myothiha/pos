@@ -33,6 +33,10 @@ class ReportController extends Controller
      */
     public function stockInReport(Request $request)
     {
+        if ($request->daterange){
+            $request->session()->flash('alert-success', 'Stock In Report for ('. $request->daterange. ') is generated!!');
+        }
+
         $stockIns = StockIn::query()
             ->when($request->daterange, function ($q) use ($request) {
                 $dateRange = explode(' - ', $request->daterange);
@@ -71,6 +75,10 @@ class ReportController extends Controller
      */
     public function saleReport(Request $request)
     {
+        if ($request->daterange){
+            $request->session()->flash('alert-success', 'Sale Report (' . $request->daterange . ' / '. $request->saleType. ') is generated!!');
+        }
+
         $sales = Sale::query()
             ->when($request->saleType, function ($q) use ($request) {
                 return $q->where('saleType', '=', $request->saleType);
@@ -100,11 +108,15 @@ class ReportController extends Controller
 
     public function saleReportByItem(Request $request)
     {
+
         $items = Item::whereHas('sales', function (Builder $q) {
-            return $q->where('sale_details.quantity', '>', 0);
+
         });
 
         if ($request->search) {
+
+            $request->session()->flash('alert-success', 'Sale report by item is generated!!');
+
             $items->when($request->itemCode, function (Builder $q) use ($request) {
                 return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
             })
@@ -169,6 +181,10 @@ class ReportController extends Controller
 
     public function transferReport(Request $request)
     {
+        if ($request->daterange){
+            $request->session()->flash('alert-success', 'Transfer Report for ('. $request->daterange. ') is generated!!');
+        }
+
         $transfers = Transfer::query()
             ->when($request->daterange, function ($q) use ($request) {
                 $dateRange = explode(' - ', $request->daterange);
@@ -185,6 +201,10 @@ class ReportController extends Controller
 
     public function receivableReport(Request $request)
     {
+        if ($request->daterange){
+            $request->session()->flash('alert-success', 'Receivable Report for ('. $request->daterange. ') is generated!!');
+        }
+
         $receivables = Receivable::query()
             ->when($request->daterange, function ($q) use ($request) {
                 $dateRange = explode(' - ', $request->daterange);
@@ -201,6 +221,11 @@ class ReportController extends Controller
 
     public function customerCreditReport(Request $request)
     {
+        if ($request->customer_id){
+            $customer = Customer::find($request->customer_id);
+            $request->session()->flash('alert-success', 'Credit Report for ( '. $customer->name. ' ) is generated!!');
+        }
+
         $customers = Customer::whereHas('creditBalance', function (Builder $q) {
             return $q->where('amount', '>', 0);
         });
@@ -222,7 +247,7 @@ class ReportController extends Controller
         $stocks = Store::with(['item']);
 
         if ($request->search) {
-
+            $request->session()->flash('alert-success', 'Stock Balance report by item is generated!!');
             /*$stores = Store::whereHas('item', function($q) {
                 return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
             });*/
@@ -264,6 +289,15 @@ class ReportController extends Controller
 
     public function processReportByEmployee(Request $request)
     {
+        if ($request->daterange){
+            if($request->employee_id){
+                $employee = Employee::find($request->employee_id);
+                $request->session()->flash('alert-success', 'Process Report (' . $request->daterange . ' / '. $employee->name . ') is generated!!');
+            }else{
+                $request->session()->flash('alert-success', 'Process Report (' . $request->daterange . ') is generated!!');
+            }
+        }
+
         $inspects = Inspect::query()
             ->when($request->employee_id, function ($q) use ($request) {
                 return $q->where('employee_id', '=', $request->employee_id);
@@ -314,6 +348,10 @@ class ReportController extends Controller
                 return $q->whereDate('created_at', '>=', $from)
                     ->whereDate('created_at', '<=', $to);
             })->get();
+
+        if ($request->daterange){
+            $request->session()->flash('alert-success', 'Process Report for ('. $request->daterange. ') is generated!!');
+        }
 
         return view('admin.report.processReportDaily', [
             'inspects' => $inspects,

@@ -26,9 +26,6 @@
                         <div class="sm-wrapper">
                             <div class="sm-box">
                                 <form action="{{ action('ReportController@saleReport') }}" class="form-horizontal form-bordered">
-
-                                    @csrf
-
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label">Date Range</label>
                                         <div class="col-md-8">
@@ -59,6 +56,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="container">
+                    @include('admin.errors.error')
                 </div>
 
                 <div class="row">

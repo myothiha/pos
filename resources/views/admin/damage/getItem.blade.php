@@ -32,7 +32,7 @@
                 <div class="col-md-12 text-center">
                     <div class="up-main-info" style="margin-top: -50px;">
                         <h2 class="up-header m-b-5 text-white">
-                            Stock Opening Form
+                            Damage Form
                         </h2>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                                                 <li class="nav-item" role="presentation">
                                                     <a href="#tabTwo-1"
                                                        role="tab" data-toggle="tab"
-                                                       class="nav-link active text-normal strong-600">Stock Opening</a>
+                                                       class="nav-link active text-normal strong-600">Damage</a>
                                                 </li>
                                             </ul>
 

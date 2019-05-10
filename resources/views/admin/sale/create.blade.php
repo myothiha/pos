@@ -272,7 +272,7 @@
                                                                 <td class="product-quanity d-none d-lg-table-cell">
                                                                     <input type="text" id="paid" class="form-control"
                                                                            name="paid" value="{{ Cart::total(0) }}"
-                                                                           readonly=true onchange="updateBalance()"/>
+                                                                           onchange="updateBalance()"/>
                                                                 </td>
                                                             </tr>
 

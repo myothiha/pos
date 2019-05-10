@@ -54,7 +54,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::all();
+        $sales = Sale::orderBy('created_at', 'dec')->get();
         return view('admin.sale.index', [
            'sales' => $sales
         ]);
@@ -113,14 +113,13 @@ class SaleController extends Controller
         }
 
         try {
-            DB::transaction(function () use ($sale) {
+            DB::transaction(function () use ($request, $sale) {
                 $sale->save();
 
                 // Record price, qty, total for each item
                 foreach(Cart::instance(CartConst::SALE)->content() as $item) {
 
                     $total = $item->qty * $item->price;
-
                     $sale->items()->attach($item->id, ['quantity' => $item->qty, 'price' => $item->price, 'total' => $total]);
 
                     $store = Store::firstOrNew([
@@ -128,8 +127,16 @@ class SaleController extends Controller
                         'item_id' => $item->id,
                     ]);
 
-                    $store->quantity -= $item->qty;
-                    $store->save();
+                    if($store->quantity < $item->qty){
+                        $sale->items()->detach();
+                        $sale->delete();
+                        $request->session()->flash('alert-danger', 'No Stock in Store!!');
+                        return redirect()->action('SaleController@index');
+                    }else{
+                        $store->quantity -= $item->qty;
+                        $store->save();
+                        $request->session()->flash('alert-success', 'Sale has been processed!');
+                    }
                 }
 
                 //Update Customer Credit balance for Credit Sale
@@ -146,8 +153,6 @@ class SaleController extends Controller
             Log::error('Sales Error : ' . $e->getMessage());
             dd($e->getMessage());
         }
-
-        $request->session()->flash('alert-success', 'Sale has been processed!');
         return redirect()->action('SaleController@index');
     }
 

@@ -118,8 +118,9 @@ class CategoryController extends Controller
      *
      * @param Category $category
      * @return Response
+     * @throws \Exception
      */
-    public function destroy(Request $Request, Category $category)
+    public function destroy(Request $request, Category $category)
     {
         $category->Delete();
         $request->session()->flash('alert-danger', 'Category was successful deleted!');

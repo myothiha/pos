@@ -5,7 +5,6 @@
 @section('title', 'Process Daily Report')
 
 @section('content')
-
 <!--BEGIN CONTENT-->
 <section id="main_content" class="bg slice-sm sct-color-1">
     <div class="container" id="container">
@@ -45,6 +44,11 @@
                     </div>
                 </div>
             </div>
+
+            <div class="container">
+                @include('admin.errors.error')
+            </div>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="sm-wrapper">
