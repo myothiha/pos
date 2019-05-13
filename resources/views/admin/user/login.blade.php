@@ -47,29 +47,8 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="chkRemember" checked>
-                                                <label for="chkRemember">Remember me</label>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <button type="submit" class="btn btn-styled btn-lg btn-block text-white mt-4 sm_bg_6">Sign in</button>
                                 </form>
-                            </div>
-                        </div>
-
-                        <!-- Form auxiliary links -->
-                        <div class="form-user-footer-links pt-2">
-                            <div class="row">
-                                <div class="col-6">
-                                    <a href="#" class="text-white">Recover password</a>
-                                </div>
-                                <div class="col-6 text-right">
-                                    <a href="#" class="text-white">Create a new account</a>
-                                </div>
                             </div>
                         </div>
                     </div>

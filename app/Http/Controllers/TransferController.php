@@ -88,7 +88,7 @@ class TransferController extends Controller
         }
 
         try {
-            DB::transaction(function () use ($transfer) {
+            DB::transaction(function () use ($request, $transfer) {
                 $transfer->save();
 
                 foreach (Cart::instance(CartConst::TRANSFER)->content() as $item)
@@ -100,16 +100,26 @@ class TransferController extends Controller
                         'item_id' => $item->id,
                     ]);
 
-                    $currentStore->quantity -= $item->qty;
-                    $currentStore->save();
+                    if($currentStore->quantity < $item->qty){
+                        $transfer->items()->detach();
+                        $transfer->delete();
 
-                    $transferStore = Store::firstOrNew([
-                        'location_id' => 2,
-                        'item_id' => $item->id,
-                    ]);
+                        $request->session()->flash('alert-danger', 'No Stock in Store!!');
+                        return redirect()->action('TransferController@index');
+                    }else{
+                        $currentStore->quantity -= $item->qty;
+                        $currentStore->save();
 
-                    $transferStore->quantity += $item->qty;
-                    $transferStore->save();
+                        $transferStore = Store::firstOrNew([
+                            'location_id' => 2,
+                            'item_id' => $item->id,
+                        ]);
+
+                        $transferStore->quantity += $item->qty;
+                        $transferStore->save();
+
+                        $request->session()->flash('alert-success', 'Transfer has been processed!');
+                    }
 
                     Cart::instance(CartConst::TRANSFER)->destroy();
                 }
@@ -118,7 +128,6 @@ class TransferController extends Controller
             dd($e->getMessage());
         }
 
-        $request->session()->flash('alert-success', 'Transfer has been processed!');
         return redirect()->action('TransferController@index');
     }
 

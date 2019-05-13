@@ -158,7 +158,7 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <div class="form-group has-feedback">
-                                                            <label for="location_id">Location</label>
+                                                            <label for="location_id">Source Location</label>
                                                             <select class="form-control" id="location_id"
                                                                     name="location_id">
                                                                 @foreach($locations as $location)

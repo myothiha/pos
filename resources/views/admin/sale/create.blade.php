@@ -213,20 +213,20 @@
                                                          id="tabTwo-1">
                                                         <table class="table table-cart">
                                                             <thead>
-                                                            <tr>
-                                                                <th class="product-name">Item</th>
-                                                                <th class="product-size d-none d-lg-table-cell">
-                                                                    Color
-                                                                </th>
-                                                                <th class="product-price d-none d-md-table-cell">
-                                                                    Price
-                                                                </th>
-                                                                <th class="product-quanity d-none d-md-table-cell">
-                                                                    Quantity
-                                                                </th>
-                                                                <th class="product-total">Total</th>
-                                                                <th width="50px;"></th>
-                                                            </tr>
+                                                                <tr>
+                                                                    <th class="product-name">Item</th>
+                                                                    <th class="product-size d-none d-lg-table-cell">
+                                                                        Color
+                                                                    </th>
+                                                                    <th class="product-price d-none d-md-table-cell">
+                                                                        Price
+                                                                    </th>
+                                                                    <th class="product-quanity d-none d-md-table-cell">
+                                                                        Quantity
+                                                                    </th>
+                                                                    <th class="product-total">Total</th>
+                                                                    <th width="50px;"></th>
+                                                                </tr>
                                                             </thead>
                                                             <tbody id="cardItems">
                                                             @foreach( Cart::instance(\App\Constants\Cart::SALE)->content() as $key => $item )
@@ -261,40 +261,40 @@
                                                             @endforeach
                                                             </tbody>
                                                             <tbody>
-                                                            <tr>
-                                                                <td class="product-name" rowspan="3" colspan="3">
-                                                                    <textarea name="remark" id="remark"
-                                                                              class="form-control"
-                                                                              cols="30" rows="3" placeholder="Remark"
-                                                                              tabindex="4"></textarea></td>
-                                                                <td class="product-list text-right"><label for="paid">Paid</label>
-                                                                </td>
-                                                                <td class="product-quanity d-none d-lg-table-cell">
-                                                                    <input type="text" id="paid" class="form-control"
-                                                                           name="paid" value="{{ Cart::total(0) }}"
-                                                                           onchange="updateBalance()"/>
-                                                                </td>
-                                                            </tr>
+                                                                <tr>
+                                                                    <td class="product-name" rowspan="3" colspan="3">
+                                                                        <textarea name="remark" id="remark"
+                                                                                  class="form-control"
+                                                                                  cols="30" rows="3" placeholder="Remark"
+                                                                                  tabindex="4"></textarea></td>
+                                                                    <td class="product-list text-right"><label for="paid">Paid</label>
+                                                                    </td>
+                                                                    <td class="product-quanity d-none d-lg-table-cell">
+                                                                        <input type="text" id="paid" class="form-control"
+                                                                               name="paid" value="{{ Cart::total(0) }}"
+                                                                               onchange="updateBalance()"/>
+                                                                    </td>
+                                                                </tr>
 
-                                                            <tr>
-                                                                <td class="product-list text-right">Balance</td>
-                                                                <td class="product-total">
-                                                                    <input type="hidden" id="balance"
-                                                                           class="form-control" name="balance"
-                                                                           value="0"/>
-                                                                    <span id="balance_amount"> 0 MMK</span>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="product-list text-right">
-                                                                    Total
-                                                                </td>
-                                                                <td class="product-total">
-                                                                    <input type="hidden" id="total" class="form-control"
-                                                                           name="total" value="{{ Cart::total(0) }}"/>
-                                                                    <span id="total_price">{{ Cart::total(0) }} MMK</span>
-                                                                </td>
-                                                            </tr>
+                                                                <tr>
+                                                                    <td class="product-list text-right">Balance</td>
+                                                                    <td class="product-total">
+                                                                        <input type="hidden" id="balance"
+                                                                               class="form-control" name="balance"
+                                                                               value="0"/>
+                                                                        <span id="balance_amount"> 0 MMK</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="product-list text-right">
+                                                                        Total
+                                                                    </td>
+                                                                    <td class="product-total">
+                                                                        <input type="hidden" id="total" class="form-control"
+                                                                               name="total" value="{{ Cart::total(0) }}"/>
+                                                                        <span id="total_price">{{ Cart::total(0) }} MMK</span>
+                                                                    </td>
+                                                                </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>

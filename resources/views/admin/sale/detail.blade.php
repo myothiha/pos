@@ -110,19 +110,20 @@
                                                      id="tabTwo-1">
                                                     <table class="table table-cart">
                                                         <thead>
-                                                        <tr>
-                                                            <th class="product-name">Item</th>
-                                                            <th class="product-size d-none d-lg-table-cell">
-                                                                Color
-                                                            </th>
-                                                            <th class="product-size d-none d-lg-table-cell">
-                                                                Category
-                                                            </th>
-                                                            <th class="product-quanity d-none d-md-table-cell">
-                                                                Quantity
-                                                            </th>
-                                                            <th width="50px;"></th>
-                                                        </tr>
+                                                            <tr>
+                                                                <th class="product-name">Item</th>
+                                                                <th class="product-size d-none d-lg-table-cell">
+                                                                    Color
+                                                                </th>
+                                                                <th class="product-price d-none d-md-table-cell">
+                                                                    Price
+                                                                </th>
+                                                                <th class="product-quanity d-none d-md-table-cell">
+                                                                    Quantity
+                                                                </th>
+                                                                <th class="product-total">Total</th>
+                                                                <th width="50px;"></th>
+                                                            </tr>
                                                         </thead>
                                                         <tbody id="cardItems">
                                                         @foreach ($items as $item)
@@ -130,24 +131,43 @@
                                                                 <td class="product-name">{{ $item->name }}</td>
                                                                 <td class="product-name">{{ $item->color->name}}</td>
                                                                 <td class="product-quanity d-none d-lg-table-cell">
-                                                                    {{ $item->category->name }}
+                                                                    {{ $item->pivot->price }}
                                                                 </td>
                                                                 <td class="product-quanity d-none d-lg-table-cell">
                                                                     {{ $item->pivot->quantity }}
+                                                                </td>
+                                                                <td class="product-quanity d-none d-lg-table-cell">
+                                                                    {{ $item->pivot->total }}
                                                                 </td>
                                                             </tr>
                                                         @endforeach
                                                         </tbody>
                                                         <tbody>
-                                                        <tr>
-                                                            <td class="product-name" rowspan="3" colspan="5">
-                                                                <label for="remark">Remark</label>
-                                                                <textarea name="remark" id="remark"
-                                                                          class="form-control"
-                                                                          cols="30" rows="3" placeholder="Remark"
-                                                                          tabindex="4" readonly>{{ $sale->remark }}</textarea>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td class="product-name" rowspan="3" colspan="3">
+                                                                    Remark</label>
+                                                                    <br><br>
+                                                                    <textarea name="remark" id="remark" class="form-control" cols="30" rows="3" placeholder="Remark" tabindex="4" readonly>{{ $sale->remark }}</textarea></td>
+                                                                <td class="product-list text-right">Paid</td>
+                                                                <td class="product-quanity d-none d-lg-table-cell">
+                                                                    <span id="balance_amount">{{ $sale->paid }} MMK</span>
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="product-list text-right">Balance</td>
+                                                                <td class="product-total">
+                                                                    <span id="balance_amount">{{ $sale->balance }} MMK</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="product-list text-right">
+                                                                    Total
+                                                                </td>
+                                                                <td class="product-total">
+                                                                    <span id="total_price">{{ $sale->totalAmount }} MMK</span>
+                                                                </td>
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
