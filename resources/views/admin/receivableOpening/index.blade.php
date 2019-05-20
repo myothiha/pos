@@ -29,7 +29,7 @@
                         <div class="col-lg-12">
                             <div class="sm-wrapper">
                                 <div class="sm-box">
-                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100">
+                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100" data-toggle="dataTable" data-form="deleteForm">
                                         <thead>
                                         <tr>
                                             <th>#</th>
@@ -37,6 +37,7 @@
                                             <th>Location</th>
                                             <th>Customer</th>
                                             <th>Balance</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -47,6 +48,15 @@
                                                 <td>{{ $receivable->location->name }}</td>
                                                 <td>{{ $receivable->customer->name }}</td>
                                                 <td>{{ $receivable->balance }}</td>
+                                                <td width="20%">
+                                                    <form id="deleteForm"
+                                                          action="{{ action('ReceivableOpeningController@destroy', $receivable->id) }}"
+                                                          method="Post">
+                                                        <input type="hidden" name="_method" value="delete">
+                                                        {{ csrf_field() }}
+                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

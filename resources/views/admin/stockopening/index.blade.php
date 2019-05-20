@@ -29,7 +29,7 @@
                         <div class="col-lg-12">
                             <div class="sm-wrapper">
                                 <div class="sm-box">
-                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100">
+                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100" data-toggle="dataTable" data-form="deleteForm">
                                         <thead>
                                         <tr>
                                             <th>#</th>
@@ -49,21 +49,20 @@
                                                 <td>{{ $stockOpening->location->name }}</td>
                                                 <td>{{ $stockOpening->item->name }}</td>
                                                 <td>{{ $stockOpening->quantity }}</td>
-                                                <td width="20%"> Coming Soon
-                                                    <form
-                                                        action="{{ action('StockOpeningController@destroy', $stockOpening->id) }}"
-                                                        method="Post">
+                                                <td width="20%">
+                                                    <form id="deleteForm"
+                                                          action="{{ action('StockOpeningController@destroy', $stockOpening->id) }}"
+                                                          method="POST">
                                                         <input type="hidden" name="_method" value="delete">
                                                         {{ csrf_field() }}
 
-{{--                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">--}}
+                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
                                                     </form>
                                                 </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
                         </div>

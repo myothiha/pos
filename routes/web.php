@@ -16,10 +16,7 @@ use Routes\App\Processing;
 use Routes\App\Report;
 use Routes\App\Transaction;
 
-Route::get('/', function () {
-
-    return redirect('/admin');
-});
+Route::get('/', 'AdminController@index')->middleware('auth');
 
 Route::get('login', 'LoginController@login')->name('login');
 
@@ -36,9 +33,7 @@ Route::post('/updateItem', 'AddToCartController@updateItem');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
-    Route::get('/', function () {
-        return view('admin.index');
-    });
+    Route::get('/', 'AdminController@index');
 
     Route::middleware('sale')->group(function () {
         Transaction::routes();

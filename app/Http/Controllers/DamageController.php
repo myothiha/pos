@@ -121,21 +121,27 @@ class DamageController extends Controller
         $damage->quantity = $request->quantity;
 
         try {
-            DB::transaction(function () use ($damage, $item) {
-                $item->damages()->save($damage);
-                
+            DB::transaction(function () use ($request, $damage, $item) {
+
                 $store = Store::firstOrNew([
                     'location_id' => $damage->location_id,
                     'item_id' => $item->id,
                 ]);
 
-                $store->quantity -= $damage->quantity;
-                $store->save();
+                if($store->quantity < $damage->quantity){
+                    $request->session()->flash('alert-danger', 'No Stock in Store!!');
+                    return redirect()->action('SaleController@index');
+                }else{
+                    $item->damages()->save($damage);
+                    $store->quantity -= $damage->quantity;
+                    $store->save();
+                    $request->session()->flash('alert-success', 'Damage has been processed!');
+                }
+
             });
         } catch (Throwable $e) {
         }
 
-        $request->session()->flash('alert-success', 'Damage has been processed!');
         return redirect()->action('DamageController@index');
     }
 
@@ -176,11 +182,23 @@ class DamageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param Damage $damage
-     * @return Response
+     * @return void
+     * @throws \Exception
      */
-    public function destroy(Damage $damage)
+    public function destroy(Request $request, Damage $damage)
     {
-        //
+        $store = Store::firstOrNew([
+            'location_id' => $damage->location_id,
+            'item_id' => $damage->item_id,
+        ]);
+
+        $store->quantity += $damage->quantity;
+        $store->save();
+
+        $damage->delete();
+        $request->session()->flash('alert-success', 'Damage was successfully deleted!');
+        return redirect()->action('DamageController@index');
     }
 }

@@ -18,6 +18,7 @@
     <link id="stylesheet" type="text/css" href="{{ url('') }}/assets/css/style.css" rel="stylesheet" media="screen">
     <!-- CUSTOM STYLE -->
     <link type="text/css" href="{{ url('') }}/assets/css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!--  MODERNIZR JS -->
     <script src="{{ url('') }}/assets/plugins/modernizr/modernizr-custom.js"></script>
     <!--  PLUGINS For Responsive Table -->
@@ -53,6 +54,8 @@
                 <div class="sm-content-inner">
                     
                     @include('admin.layouts.header')
+
+                    @include('admin.layouts.modal')
 
                     @yield('content')
 
@@ -93,7 +96,22 @@
 
 <!-- APP JS -->
 <script src="{{ url('') }}/assets/js/app.js"></script>
-<script src="assets/js/sm_login_demo.js"></script>
+<script src="{{ url('') }}/assets/js/sm_login_demo.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#confirm').appendTo("body");
+
+        $("#deleteBtn").click(function(e) {
+            e.preventDefault();
+            $('#confirm').modal({ backdrop: 'static', keyboard: false })
+                .on('click', '#delete-btn', function(){
+                    console.log("hefll");
+                    $("#deleteForm").submit();
+                });
+        });
+    });
+</script>
 
 </body>
 </html>

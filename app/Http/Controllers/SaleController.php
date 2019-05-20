@@ -197,11 +197,35 @@ class SaleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param Sale $sale
      * @return Response
+     * @throws \Exception
      */
-    public function destroy(Sale $sale)
+    public function destroy(Request $request, Sale $sale)
     {
-        //
+        try{
+            foreach ($sale->items as $item){
+                DB::table('sale_details')
+                    ->where('sale_id', $sale->id)
+                    ->where('item_id', $item->id)
+                    ->update(array('deleted_at' => DB::raw('NOW()')));
+
+                $store = Store::firstOrNew([
+                    'location_id' => $sale->location_id,
+                    'item_id' => $item->id,
+                ]);
+                $store->quantity += $item->pivot->quantity;
+                $store->save();
+            }
+        } catch (Throwable $e) {
+            Log::error('Sales Error : ' . $e->getMessage());
+            dd($e->getMessage());
+        }
+
+        $sale->delete();
+
+        $request->session()->flash('alert-danger', 'Sale was successfully deleted!');
+        return redirect()->action('SaleController@index');
     }
 }

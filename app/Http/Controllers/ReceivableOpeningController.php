@@ -122,11 +122,20 @@ class ReceivableOpeningController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param ReceivableOpening $receivableOpening
      * @return void
+     * @throws \Exception
      */
-    public function destroy(ReceivableOpening $receivableOpening)
+    public function destroy(Request $request, ReceivableOpening $receivableOpening)
     {
-        //
+        $creditBalance = CreditBalance::firstOrNew(['customer_id' => $receivableOpening->customer_id]);
+        $creditBalance->amount -= $receivableOpening->balance;
+        $creditBalance->save();
+
+        $receivableOpening->delete();
+
+        $request->session()->flash('alert-danger', 'Receivable Opening was successfully deleted!');
+        return redirect()->action('ReceivableController@index');
     }
 }

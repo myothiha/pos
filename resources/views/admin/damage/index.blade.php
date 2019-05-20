@@ -29,7 +29,7 @@
                         <div class="col-lg-12">
                             <div class="sm-wrapper">
                                 <div class="sm-box">
-                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100">
+                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100  data-toggle="dataTable" data-form="deleteForm"">
                                         <thead>
                                         <tr>
                                             <th>#</th>
@@ -49,14 +49,14 @@
                                                 <td>{{ $damage->location->name }}</td>
                                                 <td>{{ $damage->item->name }}</td>
                                                 <td>{{ $damage->quantity }}</td>
-                                                <td width="20%"> Coming Soon
-                                                    <form
+                                                <td width="20%">
+                                                    <form id="deleteForm"
                                                         action="{{ action('DamageController@destroy', $damage->id) }}"
                                                         method="Post">
                                                         <input type="hidden" name="_method" value="delete">
                                                         {{ csrf_field() }}
 
-{{--                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">--}}
+                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
                                                     </form>
                                                 </td>
                                             </tr>

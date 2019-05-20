@@ -172,11 +172,38 @@ class TransferController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param Transfer $transfer
      * @return void
+     * @throws \Exception
      */
-    public function destroy(Transfer $transfer)
+    public function destroy(Request $request, Transfer $transfer)
     {
-        //
+        foreach ($transfer->items as $item){
+            DB::table('transfer_details')
+                ->where('transfer_id', $transfer->id)
+                ->where('item_id', $item->id)
+                ->update(array('deleted_at' => DB::raw('NOW()')));
+
+            $store = Store::firstOrNew([
+                'location_id' => $transfer->location_id,
+                'item_id' => $item->id,
+            ]);
+            $store->quantity += $item->pivot->quantity;
+            $store->save();
+
+            $transferStore = Store::firstOrNew([
+                'location_id' => 2,
+                'item_id' => $item->id,
+            ]);
+
+            $transferStore->quantity -= $item->pivot->quantity;
+            $transferStore->save();
+        }
+
+        $transfer->delete();
+
+        $request->session()->flash('alert-danger', 'Transfer was successfully deleted!');
+        return redirect()->action('TransferController@index');
     }
 }

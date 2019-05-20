@@ -156,14 +156,31 @@ class StockInController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param StockIn $stockIn
      * @return Response
      * @throws Exception
      */
-    public function destroy(StockIn $stockIn)
+    public function destroy(Request $request, StockIn $stockIn)
     {
-        $store = Store($stockIn->location_id);
+        dd("hello");
+        foreach ($stockIn->items as $item){
+            DB::table('stock_in_details')
+                ->where('stock_in_id', $stockIn->id)
+                ->where('item_id', $item->id)
+                ->update(array('deleted_at' => DB::raw('NOW()')));
+
+            $store = Store::firstOrNew([
+                'location_id' => $stockIn->location_id,
+                'item_id' => $item->id,
+            ]);
+            $store->quantity -= $item->pivot->quantity;
+            $store->save();
+        }
+
         $stockIn->delete();
+
+        $request->session()->flash('alert-danger', 'Stock In was successfully deleted!');
         return redirect()->action('StockInController@index');
     }
 }

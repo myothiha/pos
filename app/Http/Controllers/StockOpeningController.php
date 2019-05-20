@@ -189,11 +189,24 @@ class StockOpeningController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param StockOpening $stockOpening
      * @return Response
+     * @throws \Exception
      */
-    public function destroy(StockOpening $stockOpening)
+    public function destroy(Request $request, StockOpening $stockOpening)
     {
-        //
+        $store = Store::firstOrNew([
+            'location_id' => $stockOpening->location_id,
+            'item_id' => $stockOpening->item_id,
+        ]);
+
+        $store->quantity -= $stockOpening->quantity;
+        $store->save();
+
+        $stockOpening->delete();
+
+        $request->session()->flash('alert-danger', 'Stock Opening was successfully deleted!');
+        return redirect()->action('StockOpeningController@index');
     }
 }

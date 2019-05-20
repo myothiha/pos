@@ -29,7 +29,7 @@
                         <div class="col-lg-12">
                             <div class="sm-wrapper">
                                 <div class="sm-box">
-                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100">
+                                    <table id="data-table" class="table table-striped table-bordered nowrap w-in-100" data-toggle="dataTable" data-form="deleteForm">
                                         <thead>
                                         <tr>
                                             <th>#</th>
@@ -52,7 +52,7 @@
                                                 <td>{{ $inspect->acceptQty }}</td>
                                                 <td>{{ $inspect->rejectQty }}</td>
                                                 <td width="20%">
-                                                    <form
+                                                    <form id="deleteForm"
                                                         action="{{ action('InspectController@destroy', $inspect->id) }}"
                                                         method="Post">
                                                         <input type="hidden" name="_method" value="delete">

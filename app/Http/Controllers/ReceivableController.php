@@ -7,6 +7,7 @@ use App\Receivable;
 use App\Customer;
 use App\Location;
 use App\Repositories\Customers\ReceivableRepository;
+use App\Store;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
@@ -147,11 +148,20 @@ class ReceivableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param Receivable $receivable
      * @return void
+     * @throws \Exception
      */
-    public function destroy(Receivable $receivable)
+    public function destroy(Request $request, Receivable $receivable)
     {
-        //
+        $creditBalance = CreditBalance::firstOrNew(['customer_id' => $receivable->customer_id]);
+        $creditBalance->amount += $receivable->amount;
+        $creditBalance->save();
+
+        $receivable->delete();
+
+        $request->session()->flash('alert-danger', 'Receivable was successfully deleted!');
+        return redirect()->action('ReceivableController@index');
     }
 }
