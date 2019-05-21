@@ -163,7 +163,6 @@ class StockInController extends Controller
      */
     public function destroy(Request $request, StockIn $stockIn)
     {
-        dd("hello");
         foreach ($stockIn->items as $item){
             DB::table('stock_in_details')
                 ->where('stock_in_id', $stockIn->id)

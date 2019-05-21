@@ -89,12 +89,8 @@ class TransferController extends Controller
 
         try {
             DB::transaction(function () use ($request, $transfer) {
-                $transfer->save();
-
                 foreach (Cart::instance(CartConst::TRANSFER)->content() as $item)
                 {
-                    $transfer->items()->attach($item->id, ['quantity' => $item->qty]);
-
                     $currentStore = Store::firstOrNew([
                         'location_id' => $transfer->location_id,
                         'item_id' => $item->id,
@@ -106,21 +102,32 @@ class TransferController extends Controller
 
                         $request->session()->flash('alert-danger', 'No Stock in Store!!');
                         return redirect()->action('TransferController@index');
-                    }else{
-                        $currentStore->quantity -= $item->qty;
-                        $currentStore->save();
-
-                        $transferStore = Store::firstOrNew([
-                            'location_id' => 2,
-                            'item_id' => $item->id,
-                        ]);
-
-                        $transferStore->quantity += $item->qty;
-                        $transferStore->save();
-
-                        $request->session()->flash('alert-success', 'Transfer has been processed!');
                     }
+                }
 
+                $transfer->save();
+
+                foreach (Cart::instance(CartConst::TRANSFER)->content() as $item)
+                {
+                    $transfer->items()->attach($item->id, ['quantity' => $item->qty]);
+
+                    $currentStore = Store::firstOrNew([
+                        'location_id' => $transfer->location_id,
+                        'item_id' => $item->id,
+                    ]);
+
+                    $currentStore->quantity -= $item->qty;
+                    $currentStore->save();
+
+                    $transferStore = Store::firstOrNew([
+                        'location_id' => 2,
+                        'item_id' => $item->id,
+                    ]);
+
+                    $transferStore->quantity += $item->qty;
+                    $transferStore->save();
+
+                    $request->session()->flash('alert-success', 'Transfer has been processed!');
                     Cart::instance(CartConst::TRANSFER)->destroy();
                 }
             });

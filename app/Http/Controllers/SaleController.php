@@ -114,8 +114,21 @@ class SaleController extends Controller
 
         try {
             DB::transaction(function () use ($request, $sale) {
-                $sale->save();
+                
+                foreach(Cart::instance(CartConst::SALE)->content() as $item){
+                    $store = Store::firstOrNew([
+                        'location_id' => $sale->location_id,
+                        'item_id' => $item->id,
+                    ]);
+                    if($store->quantity < $item->qty){
+                        $sale->items()->detach();
+                        $sale->delete();
+                        $request->session()->flash('alert-danger', 'No Stock in Store!!');
+                        return redirect()->action('SaleController@index');
+                    }
+                }
 
+                $sale->save();
                 // Record price, qty, total for each item
                 foreach(Cart::instance(CartConst::SALE)->content() as $item) {
 
@@ -127,16 +140,9 @@ class SaleController extends Controller
                         'item_id' => $item->id,
                     ]);
 
-                    if($store->quantity < $item->qty){
-                        $sale->items()->detach();
-                        $sale->delete();
-                        $request->session()->flash('alert-danger', 'No Stock in Store!!');
-                        return redirect()->action('SaleController@index');
-                    }else{
-                        $store->quantity -= $item->qty;
-                        $store->save();
-                        $request->session()->flash('alert-success', 'Sale has been processed!');
-                    }
+                    $store->quantity -= $item->qty;
+                    $store->save();
+                    $request->session()->flash('alert-success', 'Sale has been processed!');
                 }
 
                 //Update Customer Credit balance for Credit Sale
