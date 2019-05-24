@@ -50,12 +50,12 @@
                                                 <td>{{ $receivable->customer->name }}</td>
                                                 <td>{{ $receivable->amount }}</td>
                                                 <td width="20%">
-                                                    <form id="deleteForm"
+                                                    <form id="deleteForm{{$receivable->id}}"
                                                         action="{{ action('ReceivableController@destroy', $receivable->id) }}"
                                                         method="Post">
                                                         <input type="hidden" name="_method" value="delete">
                                                         {{ csrf_field() }}
-                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                        <input type="submit" class="btn btn-outline-danger deleteBtn" value="Delete">
                                                     </form>
                                                 </td>
                                             </tr>

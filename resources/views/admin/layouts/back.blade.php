@@ -25,6 +25,7 @@
     <link type="text/css" href="{{ url('') }}/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet">
     <link href="{{ url('') }}/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
     <link href="{{ url('') }}/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet"/>
+    <link href="{{ url('') }}/assets/plugins/sweet_alert/sweetalert.css" rel="stylesheet"/>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     
     <link rel="stylesheet" type="text/css" href="{{ url('') }}/css/style.css">
@@ -91,6 +92,7 @@
 <script src="{{ url('') }}/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="{{ url('') }}/assets/js/sm_tables_dataTable_Responsive.js"></script>
 <script src="{{ url('') }}/assets/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="{{ url('') }}/assets/plugins/sweet_alert/sweetalert.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
@@ -101,13 +103,15 @@
 <script>
     $(document).ready(function() {
         $('#confirm').appendTo("body");
-
-        $("#deleteBtn").click(function(e) {
+        // delete confirmation
+        $(".deleteBtn").click(function(e) {
             e.preventDefault();
+            let id;
+            id = $(this).closest('form').attr("id");
+
             $('#confirm').modal({ backdrop: 'static', keyboard: false })
                 .on('click', '#delete-btn', function(){
-                    console.log("hefll");
-                    $("#deleteForm").submit();
+                    $("#"+ id).submit();
                 });
         });
     });

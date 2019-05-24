@@ -31494,3 +31494,9 @@ body .fc button.fc-state-active {
 .make_text_white *{
     color:#ffffff !important;
 }
+
+.btn-primary:hover {
+    color: #006;
+    background-color: #fff;
+    border-color: #0062cc;
+}

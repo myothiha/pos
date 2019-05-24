@@ -5,6 +5,7 @@ namespace App;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
@@ -33,6 +34,7 @@ use Illuminate\Support\Carbon;
  */
 class ReceivableOpening extends Model
 {
+    use SoftDeletes;
 
     public function location()
     {

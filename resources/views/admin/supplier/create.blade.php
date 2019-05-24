@@ -43,7 +43,7 @@
                                             <div class="form-group has-feedback">
                                                 <label for="phone">Phone</label>
                                                 <input type="text" id="phone"
-                                                       placeholder="Phone" class="form-control" name="phone" value="{{ old('phone') }}}">
+                                                       placeholder="Phone" class="form-control" name="phone" value="{{ old('phone') }}">
                                             </div>
                                         </div>
                                     </div>

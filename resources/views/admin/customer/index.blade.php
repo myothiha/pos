@@ -47,7 +47,7 @@
                                             <td>{{ $customer->name }}</td>
                                             <td>{{ $customer->phone }}</td>
                                             <td width="20%">
-                                                <form id="deleteForm"
+                                                <form id="deleteForm{{$customer->id}}"
                                                     action="{{ action('CustomerController@destroy', $customer->id) }}"
                                                     method="Post">
                                                     <input type="hidden" name="_method" value="delete">
@@ -56,7 +56,7 @@
                                                     <a class="btn btn-outline-primary"
                                                        href="{{ action('CustomerController@edit', $customer->id) }}">Edit</a>
 
-                                                    <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                    <input type="submit" class="btn btn-outline-danger deleteBtn" value="Delete">
                                                 </form>
                                             </td>
                                         </tr>

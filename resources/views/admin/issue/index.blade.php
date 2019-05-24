@@ -61,7 +61,7 @@
                                                         method="Post">
                                                         <input type="hidden" name="_method" value="delete">
                                                         {{ csrf_field() }}
-                                                        <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                        <input type="submit" id="deleteBtn" class="btn btn-outline-danger" value="Delete">
                                                     </form>
                                                 </td>
                                             </tr>

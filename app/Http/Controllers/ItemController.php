@@ -145,10 +145,11 @@ class ItemController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
-        if (count(Item::where('itemCode', $request->itemCode)->get()) > 0){
-            $request->session()->flash('alert-danger', 'Item Code is already used!');
-            return redirect()->back();
+        if ($item->itemCode != $request->itemCode){
+            if (count(Item::where('itemCode', $request->itemCode)->get()) > 0){
+                $request->session()->flash('alert-danger', 'Item Code is already used!');
+                return redirect()->back();
+            }
         }
 
         $item->name = $request->name;
@@ -166,6 +167,7 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param Request $request
      * @param Item $item
      * @return Response
      * @throws Exception

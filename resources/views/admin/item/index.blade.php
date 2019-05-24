@@ -33,7 +33,7 @@
                                 <table id="data-table" class="table table-striped table-bordered nowrap w-in-100" data-toggle="dataTable" data-form="deleteForm">
                                     <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>Item Code</th>
                                         <th>Name</th>
                                         <th>Color</th>
                                         <th>Action</th>
@@ -43,11 +43,11 @@
                                     <?php $no = 1; ?>
                                     @foreach($items as $item)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $item->itemCode }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->color->name }}</td>
                                             <td width="20%">
-                                                <form id="deleteForm"
+                                                <form id="deleteForm{{$item->id}}"
                                                     action="{{ action('ItemController@destroy', $item->id) }}"
                                                     method="Post">
                                                     <input type="hidden" name="_method" value="delete">
@@ -56,7 +56,7 @@
                                                     <a class="btn btn-outline-primary"
                                                        href="{{ action('ItemController@edit', $item->id) }}">Edit</a>
 
-                                                    <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                                    <input type="submit" class="btn btn-outline-danger deleteBtn" value="Delete">
                                                 </form>
                                             </td>
                                         </tr>
