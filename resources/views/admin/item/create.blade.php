@@ -33,7 +33,7 @@
                                             <div class="form-group">
                                                 <label for="username">Name</label>
                                                 <input id="username" placeholder="Enter Name"
-                                                       type="text" class="form-control" name="name">
+                                                       type="text" class="form-control" name="name" value="{{ old('name') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@
                                             <div class="form-group">
                                                 <label for="itemCode">Item Code</label>
                                                 <input id="itemCode" placeholder="Enter Item Code"
-                                                       type="text" class="form-control" name="itemCode">
+                                                       type="text" class="form-control" name="itemCode" value="{{ old('itemCode') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                                 <label for="gender">Type ID</label>
                                                 <select class="form-control" id="select" name="type_id">
                                                     @foreach($types as $type)
-                                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                                    <option value="{{ $type->id }}" {{ $type->id == old('type_id')? 'selected' : '' }}>{{ $type->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -67,7 +67,7 @@
                                                 <label for="gender">Category ID</label>
                                                 <select class="form-control" id="select" name="category_id">
                                                     @foreach($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}" {{ $category->id == old('category_id')? 'selected' : '' }}>{{ $category->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -80,7 +80,7 @@
                                                 <label for="gender">Color ID</label>
                                                 <select class="form-control" id="select" name="color_id">
                                                     @foreach($colors as $color)
-                                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                                    <option value="{{ $color->id }}" {{ $color->id == old('color_id')? 'selected' : '' }}>{{ $color->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -91,7 +91,7 @@
                                         <div class="col-lg-12">
                                             <div class="form-group">
                                                 <label for="remark">Remark</label>
-                                                <textarea class="form-control" id="remark" rows="3" name="remark"></textarea>
+                                                <textarea class="form-control" id="remark" rows="3" name="remark">{{ old('remark') }}</textarea>
                                             </div>
                                         </div>
                                     </div>
