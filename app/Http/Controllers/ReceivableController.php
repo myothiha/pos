@@ -88,12 +88,12 @@ class ReceivableController extends Controller
 
         $creditBalance = CreditBalance::firstOrNew(['customer_id' => $receivable->customer_id]);
 
-        if($creditBalance->amount < $receivable->amount){
+        if($creditBalance->amount < $receivable->amount) {
             $request->session()->flash('alert-danger', 'Customer cannot paid more than his credit balance!!!');
             return redirect()->action('ReceivableController@create', [
                 'customer_id' => $receivable->customer_id
             ]);
-        }else{
+        } else {
             $creditBalance->amount -= $receivable->amount;
             $request->session()->flash('alert-success', 'Receivable has been processed!');
         }

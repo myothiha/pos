@@ -130,6 +130,7 @@ class InspectController extends Controller
         $inspect->employee_id = $request->employee_id;
         $inspect->acceptQty = $request->acceptQty;
         $inspect->rejectQty = $request->rejectQty;
+        $inspect->remark = $request->remark;
         $inspect->item_id = $request->item_id;
         $inspect->save();
 

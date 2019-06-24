@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\CustomFilter;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -32,10 +33,24 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Inspect whereEmployeeId($value)
  * @method static Builder|Inspect whereIssueId($value)
  * @method static Builder|Inspect whereRejectQty($value)
+ * @property int|null $item_id
+ * @property string|null $remark
+ * @property-read \App\Employee $employee
+ * @property-read \App\Item|null $item
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect customDateFilter($column, $from, $to)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect customFilter($column, $op, $value)
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Inspect onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereItemId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereRemark($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Inspect withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Inspect withoutTrashed()
  */
 class Inspect extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, CustomFilter;
 
     public function item()
     {

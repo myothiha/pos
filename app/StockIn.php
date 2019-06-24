@@ -34,6 +34,16 @@ use Illuminate\Support\Carbon;
  * @method static Builder|StockIn whereVoucherNo($value)
  * @property-read Collection|Item[] $items
  * @property int user_id
+ * @property int $user_id
+ * @property-read \App\Customer $customer
+ * @property-read \App\Location $location
+ * @property-read \App\Supplier $supplier
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\StockIn onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\StockIn withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\StockIn withoutTrashed()
  */
 class StockIn extends Model
 {

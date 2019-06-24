@@ -67,16 +67,10 @@
                         <div class="sm-wrapper">
                             <div class="sm-box">
                                 <h3>Summary</h3>
-                                <table class="table table-striped table-bordered nowrap w-in-100">
+                                <table class="table table-condensed">
                                     <tr>
-                                        <td><b>Credit</b></td>
-                                        <td><b>Paid</b></td>
                                         <td><b>Total Amount</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>{{ $sales->sum('balance') }}</b></td>
-                                        <td><b>{{ $sales->sum('paid') }}</b></td>
-                                        <td><b>{{ $sales->sum('totalAmount') }}</b></td>
+                                        <td><b>{{ $total_amount }}</b></td>
                                     </tr>
                                 </table>
                             </div>
@@ -85,7 +79,6 @@
                     <div class="col-lg-12">
                         <div class="sm-wrapper">
                             <div class="sm-box">
-                                <h3>Credit Sales</h3>
                                 <table class="table table-striped table-bordered nowrap w-in-100">
                                     <thead>
                                     <tr>
@@ -94,65 +87,18 @@
                                         <th>Voucher NO</th>
                                         <th>Sale Type</th>
                                         <th>Customer</th>
-                                        <th>Credit Balance</th>
-                                        <th>Paid</th>
                                         <th>Total Amount</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach( $credit_sales as $index => $sale )
+                                    @foreach( $sales as $index => $sale )
                                         <tr class="odd gradeX">
                                             <td>{{ ++$index }}</td>
                                             <td>{{ $sale->created_at->toDateString() }}</td>
                                             <td>{{ $sale->voucherNo }}</td>
                                             <td>{{ $sale->saleType }}</td>
                                             <td>{{ $sale->customer->name }}</td>
-                                            <td>{{ $sale->balance }}</td>
-                                            <td>{{ $sale->paid }}</td>
-                                            <td>{{ $sale->totalAmount }}</td>
-                                            <td><a class="btn btn-primary" href="{{ action('ReportController@saleReportDetail', $sale->id) }}">Detail</a></td>
-                                        </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td colspan="5" class="text-right"><b>Total</b></td>
-                                        <td>{{ $credit_sales->sum('balance') }}</td>
-                                        <td>{{ $credit_sales->sum('paid') }}</td>
-                                        <td>{{ $credit_sales->sum('totalAmount') }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="sm-wrapper">
-                            <div class="sm-box">
-                                <h3>Cash Down Sales</h3>
-                                <table class="table table-striped table-bordered nowrap w-in-100">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Date</th>
-                                        <th>Voucher NO</th>
-                                        <th>Sale Type</th>
-                                        <th>Customer</th>
-                                        <th>Credit Balance</th>
-                                        <th>Paid</th>
-                                        <th>Total Amount</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach( $cashdown_sales as $index => $sale )
-                                        <tr class="odd gradeX">
-                                            <td>{{ ++$index }}</td>
-                                            <td>{{ $sale->created_at->toDateString() }}</td>
-                                            <td>{{ $sale->voucherNo }}</td>
-                                            <td>{{ $sale->saleType }}</td>
-                                            <td>{{ $sale->customer->name }}</td>
-                                            <td>{{ $sale->balance }}</td>
-                                            <td>{{ $sale->paid }}</td>
                                             <td>{{ $sale->totalAmount }}</td>
                                             <td><a class="btn btn-primary" href="{{ action('ReportController@saleReportDetail', $sale->id) }}">Detail</a></td>
                                         </tr>

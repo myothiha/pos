@@ -71,6 +71,7 @@
                                             <th>#</th>
                                             <th>Customer</th>
                                             <th>Credit</th>
+                                            <th></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -79,6 +80,9 @@
                                                 <td>{{ ++$index }}</td>
                                                 <td>{{ $customer->name }}</td>
                                                 <td>{{ $customer->creditBalance->amount }}</td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="{{ action("ReportController@customerCreditDetailReport", $customer->id) }}">Detail</a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

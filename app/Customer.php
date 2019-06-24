@@ -33,6 +33,8 @@ use Illuminate\Support\Carbon;
  * @property-read Collection|ReceivableOpening[] $receivableOpenings
  * @method static Builder|Customer whereDeletedAt($value)
  * @property-read CreditBalance $creditBalance
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Receivable[] $receivables
+ * @property-read \App\Collections\SalesCollection|\App\Sale[] $sales
  */
 
 class Customer extends Model
@@ -49,5 +51,15 @@ class Customer extends Model
     public function creditBalance()
     {
         return $this->hasOne(CreditBalance::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
+
+    public function receivables()
+    {
+        return $this->hasMany(Receivable::class);
     }
 }

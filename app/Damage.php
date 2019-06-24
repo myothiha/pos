@@ -31,6 +31,13 @@ use Illuminate\Support\Carbon;
  * @property-read Item $item
  * @property-read Location $location
  * @method static Builder|Damage whereDeletedAt($value)
+ * @property int $user_id
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Damage onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Damage whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Damage withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Damage withoutTrashed()
  */
 class Damage extends Model
 {

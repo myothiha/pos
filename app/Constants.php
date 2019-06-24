@@ -20,5 +20,5 @@ class Constants
 
     // For Issue Types
     const NEW = 'new';
-    const REPAIR = 'new';
+    const REPAIR = 'repair';
 }

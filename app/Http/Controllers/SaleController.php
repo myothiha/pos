@@ -120,7 +120,7 @@ class SaleController extends Controller
                         'location_id' => $sale->location_id,
                         'item_id' => $item->id,
                     ]);
-                    if($store->quantity < $item->qty){
+                    if($store->quantity < $item->qty) {
                         $sale->items()->detach();
                         $sale->delete();
                         $request->session()->flash('alert-danger', 'No Stock in Store!!');

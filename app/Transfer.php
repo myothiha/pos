@@ -34,6 +34,13 @@ use Illuminate\Support\Carbon;
  * @property-read mixed $quantity
  * @property-read Location $location
  * @property int user_id
+ * @property int $user_id
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Transfer onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Transfer withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Transfer withoutTrashed()
  */
 class Transfer extends Model
 {

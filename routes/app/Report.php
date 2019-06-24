@@ -20,7 +20,11 @@ class Report
         Route::get('/transfer-report', 'ReportController@transferReport');
         Route::get('/receivable-report', 'ReportController@receivableReport');
         Route::get('/customer-credit-report', 'ReportController@customerCreditReport');
+        Route::get('/customer-credit-detail-report/{customer}', 'ReportController@customerCreditDetailReport');
+
         Route::get('/stock-balance-report', 'ReportController@stockBalanceReport');
+
+        Route::get('/issues-report-by-employee', 'ReportController@issuesReportByEmployee');
 
         Route::get('/process-reportby-employee', 'ReportController@processReportByEmployee');
         Route::get('/process-report-daily', 'ReportController@processReportDaily');

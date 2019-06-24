@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Collections\SalesCollection;
+use App\Helpers\CustomFilter;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -47,11 +49,30 @@ use Illuminate\Support\Carbon;
  * @property-read Collection|Item[] $items
  * @property-read Customer $customer
  * @property-read Location $location
- * @property  user_id
+ * @property user_id
+ * @property int $user_id
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Sale onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Sale withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Sale withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale cashDown()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale customDateFilter($column, $from, $to)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Sale customFilter($column, $op, $value)
  */
 class Sale extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, CustomFilter;
+
+    /**
+     * @param array $models
+     * @return SalesCollection|Collection
+     */
+    public function newCollection(array $models = [])
+    {
+        return new SalesCollection($models);
+    }
 
     public function items()
     {
@@ -66,5 +87,10 @@ class Sale extends Model
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+
+    public function scopeCashDown($query)
+    {
+        return $query->where("saleType", '=', Constants::CASH_DOWN);
     }
 }

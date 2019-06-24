@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\CustomFilter;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -33,10 +34,19 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Receivable whereVoucherNo($value)
  * @property-read Customer $customer
  * @property int user_id
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Receivable onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Receivable withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Receivable withoutTrashed()
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable customDateFilter($column, $from, $to)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Receivable customFilter($column, $op, $value)
  */
 class Receivable extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, CustomFilter;
 
     public function customer()
     {

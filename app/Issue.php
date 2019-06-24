@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\CustomFilter;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -45,10 +46,21 @@ use Illuminate\Support\Carbon;
  * @property string $type
  * @property int user_id
  * @method static Builder|Issue whereType($value)
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue new()
+ * @method static \Illuminate\Database\Query\Builder|\App\Issue onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue repair()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Issue withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Issue withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue customDateFilter($column, $from, $to)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Issue customFilter($column, $op, $value)
+ * @property int $user_id
  */
 class Issue extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, CustomFilter;
 
     public function item()
     {
@@ -63,5 +75,15 @@ class Issue extends Model
     public function inspects()
     {
         return $this->hasMany(Inspect::class);
+    }
+
+    public function scopeNew($query)
+    {
+        return $query->where("type", "=", Constants::NEW);
+    }
+
+    public function scopeRepair($query)
+    {
+        return $query->where("type", "=", Constants::REPAIR);
     }
 }

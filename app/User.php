@@ -39,6 +39,9 @@ use Illuminate\Support\Carbon;
  * @method static Builder|User whereUpdatedAt($value)
  * @property string|null $deleted_at
  * @method static Builder|User whereDeletedAt($value)
+ * @property int $location_id
+ * @property-read \App\Location $location
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereLocationId($value)
  */
 class User extends Authenticatable
 {

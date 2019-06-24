@@ -31,6 +31,13 @@ use Illuminate\Support\Carbon;
  * @property-read Customer $customer
  * @property-read Location $location
  * @method static Builder|ReceivableOpening whereDeletedAt($value)
+ * @property int $user_id
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\ReceivableOpening onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReceivableOpening whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\ReceivableOpening withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\ReceivableOpening withoutTrashed()
  */
 class ReceivableOpening extends Model
 {

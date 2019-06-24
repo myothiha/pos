@@ -135,6 +135,15 @@
                                                 </div>
                                             </div>
 
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="remark">Remark</label>
+                                                        <textarea id="remark" placeholder="Remark" class="form-control" name="remark" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="row m-t-20">
                                                 <div class="col-lg-12">
                                                     <button type="submit" class="btn btn-primary">Submit</button>

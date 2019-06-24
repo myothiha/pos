@@ -76,6 +76,10 @@
                                             <td>{{ $receivable->amount }}</td>
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        <td colspan="4" class="text-right"><b>Total</b></td>
+                                        <td><b>{{ $receivables->sum('amount') }}</b></td>
+                                    </tr>
                                     </tbody>
                                 </table>
 

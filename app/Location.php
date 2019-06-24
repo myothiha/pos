@@ -31,6 +31,7 @@ use Illuminate\Support\Carbon;
  * @property-read Collection|StockOpening[] $stockOpenings
  * @property-read Collection|Store[] $stores
  * @method static Builder|Location whereDeletedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
  */
 class Location extends Model
 {

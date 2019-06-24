@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Color;
+use App\Constants;
 use App\Customer;
 use App\Employee;
+use App\Helpers\CustomFilter;
 use App\Inspect;
 use App\Issue;
 use App\Item;
 use App\Location;
 use App\Receivable;
+use App\ReceivableOpening;
 use App\Sale;
 use App\StockIn;
 use App\Store;
@@ -33,8 +36,8 @@ class ReportController extends Controller
      */
     public function stockInReport(Request $request)
     {
-        if ($request->daterange){
-            $request->session()->flash('alert-success', 'Stock In Report for ('. $request->daterange. ') is generated!!');
+        if ($request->daterange) {
+            $request->session()->flash('alert-success', 'Stock In Report for (' . $request->daterange . ') is generated!!');
         }
 
         $stockIns = StockIn::query()
@@ -75,30 +78,23 @@ class ReportController extends Controller
      */
     public function saleReport(Request $request)
     {
-        if ($request->daterange){
-            $request->session()->flash('alert-success', 'Sale Report (' . $request->daterange . ' / '. $request->saleType. ') is generated!!');
+        if ($request->daterange) {
+            $request->session()->flash('alert-success', 'Sale Report (' . $request->daterange . ' / ' . $request->saleType . ') is generated!!');
         }
 
-        $sales = Sale::query()
-            ->when($request->saleType, function ($q) use ($request) {
-                return $q->where('saleType', '=', $request->saleType);
-            })
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
+        [$from, $to] = $this->getDateRange($request->daterange);
+
+        $sales = Sale::customDateFilter('created_at', $from, $to)->get();
 
         return view('admin.report.saleReport', [
             'sales' => $sales,
+            'credit_sales' => $sales->where('saleType', Constants::CREDIT),
+            'cashdown_sales' => $sales->where('saleType', Constants::CASH_DOWN),
         ]);
     }
 
     public function saleReportDetail(Sale $sale)
     {
-
         $items = $sale->items;
         return view('admin.report.saleReportDetail', [
             'sale' => $sale,
@@ -181,8 +177,8 @@ class ReportController extends Controller
 
     public function transferReport(Request $request)
     {
-        if ($request->daterange){
-            $request->session()->flash('alert-success', 'Transfer Report for ('. $request->daterange. ') is generated!!');
+        if ($request->daterange) {
+            $request->session()->flash('alert-success', 'Transfer Report for (' . $request->daterange . ') is generated!!');
         }
 
         $transfers = Transfer::query()
@@ -201,8 +197,8 @@ class ReportController extends Controller
 
     public function receivableReport(Request $request)
     {
-        if ($request->daterange){
-            $request->session()->flash('alert-success', 'Receivable Report for ('. $request->daterange. ') is generated!!');
+        if ($request->daterange) {
+            $request->session()->flash('alert-success', 'Receivable Report for (' . $request->daterange . ') is generated!!');
         }
 
         $receivables = Receivable::query()
@@ -221,9 +217,9 @@ class ReportController extends Controller
 
     public function customerCreditReport(Request $request)
     {
-        if ($request->customer_id){
+        if ($request->customer_id) {
             $customer = Customer::find($request->customer_id);
-            $request->session()->flash('alert-success', 'Credit Report for ( '. $customer->name. ' ) is generated!!');
+            $request->session()->flash('alert-success', 'Credit Report for ( ' . $customer->name . ' ) is generated!!');
         }
 
         $customers = Customer::whereHas('creditBalance', function (Builder $q) {
@@ -233,12 +229,42 @@ class ReportController extends Controller
         $customers->when($request->customer_id, function (Builder $q) use ($request) {
             return $q->where('id', '=', $request->customer_id);
         });
-        
+
         $allCustomers = Customer::all();
 
         return view('admin.report.customerCreditReport', [
             'customers' => $customers->get(),
             'allCustomers' => $allCustomers,
+        ]);
+    }
+
+    public function customerCreditDetailReport(Request $request, Customer $customer)
+    {
+        if ($request->daterange) {
+            $request->session()->flash('alert-success', 'Credit Detail Report for (' . $request->daterange . ') is generated!!');
+        }
+
+        [$from, $to] = $this->getDateRange($request->daterange);
+
+        $sales = $customer->sales()
+            ->where('saleType', Constants::CREDIT)
+            ->customDateFilter('created_at', $from, $to)
+            ->get();
+
+        $receivables = $customer
+            ->receivables()
+            ->customDateFilter('created_at', $from, $to)
+            ->get();
+
+        $receivable_openings = $customer->receivableOpenings;
+
+        return view('admin.report.customerCreditDetailReport', [
+            'customer' => $customer,
+            'sales' => $sales,
+            'receivables' => $receivables,
+            'receivable_openings' => $receivable_openings,
+            'total_credit' => Sale::sum('balance') + ReceivableOpening::sum('balance'),
+            'total_receivable' => Receivable::sum('amount'),
         ]);
     }
 
@@ -248,9 +274,7 @@ class ReportController extends Controller
 
         if ($request->search) {
             $request->session()->flash('alert-success', 'Stock Balance report by item is generated!!');
-            /*$stores = Store::whereHas('item', function($q) {
-                return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
-            });*/
+
             $stocks->when($request->itemCode, function (Builder $q) use ($request) {
                 return $q->whereHas('item', function ($q) use ($request) {
                     return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
@@ -289,73 +313,99 @@ class ReportController extends Controller
 
     public function processReportByEmployee(Request $request)
     {
-        if ($request->daterange){
-            if($request->employee_id){
+        if ($request->daterange) {
+            if ($request->employee_id) {
                 $employee = Employee::find($request->employee_id);
-                $request->session()->flash('alert-success', 'Process Report (' . $request->daterange . ' / '. $employee->name . ') is generated!!');
-            }else{
+                $request->session()->flash('alert-success', 'Process Report (' . $request->daterange . ' / ' . $employee->name . ') is generated!!');
+            } else {
                 $request->session()->flash('alert-success', 'Process Report (' . $request->daterange . ') is generated!!');
             }
         }
 
-        $inspects = Inspect::query()
-            ->when($request->employee_id, function ($q) use ($request) {
-                return $q->where('employee_id', '=', $request->employee_id);
-            })
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
+        [$from, $to] = $this->getDateRange($request->daterange);
 
-        $issues = Issue::query()
-            ->when($request->employee_id, function ($q) use ($request) {
-                return $q->where('employee_id', '=', $request->employee_id);
-            })
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
+        $inspects = Inspect::customFilter('employee_id', '=', $request->employee_id)
+            ->customDateFilter('created_at', $from, $to)->get();
+
+        $issues = Issue::customFilter('employee_id', '=', $request->employee_id)
+            ->customDateFilter('created_at', $from, $to)->get();
+
+        $new_issues = $issues->filter(function ($issue) {
+            return $issue->type == Constants::NEW;
+        });
+
+        $repairs = $issues->filter(function ($issue) {
+            return $issue->type == Constants::REPAIR;
+        });
+
+        $issue_total = $new_issues->reduce(function ($total, $issue) {
+            return $total + $issue->quantity;
+        });
+
+        $repair_total = $repairs->reduce(function ($total, $repair) {
+            return $total + $repair->quantity;
+        });
+
+        $accepts = $inspects->reduce(function ($total, $inspect) {
+            return $total + $inspect->acceptQty;
+        });
+
+        $rejects = $inspects->reduce(function ($total, $inspect) {
+            return $total + $inspect->rejectQty;
+        });
 
         return view('admin.report.processReportByEmployee', [
             'employees' => Employee::all(),
             'inspects' => $inspects,
-            'issues' => $issues,
+            'repairs' => $repairs,
+            'issues' => $new_issues,
+            'accepts' => $accepts,
+            'rejects' => $rejects,
+            'issue_total' => $issue_total,
+            'repair_total' => $repair_total,
         ]);
     }
 
     public function processReportDaily(Request $request)
     {
-        $inspects = Inspect::query()
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
 
-        $issues = Issue::query()
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
+        $date = Carbon::parse($request->date);
 
-        if ($request->daterange){
-            $request->session()->flash('alert-success', 'Process Report for ('. $request->daterange. ') is generated!!');
+        $inspects = Inspect::whereDate('created_at', $date)
+                    ->customFilter('item_id', '=', $request->item_id)->get();
+
+        $issues = Issue::whereDate('created_at', $date)
+            ->customFilter('item_id', '=', $request->item_id)->get();
+
+        $new_issues = $issues->where('type', Constants::NEW);
+
+        $repairs = $issues->where('type', Constants::REPAIR);
+
+        $items = Item::all();
+
+        if ($request->daterange) {
+            $request->session()->flash('alert-success', 'Process Report for (' . $request->daterange . ') is generated!!');
         }
 
         return view('admin.report.processReportDaily', [
             'inspects' => $inspects,
-            'issues' => $issues,
+            'issues' => $new_issues,
+            'repairs' => $repairs,
+            'items' => $items,
         ]);
+    }
+
+    public function getDateRange($dateRange)
+    {
+        $from = null;
+        $to = null;
+
+        if ($dateRange) {
+            $dateRange = explode(' - ', $dateRange);
+            $from = Carbon::parse($dateRange[0]);
+            $to = Carbon::parse($dateRange[1]);
+        }
+
+        return [$from, $to];
     }
 }
