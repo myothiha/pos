@@ -106,7 +106,7 @@
                                     @endforeach
                                     <tr>
                                         <td colspan="7" class="text-right"><b>Total</b></td>
-                                        <td><b>{{ $issue_total }}</b></td>
+                                        <td><b>{{ $issues->sum('quantity') }}</b></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -140,7 +140,7 @@
                                     @endforeach
                                     <tr>
                                         <td colspan="7" class="text-right"><b>Total</b></td>
-                                        <td><b>{{ $repair_total }}</b></td>
+                                        <td><b>{{ $repairs->sum('quantity') }}</b></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -172,8 +172,8 @@
                                     @endforeach
                                     <tr>
                                         <td colspan="5" class="text-right"><b>Total</b></td>
-                                        <td><b>{{ $accepts }}</b></td>
-                                        <td><b>{{ $rejects }}</b></td>
+                                        <td><b>{{ $inspects->sum('acceptQty') }}</b></td>
+                                        <td><b>{{ $inspects->sum('rejectQty') }}</b></td>
                                     </tr>
                                     </tbody>
                                 </table>

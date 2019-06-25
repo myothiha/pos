@@ -53,8 +53,8 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof  QueryException) {
-            $request->session()->flash('alert-danger', 'Failed to delete. You cannot remove the records that has been used.');
-            return redirect()->back();
+            /*$request->session()->flash('alert-danger', 'Failed to delete. You cannot remove the records that has been used.');
+            return redirect()->back();*/
         }
 
         return parent::render($request, $exception);

@@ -87,6 +87,7 @@
                                         <th>#</th>
                                         <th>Location</th>
                                         <th>Item</th>
+                                        <th>Color</th>
                                         <th>Quantity</th>
                                     </tr>
                                     </thead>
@@ -96,6 +97,7 @@
                                             <td>{{ ++$index }}</td>
                                             <td>{{ $stock->location->name }}</td>
                                             <td>{{ $stock->item->name }}</td>
+                                            <td>{{ $stock->item->color->name }}</td>
                                             <td>{{ $stock->quantity }}</td>
                                         </tr>
                                     @endforeach

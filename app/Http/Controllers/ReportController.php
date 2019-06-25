@@ -40,14 +40,11 @@ class ReportController extends Controller
             $request->session()->flash('alert-success', 'Stock In Report for (' . $request->daterange . ') is generated!!');
         }
 
+        [$from, $to] = $this->getDateRange($request->daterange);
+
         $stockIns = StockIn::query()
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
+            ->customDateFilter('created_at', $from, $to)->get();
+
         return view('admin.report.stockInReport', [
             'stockIns' => $stockIns,
         ]);
@@ -62,6 +59,7 @@ class ReportController extends Controller
 
         $supplier = Supplier::find($stockIn->supplier_id);
         $location = Location::find(($stockIn->location_id));
+
         $items = $stockIn->items;
 
         return view('admin.report.stockInReportDetail', [
@@ -104,32 +102,18 @@ class ReportController extends Controller
 
     public function saleReportByItem(Request $request)
     {
-
-        $items = Item::whereHas('sales', function (Builder $q) {
-
-        });
-
         if ($request->search) {
-
             $request->session()->flash('alert-success', 'Sale report by item is generated!!');
-
-            $items->when($request->itemCode, function (Builder $q) use ($request) {
-                return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
-            })
-                ->when($request->itemName, function (Builder $q) use ($request) {
-                    return $q->where('name', 'LIKE', "%{$request->itemName}%");
-                })
-                ->when($request->color_id, function (Builder $q) use ($request) {
-                    return $q->where('color_id', '=', $request->color_id);
-                })
-                ->when($request->type_id, function (Builder $q) use ($request) {
-                    return $q->where('type_id', '=', $request->type_id);
-                })
-                ->when($request->category_id, function (Builder $q) use ($request) {
-                    return $q->where('category_id', '=', $request->category_id);
-                })
-                ->with('color')->with('category');
         }
+
+        $items = Item::whereHas('sales', function (Builder $q) use ($request) {
+            $q->customFilter('itemCode', 'LIKE', "%{$request->itemCode}%")
+                ->customFilter('name', 'LIKE', "%{$request->itemName}%")
+                ->customFilter('color_id', '=', $request->color_id)
+                ->customFilter('type_id', '=', $request->type_id)
+                ->customFilter('category_id', '=', $request->category_id)
+                ->with('color')->with('category');
+        });
 
         return view('admin.report.saleReportByItem', [
             'items' => $items->get(),
@@ -142,10 +126,7 @@ class ReportController extends Controller
     public function saleReportByItemDetail(Request $request, Item $item)
     {
         if ($request->search) {
-
-            $dateRange = explode(' - ', $request->daterange);
-            $from = Carbon::parse($dateRange[0]);
-            $to = Carbon::parse($dateRange[1]);
+            [$from, $to] = $this->getDateRange($request->daterange);
 
             $sales = $item->sales()->whereDate('sales.created_at', '>=', $from)
                 ->whereDate('sales.created_at', '<=', $to)->get();
@@ -181,14 +162,9 @@ class ReportController extends Controller
             $request->session()->flash('alert-success', 'Transfer Report for (' . $request->daterange . ') is generated!!');
         }
 
-        $transfers = Transfer::query()
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
+        [$from, $to] = $this->getDateRange($request->daterange);
+
+        $transfers = Transfer::customDateFilter('created_at', $from, $to)->get();
 
         return view('admin.report.transferReport', [
             'transfers' => $transfers,
@@ -201,14 +177,9 @@ class ReportController extends Controller
             $request->session()->flash('alert-success', 'Receivable Report for (' . $request->daterange . ') is generated!!');
         }
 
-        $receivables = Receivable::query()
-            ->when($request->daterange, function ($q) use ($request) {
-                $dateRange = explode(' - ', $request->daterange);
-                $from = Carbon::parse($dateRange[0]);
-                $to = Carbon::parse($dateRange[1]);
-                return $q->whereDate('created_at', '>=', $from)
-                    ->whereDate('created_at', '<=', $to);
-            })->get();
+        [$from, $to] = $this->getDateRange($request->daterange);
+
+        $receivables = Receivable::customDateFilter('created_at', $from, $to)->get();
 
         return view('admin.report.receivableReport', [
             'receivables' => $receivables,
@@ -247,7 +218,7 @@ class ReportController extends Controller
         [$from, $to] = $this->getDateRange($request->daterange);
 
         $sales = $customer->sales()
-            ->where('saleType', Constants::CREDIT)
+            ->where('saleType',Constants::CREDIT)
             ->customDateFilter('created_at', $from, $to)
             ->get();
 
@@ -270,38 +241,18 @@ class ReportController extends Controller
 
     public function stockBalanceReport(Request $request)
     {
-        $stocks = Store::with(['item']);
-
         if ($request->search) {
             $request->session()->flash('alert-success', 'Stock Balance report by item is generated!!');
-
-            $stocks->when($request->itemCode, function (Builder $q) use ($request) {
-                return $q->whereHas('item', function ($q) use ($request) {
-                    return $q->where('itemCode', 'LIKE', "%{$request->itemCode}%");
-                });
-            })
-                ->when($request->itemName, function (Builder $q) use ($request) {
-                    return $q->whereHas('item', function ($q) use ($request) {
-                        return $q->where('name', 'LIKE', "%{$request->itemName}%");
-                    });
-                })
-                ->when($request->color_id, function (Builder $q) use ($request) {
-                    return $q->whereHas('item', function ($q) use ($request) {
-                        return $q->where('color_id', '=', $request->color_id);
-                    });
-                })
-                ->when($request->type_id, function (Builder $q) use ($request) {
-                    return $q->whereHas('item', function ($q) use ($request) {
-                        return $q->where('type_id', '=', $request->type_id);
-                    });
-                })
-                ->when($request->category_id, function (Builder $q) use ($request) {
-                    return $q->whereHas('item', function ($q) use ($request) {
-                        return $q->where('category_id', '=', $request->category_id);
-                    });
-                });
         }
 
+        $stocks = Store::whereHas('item', function (Builder $q) use ($request) {
+            $q->customFilter('itemCode', 'LIKE', "%{$request->itemCode}%")
+                ->customFilter('name', 'LIKE', "%{$request->itemName}%")
+                ->customFilter('color_id', '=', $request->color_id)
+                ->customFilter('type_id', '=', $request->type_id)
+                ->customFilter('category_id', '=', $request->category_id)
+                ->with('color')->with('category');
+        });
 
         return view('admin.report.stockBalanceReport', [
             'stocks' => $stocks->get(),
@@ -330,39 +281,11 @@ class ReportController extends Controller
         $issues = Issue::customFilter('employee_id', '=', $request->employee_id)
             ->customDateFilter('created_at', $from, $to)->get();
 
-        $new_issues = $issues->filter(function ($issue) {
-            return $issue->type == Constants::NEW;
-        });
-
-        $repairs = $issues->filter(function ($issue) {
-            return $issue->type == Constants::REPAIR;
-        });
-
-        $issue_total = $new_issues->reduce(function ($total, $issue) {
-            return $total + $issue->quantity;
-        });
-
-        $repair_total = $repairs->reduce(function ($total, $repair) {
-            return $total + $repair->quantity;
-        });
-
-        $accepts = $inspects->reduce(function ($total, $inspect) {
-            return $total + $inspect->acceptQty;
-        });
-
-        $rejects = $inspects->reduce(function ($total, $inspect) {
-            return $total + $inspect->rejectQty;
-        });
-
         return view('admin.report.processReportByEmployee', [
             'employees' => Employee::all(),
             'inspects' => $inspects,
-            'repairs' => $repairs,
-            'issues' => $new_issues,
-            'accepts' => $accepts,
-            'rejects' => $rejects,
-            'issue_total' => $issue_total,
-            'repair_total' => $repair_total,
+            'repairs' => $issues->where('type', Constants::REPAIR),
+            'issues' => $issues->where('type', Constants::NEW),
         ]);
     }
 
@@ -372,7 +295,7 @@ class ReportController extends Controller
         $date = Carbon::parse($request->date);
 
         $inspects = Inspect::whereDate('created_at', $date)
-                    ->customFilter('item_id', '=', $request->item_id)->get();
+            ->customFilter('item_id', '=', $request->item_id)->get();
 
         $issues = Issue::whereDate('created_at', $date)
             ->customFilter('item_id', '=', $request->item_id)->get();

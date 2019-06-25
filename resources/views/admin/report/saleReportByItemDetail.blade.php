@@ -38,7 +38,7 @@
 
                                 <div class="form-group row">
                                     <div class="col-md-12 text-right" style="margin-top: 15px;">
-                                        <input type="submit" class="btn btn-primary" value="Generate">
+                                        <input type="submit" class="btn btn-primary" name="search" value="Generate">
                                     </div>
                                 </div>
                             </form>

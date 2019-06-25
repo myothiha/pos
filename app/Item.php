@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\CustomFilter;
 use Eloquent;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Illuminate\Database\Eloquent\Builder;
@@ -53,6 +54,8 @@ use Illuminate\Support\Carbon;
  */
 class Item extends Model implements Buyable
 {
+    use CustomFilter;
+
     protected $casts = [
         'isActive' => 'boolean',
     ];

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\CustomFilter;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -34,7 +35,6 @@ use Illuminate\Support\Carbon;
  * @property-read mixed $quantity
  * @property-read Location $location
  * @property int user_id
- * @property int $user_id
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Query\Builder|\App\Transfer onlyTrashed()
  * @method static bool|null restore()
@@ -44,7 +44,7 @@ use Illuminate\Support\Carbon;
  */
 class Transfer extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, CustomFilter;
 
     public function items()
     {

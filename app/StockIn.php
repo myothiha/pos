@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\CustomFilter;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -34,7 +35,6 @@ use Illuminate\Support\Carbon;
  * @method static Builder|StockIn whereVoucherNo($value)
  * @property-read Collection|Item[] $items
  * @property int user_id
- * @property int $user_id
  * @property-read \App\Customer $customer
  * @property-read \App\Location $location
  * @property-read \App\Supplier $supplier
@@ -47,7 +47,7 @@ use Illuminate\Support\Carbon;
  */
 class StockIn extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, CustomFilter;
 
     public function items()
     {

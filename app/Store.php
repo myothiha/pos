@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\CustomFilter;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -33,6 +34,8 @@ use Illuminate\Support\Carbon;
  */
 class Store extends Model
 {
+    use CustomFilter;
+
     protected $fillable = [
         'location_id',
         'item_id',
