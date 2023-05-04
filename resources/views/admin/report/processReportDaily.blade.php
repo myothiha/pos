@@ -70,6 +70,9 @@
                         <div class="sm-wrapper">
                             <div class="sm-box">
                                 <h3>Issue</h3>
+
+                                @include('admin._partials.pagination', ['collection' => $processes])
+
                                 <table class="table table-striped table-bordered nowrap w-in-100">
                                     <thead>
                                     <tr>

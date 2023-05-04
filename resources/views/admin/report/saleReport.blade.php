@@ -86,6 +86,9 @@
                         <div class="sm-wrapper">
                             <div class="sm-box">
                                 <h3>Credit Sales</h3>
+
+                                @include('admin._partials.pagination', ['collection' => $sales])
+
                                 <table class="table table-striped table-bordered nowrap w-in-100">
                                     <thead>
                                     <tr>
@@ -118,7 +121,7 @@
                                         <td colspan="5" class="text-right"><b>Total</b></td>
                                         <td>{{ $credit_sales->sum('balance') }}</td>
                                         <td>{{ $credit_sales->sum('paid') }}</td>
-                                        <td>{{ $credit_sales->sum('totalAmount') }}</td>
+                                        <td colspan="2">{{ $credit_sales->sum('totalAmount') }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -161,6 +164,9 @@
                                 </table>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-12">
+                        {{ $sales->links() }}
                     </div>
                 </div>
             </div>

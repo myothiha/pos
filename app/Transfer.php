@@ -41,6 +41,9 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Transfer withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Transfer withoutTrashed()
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer customDateFilter($column, $from, $to)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Transfer customFilter($column, $op, $value)
  */
 class Transfer extends Model
 {

@@ -31,6 +31,8 @@ use Illuminate\Support\Carbon;
  * @property-read Item $item
  * @property-read Location $location
  * @method static Builder|Store whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Store customDateFilter($column, $from, $to)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Store customFilter($column, $op, $value)
  */
 class Store extends Model
 {

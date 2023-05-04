@@ -47,6 +47,7 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Inspect whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Inspect withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Inspect withoutTrashed()
+ * @property int $user_id
  */
 class Inspect extends Model
 {

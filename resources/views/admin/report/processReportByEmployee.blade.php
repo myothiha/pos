@@ -38,7 +38,8 @@
                                         <label class="col-md-3 col-form-label">Date Range</label>
                                         <div class="col-md-9">
                                             <div class="input-group date input-group--style-1" id="">
-                                                <input class="form-control" type="text" name="daterange" readonly="true"/>
+                                                <input class="form-control" type="text" name="daterange"
+                                                       readonly="true"/>
                                             </div>
                                         </div>
                                     </div>
@@ -74,10 +75,15 @@
                 </div>
 
                 <div class="row">
+
                     <div class="col-lg-12">
                         <div class="sm-wrapper">
+
                             <div class="sm-box">
                                 <h3>Issue</h3>
+
+                                @include('admin._partials.pagination', ['collection' => $processes])
+
                                 <table class="table table-striped table-bordered nowrap w-in-100">
                                     <thead>
                                     <tr>
@@ -145,6 +151,15 @@
                                     </tbody>
                                 </table>
                                 <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="sm-wrapper">
+                            <div class="sm-box">
                                 <h3>Inspect</h3>
                                 <table class="table table-striped table-bordered nowrap w-in-100">
                                     <thead>
@@ -181,7 +196,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

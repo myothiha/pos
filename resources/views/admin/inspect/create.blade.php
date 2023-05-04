@@ -139,7 +139,7 @@
                                                 <div class="col-6">
                                                     <div class="form-group">
                                                         <label for="remark">Remark</label>
-                                                        <textarea id="remark" placeholder="Remark" class="form-control" name="remark" required></textarea>
+                                                        <textarea id="remark" placeholder="Remark" class="form-control" name="remark"></textarea>
                                                     </div>
                                                 </div>
                                             </div>

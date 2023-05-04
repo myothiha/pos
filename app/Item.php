@@ -51,6 +51,8 @@ use Illuminate\Support\Carbon;
  * @property-read Collection|Issue[] $issues
  * @property-read mixed $quantity
  * @property-read mixed $total
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Item customDateFilter($column, $from, $to)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Item customFilter($column, $op, $value)
  */
 class Item extends Model implements Buyable
 {

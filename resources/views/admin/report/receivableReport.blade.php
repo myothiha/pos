@@ -56,6 +56,7 @@
                     <div class="col-lg-12">
                         <div class="sm-wrapper">
                             <div class="sm-box">
+                                @include('admin._partials.pagination', ['collection' => $receivables])
                                 <table class="table table-striped table-bordered nowrap w-in-100">
                                     <thead>
                                     <tr>
@@ -82,7 +83,6 @@
                                     </tr>
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>

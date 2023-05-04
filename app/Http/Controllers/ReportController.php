@@ -43,7 +43,8 @@ class ReportController extends Controller
         [$from, $to] = $this->getDateRange($request->daterange);
 
         $stockIns = StockIn::query()
-            ->customDateFilter('created_at', $from, $to)->get();
+            ->customDateFilter('created_at', $from, $to)
+            ->paginate($request->limit ?? Constants::DEFAULT_LIMIT);
 
         return view('admin.report.stockInReport', [
             'stockIns' => $stockIns,
@@ -82,7 +83,7 @@ class ReportController extends Controller
 
         [$from, $to] = $this->getDateRange($request->daterange);
 
-        $sales = Sale::customDateFilter('created_at', $from, $to)->get();
+        $sales = Sale::customDateFilter('created_at', $from, $to)->paginate($request->limit ?? Constants::DEFAULT_LIMIT);
 
         return view('admin.report.saleReport', [
             'sales' => $sales,
@@ -113,10 +114,10 @@ class ReportController extends Controller
                 ->customFilter('type_id', '=', $request->type_id)
                 ->customFilter('category_id', '=', $request->category_id)
                 ->with('color')->with('category');
-        });
+        })->paginate($request->limit ?? Constants::DEFAULT_LIMIT);
 
         return view('admin.report.saleReportByItem', [
-            'items' => $items->get(),
+            'items' => $items,
             'colors' => Color::all(),
             'types' => Type::all(),
             'categories' => Category::all(),
@@ -164,7 +165,7 @@ class ReportController extends Controller
 
         [$from, $to] = $this->getDateRange($request->daterange);
 
-        $transfers = Transfer::customDateFilter('created_at', $from, $to)->get();
+        $transfers = Transfer::customDateFilter('created_at', $from, $to)->paginate($request->limit ?? Constants::DEFAULT_LIMIT);
 
         return view('admin.report.transferReport', [
             'transfers' => $transfers,
@@ -179,7 +180,7 @@ class ReportController extends Controller
 
         [$from, $to] = $this->getDateRange($request->daterange);
 
-        $receivables = Receivable::customDateFilter('created_at', $from, $to)->get();
+        $receivables = Receivable::customDateFilter('created_at', $from, $to)->paginate($request->limit ?? Constants::DEFAULT_LIMIT);
 
         return view('admin.report.receivableReport', [
             'receivables' => $receivables,
@@ -204,7 +205,7 @@ class ReportController extends Controller
         $allCustomers = Customer::all();
 
         return view('admin.report.customerCreditReport', [
-            'customers' => $customers->get(),
+            'customers' => $customers->paginate($request->limit ?? Constants::DEFAULT_LIMIT),
             'allCustomers' => $allCustomers,
         ]);
     }
@@ -252,10 +253,10 @@ class ReportController extends Controller
                 ->customFilter('type_id', '=', $request->type_id)
                 ->customFilter('category_id', '=', $request->category_id)
                 ->with('color')->with('category');
-        });
+        })->paginate($request->limit ?? Constants::DEFAULT_LIMIT);
 
         return view('admin.report.stockBalanceReport', [
-            'stocks' => $stocks->get(),
+            'stocks' => $stocks,
             'colors' => Color::all(),
             'types' => Type::all(),
             'categories' => Category::all(),
@@ -276,16 +277,17 @@ class ReportController extends Controller
         [$from, $to] = $this->getDateRange($request->daterange);
 
         $inspects = Inspect::customFilter('employee_id', '=', $request->employee_id)
-            ->customDateFilter('created_at', $from, $to)->get();
+            ->customDateFilter('created_at', $from, $to)->paginate($request->limit ?? Constants::DEFAULT_LIMIT);
 
-        $issues = Issue::customFilter('employee_id', '=', $request->employee_id)
-            ->customDateFilter('created_at', $from, $to)->get();
+        $processes = Issue::customFilter('employee_id', '=', $request->employee_id)
+            ->customDateFilter('created_at', $from, $to)->paginate($request->limit ?? Constants::DEFAULT_LIMIT);
 
         return view('admin.report.processReportByEmployee', [
             'employees' => Employee::all(),
             'inspects' => $inspects,
-            'repairs' => $issues->where('type', Constants::REPAIR),
-            'issues' => $issues->where('type', Constants::NEW),
+            'processes' => $processes,
+            'repairs' => $processes->where('type', Constants::REPAIR),
+            'issues' => $processes->where('type', Constants::NEW),
         ]);
     }
 
@@ -295,14 +297,14 @@ class ReportController extends Controller
         $date = Carbon::parse($request->date);
 
         $inspects = Inspect::whereDate('created_at', $date)
-            ->customFilter('item_id', '=', $request->item_id)->get();
+            ->customFilter('item_id', '=', $request->item_id)->paginate(10);
 
-        $issues = Issue::whereDate('created_at', $date)
-            ->customFilter('item_id', '=', $request->item_id)->get();
+        $processes = Issue::whereDate('created_at', $date)
+            ->customFilter('item_id', '=', $request->item_id)->paginate(10);
 
-        $new_issues = $issues->where('type', Constants::NEW);
+        $new_issues = $processes->where('type', Constants::NEW);
 
-        $repairs = $issues->where('type', Constants::REPAIR);
+        $repairs = $processes->where('type', Constants::REPAIR);
 
         $items = Item::all();
 
@@ -312,6 +314,7 @@ class ReportController extends Controller
 
         return view('admin.report.processReportDaily', [
             'inspects' => $inspects,
+            'processes' => $processes,
             'issues' => $new_issues,
             'repairs' => $repairs,
             'items' => $items,

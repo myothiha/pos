@@ -7,7 +7,6 @@ class Constants
     public const TRUE = 1;
     public const FALSE = 0;
 
-
     public const MALE = 'Male';
     public const FEMALE = 'Female';
 
@@ -21,4 +20,6 @@ class Constants
     // For Issue Types
     const NEW = 'new';
     const REPAIR = 'repair';
+
+    const DEFAULT_LIMIT = 10;
 }

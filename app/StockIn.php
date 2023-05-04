@@ -44,6 +44,9 @@ use Illuminate\Support\Carbon;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn whereUserId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\StockIn withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\StockIn withoutTrashed()
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn customDateFilter($column, $from, $to)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\StockIn customFilter($column, $op, $value)
  */
 class StockIn extends Model
 {

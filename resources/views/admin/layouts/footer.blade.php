@@ -32,3 +32,5 @@
     </div>
 </footer>
 <!--END FOOTER-->
+
+<script src="/js/custom.js"></script>
